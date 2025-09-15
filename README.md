@@ -113,34 +113,34 @@ You can find the API reference [here](https://railsware.github.io/mailtrap-java/
 
 ### General API
 
-- [List User & Invite account accesses](examples/java/io/mailtrap/examples/general/AccountAccess.java)
-- [Remove account access](examples/java/io/mailtrap/examples/general/Accounts.java)
-- [Permissions](examples/java/io/mailtrap/examples/general/Permissions.java)
-- [Current billing usage cycle](examples/java/io/mailtrap/examples/general/Billing.java)
+- [List User & Invite account accesses](examples/java/io/mailtrap/examples/general/AccountAccessExample.java)
+- [Remove account access](examples/java/io/mailtrap/examples/general/AccountsExample.java)
+- [Permissions](examples/java/io/mailtrap/examples/general/PermissionsExample.java)
+- [Current billing usage cycle](examples/java/io/mailtrap/examples/general/BillingExample.java)
 
 ### Sending API
 
-- [Advanced](examples/java/io/mailtrap/examples/sending/Everything.java)
-- [Minimal](examples/java/io/mailtrap/examples/sending/Minimal.java)
-- [Error handling](examples/java/io/mailtrap/examples/sending/Errors.java)
-- [Send email using template](examples/java/io/mailtrap/examples/sending/Template.java)
+- [Advanced](examples/java/io/mailtrap/examples/sending/EverythingExample.java)
+- [Minimal](examples/java/io/mailtrap/examples/sending/MinimalExample.java)
+- [Error handling](examples/java/io/mailtrap/examples/sending/ErrorsExample.java)
+- [Send email using template](examples/java/io/mailtrap/examples/sending/TemplateExample.java)
 
 ### Email Testing API
 
-- [Attachments](examples/java/io/mailtrap/examples/testing/Attachments.java)
-- [Inboxes](examples/java/io/mailtrap/examples/testing/Inboxes.java)
-- [Messages](examples/java/io/mailtrap/examples/testing/Messages.java)
-- [Projects](examples/java/io/mailtrap/examples/testing/Projects.java)
-- [Send mail using template](examples/java/io/mailtrap/examples/testing/Email.java)
+- [Attachments](examples/java/io/mailtrap/examples/testing/AttachmentsExample.java)
+- [Inboxes](examples/java/io/mailtrap/examples/testing/InboxesExample.java)
+- [Messages](examples/java/io/mailtrap/examples/testing/MessagesExample.java)
+- [Projects](examples/java/io/mailtrap/examples/testing/ProjectsExample.java)
+- [Send mail using template](examples/java/io/mailtrap/examples/testing/EmailExample.java)
 
 ### Bulk Sending API
 
-- [Send mail](examples/java/io/mailtrap/examples/bulk/BulkSend.java)
+- [Send mail](examples/java/io/mailtrap/examples/bulk/BulkSendExample.java)
 
 ### Contacts API
 
-- [Contacts](examples/java/io/mailtrap/examples/contacts/Contacts.java)
-- [Contact lists](examples/java/io/mailtrap/examples/contactlists/ContactLists.java)
+- [Contacts](examples/java/io/mailtrap/examples/contacts/ContactsExample.java)
+- [Contact lists](examples/java/io/mailtrap/examples/contactlists/ContactListsExample.java)
 
 ## Contributing
 

@@ -24,7 +24,7 @@ class SuppressionsImplTest extends BaseTest {
 
   @BeforeEach
   public void init() {
-    TestHttpClient httpClient = new TestHttpClient(List.of(
+    final TestHttpClient httpClient = new TestHttpClient(List.of(
         DataMock.build(
             Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/suppressions",
             "GET", null, "api/suppressions/searchSuppressions.json",
@@ -36,7 +36,7 @@ class SuppressionsImplTest extends BaseTest {
         )
     ));
 
-    MailtrapConfig testConfig = new MailtrapConfig.Builder()
+    final MailtrapConfig testConfig = new MailtrapConfig.Builder()
         .httpClient(httpClient)
         .token("dummy_token")
         .build();
@@ -46,7 +46,7 @@ class SuppressionsImplTest extends BaseTest {
 
   @Test
   void test_search() {
-    List<SuppressionsResponse> searchResponse = api.search(accountId, email);
+    final List<SuppressionsResponse> searchResponse = api.search(accountId, email);
 
     assertEquals(1, searchResponse.size());
     assertEquals(suppressionId, searchResponse.get(0).getId());
@@ -57,7 +57,7 @@ class SuppressionsImplTest extends BaseTest {
 
   @Test
   void test_deleteSuppression() {
-    SuppressionsResponse deleted = api.deleteSuppression(accountId, suppressionId);
+    final SuppressionsResponse deleted = api.deleteSuppression(accountId, suppressionId);
 
     assertNotNull(deleted);
     assertEquals(suppressionId, deleted.getId());

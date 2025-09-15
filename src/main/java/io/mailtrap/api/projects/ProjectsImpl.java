@@ -13,61 +13,61 @@ import java.util.List;
 
 public class ProjectsImpl extends ApiResourceWithValidation implements Projects {
 
-    public ProjectsImpl(MailtrapConfig config, CustomValidator customValidator) {
+    public ProjectsImpl(final MailtrapConfig config, final CustomValidator customValidator) {
         super(config, customValidator);
         this.apiHost = Constants.GENERAL_HOST;
     }
 
     @Override
-    public ProjectsResponse createProject(long accountId, CreateUpdateProjectRequest request) {
+    public ProjectsResponse createProject(final long accountId, final CreateUpdateProjectRequest request) {
 
         validateRequestBodyAndThrowException(request);
 
         return httpClient.post(
-                String.format(apiHost + "/api/accounts/%s/projects", accountId),
-                request,
-                new RequestData(),
-                ProjectsResponse.class
+            String.format(apiHost + "/api/accounts/%d/projects", accountId),
+            request,
+            new RequestData(),
+            ProjectsResponse.class
         );
     }
 
     @Override
-    public List<ProjectsResponse> getProjects(long accountId) {
+    public List<ProjectsResponse> getProjects(final long accountId) {
         return httpClient.getList(
-                String.format(apiHost + "/api/accounts/%s/projects", accountId),
-                new RequestData(),
-                ProjectsResponse.class
+            String.format(apiHost + "/api/accounts/%d/projects", accountId),
+            new RequestData(),
+            ProjectsResponse.class
         );
     }
 
     @Override
-    public ProjectsResponse getProject(long accountId, long projectId) {
+    public ProjectsResponse getProject(final long accountId, final long projectId) {
         return httpClient.get(
-                String.format(apiHost + "/api/accounts/%s/projects/%s", accountId, projectId),
-                new RequestData(),
-                ProjectsResponse.class
+            String.format(apiHost + "/api/accounts/%d/projects/%d", accountId, projectId),
+            new RequestData(),
+            ProjectsResponse.class
         );
     }
 
     @Override
-    public ProjectsResponse updateProject(long accountId, long projectId, CreateUpdateProjectRequest updateRequest) {
+    public ProjectsResponse updateProject(final long accountId, final long projectId, final CreateUpdateProjectRequest updateRequest) {
 
         validateRequestBodyAndThrowException(updateRequest);
 
         return httpClient.patch(
-                String.format(apiHost + "/api/accounts/%s/projects/%s", accountId, projectId),
-                updateRequest,
-                new RequestData(),
-                ProjectsResponse.class
+            String.format(apiHost + "/api/accounts/%d/projects/%d", accountId, projectId),
+            updateRequest,
+            new RequestData(),
+            ProjectsResponse.class
         );
     }
 
     @Override
-    public DeleteProjectResponse deleteProject(long accountId, long projectId) {
+    public DeleteProjectResponse deleteProject(final long accountId, final long projectId) {
         return httpClient.delete(
-                String.format(apiHost + "/api/accounts/%s/projects/%s", accountId, projectId),
-                new RequestData(),
-                DeleteProjectResponse.class
+            String.format(apiHost + "/api/accounts/%d/projects/%d", accountId, projectId),
+            new RequestData(),
+            DeleteProjectResponse.class
         );
     }
 

@@ -9,7 +9,7 @@ import io.mailtrap.model.request.permissions.Permission;
 
 import java.util.List;
 
-public class Permissions {
+public class PermissionsExample {
 
     private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
     private static final long ACCOUNT_ID = 1L;

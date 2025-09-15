@@ -13,9 +13,9 @@ public interface Attachments {
     /**
      * Get message single attachment by ID
      *
-     * @param accountId - unique account ID
-     * @param inboxId - unique inbox ID
-     * @param messageId - unique message ID
+     * @param accountId    - unique account ID
+     * @param inboxId      - unique inbox ID
+     * @param messageId    - unique message ID
      * @param attachmentId - unique attachment ID
      * @return attachment details and download path
      */
@@ -24,9 +24,9 @@ public interface Attachments {
     /**
      * Get message attachments by inboxId and messageId
      *
-     * @param accountId - unique account ID
-     * @param inboxId - unique inbox ID
-     * @param messageId - unique message ID
+     * @param accountId      - unique account ID
+     * @param inboxId        - unique inbox ID
+     * @param messageId      - unique message ID
      * @param attachmentType - attachment type; optional query param
      * @return attachments with their details and download paths
      */

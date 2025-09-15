@@ -10,17 +10,17 @@ import java.util.List;
 
 public class ContactListsImpl extends ApiResource implements ContactLists {
 
-    public ContactListsImpl(MailtrapConfig config) {
+    public ContactListsImpl(final MailtrapConfig config) {
         super(config);
         this.apiHost = Constants.GENERAL_HOST;
     }
 
     @Override
-    public List<ContactListResponse> findAll(long accountId) {
+    public List<ContactListResponse> findAll(final long accountId) {
         return httpClient.getList(
-                String.format(apiHost + "/api/accounts/%s/contacts/lists", accountId),
-                new RequestData(),
-                ContactListResponse.class
+            String.format(apiHost + "/api/accounts/%d/contacts/lists", accountId),
+            new RequestData(),
+            ContactListResponse.class
         );
     }
 }

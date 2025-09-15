@@ -17,7 +17,6 @@ public class Mapper {
     private static final ObjectMapper mapper = JsonMapper.builder()
             .disable(MapperFeature.CAN_OVERRIDE_ACCESS_MODIFIERS)
             .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
-            .serializationInclusion(JsonInclude.Include.NON_NULL)
             .serializationInclusion(JsonInclude.Include.NON_EMPTY)
             .addModule(new SimpleModule().addDeserializer(ErrorResponse.class, new ErrorResponseDeserializer()))
             .addModule(new JavaTimeModule())

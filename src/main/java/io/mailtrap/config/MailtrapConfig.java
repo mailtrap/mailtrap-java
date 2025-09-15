@@ -43,7 +43,7 @@ public class MailtrapConfig {
      */
     private final Long inboxId;
 
-    private MailtrapConfig(Builder builder) {
+    private MailtrapConfig(final Builder builder) {
         if (builder.sandbox && builder.bulk) {
             throw new BaseMailtrapException("Bulk mode is not applicable for Testing API");
         }
@@ -67,32 +67,32 @@ public class MailtrapConfig {
         private boolean bulk;
         private Long inboxId;
 
-        public Builder connectionTimeout(Duration connectionTimeout) {
+        public Builder connectionTimeout(final Duration connectionTimeout) {
             this.connectionTimeout = connectionTimeout;
             return this;
         }
 
-        public Builder token(String token) {
+        public Builder token(final String token) {
             this.token = token;
             return this;
         }
 
-        public Builder httpClient(CustomHttpClient httpClient) {
+        public Builder httpClient(final CustomHttpClient httpClient) {
             this.httpClient = httpClient;
             return this;
         }
 
-        public Builder sandbox(boolean sandbox) {
+        public Builder sandbox(final boolean sandbox) {
             this.sandbox = sandbox;
             return this;
         }
 
-        public Builder bulk(boolean bulk) {
+        public Builder bulk(final boolean bulk) {
             this.bulk = bulk;
             return this;
         }
 
-        public Builder inboxId(Long inboxId) {
+        public Builder inboxId(final Long inboxId) {
             this.inboxId = inboxId;
             return this;
         }

@@ -21,7 +21,7 @@ public final class ResolvedMailView {
     private final BatchEmailBase base;
     private final MailtrapMail item;
 
-    public ResolvedMailView(BatchEmailBase base, MailtrapMail item) {
+    public ResolvedMailView(final BatchEmailBase base, final MailtrapMail item) {
         this.base = base;
         this.item = item;
     }

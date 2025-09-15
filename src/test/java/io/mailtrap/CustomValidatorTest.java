@@ -16,7 +16,7 @@ class CustomValidatorTest {
 
     @Test
     void validate_WithValidObject_ShouldReturnEmptyMap() {
-        Address validAddress = new Address("mail+123@gmail.com");
+        final Address validAddress = new Address("mail+123@gmail.com");
 
         Map<String, String> errors = customValidator.validate(validAddress);
 
@@ -25,9 +25,9 @@ class CustomValidatorTest {
 
     @Test
     void validate_WithInvalidObject_ShouldReturnErrorsMap() {
-        Address invalidAddress = new Address("qwerty");
+        final Address invalidAddress = new Address("qwerty");
 
-        Map<String, String> errors = customValidator.validate(invalidAddress);
+        final Map<String, String> errors = customValidator.validate(invalidAddress);
 
         assertEquals(1, errors.size());
         assertEquals("must be a well-formed email address", errors.get("email"));
@@ -35,18 +35,18 @@ class CustomValidatorTest {
 
     @Test
     void validateAndGetViolationsAsString_WithValidObject_ShouldReturnEmptyString() {
-        Address validAddress = new Address("mail+123@gmail.com");
+        final Address validAddress = new Address("mail+123@gmail.com");
 
-        String violationsAsString = customValidator.validateAndGetViolationsAsString(validAddress);
+        final String violationsAsString = customValidator.validateAndGetViolationsAsString(validAddress);
 
         assertEquals("", violationsAsString);
     }
 
     @Test
     void validateAndGetViolationsAsString_WithInvalidObject_ShouldReturnConcatenatedString() {
-        Address invalidAddress = new Address("qwerty");
+        final Address invalidAddress = new Address("qwerty");
 
-        String violationsAsString = customValidator.validateAndGetViolationsAsString(invalidAddress);
+        final String violationsAsString = customValidator.validateAndGetViolationsAsString(invalidAddress);
 
         assertEquals("email=must be a well-formed email address", violationsAsString);
     }

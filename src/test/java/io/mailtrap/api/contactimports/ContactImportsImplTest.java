@@ -23,63 +23,63 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ContactImportsImplTest extends BaseTest {
 
-  private ContactImports api;
+    private ContactImports api;
 
-  @BeforeEach
-  public void init() {
-    TestHttpClient httpClient = new TestHttpClient(List.of(
-        DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/imports",
-            "POST", "api/contactimports/createContactsImportRequest.json", "api/contactimports/createContactsImportResponse.json"),
+    @BeforeEach
+    public void init() {
+        final TestHttpClient httpClient = new TestHttpClient(List.of(
+            DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/imports",
+                "POST", "api/contactimports/createContactsImportRequest.json", "api/contactimports/createContactsImportResponse.json"),
 
-        DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/imports/" + importId,
-            "GET", null, "api/contactimports/getContactsImportResponse.json")
-    ));
+            DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/imports/" + importId,
+                "GET", null, "api/contactimports/getContactsImportResponse.json")
+        ));
 
-    MailtrapConfig testConfig = new MailtrapConfig.Builder()
-        .httpClient(httpClient)
-        .token("dummy_token")
-        .build();
+        final MailtrapConfig testConfig = new MailtrapConfig.Builder()
+            .httpClient(httpClient)
+            .token("dummy_token")
+            .build();
 
-    api = MailtrapClientFactory.createMailtrapClient(testConfig).contactsApi().contactImports();
-  }
-
-  @Test
-  void test_importContacts() {
-    final var firstContact = new Contact("customer1@example.com", Map.of("full_name", "Jane Doe"), List.of(1L), List.of(2L));
-    final var secondContact = new Contact("customer2@example.com", Map.of("full_name", "John Doe"), List.of(3L), List.of(4L));
-    final var request = new ImportContactsRequest(List.of(firstContact, secondContact));
-
-    CreateContactsImportResponse contactImportResponse = api.importContacts(accountId, request);
-
-    assertEquals(importId, contactImportResponse.getId());
-    assertSame(ContactImportStatus.STARTED, contactImportResponse.getStatus());
-  }
-
-  @Test
-  void test_importContacts_should_fail_validation() {
-    InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> api.importContacts(accountId, new ImportContactsRequest(generateContacts())));
-
-    assertEquals("Invalid request body. Violations: contacts=Maximum 50000 contacts per request", exception.getMessage());
-  }
-
-  private List<Contact> generateContacts() {
-    List<Contact> contacts = new ArrayList<>();
-
-    for (int i = 0; i < 50001; i++) {
-      contacts.add(new Contact("stub_contact_%d@example.com".formatted(i), Map.of(), List.of(), List.of()));
+        api = MailtrapClientFactory.createMailtrapClient(testConfig).contactsApi().contactImports();
     }
 
-    return contacts;
-  }
+    @Test
+    void test_importContacts() {
+        final var firstContact = new Contact("customer1@example.com", Map.of("full_name", "Jane Doe"), List.of(1L), List.of(2L));
+        final var secondContact = new Contact("customer2@example.com", Map.of("full_name", "John Doe"), List.of(3L), List.of(4L));
+        final var request = new ImportContactsRequest(List.of(firstContact, secondContact));
 
-  @Test
-  void test_getContactImport() {
-    ContactsImportResponse contactImport = api.getContactImport(accountId, importId);
+        final CreateContactsImportResponse contactImportResponse = api.importContacts(accountId, request);
 
-    assertEquals(importId, contactImport.getId());
-    assertSame(ContactImportStatus.FINISHED, contactImport.getStatus());
-    assertEquals(1L, contactImport.getCreatedContactsCount());
-    assertEquals(3L, contactImport.getUpdatedContactsCount());
-    assertEquals(3L, contactImport.getContactsOverLimitCount());
-  }
+        assertEquals(importId, contactImportResponse.getId());
+        assertSame(ContactImportStatus.STARTED, contactImportResponse.getStatus());
+    }
+
+    @Test
+    void test_importContacts_should_fail_validation() {
+        final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> api.importContacts(accountId, new ImportContactsRequest(generateContacts())));
+
+        assertEquals("Invalid request body. Violations: contacts=Maximum 50000 contacts per request", exception.getMessage());
+    }
+
+    private List<Contact> generateContacts() {
+        final List<Contact> contacts = new ArrayList<>();
+
+        for (int i = 0; i < 50001; i++) {
+            contacts.add(new Contact(String.format("stub_contact_%d@example.com", i), Map.of(), List.of(), List.of()));
+        }
+
+        return contacts;
+    }
+
+    @Test
+    void test_getContactImport() {
+        final ContactsImportResponse contactImport = api.getContactImport(accountId, importId);
+
+        assertEquals(importId, contactImport.getId());
+        assertSame(ContactImportStatus.FINISHED, contactImport.getStatus());
+        assertEquals(1L, contactImport.getCreatedContactsCount());
+        assertEquals(3L, contactImport.getUpdatedContactsCount());
+        assertEquals(3L, contactImport.getContactsOverLimitCount());
+    }
 }

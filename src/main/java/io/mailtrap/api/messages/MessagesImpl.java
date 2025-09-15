@@ -4,8 +4,8 @@ import io.mailtrap.Constants;
 import io.mailtrap.api.apiresource.ApiResource;
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.http.RequestData;
-import io.mailtrap.model.request.messages.ForwardMessageRequest;
 import io.mailtrap.model.request.accountaccesses.ListMessagesQueryParams;
+import io.mailtrap.model.request.messages.ForwardMessageRequest;
 import io.mailtrap.model.request.messages.UpdateMessageRequest;
 import io.mailtrap.model.response.messages.*;
 import lombok.NonNull;
@@ -17,132 +17,132 @@ import static io.mailtrap.http.RequestData.entry;
 
 public class MessagesImpl extends ApiResource implements Messages {
 
-    public MessagesImpl(MailtrapConfig config) {
+    public MessagesImpl(final MailtrapConfig config) {
         super(config);
         this.apiHost = Constants.GENERAL_HOST;
     }
 
     @Override
-    public MessageResponse getMessage(long accountId, long inboxId, long messageId) {
+    public MessageResponse getMessage(final long accountId, final long inboxId, final long messageId) {
         return httpClient.get(
-                String.format(apiHost + "/api/accounts/%s/inboxes/%s/messages/%s", accountId, inboxId, messageId),
-                new RequestData(),
-                MessageResponse.class
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d", accountId, inboxId, messageId),
+            new RequestData(),
+            MessageResponse.class
         );
     }
 
     @Override
-    public MessageResponse updateMessage(long accountId, long inboxId, long messageId, UpdateMessageRequest request) {
+    public MessageResponse updateMessage(final long accountId, final long inboxId, final long messageId, final UpdateMessageRequest request) {
         return httpClient.patch(
-                String.format(apiHost + "/api/accounts/%s/inboxes/%s/messages/%s", accountId, inboxId, messageId),
-                request,
-                new RequestData(),
-                MessageResponse.class
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d", accountId, inboxId, messageId),
+            request,
+            new RequestData(),
+            MessageResponse.class
         );
     }
 
     @Override
-    public MessageResponse deleteMessage(long accountId, long inboxId, long messageId) {
+    public MessageResponse deleteMessage(final long accountId, final long inboxId, final long messageId) {
         return httpClient.delete(
-                String.format(apiHost + "/api/accounts/%s/inboxes/%s/messages/%s", accountId, inboxId, messageId),
-                new RequestData(),
-                MessageResponse.class
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d", accountId, inboxId, messageId),
+            new RequestData(),
+            MessageResponse.class
         );
     }
 
     @Override
-    public List<MessageResponse> getMessages(long accountId, long inboxId, @NonNull ListMessagesQueryParams listMessagesQueryParams) {
-        var queryParams = RequestData.buildQueryParams(
-                entry("last_id", Optional.ofNullable(listMessagesQueryParams.getLastId())),
-                entry("page", Optional.ofNullable(listMessagesQueryParams.getPage())),
-                entry("search", Optional.ofNullable(listMessagesQueryParams.getSearch())));
+    public List<MessageResponse> getMessages(final long accountId, final long inboxId, @NonNull final ListMessagesQueryParams listMessagesQueryParams) {
+        final var queryParams = RequestData.buildQueryParams(
+            entry("last_id", Optional.ofNullable(listMessagesQueryParams.getLastId())),
+            entry("page", Optional.ofNullable(listMessagesQueryParams.getPage())),
+            entry("search", Optional.ofNullable(listMessagesQueryParams.getSearch())));
 
         return httpClient.getList(
-                String.format(apiHost + "/api/accounts/%s/inboxes/%s/messages", accountId, inboxId),
-                new RequestData(queryParams),
-                MessageResponse.class
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages", accountId, inboxId),
+            new RequestData(queryParams),
+            MessageResponse.class
         );
     }
 
     @Override
-    public ForwardMessageResponse forwardMessage(long accountId, long inboxId, long messageId, ForwardMessageRequest request) {
+    public ForwardMessageResponse forwardMessage(final long accountId, final long inboxId, final long messageId, final ForwardMessageRequest request) {
         return httpClient.post(
-                String.format(apiHost + "/api/accounts/%s/inboxes/%s/messages/%s/forward", accountId, inboxId, messageId),
-                request,
-                new RequestData(),
-                ForwardMessageResponse.class
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/forward", accountId, inboxId, messageId),
+            request,
+            new RequestData(),
+            ForwardMessageResponse.class
         );
     }
 
     @Override
-    public MessageSpamScoreResponse getSpamScore(long accountId, long inboxId, long messageId) {
+    public MessageSpamScoreResponse getSpamScore(final long accountId, final long inboxId, final long messageId) {
         return httpClient.get(
-                String.format(apiHost + "/api/accounts/%s/inboxes/%s/messages/%s/spam_report", accountId, inboxId, messageId),
-                new RequestData(),
-                MessageSpamScoreResponse.class
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/spam_report", accountId, inboxId, messageId),
+            new RequestData(),
+            MessageSpamScoreResponse.class
         );
     }
 
     @Override
-    public MessageHtmlAnalysisResponse getMessageHtmlAnalysis(long accountId, long inboxId, long messageId) {
+    public MessageHtmlAnalysisResponse getMessageHtmlAnalysis(final long accountId, final long inboxId, final long messageId) {
         return httpClient.get(
-                String.format(apiHost + "/api/accounts/%s/inboxes/%s/messages/%s/analyze", accountId, inboxId, messageId),
-                new RequestData(),
-                MessageHtmlAnalysisResponse.class
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/analyze", accountId, inboxId, messageId),
+            new RequestData(),
+            MessageHtmlAnalysisResponse.class
         );
     }
 
     @Override
-    public String getTextMessage(long accountId, long inboxId, long messageId) {
+    public String getTextMessage(final long accountId, final long inboxId, final long messageId) {
         return httpClient.get(
-                String.format(apiHost + "/api/accounts/%s/inboxes/%s/messages/%s/body.txt", accountId, inboxId, messageId),
-                new RequestData(),
-                String.class
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/body.txt", accountId, inboxId, messageId),
+            new RequestData(),
+            String.class
         );
     }
 
     @Override
-    public String getRawMessage(long accountId, long inboxId, long messageId) {
+    public String getRawMessage(final long accountId, final long inboxId, final long messageId) {
         return httpClient.get(
-                String.format(apiHost + "/api/accounts/%s/inboxes/%s/messages/%s/body.raw", accountId, inboxId, messageId),
-                new RequestData(),
-                String.class
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/body.raw", accountId, inboxId, messageId),
+            new RequestData(),
+            String.class
         );
     }
 
     @Override
-    public String getMessageSource(long accountId, long inboxId, long messageId) {
+    public String getMessageSource(final long accountId, final long inboxId, final long messageId) {
         return httpClient.get(
-                String.format(apiHost + "/api/accounts/%s/inboxes/%s/messages/%s/body.htmlsource", accountId, inboxId, messageId),
-                new RequestData(),
-                String.class
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/body.htmlsource", accountId, inboxId, messageId),
+            new RequestData(),
+            String.class
         );
     }
 
     @Override
-    public String getHtmlMessage(long accountId, long inboxId, long messageId) {
+    public String getHtmlMessage(final long accountId, final long inboxId, final long messageId) {
         return httpClient.get(
-                String.format(apiHost + "/api/accounts/%s/inboxes/%s/messages/%s/body.html", accountId, inboxId, messageId),
-                new RequestData(),
-                String.class
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/body.html", accountId, inboxId, messageId),
+            new RequestData(),
+            String.class
         );
     }
 
     @Override
-    public String getMessageAsEml(long accountId, long inboxId, long messageId) {
+    public String getMessageAsEml(final long accountId, final long inboxId, final long messageId) {
         return httpClient.get(
-                String.format(apiHost + "/api/accounts/%s/inboxes/%s/messages/%s/body.eml", accountId, inboxId, messageId),
-                new RequestData(),
-                String.class
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/body.eml", accountId, inboxId, messageId),
+            new RequestData(),
+            String.class
         );
     }
 
     @Override
-    public MessageHeadersResponse getMailHeaders(long accountId, long inboxId, long messageId) {
+    public MessageHeadersResponse getMailHeaders(final long accountId, final long inboxId, final long messageId) {
         return httpClient.get(
-                String.format(apiHost + "/api/accounts/%s/inboxes/%s/messages/%s/mail_headers", accountId, inboxId, messageId),
-                new RequestData(),
-                MessageHeadersResponse.class
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/mail_headers", accountId, inboxId, messageId),
+            new RequestData(),
+            MessageHeadersResponse.class
         );
     }
 }

@@ -29,28 +29,28 @@ import java.util.Map;
 public class ErrorResponseDeserializer extends JsonDeserializer<ErrorResponse> {
 
     @Override
-    public ErrorResponse deserialize(JsonParser p, DeserializationContext deserializationContext)
+    public ErrorResponse deserialize(final JsonParser p, final DeserializationContext deserializationContext)
             throws IOException {
-        JsonNode node = p.getCodec().readTree(p);
+        final JsonNode node = p.getCodec().readTree(p);
 
-        List<String> errors = new ArrayList<>();
+        final List<String> errors = new ArrayList<>();
 
         if (node.has("errors")) {
-            JsonNode errorsNode = node.get("errors");
+            final JsonNode errorsNode = node.get("errors");
             if (errorsNode.isArray()) {
-                Iterator<JsonNode> elements = errorsNode.elements();
+                final Iterator<JsonNode> elements = errorsNode.elements();
                 while (elements.hasNext()) {
                     errors.add(elements.next().asText());
                 }
             } else if (errorsNode.isTextual()) {
                 errors.add(errorsNode.asText());
             } else if (errorsNode.isObject()) {
-                Iterator<Map.Entry<String, JsonNode>> fields = errorsNode.fields();
+                final Iterator<Map.Entry<String, JsonNode>> fields = errorsNode.fields();
                 while (fields.hasNext()) {
-                    Map.Entry<String, JsonNode> field = fields.next();
-                    JsonNode fieldValue = field.getValue();
+                    final Map.Entry<String, JsonNode> field = fields.next();
+                    final JsonNode fieldValue = field.getValue();
                     if (fieldValue.isArray()) {
-                        Iterator<JsonNode> fieldElements = fieldValue.elements();
+                        final Iterator<JsonNode> fieldElements = fieldValue.elements();
                         while (fieldElements.hasNext()) {
                             errors.add(fieldElements.next().asText());
                         }

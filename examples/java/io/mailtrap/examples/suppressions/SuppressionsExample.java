@@ -3,7 +3,7 @@ package io.mailtrap.examples.suppressions;
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.factory.MailtrapClientFactory;
 
-public class Suppressions {
+public class SuppressionsExample {
 
   private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
   private static final long ACCOUNT_ID = 1L;

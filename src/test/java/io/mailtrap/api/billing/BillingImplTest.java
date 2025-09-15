@@ -20,12 +20,12 @@ class BillingImplTest extends BaseTest {
 
     @BeforeEach
     public void init() {
-        TestHttpClient httpClient = new TestHttpClient(List.of(
+        final TestHttpClient httpClient = new TestHttpClient(List.of(
                 DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/billing/usage",
                         "GET", null, "api/billing/currentBillingCycleUsageResponse.json")
         ));
 
-        MailtrapConfig testConfig = new MailtrapConfig.Builder()
+        final MailtrapConfig testConfig = new MailtrapConfig.Builder()
                 .httpClient(httpClient)
                 .token("dummy_token")
                 .build();
@@ -35,7 +35,7 @@ class BillingImplTest extends BaseTest {
 
     @Test
     void getCurrentBillingCycleUsage() {
-        BillingResponse billingResponse = api.getCurrentBillingCycleUsage(accountId);
+        final BillingResponse billingResponse = api.getCurrentBillingCycleUsage(accountId);
 
         assertNotNull(billingResponse);
         assertEquals("Individual", billingResponse.getTestingBillingInfo().getPlan().getName());

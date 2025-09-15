@@ -10,7 +10,7 @@ import java.util.List;
 
 public class AccountsImpl extends ApiResource implements Accounts {
 
-    public AccountsImpl(MailtrapConfig config) {
+    public AccountsImpl(final MailtrapConfig config) {
         super(config);
         this.apiHost = Constants.GENERAL_HOST;
     }
@@ -18,9 +18,9 @@ public class AccountsImpl extends ApiResource implements Accounts {
     @Override
     public List<AccountsResponse> getAllAccounts() {
         return httpClient.getList(
-                String.format(apiHost + "/api/accounts"),
-                new RequestData(),
-                AccountsResponse.class
+            String.format(apiHost + "/api/accounts"),
+            new RequestData(),
+            AccountsResponse.class
         );
     }
 }

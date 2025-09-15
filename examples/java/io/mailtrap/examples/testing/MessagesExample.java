@@ -6,7 +6,7 @@ import io.mailtrap.model.request.accountaccesses.ListMessagesQueryParams;
 import io.mailtrap.model.request.messages.ForwardMessageRequest;
 import io.mailtrap.model.request.messages.UpdateMessageRequest;
 
-public class Messages {
+public class MessagesExample {
 
     private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
     private static final String FORWARD_EMAIL_TO = "recipient@domain.com";

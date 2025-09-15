@@ -25,7 +25,7 @@ class PermissionsImplTest extends BaseTest {
 
     @BeforeEach
     public void init() {
-        TestHttpClient httpClient = new TestHttpClient(List.of(
+        final TestHttpClient httpClient = new TestHttpClient(List.of(
                 DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/account_accesses/" + accountAccessId + "/permissions/bulk",
                         "PUT", "api/permissions/updatePermissionsRequest.json", "api/permissions/updatePermissionsResponse.json"),
 
@@ -33,7 +33,7 @@ class PermissionsImplTest extends BaseTest {
                         "GET", null, "api/permissions/getResourcesResponse.json")
         ));
 
-        MailtrapConfig testConfig = new MailtrapConfig.Builder()
+        final MailtrapConfig testConfig = new MailtrapConfig.Builder()
                 .httpClient(httpClient)
                 .token("dummy_token")
                 .build();
@@ -43,7 +43,7 @@ class PermissionsImplTest extends BaseTest {
 
     @Test
     void managePermissions() {
-        ManagePermissionsRequest request = new ManagePermissionsRequest(List.of(
+        final ManagePermissionsRequest request = new ManagePermissionsRequest(List.of(
                 new Permission(String.valueOf(accountId), ResourceType.ACCOUNT, AccessLevel.VIEWER, false),
                 new Permission(String.valueOf(inboxId), ResourceType.INBOX, AccessLevel.ADMIN, true)
         ));
@@ -55,7 +55,7 @@ class PermissionsImplTest extends BaseTest {
 
     @Test
     void getResources() {
-        var resources = api.getResources(accountId);
+        final var resources = api.getResources(accountId);
 
         assertNotNull(resources);
         assertEquals(1, resources.size());

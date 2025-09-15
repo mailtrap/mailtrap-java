@@ -24,7 +24,7 @@ class EmailTemplatesImplTest extends BaseTest {
 
   @BeforeEach
   public void init() {
-    TestHttpClient httpClient = new TestHttpClient(List.of(
+    final TestHttpClient httpClient = new TestHttpClient(List.of(
         DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/email_templates",
             "GET", null, "api/emailtemplates/getAllEmailTemplatesResponse.json"),
 
@@ -41,7 +41,7 @@ class EmailTemplatesImplTest extends BaseTest {
             "DELETE", null, null)
     ));
 
-    MailtrapConfig testConfig = new MailtrapConfig.Builder()
+    final MailtrapConfig testConfig = new MailtrapConfig.Builder()
         .httpClient(httpClient)
         .token("dummy_token")
         .build();
@@ -51,7 +51,7 @@ class EmailTemplatesImplTest extends BaseTest {
 
   @Test
   void test_getAllTemplates() {
-    List<EmailTemplateResponse> allTemplates = api.getAllTemplates(accountId);
+    final List<EmailTemplateResponse> allTemplates = api.getAllTemplates(accountId);
 
     assertEquals(2, allTemplates.size());
     assertEquals(emailTemplateId, allTemplates.get(0).getId());
@@ -60,7 +60,7 @@ class EmailTemplatesImplTest extends BaseTest {
 
   @Test
   void test_createEmailTemplate() {
-    CreateEmailTemplateRequest request = new CreateEmailTemplateRequest(
+    final CreateEmailTemplateRequest request = new CreateEmailTemplateRequest(
         new EmailTemplate(
             "My Email Template",
             "Promotion",
@@ -68,7 +68,7 @@ class EmailTemplatesImplTest extends BaseTest {
             "Promotion Text body",
             "<div>Promotion body</div>"));
 
-    EmailTemplateResponse created = api.createEmailTemplate(accountId, request);
+    final EmailTemplateResponse created = api.createEmailTemplate(accountId, request);
 
     assertNotNull(created);
     assertEquals(emailTemplateId, created.getId());
@@ -77,7 +77,7 @@ class EmailTemplatesImplTest extends BaseTest {
 
   @Test
   void test_createEmailTemplate_shouldFailOnValidationFieldSize() {
-    CreateEmailTemplateRequest request = new CreateEmailTemplateRequest(
+    final CreateEmailTemplateRequest request = new CreateEmailTemplateRequest(
         new EmailTemplate(
             "1s9QhvF587zZkPQjGkyhtUrFcUDlrN04yAoItmoxiRonVkfjKxhX0GyuMhGh8OxDz2F6mJUExVXWKgX9NdreWSKcDjOEzGpxqUj3E9UOgnyvL75UAV9SSwaolnUniMLQ5gKPfVitS5D8xB3HJ4AE6YbSM72EmXt2qBOBni8dL5atGEKw9FGCa1OO7xyipGeq5sz9dlMMQlQl2n90LF94xntrCnXIEBTiaSXZ055rR73RbLnBAITsyTHxI9Sfy9nPgtpIhmAQwZETfd1t6ZN",
             "Promotion",
@@ -85,23 +85,24 @@ class EmailTemplatesImplTest extends BaseTest {
             "Promotion Text body",
             "<div>Promotion body</div>"));
 
-    InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> api.createEmailTemplate(accountId, request));
+    final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> api.createEmailTemplate(accountId, request));
 
-    assertTrue(exception.getMessage().contains("Violations: emailTemplate.name=size must be between 1 and 255"));
+    assertTrue(exception.getMessage().contains("emailTemplate.name"));
+    assertTrue(exception.getMessage().contains("size must be between 1 and 255"));
   }
 
   @Test
-  void test_createEmailTemplate_shouldFailOnValidationWIthNullableBody() {
-    CreateEmailTemplateRequest request = new CreateEmailTemplateRequest(null);
+  void test_createEmailTemplate_shouldFailOnValidationWithNullableBody() {
+    final CreateEmailTemplateRequest request = new CreateEmailTemplateRequest(null);
 
-    InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> api.createEmailTemplate(accountId, request));
+    final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> api.createEmailTemplate(accountId, request));
 
     assertTrue(exception.getMessage().contains("Violations: emailTemplate=must not be null"));
   }
 
   @Test
   void test_getEmailTemplate() {
-    EmailTemplateResponse emailTemplate = api.getEmailTemplate(accountId, emailTemplateId);
+    final EmailTemplateResponse emailTemplate = api.getEmailTemplate(accountId, emailTemplateId);
 
     assertNotNull(emailTemplate);
     assertEquals(emailTemplateId, emailTemplate.getId());
@@ -110,7 +111,7 @@ class EmailTemplatesImplTest extends BaseTest {
 
   @Test
   void test_updateEmailTemplate() {
-    UpdateEmailTemplateRequest request = new UpdateEmailTemplateRequest(
+    final UpdateEmailTemplateRequest request = new UpdateEmailTemplateRequest(
         new EmailTemplate(
             "My Updated Email Template",
             "Promotion",
@@ -118,7 +119,7 @@ class EmailTemplatesImplTest extends BaseTest {
             "Promotion Text body",
             "<div>Promotion body</div>"));
 
-    EmailTemplateResponse updated = api.updateEmailTemplate(accountId, emailTemplateId, request);
+    final EmailTemplateResponse updated = api.updateEmailTemplate(accountId, emailTemplateId, request);
 
     assertNotNull(updated);
     assertEquals(emailTemplateId, updated.getId());
@@ -127,7 +128,7 @@ class EmailTemplatesImplTest extends BaseTest {
 
   @Test
   void test_updateEmailTemplate_shouldFailOnValidationFieldSize() {
-    UpdateEmailTemplateRequest request = new UpdateEmailTemplateRequest(
+    final UpdateEmailTemplateRequest request = new UpdateEmailTemplateRequest(
         new EmailTemplate(
             "My Updated Email Template",
             "Promotion",
@@ -135,9 +136,10 @@ class EmailTemplatesImplTest extends BaseTest {
             "Promotion Text body",
             "<div>Promotion body</div>"));
 
-    InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> api.updateEmailTemplate(accountId, emailTemplateId, request));
+    final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> api.updateEmailTemplate(accountId, emailTemplateId, request));
 
-    assertTrue(exception.getMessage().contains("Violations: emailTemplate.subject=size must be between 1 and 255"));
+    assertTrue(exception.getMessage().contains("emailTemplate.subject"));
+    assertTrue(exception.getMessage().contains("size must be between 1 and 255"));
   }
 
   @Test

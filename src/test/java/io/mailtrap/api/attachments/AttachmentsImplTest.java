@@ -20,7 +20,7 @@ class AttachmentsImplTest extends BaseTest {
 
     @BeforeEach
     public void init() {
-        TestHttpClient httpClient = new TestHttpClient(List.of(
+        final TestHttpClient httpClient = new TestHttpClient(List.of(
                 DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/inboxes/" + inboxId + "/messages/" + messageId + "/attachments",
                         "GET", null, "api/attachments/getAttachmentsResponse.json"),
 
@@ -28,7 +28,7 @@ class AttachmentsImplTest extends BaseTest {
                         "GET", null, "api/attachments/getAttachmentResponse.json")
         ));
 
-        MailtrapConfig testConfig = new MailtrapConfig.Builder()
+        final MailtrapConfig testConfig = new MailtrapConfig.Builder()
                 .httpClient(httpClient)
                 .token("dummy_token")
                 .build();
@@ -38,17 +38,17 @@ class AttachmentsImplTest extends BaseTest {
 
     @Test
     public void test_getAttachments() {
-        List<AttachmentResponse> attachments = api.getAttachments(accountId, inboxId, messageId, null);
+        final List<AttachmentResponse> attachments = api.getAttachments(accountId, inboxId, messageId, null);
 
         assertEquals(1, attachments.size());
 
-        AttachmentResponse attachment = attachments.get(0);
+        final AttachmentResponse attachment = attachments.get(0);
         assertEquals(attachmentId, attachment.getId());
     }
 
     @Test
     public void test_getAttachment() {
-        AttachmentResponse attachment = api.getSingleAttachment(accountId, inboxId, messageId, attachmentId);
+        final AttachmentResponse attachment = api.getSingleAttachment(accountId, inboxId, messageId, attachmentId);
 
         assertNotNull(attachment);
         assertEquals(attachmentId, attachment.getId());

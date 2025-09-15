@@ -12,27 +12,27 @@ import java.util.List;
 
 public class PermissionsImpl extends ApiResource implements Permissions {
 
-    public PermissionsImpl(MailtrapConfig config) {
+    public PermissionsImpl(final MailtrapConfig config) {
         super(config);
         this.apiHost = Constants.GENERAL_HOST;
     }
 
     @Override
-    public ManagePermissionsResponse managePermissions(long accountAccessId, long accountId, ManagePermissionsRequest request) {
+    public ManagePermissionsResponse managePermissions(final long accountAccessId, final long accountId, final ManagePermissionsRequest request) {
         return httpClient.put(
-                String.format(apiHost + "/api/accounts/%s/account_accesses/%s/permissions/bulk", accountId, accountAccessId),
-                request,
-                new RequestData(),
-                ManagePermissionsResponse.class
+            String.format(apiHost + "/api/accounts/%d/account_accesses/%d/permissions/bulk", accountId, accountAccessId),
+            request,
+            new RequestData(),
+            ManagePermissionsResponse.class
         );
     }
 
     @Override
-    public List<Resource> getResources(long accountId) {
+    public List<Resource> getResources(final long accountId) {
         return httpClient.getList(
-                String.format(apiHost + "/api/accounts/%s/permissions/resources", accountId),
-                new RequestData(),
-                Resource.class
+            String.format(apiHost + "/api/accounts/%d/permissions/resources", accountId),
+            new RequestData(),
+            Resource.class
         );
     }
 

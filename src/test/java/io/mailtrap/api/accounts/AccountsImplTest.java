@@ -22,12 +22,12 @@ class AccountsImplTest extends BaseTest {
 
     @BeforeEach
     public void init() {
-        TestHttpClient httpClient = new TestHttpClient(List.of(
+        final TestHttpClient httpClient = new TestHttpClient(List.of(
                 DataMock.build(Constants.GENERAL_HOST + "/api/accounts",
                         "GET", null, "api/accounts/getAllAccountsResponse.json")
         ));
 
-        MailtrapConfig testConfig = new MailtrapConfig.Builder()
+        final MailtrapConfig testConfig = new MailtrapConfig.Builder()
                 .httpClient(httpClient)
                 .token("dummy_token")
                 .build();
@@ -37,7 +37,7 @@ class AccountsImplTest extends BaseTest {
 
     @Test
     void test_getAllAccounts() {
-        List<AccountsResponse> accounts = api.getAllAccounts();
+        final List<AccountsResponse> accounts = api.getAllAccounts();
 
         assertEquals(2, accounts.size());
         assertEquals(accountId, accounts.get(0).getId());

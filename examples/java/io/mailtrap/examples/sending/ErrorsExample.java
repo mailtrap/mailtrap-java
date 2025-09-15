@@ -10,7 +10,7 @@ import io.mailtrap.model.request.emails.MailtrapMail;
 import java.util.List;
 import java.util.UUID;
 
-public class Errors {
+public class ErrorsExample {
 
     private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
     private static final String SENDER_EMAIL = "sender@domain.com";

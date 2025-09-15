@@ -20,12 +20,12 @@ class ContactListsImplTest extends BaseTest {
 
     @BeforeEach
     public void init() {
-        TestHttpClient httpClient = new TestHttpClient(List.of(
+        final TestHttpClient httpClient = new TestHttpClient(List.of(
                 DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/lists",
                         "GET", null, "api/contact_lists/contactLists.json")
         ));
 
-        MailtrapConfig testConfig = new MailtrapConfig.Builder()
+        final MailtrapConfig testConfig = new MailtrapConfig.Builder()
                 .httpClient(httpClient)
                 .token("dummy_token")
                 .build();
@@ -35,7 +35,7 @@ class ContactListsImplTest extends BaseTest {
 
     @Test
     void test_findAll() {
-        List<ContactListResponse> contacts = api.findAll(accountId);
+        final List<ContactListResponse> contacts = api.findAll(accountId);
 
         assertFalse(contacts.isEmpty());
         assertEquals(2, contacts.size());

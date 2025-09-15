@@ -11,7 +11,7 @@ import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
-public class Everything {
+public class EverythingExample {
 
     private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
     private static final String SENDER_EMAIL = "sender@domain.com";

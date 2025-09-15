@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class CustomValidator {
     private final Validator validator;
 
-    public CustomValidator(Validator validator) {
+    public CustomValidator(final Validator validator) {
         this.validator = validator;
     }
 
@@ -26,7 +26,7 @@ public class CustomValidator {
      * @param objectToValidate the object to validate
      * @return a map of validation errors, with property names as keys and error messages as values
      */
-    public <T> Map<String, String> validate(T objectToValidate) {
+    public <T> Map<String, String> validate(final T objectToValidate) {
         final var violations = validator.validate(objectToValidate);
 
         final var errors = new HashMap<String, String>();
@@ -48,7 +48,7 @@ public class CustomValidator {
      * @param objectToValidate the object to validate
      * @return a string representation of the validation errors, or an empty string if there are no errors
      */
-    public <T> String validateAndGetViolationsAsString(T objectToValidate) {
+    public <T> String validateAndGetViolationsAsString(final T objectToValidate) {
         return this.validate(objectToValidate).entrySet().stream()
                 .map(violation -> violation.getKey() + "=" + violation.getValue())
                 .collect(Collectors.joining("; "));

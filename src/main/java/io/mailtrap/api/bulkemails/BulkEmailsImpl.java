@@ -17,27 +17,39 @@ import io.mailtrap.model.response.emails.SendResponse;
  */
 public class BulkEmailsImpl extends SendApiResource implements BulkEmails {
 
-    public BulkEmailsImpl(MailtrapConfig config, CustomValidator customValidator) {
+    public BulkEmailsImpl(final MailtrapConfig config, final CustomValidator customValidator) {
         super(config, customValidator);
         this.apiHost = Constants.BULK_SENDING_HOST;
     }
 
     @Override
-    public SendResponse send(MailtrapMail mail) {
+    public SendResponse send(final MailtrapMail mail) {
         validateMailPayload(mail);
-        RequestData requestData = new RequestData();
+
+        final RequestData requestData = new RequestData();
         if (mail.getHeaders() != null) {
             requestData.setHeaders(mail.getHeaders());
         }
-        return httpClient.post(apiHost + "/api/send", mail, requestData, SendResponse.class);
+
+        return httpClient.post(
+            apiHost + "/api/send",
+            mail,
+            requestData,
+            SendResponse.class
+        );
     }
 
     @Override
-    public BatchSendResponse batchSend(MailtrapBatchMail mail) throws HttpException, InvalidRequestBodyException {
+    public BatchSendResponse batchSend(final MailtrapBatchMail mail) throws HttpException, InvalidRequestBodyException {
         validateBatchPayload(mail);
 
         return
-            httpClient.post(apiHost + "/api/batch", mail, new RequestData(), BatchSendResponse.class);
+            httpClient.post(
+                apiHost + "/api/batch",
+                mail,
+                new RequestData(),
+                BatchSendResponse.class
+            );
 
     }
 }

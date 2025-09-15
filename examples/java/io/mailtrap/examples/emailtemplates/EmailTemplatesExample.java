@@ -9,7 +9,7 @@ import io.mailtrap.model.response.emailtemplates.EmailTemplateResponse;
 
 import java.util.List;
 
-public class EmailTemplates {
+public class EmailTemplatesExample {
 
   private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
   private static final long ACCOUNT_ID = 1L;
@@ -24,8 +24,6 @@ public class EmailTemplates {
     final var config = new MailtrapConfig.Builder()
         .token(TOKEN)
         .build();
-
-    new EmailTemplate(EMAIL_TEMPLATE_NAME, EMAIL_TEMPLATE_CATEGORY, EMAIL_TEMPLATE_SUBJECT, EMAIL_TEMPLATE_BODY_TEXT, EMAIL_TEMPLATE_BODY_HTML);
 
     final var client = MailtrapClientFactory.createMailtrapClient(config);
 

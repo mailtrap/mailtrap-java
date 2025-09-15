@@ -16,31 +16,31 @@ import static io.mailtrap.http.RequestData.entry;
 
 public class AccountAccessesImpl extends ApiResource implements AccountAccesses {
 
-    public AccountAccessesImpl(MailtrapConfig config) {
+    public AccountAccessesImpl(final MailtrapConfig config) {
         super(config);
         this.apiHost = Constants.GENERAL_HOST;
     }
 
     @Override
-    public List<AccountAccessResponse> listUserAndInviteAccountAccesses(long accountId, @NonNull ListAccountAccessQueryParams params) {
-        var queryParams = RequestData.buildQueryParams(
-                entry("domain_uuids", Optional.ofNullable(params.getDomainUuids())),
-                entry("inbox_ids", Optional.ofNullable(params.getInboxIds())),
-                entry("project_ids", Optional.ofNullable(params.getProjectIds())));
+    public List<AccountAccessResponse> listUserAndInviteAccountAccesses(final long accountId, @NonNull final ListAccountAccessQueryParams params) {
+        final var queryParams = RequestData.buildQueryParams(
+            entry("domain_uuids", Optional.ofNullable(params.getDomainUuids())),
+            entry("inbox_ids", Optional.ofNullable(params.getInboxIds())),
+            entry("project_ids", Optional.ofNullable(params.getProjectIds())));
 
         return httpClient.getList(
-                String.format(apiHost + "/api/accounts/%s/account_accesses", accountId),
-                new RequestData(queryParams),
-                AccountAccessResponse.class
+            String.format(apiHost + "/api/accounts/%d/account_accesses", accountId),
+            new RequestData(queryParams),
+            AccountAccessResponse.class
         );
     }
 
     @Override
-    public RemoveAccountAccessResponse removeAccountAccess(long accountAccessId, long accountId) {
+    public RemoveAccountAccessResponse removeAccountAccess(final long accountAccessId, final long accountId) {
         return httpClient.delete(
-                String.format(apiHost + "/api/accounts/%s/account_accesses/%s", accountId, accountAccessId),
-                new RequestData(),
-                RemoveAccountAccessResponse.class
+            String.format(apiHost + "/api/accounts/%d/account_accesses/%d", accountId, accountAccessId),
+            new RequestData(),
+            RemoveAccountAccessResponse.class
         );
     }
 }

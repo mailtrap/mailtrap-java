@@ -68,7 +68,7 @@ public class MailtrapClient {
      * @param mailtrapMail the email to send
      * @return the response from the sending operation
      */
-    public SendResponse send(MailtrapMail mailtrapMail) {
+    public SendResponse send(final MailtrapMail mailtrapMail) {
         if (sendingContextHolder.isBulk()) {
             return bulkSendingApi.emails().send(mailtrapMail);
         } else if (sendingContextHolder.isSandbox()) {
@@ -84,7 +84,7 @@ public class MailtrapClient {
      * @param mailtrapBatchMail emails to send
      * @return the response from the sending operation
      */
-    public BatchSendResponse batchSend(MailtrapBatchMail mailtrapBatchMail) {
+    public BatchSendResponse batchSend(final MailtrapBatchMail mailtrapBatchMail) {
         if (sendingContextHolder.isBulk()) {
             return bulkSendingApi.emails().batchSend(mailtrapBatchMail);
         } else if (sendingContextHolder.isSandbox()) {

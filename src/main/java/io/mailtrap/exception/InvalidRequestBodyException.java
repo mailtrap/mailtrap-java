@@ -5,11 +5,11 @@ package io.mailtrap.exception;
  */
 public class InvalidRequestBodyException extends BaseMailtrapException {
 
-    public InvalidRequestBodyException(String errorMessage) {
+    public InvalidRequestBodyException(final String errorMessage) {
         super(errorMessage);
     }
 
-    public InvalidRequestBodyException(String errorMessage, Exception cause) {
+    public InvalidRequestBodyException(final String errorMessage, final Exception cause) {
         super(errorMessage, cause);
     }
 

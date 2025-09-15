@@ -15,7 +15,7 @@ public class BlacklistsReportInfoDeserializerTest {
 
     @Test
     void testApiTokenSpecifierDeserialization() throws Exception {
-        String json = """
+        final String json = """
                     {
                       "id": 3,
                       "inbox_id": 2,
@@ -23,7 +23,7 @@ public class BlacklistsReportInfoDeserializerTest {
                     }
                 """;
 
-        MessageResponse message = mapper.readValue(json, MessageResponse.class);
+        final MessageResponse message = mapper.readValue(json, MessageResponse.class);
 
         assertEquals(3, message.getId());
         assertEquals(2, message.getInboxId());
@@ -34,7 +34,7 @@ public class BlacklistsReportInfoDeserializerTest {
 
     @Test
     void testApiTokenSpecifierDeserialization2() throws Exception {
-        String json = """
+        final String json = """
                     {
                       "id": 4,
                       "inbox_id": 5,
@@ -53,14 +53,14 @@ public class BlacklistsReportInfoDeserializerTest {
                     }
                 """;
 
-        MessageResponse message = mapper.readValue(json, MessageResponse.class);
+        final MessageResponse message = mapper.readValue(json, MessageResponse.class);
 
         assertEquals(4, message.getId());
         assertEquals(5, message.getInboxId());
         assertNotNull(message.getBlacklistsReportInfoWrapper());
         assertFalse(message.getBlacklistsReportInfoWrapper().isBoolean());
 
-        BlacklistsReportInfo blacklistsReportInfo = message.getBlacklistsReportInfoWrapper().getObjectValue();
+        final BlacklistsReportInfo blacklistsReportInfo = message.getBlacklistsReportInfoWrapper().getObjectValue();
         assertEquals(BlacklistReportInfoResult.SUCCESS, blacklistsReportInfo.getResult());
         assertEquals(1, blacklistsReportInfo.getReport().size());
     }

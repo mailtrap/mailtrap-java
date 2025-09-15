@@ -28,10 +28,10 @@ public class DefaultMailtrapHttpClient implements CustomHttpClient {
     private final String token;
     private final HttpClient httpClient;
 
-    public DefaultMailtrapHttpClient(MailtrapConfig config) {
+    public DefaultMailtrapHttpClient(final MailtrapConfig config) {
         this.token = config.getToken();
 
-        HttpClient.Builder httpClientBuilder = HttpClient.newBuilder();
+        final HttpClient.Builder httpClientBuilder = HttpClient.newBuilder();
         if (config.getConnectionTimeout() != null) {
             httpClientBuilder.connectTimeout(config.getConnectionTimeout());
         }
@@ -40,8 +40,8 @@ public class DefaultMailtrapHttpClient implements CustomHttpClient {
     }
 
     @Override
-    public <T> T get(String url, RequestData requestData, Class<T> responseType) throws HttpException {
-        HttpRequest httpRequest = prepareRequest(url, requestData)
+    public <T> T get(final String url, final RequestData requestData, final Class<T> responseType) throws HttpException {
+        final HttpRequest httpRequest = prepareRequest(url, requestData)
                 .GET()
                 .build();
 
@@ -49,19 +49,19 @@ public class DefaultMailtrapHttpClient implements CustomHttpClient {
     }
 
     @Override
-    public <T> List<T> getList(String url, RequestData requestData, Class<T> responseClass) throws HttpException {
-        HttpRequest httpRequest = prepareRequest(url, requestData)
+    public <T> List<T> getList(final String url, final RequestData requestData, final Class<T> responseClass) throws HttpException {
+        final HttpRequest httpRequest = prepareRequest(url, requestData)
                 .GET()
                 .build();
 
-        JavaType responseType = TypeFactory.defaultInstance().constructCollectionType(List.class, responseClass);
+        final JavaType responseType = TypeFactory.defaultInstance().constructCollectionType(List.class, responseClass);
 
         return this.request(httpRequest, responseType);
     }
 
     @Override
-    public <T> T delete(String url, RequestData requestData, Class<T> responseType) throws HttpException {
-        HttpRequest httpRequest = prepareRequest(url, requestData)
+    public <T> T delete(final String url, final RequestData requestData, final Class<T> responseType) throws HttpException {
+        final HttpRequest httpRequest = prepareRequest(url, requestData)
                 .DELETE()
                 .build();
 
@@ -69,8 +69,8 @@ public class DefaultMailtrapHttpClient implements CustomHttpClient {
     }
 
     @Override
-    public <T> T head(String url, RequestData requestData, Class<T> responseType) throws HttpException {
-        HttpRequest httpRequest = prepareRequest(url, requestData)
+    public <T> T head(final String url, final RequestData requestData, final Class<T> responseType) throws HttpException {
+        final HttpRequest httpRequest = prepareRequest(url, requestData)
                 .method("HEAD", HttpRequest.BodyPublishers.noBody())
                 .build();
 
@@ -78,8 +78,8 @@ public class DefaultMailtrapHttpClient implements CustomHttpClient {
     }
 
     @Override
-    public <T, V extends AbstractModel> T post(String url, V data, RequestData requestData, Class<T> responseType) throws HttpException {
-        HttpRequest httpRequest = prepareRequest(url, requestData)
+    public <T, V extends AbstractModel> T post(final String url, final V data, final RequestData requestData, final Class<T> responseType) throws HttpException {
+        final HttpRequest httpRequest = prepareRequest(url, requestData)
                 .POST(getBodyPublisher(data))
                 .build();
 
@@ -87,8 +87,8 @@ public class DefaultMailtrapHttpClient implements CustomHttpClient {
     }
 
     @Override
-    public <T, V extends AbstractModel> T put(String url, V data, RequestData requestData, Class<T> responseType) throws HttpException {
-        HttpRequest httpRequest = prepareRequest(url, requestData)
+    public <T, V extends AbstractModel> T put(final String url, final V data, final RequestData requestData, final Class<T> responseType) throws HttpException {
+        final HttpRequest httpRequest = prepareRequest(url, requestData)
                 .PUT(getBodyPublisher(data))
                 .build();
 
@@ -96,49 +96,49 @@ public class DefaultMailtrapHttpClient implements CustomHttpClient {
     }
 
     @Override
-    public <T, V extends AbstractModel> T patch(String url, V data, RequestData requestData, Class<T> responseType) throws HttpException {
-        HttpRequest httpRequest = prepareRequest(url, requestData)
+    public <T, V extends AbstractModel> T patch(final String url, final V data, final RequestData requestData, final Class<T> responseType) throws HttpException {
+        final HttpRequest httpRequest = prepareRequest(url, requestData)
                 .method("PATCH", getBodyPublisher(data))
                 .build();
 
         return this.request(httpRequest, responseType);
     }
 
-    private <T> T request(HttpRequest request, Class<T> responseType) throws HttpException {
+    private <T> T request(final HttpRequest request, final Class<T> responseType) throws HttpException {
         try {
-            var send = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            final var send = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
             return handleResponse(send, responseType);
-        } catch (InterruptedException | IOException e) {
+        } catch (final InterruptedException | IOException e) {
             throw new BaseMailtrapException("An error has occurred while sending request", e);
         }
     }
 
-    private <T> T request(HttpRequest request, JavaType responseType) throws HttpException {
+    private <T> T request(final HttpRequest request, final JavaType responseType) throws HttpException {
         try {
-            var send = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            final var send = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
             return handleResponse(send, responseType);
-        } catch (InterruptedException | IOException e) {
+        } catch (final InterruptedException | IOException e) {
             throw new BaseMailtrapException("An error has occurred while sending request", e);
         }
     }
 
-    private <T> T handleResponse(HttpResponse<String> response, Class<T> responseType) throws HttpException {
+    private <T> T handleResponse(final HttpResponse<String> response, final Class<T> responseType) throws HttpException {
         return handleResponseInternal(response, responseType, null);
     }
 
-    private <T> T handleResponse(HttpResponse<String> response, JavaType responseType) throws HttpException {
+    private <T> T handleResponse(final HttpResponse<String> response, final JavaType responseType) throws HttpException {
         return handleResponseInternal(response, null, responseType);
     }
 
-    private <T> T handleResponseInternal(HttpResponse<String> response, Class<T> responseClassType, JavaType responseJavaType) throws HttpException {
+    private <T> T handleResponseInternal(final HttpResponse<String> response, final Class<T> responseClassType, final JavaType responseJavaType) throws HttpException {
         try {
             if (response.body() == null) {
                 throw new BaseMailtrapException("Response body is null");
             }
 
-            int statusCode = response.statusCode();
+            final int statusCode = response.statusCode();
             if (statusCode == 200) {
                 if (responseClassType != null) {
                     if (String.class.equals(responseClassType)) {
@@ -151,18 +151,18 @@ public class DefaultMailtrapHttpClient implements CustomHttpClient {
                     throw new IllegalArgumentException("Both responseType and typeReference are null");
                 }
             } else if (statusCode >= 400 && statusCode < 500) {
-                ErrorResponse errorResponse = Mapper.get().readValue(response.body(), ErrorResponse.class);
+                final ErrorResponse errorResponse = Mapper.get().readValue(response.body(), ErrorResponse.class);
                 throw new HttpClientException(String.join(", ", errorResponse.getErrors()), statusCode);
             } else if (statusCode > 500) {
                 throw new HttpServerException(String.format("Internal Server Error. HTTP response code (%d) received from the API server. Retry later or contact support.", statusCode), statusCode);
             }
             throw new HttpException(String.format("HTTP response code (%d) received from the API server (no error info)", statusCode), statusCode);
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new JsonException("An error has occurred while converting JSON", e);
         }
     }
 
-    private HttpRequest.Builder prepareRequest(String url, RequestData requestData) {
+    private HttpRequest.Builder prepareRequest(final String url, final RequestData requestData) {
 
         HttpRequest.Builder requestBuilder = HttpRequest.newBuilder()
                 .uri(URI.create(this.appendUrlParams(url, requestData.getQueryParams())))
@@ -171,7 +171,7 @@ public class DefaultMailtrapHttpClient implements CustomHttpClient {
                 .header("Authorization", "Bearer " + token)
                 .header("User-Agent", "mailtrap-java (https://github.com/railsware/mailtrap-java)");
 
-        Map<String, Object> headers = new HashMap<>(requestData.getHeaders());
+        final Map<String, Object> headers = new HashMap<>(requestData.getHeaders());
         for (Map.Entry<String, ?> entry : headers.entrySet()) {
             requestBuilder = requestBuilder.header(entry.getKey(), entry.getValue().toString());
         }
@@ -179,7 +179,7 @@ public class DefaultMailtrapHttpClient implements CustomHttpClient {
         return requestBuilder;
     }
 
-    private static <V extends AbstractModel> HttpRequest.BodyPublisher getBodyPublisher(V data) {
+    private static <V extends AbstractModel> HttpRequest.BodyPublisher getBodyPublisher(final V data) {
         return data == null ?
                 HttpRequest.BodyPublishers.noBody()
                 : HttpRequest.BodyPublishers.ofString(data.toJson());

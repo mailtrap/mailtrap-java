@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class ContactFields {
+public class ContactFieldsExample {
 
   private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
   private static final long ACCOUNT_ID = 1L;

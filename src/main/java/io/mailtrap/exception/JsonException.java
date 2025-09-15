@@ -5,7 +5,7 @@ package io.mailtrap.exception;
  */
 public class JsonException extends BaseMailtrapException {
 
-    public JsonException(String errorMessage, Throwable cause) {
+    public JsonException(final String errorMessage, final Throwable cause) {
         super(errorMessage, cause);
     }
 

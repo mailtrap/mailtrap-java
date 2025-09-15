@@ -22,7 +22,7 @@ class SendingDomainsImplTest extends BaseTest {
 
     @BeforeEach
     public void init() {
-        TestHttpClient httpClient = new TestHttpClient(List.of(
+        final TestHttpClient httpClient = new TestHttpClient(List.of(
             DataMock.build(
                 Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/sending_domains",
                 "POST", "api/sending_domains/createSendingDomainRequest.json", "api/sending_domains/sendingDomainResponse.json"
@@ -45,7 +45,7 @@ class SendingDomainsImplTest extends BaseTest {
             )
         ));
 
-        MailtrapConfig testConfig = new MailtrapConfig.Builder()
+        final MailtrapConfig testConfig = new MailtrapConfig.Builder()
             .httpClient(httpClient)
             .token("dummy_token")
             .build();
@@ -55,7 +55,7 @@ class SendingDomainsImplTest extends BaseTest {
 
     @Test
     void test_create() {
-        SendingDomainsResponse response = domains.create(accountId, new CreateSendingDomainRequest(new CreateSendingDomainRequest.SendingDomainData("test.io")));
+        final SendingDomainsResponse response = domains.create(accountId, new CreateSendingDomainRequest(new CreateSendingDomainRequest.SendingDomainData("test.io")));
 
         assertNotNull(response);
         assertEquals("test.io", response.getDomainName());
@@ -64,7 +64,7 @@ class SendingDomainsImplTest extends BaseTest {
 
     @Test
     void test_getSendingDomains() {
-        List<SendingDomainsResponse> response = domains.getSendingDomains(accountId);
+        final List<SendingDomainsResponse> response = domains.getSendingDomains(accountId);
 
         assertFalse(response.isEmpty());
         assertEquals(1, response.size());
@@ -75,7 +75,7 @@ class SendingDomainsImplTest extends BaseTest {
 
     @Test
     void test_getSendingDomain() {
-        SendingDomainsResponse response = domains.getSendingDomain(accountId, sendingDomainId);
+        final SendingDomainsResponse response = domains.getSendingDomain(accountId, sendingDomainId);
 
         assertNotNull(response);
         assertEquals("test.io", response.getDomainName());

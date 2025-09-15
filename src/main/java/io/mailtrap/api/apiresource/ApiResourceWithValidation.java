@@ -11,13 +11,17 @@ public abstract class ApiResourceWithValidation extends ApiResource {
      */
     protected final CustomValidator customValidator;
 
-    protected ApiResourceWithValidation(MailtrapConfig config, CustomValidator customValidator) {
+    protected ApiResourceWithValidation(final MailtrapConfig config, final CustomValidator customValidator) {
         super(config);
         this.customValidator = customValidator;
     }
 
-    protected <T> void validateRequestBodyAndThrowException(T object) {
-        String violations = customValidator.validateAndGetViolationsAsString(object);
+    protected <T> void validateRequestBodyAndThrowException(final T object) {
+        if (object == null) {
+            throw new InvalidRequestBodyException("Invalid request body. Violations: request must not be null");
+        }
+
+        final String violations = customValidator.validateAndGetViolationsAsString(object);
 
         if (!violations.isEmpty()) {
             throw new InvalidRequestBodyException("Invalid request body. Violations: " + violations);

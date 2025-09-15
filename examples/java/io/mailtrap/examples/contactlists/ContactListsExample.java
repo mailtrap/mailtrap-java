@@ -3,7 +3,7 @@ package io.mailtrap.examples.contactlists;
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.factory.MailtrapClientFactory;
 
-public class ContactLists {
+public class ContactListsExample {
 
     private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
     private static final long ACCOUNT_ID = 1L;

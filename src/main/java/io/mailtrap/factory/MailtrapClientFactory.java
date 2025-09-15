@@ -40,7 +40,7 @@ public final class MailtrapClientFactory {
      * @param config The configuration for creating the Mailtrap client.
      * @return A new Mailtrap client instance.
      */
-    public static MailtrapClient createMailtrapClient(MailtrapConfig config) {
+    public static MailtrapClient createMailtrapClient(final MailtrapConfig config) {
         final var customValidator = createValidator();
 
         final var sendingApi = createSendingApi(config, customValidator);
@@ -55,7 +55,7 @@ public final class MailtrapClientFactory {
         return new MailtrapClient(sendingApi, testingApi, bulkSendingApi, generalApi, contactsApi, emailTemplatesApi, sendingContextHolder);
     }
 
-    private static MailtrapContactsApi createContactsApi(MailtrapConfig config, CustomValidator customValidator) {
+    private static MailtrapContactsApi createContactsApi(final MailtrapConfig config, final CustomValidator customValidator) {
         final var contactLists = new ContactListsImpl(config);
         final var contacts = new ContactsImpl(config);
         final var contactImports = new ContactImportsImpl(config, customValidator);
@@ -64,7 +64,7 @@ public final class MailtrapClientFactory {
         return new MailtrapContactsApi(contactLists, contacts, contactImports, contactFields);
     }
 
-    private static MailtrapGeneralApi createGeneralApi(MailtrapConfig config) {
+    private static MailtrapGeneralApi createGeneralApi(final MailtrapConfig config) {
         final var accountAccess = new AccountAccessesImpl(config);
         final var accounts = new AccountsImpl(config);
         final var billing = new BillingImpl(config);
@@ -73,7 +73,7 @@ public final class MailtrapClientFactory {
         return new MailtrapGeneralApi(accountAccess, accounts, billing, permissions);
     }
 
-    private static MailtrapEmailSendingApi createSendingApi(MailtrapConfig config, CustomValidator customValidator) {
+    private static MailtrapEmailSendingApi createSendingApi(final MailtrapConfig config, final CustomValidator customValidator) {
         final var emails = new SendingEmailsImpl(config, customValidator);
         final var domains = new SendingDomainsImpl(config);
         final var suppressions = new SuppressionsImpl(config);
@@ -81,7 +81,7 @@ public final class MailtrapClientFactory {
         return new MailtrapEmailSendingApi(emails, domains, suppressions);
     }
 
-    private static MailtrapEmailTestingApi createTestingApi(MailtrapConfig config, CustomValidator customValidator) {
+    private static MailtrapEmailTestingApi createTestingApi(final MailtrapConfig config, final CustomValidator customValidator) {
         final var emails = new TestingEmailsImpl(config, customValidator);
         final var attachments = new AttachmentsImpl(config);
         final var inboxes = new InboxesImpl(config, customValidator);
@@ -91,19 +91,19 @@ public final class MailtrapClientFactory {
         return new MailtrapEmailTestingApi(emails, attachments, inboxes, projects, messages);
     }
 
-    private static MailtrapBulkSendingApi createBulkSendingApi(MailtrapConfig config, CustomValidator customValidator) {
+    private static MailtrapBulkSendingApi createBulkSendingApi(final MailtrapConfig config, final CustomValidator customValidator) {
         final var emails = new BulkEmailsImpl(config, customValidator);
 
         return new MailtrapBulkSendingApi(emails);
     }
 
-    private static MailtrapEmailTemplatesApi createEmailTemplatesApi(MailtrapConfig config, CustomValidator customValidator) {
+    private static MailtrapEmailTemplatesApi createEmailTemplatesApi(final MailtrapConfig config, final CustomValidator customValidator) {
         final var emailTemplates = new EmailTemplatesImpl(config, customValidator);
 
         return new MailtrapEmailTemplatesApi(emailTemplates);
     }
 
-    private static SendingContextHolder configureSendingContext(MailtrapConfig config) {
+    private static SendingContextHolder configureSendingContext(final MailtrapConfig config) {
 
         return SendingContextHolder.builder()
                 .sandbox(config.isSandbox())
@@ -117,7 +117,7 @@ public final class MailtrapClientFactory {
      */
     private static CustomValidator createValidator() {
         // Wrapped into try-with-resources to ensure that factory's resources are properly closed
-        try (ValidatorFactory factory = Validation.buildDefaultValidatorFactory()) {
+        try (final ValidatorFactory factory = Validation.buildDefaultValidatorFactory()) {
             return new CustomValidator(factory.getValidator());
         }
     }

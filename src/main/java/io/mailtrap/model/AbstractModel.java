@@ -17,7 +17,7 @@ public abstract class AbstractModel {
     public final String toJson() {
         try {
             return Mapper.get().writeValueAsString(this);
-        } catch (JsonProcessingException e) {
+        } catch (final JsonProcessingException e) {
             throw new JsonException("An error has occurred while serializing the object to JSON", e);
         }
     }
