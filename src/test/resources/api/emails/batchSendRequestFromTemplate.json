@@ -1,0 +1,25 @@
+{
+  "requests": [
+    {
+      "from": {
+        "email": "sender@example.com"
+      },
+      "to": [
+        {
+          "email": "receiver@example.com"
+        }
+      ],
+      "attachments": [
+        {
+          "content": "c2FtcGxlIHRleHQgaW4gdGV4dCBmaWxl",
+          "type": "text/plain",
+          "filename": "attachment.txt"
+        }
+      ],
+      "template_uuid": "imagine-this-is-uuid",
+      "template_variables": {
+        "user_name": "John Doe"
+      }
+    }
+  ]
+}

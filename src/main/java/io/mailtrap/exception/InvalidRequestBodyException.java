@@ -9,4 +9,8 @@ public class InvalidRequestBodyException extends BaseMailtrapException {
         super(errorMessage);
     }
 
+    public InvalidRequestBodyException(String errorMessage, Exception cause) {
+        super(errorMessage, cause);
+    }
+
 }

@@ -4,8 +4,12 @@ import io.mailtrap.Constants;
 import io.mailtrap.CustomValidator;
 import io.mailtrap.api.apiresource.SendApiResource;
 import io.mailtrap.config.MailtrapConfig;
+import io.mailtrap.exception.InvalidRequestBodyException;
+import io.mailtrap.exception.http.HttpException;
 import io.mailtrap.http.RequestData;
+import io.mailtrap.model.request.emails.MailtrapBatchMail;
 import io.mailtrap.model.request.emails.MailtrapMail;
+import io.mailtrap.model.response.emails.BatchSendResponse;
 import io.mailtrap.model.response.emails.SendResponse;
 
 /**
@@ -20,11 +24,20 @@ public class TestingEmailsImpl extends SendApiResource implements TestingEmails 
 
     @Override
     public SendResponse send(MailtrapMail mail, long inboxId) {
-        validateRequestBodyOrThrowException(mail);
+        validateMailPayload(mail);
         RequestData requestData = new RequestData();
         if (mail.getHeaders() != null) {
             requestData.setHeaders(mail.getHeaders());
         }
         return httpClient.post(String.format(apiHost + "/api/send/%d", inboxId), mail, requestData, SendResponse.class);
+    }
+
+    @Override
+    public BatchSendResponse batchSend(MailtrapBatchMail mail, long inboxId) throws HttpException, InvalidRequestBodyException {
+        validateBatchPayload(mail);
+
+        return
+            httpClient.post(String.format(apiHost + "/api/batch/%d", inboxId), mail, new RequestData(), BatchSendResponse.class);
+
     }
 }

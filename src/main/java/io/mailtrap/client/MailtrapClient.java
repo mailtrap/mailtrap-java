@@ -2,7 +2,9 @@ package io.mailtrap.client;
 
 import io.mailtrap.client.api.*;
 import io.mailtrap.config.MailtrapConfig;
+import io.mailtrap.model.request.emails.MailtrapBatchMail;
 import io.mailtrap.model.request.emails.MailtrapMail;
+import io.mailtrap.model.response.emails.BatchSendResponse;
 import io.mailtrap.model.response.emails.SendResponse;
 import io.mailtrap.util.SendingContextHolder;
 import lombok.Getter;
@@ -73,6 +75,22 @@ public class MailtrapClient {
             return testingApi.emails().send(mailtrapMail, sendingContextHolder.getInboxId());
         } else {
             return sendingApi.emails().send(mailtrapMail);
+        }
+    }
+
+    /**
+     * Sends an email based on the specified sending configuration.
+     *
+     * @param mailtrapBatchMail emails to send
+     * @return the response from the sending operation
+     */
+    public BatchSendResponse batchSend(MailtrapBatchMail mailtrapBatchMail) {
+        if (sendingContextHolder.isBulk()) {
+            return bulkSendingApi.emails().batchSend(mailtrapBatchMail);
+        } else if (sendingContextHolder.isSandbox()) {
+            return testingApi.emails().batchSend(mailtrapBatchMail, sendingContextHolder.getInboxId());
+        } else {
+            return sendingApi.emails().batchSend(mailtrapBatchMail);
         }
     }
 

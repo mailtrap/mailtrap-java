@@ -2,7 +2,9 @@ package io.mailtrap.api.testingemails;
 
 import io.mailtrap.exception.InvalidRequestBodyException;
 import io.mailtrap.exception.http.HttpException;
+import io.mailtrap.model.request.emails.MailtrapBatchMail;
 import io.mailtrap.model.request.emails.MailtrapMail;
+import io.mailtrap.model.response.emails.BatchSendResponse;
 import io.mailtrap.model.response.emails.SendResponse;
 
 /**
@@ -21,4 +23,6 @@ public interface TestingEmails {
      * @throws InvalidRequestBodyException If the request body is invalid.
      */
     SendResponse send(MailtrapMail mail, long inboxId) throws HttpException, InvalidRequestBodyException;
+
+    BatchSendResponse batchSend(MailtrapBatchMail mail, long inboxId) throws HttpException, InvalidRequestBodyException;
 }
