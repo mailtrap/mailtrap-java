@@ -1,6 +1,6 @@
 package io.mailtrap.api.contactfields;
 
-import io.mailtrap.CustomValidator;
+import io.mailtrap.MailtrapValidator;
 import io.mailtrap.api.apiresource.ApiResourceWithValidation;
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.http.RequestData;
@@ -14,8 +14,8 @@ import static io.mailtrap.Constants.GENERAL_HOST;
 
 public class ContactFieldsImpl extends ApiResourceWithValidation implements ContactFields {
 
-    public ContactFieldsImpl(final MailtrapConfig config, final CustomValidator customValidator) {
-        super(config, customValidator);
+    public ContactFieldsImpl(final MailtrapConfig config, final MailtrapValidator mailtrapValidator) {
+        super(config, mailtrapValidator);
         this.apiHost = GENERAL_HOST;
     }
 
@@ -29,7 +29,7 @@ public class ContactFieldsImpl extends ApiResourceWithValidation implements Cont
     }
 
     @Override
-    public ContactFieldResponse createContactField(final long accountId, CreateContactFieldRequest request) {
+    public ContactFieldResponse createContactField(final long accountId, final CreateContactFieldRequest request) {
 
         validateRequestBodyAndThrowException(request);
 

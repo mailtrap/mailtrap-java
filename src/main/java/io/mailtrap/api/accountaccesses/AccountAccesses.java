@@ -27,10 +27,10 @@ public interface AccountAccesses {
      * <p>
      * Account admin/owner permissions for this endpoint to work
      *
-     * @param accountAccessId unique account access ID
      * @param accountId       unique account ID
+     * @param accountAccessId unique account access ID
      * @return confirmation of successful deletion and id of the deleted access
      */
-    RemoveAccountAccessResponse removeAccountAccess(long accountAccessId, long accountId);
+    RemoveAccountAccessResponse removeAccountAccess(long accountId, long accountAccessId);
 
 }

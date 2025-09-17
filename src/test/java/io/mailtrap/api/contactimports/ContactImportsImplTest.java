@@ -59,7 +59,7 @@ public class ContactImportsImplTest extends BaseTest {
     void test_importContacts_should_fail_validation() {
         final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> api.importContacts(accountId, new ImportContactsRequest(generateContacts())));
 
-        assertEquals("Invalid request body. Violations: contacts=Maximum 50000 contacts per request", exception.getMessage());
+        assertTrue(exception.getMessage().contains("contacts=Maximum 50000 contacts per request"));
     }
 
     private List<Contact> generateContacts() {

@@ -1,7 +1,7 @@
 package io.mailtrap.api.inboxes;
 
 import io.mailtrap.Constants;
-import io.mailtrap.CustomValidator;
+import io.mailtrap.MailtrapValidator;
 import io.mailtrap.api.apiresource.ApiResourceWithValidation;
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.http.RequestData;
@@ -13,7 +13,7 @@ import java.util.List;
 
 public class InboxesImpl extends ApiResourceWithValidation implements Inboxes {
 
-    public InboxesImpl(final MailtrapConfig config, final CustomValidator validator) {
+    public InboxesImpl(final MailtrapConfig config, final MailtrapValidator validator) {
         super(config, validator);
         this.apiHost = Constants.GENERAL_HOST;
     }

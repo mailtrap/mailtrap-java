@@ -1,6 +1,6 @@
 package io.mailtrap.api.apiresource;
 
-import io.mailtrap.CustomValidator;
+import io.mailtrap.MailtrapValidator;
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.exception.InvalidRequestBodyException;
 import io.mailtrap.model.mailvalidation.ContentView;
@@ -20,8 +20,8 @@ import java.util.Objects;
  */
 public abstract class SendApiResource extends ApiResourceWithValidation {
 
-    protected SendApiResource(final MailtrapConfig config, final CustomValidator customValidator) {
-        super(config, customValidator);
+    protected SendApiResource(final MailtrapConfig config, final MailtrapValidator mailtrapValidator) {
+        super(config, mailtrapValidator);
     }
 
     /**

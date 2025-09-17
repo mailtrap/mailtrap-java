@@ -1,7 +1,7 @@
 package io.mailtrap.api.emailtemplates;
 
 import io.mailtrap.Constants;
-import io.mailtrap.CustomValidator;
+import io.mailtrap.MailtrapValidator;
 import io.mailtrap.api.apiresource.ApiResourceWithValidation;
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.http.RequestData;
@@ -13,8 +13,8 @@ import java.util.List;
 
 public class EmailTemplatesImpl extends ApiResourceWithValidation implements EmailTemplates {
 
-    public EmailTemplatesImpl(final MailtrapConfig config, final CustomValidator customValidator) {
-        super(config, customValidator);
+    public EmailTemplatesImpl(final MailtrapConfig config, final MailtrapValidator mailtrapValidator) {
+        super(config, mailtrapValidator);
         this.apiHost = Constants.GENERAL_HOST;
     }
 

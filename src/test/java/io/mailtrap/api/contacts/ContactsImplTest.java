@@ -85,7 +85,7 @@ class ContactsImplTest extends BaseTest {
     }
 
     @Test
-    void test_createContact_byId() {
+    void test_updateContact_byId() {
         final UpdateContactRequest request = new UpdateContactRequest(new UpdateContact(email, Map.of("zip_code", 11111), List.of(1L, 2L), List.of(3L, 4L), false));
 
         final UpdateContactResponse response = api.updateContact(accountId, contactUUID, request);

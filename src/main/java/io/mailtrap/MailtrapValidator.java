@@ -9,10 +9,10 @@ import java.util.stream.Collectors;
 /**
  * Wrapper for validating objects using a javax.validation.Validator.
  */
-public class CustomValidator {
+public class MailtrapValidator {
     private final Validator validator;
 
-    public CustomValidator(final Validator validator) {
+    public MailtrapValidator(final Validator validator) {
         this.validator = validator;
     }
 

@@ -9,16 +9,16 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CustomValidatorTest {
+class MailtrapValidatorTest {
 
     private final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-    private final CustomValidator customValidator = new CustomValidator(validator);
+    private final MailtrapValidator mailtrapValidator = new MailtrapValidator(validator);
 
     @Test
     void validate_WithValidObject_ShouldReturnEmptyMap() {
         final Address validAddress = new Address("mail+123@gmail.com");
 
-        Map<String, String> errors = customValidator.validate(validAddress);
+        Map<String, String> errors = mailtrapValidator.validate(validAddress);
 
         assertEquals(0, errors.size());
     }
@@ -27,7 +27,7 @@ class CustomValidatorTest {
     void validate_WithInvalidObject_ShouldReturnErrorsMap() {
         final Address invalidAddress = new Address("qwerty");
 
-        final Map<String, String> errors = customValidator.validate(invalidAddress);
+        final Map<String, String> errors = mailtrapValidator.validate(invalidAddress);
 
         assertEquals(1, errors.size());
         assertEquals("must be a well-formed email address", errors.get("email"));
@@ -37,7 +37,7 @@ class CustomValidatorTest {
     void validateAndGetViolationsAsString_WithValidObject_ShouldReturnEmptyString() {
         final Address validAddress = new Address("mail+123@gmail.com");
 
-        final String violationsAsString = customValidator.validateAndGetViolationsAsString(validAddress);
+        final String violationsAsString = mailtrapValidator.validateAndGetViolationsAsString(validAddress);
 
         assertEquals("", violationsAsString);
     }
@@ -46,7 +46,7 @@ class CustomValidatorTest {
     void validateAndGetViolationsAsString_WithInvalidObject_ShouldReturnConcatenatedString() {
         final Address invalidAddress = new Address("qwerty");
 
-        final String violationsAsString = customValidator.validateAndGetViolationsAsString(invalidAddress);
+        final String violationsAsString = mailtrapValidator.validateAndGetViolationsAsString(invalidAddress);
 
         assertEquals("email=must be a well-formed email address", violationsAsString);
     }

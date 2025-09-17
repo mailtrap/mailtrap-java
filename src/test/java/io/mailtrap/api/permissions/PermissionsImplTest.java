@@ -48,7 +48,7 @@ class PermissionsImplTest extends BaseTest {
                 new Permission(String.valueOf(inboxId), ResourceType.INBOX, AccessLevel.ADMIN, true)
         ));
 
-        ManagePermissionsResponse response = api.managePermissions(accountAccessId, accountId, request);
+        final ManagePermissionsResponse response = api.managePermissions(accountAccessId, accountId, request);
 
         assertEquals("Permissions have been updated!", response.getMessage());
     }

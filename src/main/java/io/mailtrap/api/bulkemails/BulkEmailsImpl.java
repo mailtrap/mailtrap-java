@@ -1,7 +1,7 @@
 package io.mailtrap.api.bulkemails;
 
 import io.mailtrap.Constants;
-import io.mailtrap.CustomValidator;
+import io.mailtrap.MailtrapValidator;
 import io.mailtrap.api.apiresource.SendApiResource;
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.exception.InvalidRequestBodyException;
@@ -17,8 +17,8 @@ import io.mailtrap.model.response.emails.SendResponse;
  */
 public class BulkEmailsImpl extends SendApiResource implements BulkEmails {
 
-    public BulkEmailsImpl(final MailtrapConfig config, final CustomValidator customValidator) {
-        super(config, customValidator);
+    public BulkEmailsImpl(final MailtrapConfig config, final MailtrapValidator mailtrapValidator) {
+        super(config, mailtrapValidator);
         this.apiHost = Constants.BULK_SENDING_HOST;
     }
 

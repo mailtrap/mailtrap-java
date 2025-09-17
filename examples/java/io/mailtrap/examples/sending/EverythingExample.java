@@ -72,7 +72,7 @@ public class EverythingExample {
     }
 
     private static String readAndEncodeAttachment(String filename) {
-        try (final InputStream inputStream = Everything.class.getClassLoader().getResourceAsStream(filename)) {
+        try (final InputStream inputStream = EverythingExample.class.getClassLoader().getResourceAsStream(filename)) {
             if (inputStream == null) {
                 return "";
             }

@@ -1,7 +1,7 @@
 package io.mailtrap.api.contactimports;
 
 import io.mailtrap.Constants;
-import io.mailtrap.CustomValidator;
+import io.mailtrap.MailtrapValidator;
 import io.mailtrap.api.apiresource.ApiResourceWithValidation;
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.http.RequestData;
@@ -11,7 +11,7 @@ import io.mailtrap.model.response.contactimports.CreateContactsImportResponse;
 
 public class ContactImportsImpl extends ApiResourceWithValidation implements ContactImports {
 
-    public ContactImportsImpl(final MailtrapConfig config, final CustomValidator validator) {
+    public ContactImportsImpl(final MailtrapConfig config, final MailtrapValidator validator) {
         super(config, validator);
         this.apiHost = Constants.GENERAL_HOST;
     }

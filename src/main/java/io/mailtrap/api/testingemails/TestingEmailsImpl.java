@@ -1,7 +1,7 @@
 package io.mailtrap.api.testingemails;
 
 import io.mailtrap.Constants;
-import io.mailtrap.CustomValidator;
+import io.mailtrap.MailtrapValidator;
 import io.mailtrap.api.apiresource.SendApiResource;
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.exception.InvalidRequestBodyException;
@@ -17,8 +17,8 @@ import io.mailtrap.model.response.emails.SendResponse;
  */
 public class TestingEmailsImpl extends SendApiResource implements TestingEmails {
 
-    public TestingEmailsImpl(final MailtrapConfig config, final CustomValidator customValidator) {
-        super(config, customValidator);
+    public TestingEmailsImpl(final MailtrapConfig config, final MailtrapValidator mailtrapValidator) {
+        super(config, mailtrapValidator);
         this.apiHost = Constants.EMAIL_TESTING_SEND_HOST;
     }
 

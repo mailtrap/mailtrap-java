@@ -139,7 +139,7 @@ public class DefaultMailtrapHttpClient implements CustomHttpClient {
             }
 
             final int statusCode = response.statusCode();
-            if (statusCode == 200) {
+            if (statusCode >= 200 && statusCode < 300) {
                 if (responseClassType != null) {
                     if (String.class.equals(responseClassType)) {
                         return responseClassType.cast(response.body());
@@ -153,7 +153,7 @@ public class DefaultMailtrapHttpClient implements CustomHttpClient {
             } else if (statusCode >= 400 && statusCode < 500) {
                 final ErrorResponse errorResponse = Mapper.get().readValue(response.body(), ErrorResponse.class);
                 throw new HttpClientException(String.join(", ", errorResponse.getErrors()), statusCode);
-            } else if (statusCode > 500) {
+            } else if (statusCode >= 500) {
                 throw new HttpServerException(String.format("Internal Server Error. HTTP response code (%d) received from the API server. Retry later or contact support.", statusCode), statusCode);
             }
             throw new HttpException(String.format("HTTP response code (%d) received from the API server (no error info)", statusCode), statusCode);

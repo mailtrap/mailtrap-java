@@ -50,7 +50,7 @@ class AccountAccessesImplTest extends BaseTest {
         
         final AccountAccessResponse accountAccessResponse = accountAccessResponses.get(0);
         
-        assertEquals(accountAccessResponse.getId(), accountAccessId);
+        assertEquals(accountAccessId, accountAccessResponse.getId());
         assertEquals(SpecifierType.USER, accountAccessResponse.getSpecifierType());
         assertEquals("Jack Sparrow", ((UserSpecifier) accountAccessResponse.getSpecifier()).getName());
         assertTrue(((UserSpecifier) accountAccessResponse.getSpecifier()).isTwoFactorAuthenticationEnabled());
@@ -72,14 +72,14 @@ class AccountAccessesImplTest extends BaseTest {
         assertEquals(SpecifierType.API_TOKEN, accountAccessResponse.getSpecifierType());
         assertEquals("token-value-11-22-33", ((ApiTokenSpecifier) accountAccessResponse.getSpecifier()).getToken());
         assertEquals(2, accountAccessResponse.getResources().size());
-        assertEquals(accountAccessResponse.getResources().get(0).getResourceId(), projectId);
+        assertEquals(projectId, accountAccessResponse.getResources().get(0).getResourceId());
     }
 
     @Test
     void test_removeAccountAccess() {
-        final RemoveAccountAccessResponse removeAccountAccessResponse = api.removeAccountAccess(accountAccessId, accountId);
+        final RemoveAccountAccessResponse removeAccountAccessResponse = api.removeAccountAccess(accountId, accountAccessId);
 
         assertNotNull(removeAccountAccessResponse);
-        assertEquals(removeAccountAccessResponse.getId(), accountAccessId);
+        assertEquals(accountAccessId, removeAccountAccessResponse.getId());
     }
 }

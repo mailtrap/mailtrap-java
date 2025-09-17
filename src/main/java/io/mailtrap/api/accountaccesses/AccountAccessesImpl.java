@@ -36,7 +36,7 @@ public class AccountAccessesImpl extends ApiResource implements AccountAccesses 
     }
 
     @Override
-    public RemoveAccountAccessResponse removeAccountAccess(final long accountAccessId, final long accountId) {
+    public RemoveAccountAccessResponse removeAccountAccess(final long accountId, final long accountAccessId) {
         return httpClient.delete(
             String.format(apiHost + "/api/accounts/%d/account_accesses/%d", accountId, accountAccessId),
             new RequestData(),
