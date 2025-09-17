@@ -6,7 +6,7 @@ import io.mailtrap.model.request.accountaccesses.ListMessagesQueryParams;
 import io.mailtrap.model.request.messages.ForwardMessageRequest;
 import io.mailtrap.model.request.messages.UpdateMessageRequest;
 
-public class Messages {
+public class MessagesExample {
 
     private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
     private static final String FORWARD_EMAIL_TO = "recipient@domain.com";
@@ -19,20 +19,20 @@ public class Messages {
 
         final var testingClient = MailtrapClientFactory.createMailtrapClient(config).testingApi();
 
-        var inboxes = testingClient.inboxes().getInboxes(ACCOUNT_ID);
+        final var inboxes = testingClient.inboxes().getInboxes(ACCOUNT_ID);
 
         if (!inboxes.isEmpty()) {
             long firstInboxId = inboxes.get(0).getId();
 
-            var messages = testingClient.messages().getMessages(ACCOUNT_ID, firstInboxId, ListMessagesQueryParams.empty());
+            final var messages = testingClient.messages().getMessages(ACCOUNT_ID, firstInboxId, ListMessagesQueryParams.empty());
 
             if (!messages.isEmpty()) {
                 long firstMessageId = messages.get(0).getId();
 
-                var getMessage = testingClient.messages().getMessage(ACCOUNT_ID, firstInboxId, firstMessageId);
+                final var getMessage = testingClient.messages().getMessage(ACCOUNT_ID, firstInboxId, firstMessageId);
                 System.out.println(getMessage);
 
-                var htmlAnalysis = testingClient.messages().getMessageHtmlAnalysis(ACCOUNT_ID, firstInboxId, firstMessageId);
+                final var htmlAnalysis = testingClient.messages().getMessageHtmlAnalysis(ACCOUNT_ID, firstInboxId, firstMessageId);
                 System.out.println(htmlAnalysis);
 
                 String htmlMessage = testingClient.messages().getHtmlMessage(ACCOUNT_ID, firstInboxId, firstMessageId);
@@ -50,16 +50,16 @@ public class Messages {
                 String messageSource = testingClient.messages().getMessageSource(ACCOUNT_ID, firstInboxId, firstMessageId);
                 System.out.println(messageSource);
 
-                var mailHeaders = testingClient.messages().getMailHeaders(ACCOUNT_ID, firstInboxId, firstMessageId);
+                final var mailHeaders = testingClient.messages().getMailHeaders(ACCOUNT_ID, firstInboxId, firstMessageId);
                 System.out.println(mailHeaders);
 
-                var spamScore = testingClient.messages().getSpamScore(ACCOUNT_ID, firstInboxId, firstMessageId);
+                final var spamScore = testingClient.messages().getSpamScore(ACCOUNT_ID, firstInboxId, firstMessageId);
                 System.out.println(spamScore);
 
-                var updateMessage = testingClient.messages().updateMessage(ACCOUNT_ID, firstInboxId, firstMessageId, new UpdateMessageRequest(new UpdateMessageRequest.MessageUpdateData("true")));
+                final var updateMessage = testingClient.messages().updateMessage(ACCOUNT_ID, firstInboxId, firstMessageId, new UpdateMessageRequest(new UpdateMessageRequest.MessageUpdateData("true")));
                 System.out.println(updateMessage);
 
-                var forwardMessage = testingClient.messages().forwardMessage(ACCOUNT_ID, firstInboxId, firstMessageId, new ForwardMessageRequest(FORWARD_EMAIL_TO));
+                final var forwardMessage = testingClient.messages().forwardMessage(ACCOUNT_ID, firstInboxId, firstMessageId, new ForwardMessageRequest(FORWARD_EMAIL_TO));
                 System.out.println(forwardMessage);
             }
         }

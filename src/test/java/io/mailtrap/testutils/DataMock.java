@@ -21,7 +21,7 @@ public class DataMock {
     @NonNull
     private final Map<String, ?> queryParams;
 
-    public static DataMock build(String url, String methodName, String requestFile, String responseFile) {
+    public static DataMock build(final String url, final String methodName, final String requestFile, final String responseFile) {
         return new DataMock(
                 url,
                 methodName,
@@ -31,7 +31,7 @@ public class DataMock {
         );
     }
 
-    public static DataMock build(String url, String methodName, String requestFile, String responseFile, Map<String, ?> queryParams) {
+    public static DataMock build(final String url, final String methodName, final String requestFile, final String responseFile, final Map<String, ?> queryParams) {
         return new DataMock(
                 url,
                 methodName,

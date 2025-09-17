@@ -1,6 +1,6 @@
 package io.mailtrap.api.apiresource;
 
-import io.mailtrap.CustomValidator;
+import io.mailtrap.MailtrapValidator;
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.exception.InvalidRequestBodyException;
 
@@ -9,15 +9,19 @@ public abstract class ApiResourceWithValidation extends ApiResource {
     /**
      * The custom validator used for validating email request bodies.
      */
-    protected final CustomValidator customValidator;
+    protected final MailtrapValidator mailtrapValidator;
 
-    protected ApiResourceWithValidation(MailtrapConfig config, CustomValidator customValidator) {
+    protected ApiResourceWithValidation(final MailtrapConfig config, final MailtrapValidator mailtrapValidator) {
         super(config);
-        this.customValidator = customValidator;
+        this.mailtrapValidator = mailtrapValidator;
     }
 
-    protected <T> void validateRequestBodyAndThrowException(T object) {
-        String violations = customValidator.validateAndGetViolationsAsString(object);
+    protected <T> void validateRequestBodyAndThrowException(final T object) {
+        if (object == null) {
+            throw new InvalidRequestBodyException("Invalid request body. Violations: request must not be null");
+        }
+
+        final String violations = mailtrapValidator.validateAndGetViolationsAsString(object);
 
         if (!violations.isEmpty()) {
             throw new InvalidRequestBodyException("Invalid request body. Violations: " + violations);

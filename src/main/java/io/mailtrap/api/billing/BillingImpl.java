@@ -8,16 +8,16 @@ import io.mailtrap.model.response.billing.BillingResponse;
 
 public class BillingImpl extends ApiResource implements Billing {
 
-    public BillingImpl(MailtrapConfig config) {
+    public BillingImpl(final MailtrapConfig config) {
         super(config);
         this.apiHost = Constants.GENERAL_HOST;
     }
 
     @Override
-    public BillingResponse getCurrentBillingCycleUsage(long accountId) {
+    public BillingResponse getCurrentBillingCycleUsage(final long accountId) {
         return httpClient.get(
-                String.format(apiHost + "/api/accounts/%s/billing/usage", accountId),
-                new RequestData(),
-                BillingResponse.class);
+            String.format(apiHost + "/api/accounts/%d/billing/usage", accountId),
+            new RequestData(),
+            BillingResponse.class);
     }
 }

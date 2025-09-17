@@ -1,7 +1,7 @@
 package io.mailtrap.api.messages;
 
-import io.mailtrap.model.request.messages.ForwardMessageRequest;
 import io.mailtrap.model.request.accountaccesses.ListMessagesQueryParams;
+import io.mailtrap.model.request.messages.ForwardMessageRequest;
 import io.mailtrap.model.request.messages.UpdateMessageRequest;
 import io.mailtrap.model.response.messages.*;
 
@@ -44,8 +44,8 @@ public interface Messages {
     MessageResponse deleteMessage(long accountId, long inboxId, long messageId);
 
     /**
-     * @param accountId unique account ID
-     * @param inboxId   unique inbox ID
+     * @param accountId   unique account ID
+     * @param inboxId     unique inbox ID
      * @param queryParams additional query parameters
      * @return list of messages
      */

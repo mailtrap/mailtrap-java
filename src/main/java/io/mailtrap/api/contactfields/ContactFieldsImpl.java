@@ -1,6 +1,6 @@
 package io.mailtrap.api.contactfields;
 
-import io.mailtrap.CustomValidator;
+import io.mailtrap.MailtrapValidator;
 import io.mailtrap.api.apiresource.ApiResourceWithValidation;
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.http.RequestData;
@@ -14,61 +14,61 @@ import static io.mailtrap.Constants.GENERAL_HOST;
 
 public class ContactFieldsImpl extends ApiResourceWithValidation implements ContactFields {
 
-  public ContactFieldsImpl(MailtrapConfig config, CustomValidator customValidator) {
-    super(config, customValidator);
-    this.apiHost = GENERAL_HOST;
-  }
+    public ContactFieldsImpl(final MailtrapConfig config, final MailtrapValidator mailtrapValidator) {
+        super(config, mailtrapValidator);
+        this.apiHost = GENERAL_HOST;
+    }
 
-  @Override
-  public List<ContactFieldResponse> getAllContactFields(long accountId) {
-    return httpClient.getList(
-        String.format(apiHost + "/api/accounts/%d/contacts/fields", accountId),
-        new RequestData(),
-        ContactFieldResponse.class
-    );
-  }
+    @Override
+    public List<ContactFieldResponse> getAllContactFields(final long accountId) {
+        return httpClient.getList(
+            String.format(apiHost + "/api/accounts/%d/contacts/fields", accountId),
+            new RequestData(),
+            ContactFieldResponse.class
+        );
+    }
 
-  @Override
-  public ContactFieldResponse createContactField(long accountId, CreateContactFieldRequest request) {
+    @Override
+    public ContactFieldResponse createContactField(final long accountId, final CreateContactFieldRequest request) {
 
-    validateRequestBodyAndThrowException(request);
+        validateRequestBodyAndThrowException(request);
 
-    return httpClient.post(
-        String.format(apiHost + "/api/accounts/%d/contacts/fields", accountId),
-        request,
-        new RequestData(),
-        ContactFieldResponse.class
-    );
-  }
+        return httpClient.post(
+            String.format(apiHost + "/api/accounts/%d/contacts/fields", accountId),
+            request,
+            new RequestData(),
+            ContactFieldResponse.class
+        );
+    }
 
-  @Override
-  public ContactFieldResponse getContactField(long accountId, long fieldId) {
-    return httpClient.get(
-        String.format(apiHost + "/api/accounts/%d/contacts/fields/%d", accountId, fieldId),
-        new RequestData(),
-        ContactFieldResponse.class
-    );
-  }
+    @Override
+    public ContactFieldResponse getContactField(final long accountId, final long fieldId) {
+        return httpClient.get(
+            String.format(apiHost + "/api/accounts/%d/contacts/fields/%d", accountId, fieldId),
+            new RequestData(),
+            ContactFieldResponse.class
+        );
+    }
 
-  @Override
-  public ContactFieldResponse updateContactField(long accountId, long fieldId, UpdateContactFieldRequest request) {
+    @Override
+    public ContactFieldResponse updateContactField(final long accountId, final long fieldId, UpdateContactFieldRequest request) {
 
-    validateRequestBodyAndThrowException(request);
+        validateRequestBodyAndThrowException(request);
 
-    return httpClient.patch(
-        String.format(apiHost + "/api/accounts/%d/contacts/fields/%d", accountId, fieldId),
-        request,
-        new RequestData(),
-        ContactFieldResponse.class
-    );
-  }
+        return httpClient.patch(
+            String.format(apiHost + "/api/accounts/%d/contacts/fields/%d", accountId, fieldId),
+            request,
+            new RequestData(),
+            ContactFieldResponse.class
+        );
+    }
 
-  @Override
-  public void deleteContactField(long accountId, long fieldId) {
-    httpClient.delete(
-        String.format(apiHost + "/api/accounts/%d/contacts/fields/%d", accountId, fieldId),
-        new RequestData(),
-        Void.class
-    );
-  }
+    @Override
+    public void deleteContactField(final long accountId, final long fieldId) {
+        httpClient.delete(
+            String.format(apiHost + "/api/accounts/%d/contacts/fields/%d", accountId, fieldId),
+            new RequestData(),
+            Void.class
+        );
+    }
 }

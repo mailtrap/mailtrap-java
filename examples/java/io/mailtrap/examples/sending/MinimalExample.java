@@ -7,7 +7,7 @@ import io.mailtrap.model.request.emails.MailtrapMail;
 
 import java.util.List;
 
-public class Minimal {
+public class MinimalExample {
 
     private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
     private static final String SENDER_EMAIL = "sender@domain.com";

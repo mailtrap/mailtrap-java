@@ -30,11 +30,11 @@ public final class MailContentView implements ContentView {
         return mail.getTemplateVariables();
     }
 
-    public static ContentView of(MailtrapMail content) {
+    public static ContentView of(final MailtrapMail content) {
         return new MailContentView(content);
     }
 
-    private MailContentView(MailtrapMail content) {
+    private MailContentView(final MailtrapMail content) {
         this.mail = content;
     }
 }

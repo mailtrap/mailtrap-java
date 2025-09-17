@@ -21,7 +21,7 @@ public class BaseSendTest {
     protected final String BATCH_MAIL_MUST_NOT_BE_NULL = "BatchMail must not be null";
     protected final String SUBJECT_MUST_NOT_BE_NULL = "Subject must not be null or empty";
 
-    private Address getAddress(String email, String name) {
+    private Address getAddress(final String email, final String name) {
         return new Address(email, name);
     }
 
@@ -34,9 +34,9 @@ public class BaseSendTest {
     }
 
     protected MailtrapMail createValidTestMail() {
-        Address from = getAddress("sender@example.com", "John Doe");
-        Address to = getAddress("receiver@example.com", "Jane Doe");
-        EmailAttachment attachment = getAttachment();
+        final Address from = getAddress("sender@example.com", "John Doe");
+        final Address to = getAddress("receiver@example.com", "Jane Doe");
+        final EmailAttachment attachment = getAttachment();
 
         return MailtrapMail.builder()
                 .from(from)
@@ -49,9 +49,9 @@ public class BaseSendTest {
     }
 
     protected MailtrapMail createValidTestMailForBatchWithNoSubject() {
-        Address from = getAddress("sender@example.com", "John Doe");
-        Address to = getAddress("receiver@example.com", "Jane Doe");
-        EmailAttachment attachment = getAttachment();
+        final Address from = getAddress("sender@example.com", "John Doe");
+        final Address to = getAddress("receiver@example.com", "Jane Doe");
+        final EmailAttachment attachment = getAttachment();
 
         return MailtrapMail.builder()
                 .from(from)
@@ -63,9 +63,9 @@ public class BaseSendTest {
     }
 
     protected MailtrapMail createTestMailForBatchWithNoSubjectAndText() {
-        Address from = getAddress("sender@example.com", "John Doe");
-        Address to = getAddress("receiver@example.com", "Jane Doe");
-        EmailAttachment attachment = getAttachment();
+        final Address from = getAddress("sender@example.com", "John Doe");
+        final Address to = getAddress("receiver@example.com", "Jane Doe");
+        final EmailAttachment attachment = getAttachment();
 
         return MailtrapMail.builder()
                 .from(from)
@@ -75,9 +75,9 @@ public class BaseSendTest {
     }
 
     protected MailtrapMail createInvalidTestMail() {
-        Address from = getAddress("", "John Doe");
-        Address to = getAddress("receiver@example.com", null);
-        EmailAttachment attachment = getAttachment();
+        final Address from = getAddress("", "John Doe");
+        final Address to = getAddress("receiver@example.com", null);
+        final EmailAttachment attachment = getAttachment();
 
         return MailtrapMail.builder()
                 .from(from)
@@ -90,9 +90,9 @@ public class BaseSendTest {
     }
 
     protected MailtrapMail createTestMailWithoutTemplateUuidAndSubjectAndTextAndHtml() {
-        Address from = getAddress("sender@example.com", "John Doe");
-        Address to = getAddress("receiver@example.com", "Jane Doe");
-        EmailAttachment attachment = getAttachment();
+        final Address from = getAddress("sender@example.com", "John Doe");
+        final Address to = getAddress("receiver@example.com", "Jane Doe");
+        final EmailAttachment attachment = getAttachment();
 
         return MailtrapMail.builder()
                 .from(from)
@@ -102,9 +102,9 @@ public class BaseSendTest {
     }
 
     protected MailtrapMail createTestMailWithSubjectAndNoTextAndNoHtml() {
-        Address from = getAddress("sender@example.com", "John Doe");
-        Address to = getAddress("receiver@example.com", "Jane Doe");
-        EmailAttachment attachment = getAttachment();
+        final Address from = getAddress("sender@example.com", "John Doe");
+        final Address to = getAddress("receiver@example.com", "Jane Doe");
+        final EmailAttachment attachment = getAttachment();
 
         return MailtrapMail.builder()
                 .from(from)
@@ -115,9 +115,9 @@ public class BaseSendTest {
     }
 
     protected MailtrapMail createTestMailWithTemplateUuidAndText() {
-        Address from = getAddress("sender@example.com", null);
-        Address to = getAddress("receiver@example.com", null);
-        EmailAttachment attachment = getAttachment();
+        final Address from = getAddress("sender@example.com", null);
+        final Address to = getAddress("receiver@example.com", null);
+        final EmailAttachment attachment = getAttachment();
 
         return MailtrapMail.builder()
                 .from(from)
@@ -130,9 +130,9 @@ public class BaseSendTest {
     }
 
     protected MailtrapMail createTestMailWithTemplateUuidAndHtml() {
-        Address from = getAddress("sender@example.com", "John Doe");
-        Address to = getAddress("receiver@example.com", "Jane Doe");
-        EmailAttachment attachment = getAttachment();
+        final Address from = getAddress("sender@example.com", "John Doe");
+        final Address to = getAddress("receiver@example.com", "Jane Doe");
+        final EmailAttachment attachment = getAttachment();
 
         return MailtrapMail.builder()
                 .from(from)
@@ -145,9 +145,9 @@ public class BaseSendTest {
     }
 
     protected MailtrapMail createTestMailWithTemplateVariablesAndHtml() {
-        Address from = getAddress("sender@example.com", null);
-        Address to = getAddress("receiver@example.com", null);
-        EmailAttachment attachment = getAttachment();
+        final Address from = getAddress("sender@example.com", null);
+        final Address to = getAddress("receiver@example.com", null);
+        final EmailAttachment attachment = getAttachment();
 
         return MailtrapMail.builder()
                 .from(from)
@@ -160,9 +160,9 @@ public class BaseSendTest {
     }
 
     protected MailtrapMail createTestMailFromTemplate() {
-        Address from = getAddress("sender@example.com", null);
-        Address to = getAddress("receiver@example.com", null);
-        EmailAttachment attachment = getAttachment();
+        final Address from = getAddress("sender@example.com", null);
+        final Address to = getAddress("receiver@example.com", null);
+        final EmailAttachment attachment = getAttachment();
 
         return MailtrapMail.builder()
                 .from(from)

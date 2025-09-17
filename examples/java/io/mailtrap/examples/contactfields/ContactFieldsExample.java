@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class ContactFields {
+public class ContactFieldsExample {
 
   private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
   private static final long ACCOUNT_ID = 1L;
@@ -22,22 +22,22 @@ public class ContactFields {
 
     final var client = MailtrapClientFactory.createMailtrapClient(config);
 
-    var createResponse = client.contactsApi().contactFields()
+    final var createResponse = client.contactsApi().contactFields()
         .createContactField(ACCOUNT_ID, new CreateContactFieldRequest("Contact name", ContactFieldDataType.TEXT, "merge-tag"));
 
     System.out.println(createResponse);
 
-    var updateResponse = client.contactsApi().contactFields()
+    final var updateResponse = client.contactsApi().contactFields()
         .updateContactField(ACCOUNT_ID, createResponse.getId(), new UpdateContactFieldRequest("Updated name", "updated-merge-tag"));
 
     System.out.println(updateResponse);
 
-    var allContactFields = client.contactsApi().contactFields()
+    final var allContactFields = client.contactsApi().contactFields()
         .getAllContactFields(ACCOUNT_ID);
 
     System.out.println(allContactFields);
 
-    var contactField = client.contactsApi().contactFields()
+    final var contactField = client.contactsApi().contactFields()
         .getContactField(ACCOUNT_ID, createResponse.getId());
 
     System.out.println(contactField);

@@ -7,7 +7,7 @@ import io.mailtrap.model.request.sendingdomains.SendingDomainsSetupInstructionsR
 
 import static io.mailtrap.model.request.sendingdomains.CreateSendingDomainRequest.SendingDomainData;
 
-public class SendingDomains {
+public class SendingDomainsExample {
 
     private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
     private static final long ACCOUNT_ID = 1L;

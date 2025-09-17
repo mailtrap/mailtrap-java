@@ -23,7 +23,7 @@ public class ContactFieldsImplTest extends BaseTest {
 
   @BeforeEach
   public void init() {
-    TestHttpClient httpClient = new TestHttpClient(List.of(
+    final TestHttpClient httpClient = new TestHttpClient(List.of(
         DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/fields",
             "GET", null, "api/contactfields/getAllContactFieldsResponse.json"),
 
@@ -40,7 +40,7 @@ public class ContactFieldsImplTest extends BaseTest {
             "DELETE", null, null)
     ));
 
-    MailtrapConfig testConfig = new MailtrapConfig.Builder()
+    final MailtrapConfig testConfig = new MailtrapConfig.Builder()
         .httpClient(httpClient)
         .token("dummy_token")
         .build();
@@ -50,7 +50,7 @@ public class ContactFieldsImplTest extends BaseTest {
 
   @Test
   void test_getAllContactFields() {
-    List<ContactFieldResponse> allContactFields = api.getAllContactFields(accountId);
+    final List<ContactFieldResponse> allContactFields = api.getAllContactFields(accountId);
 
     assertEquals(3, allContactFields.size());
     assertEquals("First name", allContactFields.get(0).getName());
@@ -59,7 +59,7 @@ public class ContactFieldsImplTest extends BaseTest {
 
   @Test
   void test_createContactField() {
-    ContactFieldResponse created = api.createContactField(accountId, new CreateContactFieldRequest("My Contact Field", ContactFieldDataType.BOOLEAN, "my_contact_field"));
+    final ContactFieldResponse created = api.createContactField(accountId, new CreateContactFieldRequest("My Contact Field", ContactFieldDataType.BOOLEAN, "my_contact_field"));
 
     assertNotNull(created);
     assertEquals(ContactFieldDataType.BOOLEAN, created.getDataType());
@@ -68,7 +68,7 @@ public class ContactFieldsImplTest extends BaseTest {
 
   @Test
   void test_getContactField() {
-    ContactFieldResponse contactField = api.getContactField(accountId, getFieldId);
+    final ContactFieldResponse contactField = api.getContactField(accountId, getFieldId);
 
     assertNotNull(contactField);
     assertEquals("First name", contactField.getName());
@@ -78,8 +78,7 @@ public class ContactFieldsImplTest extends BaseTest {
 
   @Test
   void test_updateContactField() {
-
-    ContactFieldResponse contactFieldResponse = api.updateContactField(accountId, updateFieldId, new UpdateContactFieldRequest("My Updated Contact Field", "my_updated_contact_field"));
+    final ContactFieldResponse contactFieldResponse = api.updateContactField(accountId, updateFieldId, new UpdateContactFieldRequest("My Updated Contact Field", "my_updated_contact_field"));
 
     assertNotNull(contactFieldResponse);
     assertEquals(ContactFieldDataType.TEXT, contactFieldResponse.getDataType());

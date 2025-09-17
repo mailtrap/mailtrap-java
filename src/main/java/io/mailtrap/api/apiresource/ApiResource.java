@@ -13,21 +13,19 @@ public abstract class ApiResource {
      * HTTP client for making API requests.
      */
     protected final CustomHttpClient httpClient;
-
+    /**
+     * The authentication token used for API requests.
+     */
+    protected final String token;
     /**
      * The API host
      */
     protected String apiHost;
 
-    /**
-     * The authentication token used for API requests.
-     */
-    protected final String token;
-
-    protected ApiResource(MailtrapConfig config) {
+    protected ApiResource(final MailtrapConfig config) {
         this.httpClient = config.getHttpClient() != null
-                ? config.getHttpClient()
-                : new DefaultMailtrapHttpClient(config);
+            ? config.getHttpClient()
+            : new DefaultMailtrapHttpClient(config);
         this.token = config.getToken();
     }
 

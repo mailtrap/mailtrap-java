@@ -24,7 +24,7 @@ class InboxesImplTest extends BaseTest {
 
     @BeforeEach
     public void init() {
-        TestHttpClient httpClient = new TestHttpClient(List.of(
+        final TestHttpClient httpClient = new TestHttpClient(List.of(
                 DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/projects/" + projectId + "/inboxes",
                         "POST", "api/inbox/createInboxRequest.json", "api/inbox/inboxResponse.json"),
 
@@ -56,7 +56,7 @@ class InboxesImplTest extends BaseTest {
                         "GET", null, "api/inbox/listInboxResponse.json")
         ));
 
-        MailtrapConfig testConfig = new MailtrapConfig.Builder()
+        final MailtrapConfig testConfig = new MailtrapConfig.Builder()
                 .httpClient(httpClient)
                 .token("dummy_token")
                 .build();
@@ -66,7 +66,7 @@ class InboxesImplTest extends BaseTest {
 
     @Test
     void test_createInbox() {
-        InboxResponse createdInbox = api.createInbox(accountId, projectId, new CreateInboxRequest(new InboxCreateData("Test inbox")));
+        final InboxResponse createdInbox = api.createInbox(accountId, projectId, new CreateInboxRequest(new InboxCreateData("Test inbox")));
 
         assertNotNull(createdInbox);
         assertEquals(createdInbox.getProjectId(), projectId);
@@ -75,7 +75,7 @@ class InboxesImplTest extends BaseTest {
 
     @Test
     void test_getInboxAttributes() {
-        InboxResponse inboxAttributes = api.getInboxAttributes(accountId, inboxId);
+        final InboxResponse inboxAttributes = api.getInboxAttributes(accountId, inboxId);
 
         assertNotNull(inboxAttributes);
         assertTrue(inboxAttributes.getPermission().isCanRead());
@@ -85,7 +85,7 @@ class InboxesImplTest extends BaseTest {
 
     @Test
     void test_deleteInbox() {
-        InboxResponse deletedInbox = api.deleteInbox(accountId, inboxId);
+        final InboxResponse deletedInbox = api.deleteInbox(accountId, inboxId);
 
         assertNotNull(deletedInbox);
         assertTrue(deletedInbox.getPermission().isCanRead());
@@ -95,7 +95,7 @@ class InboxesImplTest extends BaseTest {
 
     @Test
     void test_updateInbox() {
-        InboxResponse updatedInbox = api.updateInbox(accountId, inboxId, new UpdateInboxRequest(new InboxUpdateData("Updated Inbox Name", "updated-email-username")));
+        final InboxResponse updatedInbox = api.updateInbox(accountId, inboxId, new UpdateInboxRequest(new InboxUpdateData("Updated Inbox Name", "updated-email-username")));
 
         assertNotNull(updatedInbox);
         assertTrue(updatedInbox.getPermission().isCanRead());
@@ -106,7 +106,7 @@ class InboxesImplTest extends BaseTest {
 
     @Test
     void test_cleanInbox() {
-        InboxResponse cleanedInbox = api.cleanInbox(accountId, inboxId);
+        final InboxResponse cleanedInbox = api.cleanInbox(accountId, inboxId);
 
         assertNotNull(cleanedInbox);
         assertTrue(cleanedInbox.getPermission().isCanRead());
@@ -116,7 +116,7 @@ class InboxesImplTest extends BaseTest {
 
     @Test
     void test_markAsRead() {
-        InboxResponse markedAsRead = api.markAsRead(accountId, inboxId);
+        final InboxResponse markedAsRead = api.markAsRead(accountId, inboxId);
 
         assertNotNull(markedAsRead);
         assertTrue(markedAsRead.getPermission().isCanRead());
@@ -126,7 +126,7 @@ class InboxesImplTest extends BaseTest {
 
     @Test
     void test_resetCredentials() {
-        InboxResponse resetCredentials = api.resetCredentials(accountId, inboxId);
+        final InboxResponse resetCredentials = api.resetCredentials(accountId, inboxId);
 
         assertNotNull(resetCredentials);
         assertTrue(resetCredentials.getPermission().isCanRead());
@@ -136,7 +136,7 @@ class InboxesImplTest extends BaseTest {
 
     @Test
     void test_enableEmailAddress() {
-        InboxResponse enableEmailAddress = api.enableEmailAddress(accountId, inboxId);
+        final InboxResponse enableEmailAddress = api.enableEmailAddress(accountId, inboxId);
 
         assertNotNull(enableEmailAddress);
         assertTrue(enableEmailAddress.getPermission().isCanRead());
@@ -146,7 +146,7 @@ class InboxesImplTest extends BaseTest {
 
     @Test
     void test_resetEmailAddresses() {
-        InboxResponse resetEmailAddresses = api.resetEmailAddresses(accountId, inboxId);
+        final InboxResponse resetEmailAddresses = api.resetEmailAddresses(accountId, inboxId);
 
         assertNotNull(resetEmailAddresses);
         assertTrue(resetEmailAddresses.getPermission().isCanRead());
@@ -156,7 +156,7 @@ class InboxesImplTest extends BaseTest {
 
     @Test
     void test_getInboxes() {
-        List<InboxResponse> inboxes = api.getInboxes(accountId);
+        final List<InboxResponse> inboxes = api.getInboxes(accountId);
 
         assertNotNull(inboxes);
         assertEquals(1, inboxes.size());

@@ -28,7 +28,7 @@ class ContactsImplTest extends BaseTest {
 
     @BeforeEach
     public void init() {
-        TestHttpClient httpClient = new TestHttpClient(List.of(
+        final TestHttpClient httpClient = new TestHttpClient(List.of(
                 DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts",
                         "POST", "api/contacts/createContactRequest.json", "api/contacts/createContactResponse.json"),
 
@@ -45,7 +45,7 @@ class ContactsImplTest extends BaseTest {
                         "PATCH", "api/contacts/updateContactByIdRequest.json", "api/contacts/updateContactByIdResponse.json")
         ));
 
-        MailtrapConfig testConfig = new MailtrapConfig.Builder()
+        final MailtrapConfig testConfig = new MailtrapConfig.Builder()
                 .httpClient(httpClient)
                 .token("dummy_token")
                 .build();
@@ -55,9 +55,9 @@ class ContactsImplTest extends BaseTest {
 
     @Test
     void test_createContact() {
-        CreateContactRequest request = new CreateContactRequest(new CreateContact(email, Map.of("first_name", "Nick"), List.of(1L, 2L)));
+        final CreateContactRequest request = new CreateContactRequest(new CreateContact(email, Map.of("first_name", "Nick"), List.of(1L, 2L)));
 
-        CreateContactResponse response = api.createContact(accountId, request);
+        final CreateContactResponse response = api.createContact(accountId, request);
 
         assertNotNull(response);
         assertEquals(ContactStatus.SUBSCRIBED, response.getStatus());
@@ -75,9 +75,9 @@ class ContactsImplTest extends BaseTest {
 
     @Test
     void test_updateContact_byEmail() {
-        UpdateContactRequest request = new UpdateContactRequest(new UpdateContact(email, Map.of("first_name", "Joe"), List.of(1L, 2L), List.of(3L, 4L), false));
+        final UpdateContactRequest request = new UpdateContactRequest(new UpdateContact(email, Map.of("first_name", "Joe"), List.of(1L, 2L), List.of(3L, 4L), false));
 
-        UpdateContactResponse response = api.updateContact(accountId, email, request);
+        final UpdateContactResponse response = api.updateContact(accountId, email, request);
 
         assertNotNull(response);
         assertEquals(ContactAction.UPDATED, response.getAction());
@@ -85,10 +85,10 @@ class ContactsImplTest extends BaseTest {
     }
 
     @Test
-    void test_createContact_byId() {
-        UpdateContactRequest request = new UpdateContactRequest(new UpdateContact(email, Map.of("zip_code", 11111), List.of(1L, 2L), List.of(3L, 4L), false));
+    void test_updateContact_byId() {
+        final UpdateContactRequest request = new UpdateContactRequest(new UpdateContact(email, Map.of("zip_code", 11111), List.of(1L, 2L), List.of(3L, 4L), false));
 
-        UpdateContactResponse response = api.updateContact(accountId, contactUUID, request);
+        final UpdateContactResponse response = api.updateContact(accountId, contactUUID, request);
 
         assertNotNull(response);
         assertEquals(ContactAction.UPDATED, response.getAction());

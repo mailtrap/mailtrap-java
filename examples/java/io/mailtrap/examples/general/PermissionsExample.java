@@ -9,7 +9,7 @@ import io.mailtrap.model.request.permissions.Permission;
 
 import java.util.List;
 
-public class Permissions {
+public class PermissionsExample {
 
     private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
     private static final long ACCOUNT_ID = 1L;
@@ -25,10 +25,10 @@ public class Permissions {
 
         final var client = MailtrapClientFactory.createMailtrapClient(config);
 
-        var firstResource = client.generalApi().permissions().getResources(ACCOUNT_ID).get(0);
+        final var firstResource = client.generalApi().permissions().getResources(ACCOUNT_ID).get(0);
         System.out.println(firstResource);
 
-        var request = new ManagePermissionsRequest(List.of(
+        final var request = new ManagePermissionsRequest(List.of(
                 new Permission(
                         FIRST_RESOURCE_ID, ResourceType.ACCOUNT, AccessLevel.VIEWER, false
                 ),

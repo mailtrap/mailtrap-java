@@ -3,7 +3,7 @@ package io.mailtrap.examples.suppressions;
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.factory.MailtrapClientFactory;
 
-public class Suppressions {
+public class SuppressionsExample {
 
   private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
   private static final long ACCOUNT_ID = 1L;
@@ -16,13 +16,13 @@ public class Suppressions {
 
     final var client = MailtrapClientFactory.createMailtrapClient(config);
 
-    var searchResponse = client.sendingApi().suppressions()
+    final var searchResponse = client.sendingApi().suppressions()
         .search(ACCOUNT_ID, EMAIL);
 
     System.out.println(searchResponse);
 
     if (!searchResponse.isEmpty()) {
-      var deletedSuppression = client.sendingApi().suppressions()
+      final var deletedSuppression = client.sendingApi().suppressions()
           .deleteSuppression(ACCOUNT_ID, searchResponse.get(0).getId());
 
       System.out.println(deletedSuppression);

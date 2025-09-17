@@ -11,7 +11,7 @@ import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
-public class Everything {
+public class EverythingExample {
 
     private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
     private static final String SENDER_EMAIL = "sender@domain.com";
@@ -72,12 +72,12 @@ public class Everything {
     }
 
     private static String readAndEncodeAttachment(String filename) {
-        try (InputStream inputStream = Everything.class.getClassLoader().getResourceAsStream(filename)) {
+        try (final InputStream inputStream = EverythingExample.class.getClassLoader().getResourceAsStream(filename)) {
             if (inputStream == null) {
                 return "";
             }
             return Base64.getEncoder().encodeToString(inputStream.readAllBytes());
-        } catch (Exception e) {
+        } catch (final Exception e) {
             return "";
         }
 

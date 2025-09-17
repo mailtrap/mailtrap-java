@@ -18,7 +18,7 @@ class AccountAccessResponseDeserializerTest {
 
     @Test
     void testApiTokenSpecifierDeserialization() throws Exception {
-        String json = """
+        final String json = """
                   {
                     "id": 1,
                     "specifier_type": "ApiToken",
@@ -38,10 +38,11 @@ class AccountAccessResponseDeserializerTest {
                   }
                 """;
 
-        AccountAccessResponse response = mapper.readValue(json, AccountAccessResponse.class);
+        final AccountAccessResponse response = mapper.readValue(json, AccountAccessResponse.class);
 
         assertInstanceOf(ApiTokenSpecifier.class, response.getSpecifier());
-        ApiTokenSpecifier apiTokenSpecifier = (ApiTokenSpecifier) response.getSpecifier();
+
+        final ApiTokenSpecifier apiTokenSpecifier = (ApiTokenSpecifier) response.getSpecifier();
         assertEquals(1, apiTokenSpecifier.getId());
         assertEquals("Token", apiTokenSpecifier.getName());
         assertEquals("xyz", apiTokenSpecifier.getToken());
@@ -50,7 +51,7 @@ class AccountAccessResponseDeserializerTest {
 
     @Test
     void testInviteSpecifierDeserialization() throws Exception {
-        String json = """
+        final String json = """
                   {
                     "id": 1,
                     "specifier_type": "Invite",
@@ -68,17 +69,18 @@ class AccountAccessResponseDeserializerTest {
                   }
                 """;
 
-        AccountAccessResponse response = mapper.readValue(json, AccountAccessResponse.class);
+        final AccountAccessResponse response = mapper.readValue(json, AccountAccessResponse.class);
 
         assertInstanceOf(InviteSpecifier.class, response.getSpecifier());
-        InviteSpecifier inviteSpecifier = (InviteSpecifier) response.getSpecifier();
+
+        final InviteSpecifier inviteSpecifier = (InviteSpecifier) response.getSpecifier();
         assertEquals(2, inviteSpecifier.getId());
         assertEquals("invite@example.com", inviteSpecifier.getEmail());
     }
 
     @Test
     void testUserSpecifierDeserialization() throws Exception {
-        String json = """
+        final String json = """
                        {
                          "id": 3,
                          "specifier_type": "User",
@@ -98,10 +100,11 @@ class AccountAccessResponseDeserializerTest {
                        }
                 """;
 
-        AccountAccessResponse response = mapper.readValue(json, AccountAccessResponse.class);
+        final AccountAccessResponse response = mapper.readValue(json, AccountAccessResponse.class);
 
         assertInstanceOf(UserSpecifier.class, response.getSpecifier());
-        UserSpecifier userSpecifier = (UserSpecifier) response.getSpecifier();
+
+        final UserSpecifier userSpecifier = (UserSpecifier) response.getSpecifier();
         assertEquals(3, userSpecifier.getId());
         assertEquals("user@example.com", userSpecifier.getEmail());
         assertEquals("John Doe", userSpecifier.getName());
@@ -110,7 +113,7 @@ class AccountAccessResponseDeserializerTest {
 
     @Test
     void testMissingFields() {
-        String json = """
+        final String json = """
                        {
                          "id": 3,
                          "specifier_type": "Unknown",
@@ -128,7 +131,7 @@ class AccountAccessResponseDeserializerTest {
                        }
                 """;
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> mapper.readValue(json, AccountAccessResponse.class));
         assertTrue(exception.getMessage().contains("Invalid specifier_type provided"));
     }

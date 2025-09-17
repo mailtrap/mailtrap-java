@@ -22,7 +22,7 @@ class AccountAccessesImplTest extends BaseTest {
 
     @BeforeEach
     public void init() {
-        TestHttpClient httpClient = new TestHttpClient(List.of(
+        final TestHttpClient httpClient = new TestHttpClient(List.of(
                 DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/account_accesses",
                         "GET", null, "api/account_access/getAccountAccessResponse.json"),
 
@@ -34,7 +34,7 @@ class AccountAccessesImplTest extends BaseTest {
                         "DELETE", null, "api/account_access/removeAccountAccessResponse.json")
         ));
 
-        MailtrapConfig testConfig = new MailtrapConfig.Builder()
+        final MailtrapConfig testConfig = new MailtrapConfig.Builder()
                 .httpClient(httpClient)
                 .token("dummy_token")
                 .build();
@@ -44,11 +44,13 @@ class AccountAccessesImplTest extends BaseTest {
 
     @Test
     void test_listUserAndInviteAccountAccesses() {
-        List<AccountAccessResponse> accountAccessResponses = api.listUserAndInviteAccountAccesses(accountId, ListAccountAccessQueryParams.empty());
+        final List<AccountAccessResponse> accountAccessResponses = api.listUserAndInviteAccountAccesses(accountId, ListAccountAccessQueryParams.empty());
 
         assertFalse(accountAccessResponses.isEmpty());
-        AccountAccessResponse accountAccessResponse = accountAccessResponses.get(0);
-        assertEquals(accountAccessResponse.getId(), accountAccessId);
+        
+        final AccountAccessResponse accountAccessResponse = accountAccessResponses.get(0);
+        
+        assertEquals(accountAccessId, accountAccessResponse.getId());
         assertEquals(SpecifierType.USER, accountAccessResponse.getSpecifierType());
         assertEquals("Jack Sparrow", ((UserSpecifier) accountAccessResponse.getSpecifier()).getName());
         assertTrue(((UserSpecifier) accountAccessResponse.getSpecifier()).isTwoFactorAuthenticationEnabled());
@@ -57,25 +59,27 @@ class AccountAccessesImplTest extends BaseTest {
 
     @Test
     void test_listUserAndInviteAccountAccessesWithProjectIdsQueryParam() {
-        ListAccountAccessQueryParams queryParams = new ListAccountAccessQueryParams();
+        final ListAccountAccessQueryParams queryParams = new ListAccountAccessQueryParams();
         queryParams.setProjectIds(List.of(String.valueOf(projectId), String.valueOf(anotherProjectId)));
 
-        List<AccountAccessResponse> accountAccessResponses = api.listUserAndInviteAccountAccesses(accountId, queryParams);
+        final List<AccountAccessResponse> accountAccessResponses = api.listUserAndInviteAccountAccesses(accountId, queryParams);
 
         assertFalse(accountAccessResponses.isEmpty());
-        AccountAccessResponse accountAccessResponse = accountAccessResponses.get(0);
+
+        final AccountAccessResponse accountAccessResponse = accountAccessResponses.get(0);
+        
         assertEquals(accountAccessResponse.getId(), accountAccessId);
         assertEquals(SpecifierType.API_TOKEN, accountAccessResponse.getSpecifierType());
         assertEquals("token-value-11-22-33", ((ApiTokenSpecifier) accountAccessResponse.getSpecifier()).getToken());
         assertEquals(2, accountAccessResponse.getResources().size());
-        assertEquals(accountAccessResponse.getResources().get(0).getResourceId(), projectId);
+        assertEquals(projectId, accountAccessResponse.getResources().get(0).getResourceId());
     }
 
     @Test
     void test_removeAccountAccess() {
-        RemoveAccountAccessResponse removeAccountAccessResponse = api.removeAccountAccess(accountAccessId, accountId);
+        final RemoveAccountAccessResponse removeAccountAccessResponse = api.removeAccountAccess(accountAccessId, accountId);
 
         assertNotNull(removeAccountAccessResponse);
-        assertEquals(removeAccountAccessResponse.getId(), accountAccessId);
+        assertEquals(accountAccessId, removeAccountAccessResponse.getId());
     }
 }

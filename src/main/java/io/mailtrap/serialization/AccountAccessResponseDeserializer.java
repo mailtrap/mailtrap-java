@@ -35,37 +35,37 @@ import java.util.List;
 public class AccountAccessResponseDeserializer extends JsonDeserializer<AccountAccessResponse> {
 
     @Override
-    public AccountAccessResponse deserialize(JsonParser p, DeserializationContext ctxt)
+    public AccountAccessResponse deserialize(final JsonParser p, final DeserializationContext ctxt)
             throws IOException {
 
-        ObjectMapper mapper = (ObjectMapper) p.getCodec();
-        JsonNode rootNode = mapper.readTree(p);
+        final ObjectMapper mapper = (ObjectMapper) p.getCodec();
+        final JsonNode rootNode = mapper.readTree(p);
 
         // Extract the simple fields
-        long id = rootNode.get("id").asLong();
-        JsonNode resourcesNode = rootNode.get("resources");
-        JsonNode permissionsNode = rootNode.get("permissions");
+        final long id = rootNode.get("id").asLong();
+        final JsonNode resourcesNode = rootNode.get("resources");
+        final JsonNode permissionsNode = rootNode.get("permissions");
 
         // Deserialize the simple fields
-        var resources = mapper.convertValue(resourcesNode, new TypeReference<List<Resource>>() {
+        final var resources = mapper.convertValue(resourcesNode, new TypeReference<List<Resource>>() {
         });
-        var permissions = mapper.treeToValue(permissionsNode, Permission.class);
+        final var permissions = mapper.treeToValue(permissionsNode, Permission.class);
 
         // Extract and handle the specifier_type and specifier fields
-        String specifierTypeStr = rootNode.get("specifier_type").asText();
+        final String specifierTypeStr = rootNode.get("specifier_type").asText();
 
-        SpecifierType specifierType = SpecifierType.fromValue(specifierTypeStr);
+        final SpecifierType specifierType = SpecifierType.fromValue(specifierTypeStr);
 
-        JsonNode specifierNode = rootNode.get("specifier");
+        final JsonNode specifierNode = rootNode.get("specifier");
 
-        Specifier specifier = switch (specifierType) {
+        final Specifier specifier = switch (specifierType) {
             case USER -> mapper.treeToValue(specifierNode, UserSpecifier.class);
             case INVITE -> mapper.treeToValue(specifierNode, InviteSpecifier.class);
             case API_TOKEN -> mapper.treeToValue(specifierNode, ApiTokenSpecifier.class);
         };
 
         // Construct the AccountAccessResponse object
-        var response = new AccountAccessResponse();
+        final var response = new AccountAccessResponse();
 
         response.setId(id);
         response.setSpecifier(specifier);

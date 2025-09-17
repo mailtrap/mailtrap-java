@@ -29,11 +29,11 @@ public final class ResolvedMailContentView implements ContentView {
         return mailView.getTemplateVariables();
     }
 
-    public static ContentView of(ResolvedMailView mailView) {
+    public static ContentView of(final ResolvedMailView mailView) {
         return new ResolvedMailContentView(mailView);
     }
 
-    private ResolvedMailContentView(ResolvedMailView mailView) {
+    private ResolvedMailContentView(final ResolvedMailView mailView) {
         this.mailView = mailView;
     }
 }

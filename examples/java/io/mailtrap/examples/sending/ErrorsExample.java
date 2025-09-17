@@ -10,7 +10,7 @@ import io.mailtrap.model.request.emails.MailtrapMail;
 import java.util.List;
 import java.util.UUID;
 
-public class Errors {
+public class ErrorsExample {
 
     private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
     private static final String SENDER_EMAIL = "sender@domain.com";
@@ -33,11 +33,11 @@ public class Errors {
 
         try {
             System.out.println(client.sendingApi().emails().send(invalidMail_TemplateUUIDAndSubjectAreUsed));
-        } catch (InvalidRequestBodyException e) {
+        } catch (final InvalidRequestBodyException e) {
             System.out.println("Caught invalid request body exception : " + e);
         }
 
-        var clientWithInvalidToken = MailtrapClientFactory.createMailtrapClient(new MailtrapConfig.Builder()
+        final var clientWithInvalidToken = MailtrapClientFactory.createMailtrapClient(new MailtrapConfig.Builder()
                 .token("invalid token")
                 .build());
 
@@ -50,13 +50,13 @@ public class Errors {
 
         try {
             System.out.println(clientWithInvalidToken.sendingApi().emails().send(validMail));
-        } catch (HttpClientException e) {
+        } catch (final HttpClientException e) {
             System.out.println("Caught unauthorized exception : " + e);
         }
 
         try {
             System.out.println(client.sendingApi().emails().send(null));
-        } catch (InvalidRequestBodyException e) {
+        } catch (final InvalidRequestBodyException e) {
             System.out.println("Caught invalid request body exception : " + e);
         }
     }

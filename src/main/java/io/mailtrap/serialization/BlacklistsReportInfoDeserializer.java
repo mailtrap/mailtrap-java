@@ -14,13 +14,13 @@ import java.io.IOException;
 public class BlacklistsReportInfoDeserializer extends JsonDeserializer<BlacklistsReportInfoWrapper> {
 
     @Override
-    public BlacklistsReportInfoWrapper deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JacksonException {
-        JsonNode node = jsonParser.getCodec().readTree(jsonParser);
+    public BlacklistsReportInfoWrapper deserialize(final JsonParser jsonParser, final DeserializationContext deserializationContext) throws IOException, JacksonException {
+        final JsonNode node = jsonParser.getCodec().readTree(jsonParser);
 
         if (node.isBoolean()) {
             return new BlacklistsReportInfoWrapper(node.asBoolean());
         } else {
-            ObjectMapper mapper = (ObjectMapper) jsonParser.getCodec();
+            final ObjectMapper mapper = (ObjectMapper) jsonParser.getCodec();
             return new BlacklistsReportInfoWrapper(mapper.convertValue(node, BlacklistsReportInfo.class));
         }
     }

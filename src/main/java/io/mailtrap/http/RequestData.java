@@ -29,7 +29,7 @@ public class RequestData {
      */
     private Map<String, ?> headers = new HashMap<>();
 
-    public RequestData(Map<String, ? extends Optional<?>> queryParams) {
+    public RequestData(final Map<String, ? extends Optional<?>> queryParams) {
         this.queryParams = queryParams;
     }
 
@@ -40,7 +40,7 @@ public class RequestData {
      * @return The map of query parameters.
      */
     @SafeVarargs
-    public static <T extends Optional<?>> Map<String, T> buildQueryParams(Map.Entry<String, T>... entries) {
+    public static <T extends Optional<?>> Map<String, T> buildQueryParams(final Map.Entry<String, T>... entries) {
         Map<String, T> params = new HashMap<>();
         for (Map.Entry<String, T> entry : entries) {
             params.put(entry.getKey(), entry.getValue());
@@ -55,7 +55,7 @@ public class RequestData {
      * @param value entry's value
      * @return An entry
      */
-    public static <T extends Optional<?>> Map.Entry<String, T> entry(String key, T value) {
+    public static <T extends Optional<?>> Map.Entry<String, T> entry(final String key, final T value) {
         return new AbstractMap.SimpleEntry<>(key, value);
     }
 }

@@ -4,7 +4,7 @@ import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.factory.MailtrapClientFactory;
 import io.mailtrap.model.request.projects.CreateUpdateProjectRequest;
 
-public class Projects {
+public class ProjectsExample {
 
     private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
     private static final long ACCOUNT_ID = 1L;
@@ -16,16 +16,16 @@ public class Projects {
 
         final var testingClient = MailtrapClientFactory.createMailtrapClient(config).testingApi();
 
-        var projects = testingClient.projects().getProjects(ACCOUNT_ID);
+        final var projects = testingClient.projects().getProjects(ACCOUNT_ID);
 
         if (!projects.isEmpty()) {
             long firstProjectId = projects.get(0).getId();
 
-            var updatedProject =
+            final var updatedProject =
                     testingClient.projects().updateProject(ACCOUNT_ID, firstProjectId, new CreateUpdateProjectRequest(new CreateUpdateProjectRequest.ProjectData("mock project")));
             System.out.println(updatedProject);
 
-            var deletedProject = testingClient.projects().deleteProject(ACCOUNT_ID, firstProjectId);
+            final var deletedProject = testingClient.projects().deleteProject(ACCOUNT_ID, firstProjectId);
             System.out.println(deletedProject);
         }
     }

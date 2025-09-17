@@ -14,7 +14,7 @@ public class HttpException extends BaseMailtrapException {
      */
     private final int statusCode;
 
-    public HttpException(String errorMessage, int statusCode) {
+    public HttpException(final String errorMessage, final int statusCode) {
         super(errorMessage);
         this.statusCode = statusCode;
     }

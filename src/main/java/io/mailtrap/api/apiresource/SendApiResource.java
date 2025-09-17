@@ -1,6 +1,6 @@
 package io.mailtrap.api.apiresource;
 
-import io.mailtrap.CustomValidator;
+import io.mailtrap.MailtrapValidator;
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.exception.InvalidRequestBodyException;
 import io.mailtrap.model.mailvalidation.ContentView;
@@ -20,8 +20,8 @@ import java.util.Objects;
  */
 public abstract class SendApiResource extends ApiResourceWithValidation {
 
-    protected SendApiResource(MailtrapConfig config, CustomValidator customValidator) {
-        super(config, customValidator);
+    protected SendApiResource(final MailtrapConfig config, final MailtrapValidator mailtrapValidator) {
+        super(config, mailtrapValidator);
     }
 
     /**
@@ -30,7 +30,7 @@ public abstract class SendApiResource extends ApiResourceWithValidation {
      * @param mail The email message to be validated.
      * @throws InvalidRequestBodyException If the request body is invalid.
      */
-    protected void validateMailPayload(MailtrapMail mail) {
+    protected void validateMailPayload(final MailtrapMail mail) {
         if (mail == null) {
             throw new InvalidRequestBodyException("Mail must not be null");
         }
@@ -48,19 +48,19 @@ public abstract class SendApiResource extends ApiResourceWithValidation {
      * @param batch batch request to be validated.
      * @throws InvalidRequestBodyException If the request body is invalid.
      */
-    protected void validateBatchPayload(MailtrapBatchMail batch) {
+    protected void validateBatchPayload(final MailtrapBatchMail batch) {
         assertBatchMailNotNull(batch);
 
-        BatchEmailBase base = batch.getBase();
+        final BatchEmailBase base = batch.getBase();
 
         for (int i = 0; i < batch.getRequests().size(); i++) {
-            MailtrapMail mail = batch.getRequests().get(i);
-            ResolvedMailView mailView = new ResolvedMailView(base, mail);
+            final MailtrapMail mail = batch.getRequests().get(i);
+            final ResolvedMailView mailView = new ResolvedMailView(base, mail);
 
             try {
                 // Perform bean validation (NotNull, etc.)
                 validateRequestBodyAndThrowException(mailView);
-            } catch (InvalidRequestBodyException e) {
+            } catch (final InvalidRequestBodyException e) {
                 throw new InvalidRequestBodyException("requests[" + i + "]: " + e.getMessage(), e);
             }
 
@@ -72,7 +72,7 @@ public abstract class SendApiResource extends ApiResourceWithValidation {
         }
     }
 
-    private void assertBatchMailNotNull(MailtrapBatchMail batchMail) {
+    private void assertBatchMailNotNull(final MailtrapBatchMail batchMail) {
         if (batchMail == null) {
             throw new InvalidRequestBodyException("BatchMail must not be null");
         }
@@ -85,10 +85,10 @@ public abstract class SendApiResource extends ApiResourceWithValidation {
 
     }
 
-    private void validateContentRules(ContentView v) {
-        boolean templateUuidBlank = StringUtils.isBlank(v.getTemplateUuid());
+    private void validateContentRules(final ContentView v) {
+        final boolean templateUuidBlank = StringUtils.isBlank(v.getTemplateUuid());
 
-        boolean subjectTextHtmlEmpty = StringUtils.isBlank(v.getSubject())
+        final boolean subjectTextHtmlEmpty = StringUtils.isBlank(v.getSubject())
             && StringUtils.isBlank(v.getText())
             && StringUtils.isBlank(v.getHtml());
 

@@ -20,7 +20,7 @@ public class TestHttpClient implements CustomHttpClient {
 
     private final Map<String, List<DataMock>> mocks;
 
-    public TestHttpClient(List<DataMock> mocks) {
+    public TestHttpClient(final List<DataMock> mocks) {
         this.mocks = mocks.stream().collect(
                 Collectors.groupingBy(
                         mock -> getRequestIdentifier(mock.getUrl(), mock.getMethodName())
@@ -29,38 +29,38 @@ public class TestHttpClient implements CustomHttpClient {
     }
 
     @Override
-    public <T> T get(String url, RequestData requestData, Class<T> responseType) throws HttpException {
+    public <T> T get(final String url, final RequestData requestData, final Class<T> responseType) throws HttpException {
         return this.request(url, "GET", null, requestData, responseType);
     }
 
     @Override
-    public <T> List<T> getList(String url, RequestData requestData, Class<T> responseClassType) throws HttpException {
-        JavaType responseType = TypeFactory.defaultInstance().constructCollectionType(List.class, responseClassType);
+    public <T> List<T> getList(final String url, final RequestData requestData, final Class<T> responseClassType) throws HttpException {
+        final JavaType responseType = TypeFactory.defaultInstance().constructCollectionType(List.class, responseClassType);
         return this.request(url, "GET", null, requestData, responseType);
     }
 
     @Override
-    public <T> T delete(String url, RequestData requestData, Class<T> responseType) throws HttpException {
+    public <T> T delete(final String url, final RequestData requestData, final Class<T> responseType) throws HttpException {
         return this.request(url, "DELETE", null, requestData, responseType);
     }
 
     @Override
-    public <T> T head(String url, RequestData requestData, Class<T> responseType) throws HttpException {
+    public <T> T head(final String url, final RequestData requestData, final Class<T> responseType) throws HttpException {
         return this.request(url, "HEAD", null, requestData, responseType);
     }
 
     @Override
-    public <T, V extends AbstractModel> T post(String url, V data, RequestData requestData, Class<T> responseType) throws HttpException {
+    public <T, V extends AbstractModel> T post(final String url, final V data, final RequestData requestData, final Class<T> responseType) throws HttpException {
         return this.request(url, "POST", data, requestData, responseType);
     }
 
     @Override
-    public <T, V extends AbstractModel> T put(String url, V data, RequestData requestData, Class<T> responseType) throws HttpException {
+    public <T, V extends AbstractModel> T put(final String url, final V data, final RequestData requestData, final Class<T> responseType) throws HttpException {
         return this.request(url, "PUT", data, requestData, responseType);
     }
 
     @Override
-    public <T, V extends AbstractModel> T patch(String url, V data, RequestData requestData, Class<T> responseType) throws HttpException {
+    public <T, V extends AbstractModel> T patch(final String url, final V data, final RequestData requestData, final Class<T> responseType) throws HttpException {
         return this.request(url, "PATCH", data, requestData, responseType);
     }
 
@@ -68,24 +68,24 @@ public class TestHttpClient implements CustomHttpClient {
         return requestInternal(url, methodName, requestBody, requestData, responseType, null);
     }
 
-    private <T, V extends AbstractModel> T request(String url, String methodName, V requestBody, RequestData requestData, JavaType responseType) throws HttpException {
+    private <T, V extends AbstractModel> T request(final String url, final String methodName, final V requestBody, final RequestData requestData, final JavaType responseType) throws HttpException {
         return requestInternal(url, methodName, requestBody, requestData, null, responseType);
     }
 
-    private <T, V extends AbstractModel> T requestInternal(String url, String methodName, V requestBody, RequestData requestData, Class<T> responseClassType, JavaType responseJavaType) throws HttpException {
+    private <T, V extends AbstractModel> T requestInternal(final String url, final String methodName, final V requestBody, final RequestData requestData, final Class<T> responseClassType, final JavaType responseJavaType) throws HttpException {
         try {
-            String requestIdentifier = this.getRequestIdentifier(url, methodName);
+            final String requestIdentifier = this.getRequestIdentifier(url, methodName);
 
             if (!this.mocks.containsKey(requestIdentifier)) {
                 throw new AssertionError("No mock data for request: " + requestIdentifier);
             }
 
-            List<DataMock> dataMocks = this.mocks.get(requestIdentifier);
+            final List<DataMock> dataMocks = this.mocks.get(requestIdentifier);
 
             for (int i = 0; i < dataMocks.size(); i++) {
-                var dataMock = dataMocks.get(i);
+                final var dataMock = dataMocks.get(i);
 
-                Map<String, Object> urlParams = requestData.getQueryParams().entrySet().stream()
+                final Map<String, Object> urlParams = requestData.getQueryParams().entrySet().stream()
                         .filter(entry -> entry.getValue().isPresent())
                         .collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().get()));
                 if (!urlParams.equals(dataMock.getQueryParams()) && i == dataMocks.size() - 1) {
@@ -100,15 +100,15 @@ public class TestHttpClient implements CustomHttpClient {
                         throw new AssertionError("No mock request body provided: " + requestIdentifier);
                     }
 
-                    InputStream requestInputStream = this.getClass().getClassLoader().getResourceAsStream(dataMock.getRequestFile());
+                    final InputStream requestInputStream = this.getClass().getClassLoader().getResourceAsStream(dataMock.getRequestFile());
 
                     if (requestInputStream == null) {
                         throw new AssertionError(String.format("Failed to load request mock payload %s for request %s", dataMock.getRequestFile(), requestIdentifier));
                     }
 
-                    String requestPayloadMock = new BufferedReader(new InputStreamReader(requestInputStream)).lines().collect(Collectors.joining("\n"));
+                    final String requestPayloadMock = new BufferedReader(new InputStreamReader(requestInputStream)).lines().collect(Collectors.joining("\n"));
 
-                    boolean sameRequests = Mapper.get().readTree(requestPayloadMock).equals(Mapper.get().readTree(requestBody.toJson()));
+                    final boolean sameRequests = Mapper.get().readTree(requestPayloadMock).equals(Mapper.get().readTree(requestBody.toJson()));
 
                     if (!sameRequests && i == dataMocks.size() - 1) {
                         throw new AssertionError("No match for request payload " + requestIdentifier);
@@ -130,11 +130,11 @@ public class TestHttpClient implements CustomHttpClient {
                     throw new AssertionError("No mock response body provided: " + requestIdentifier);
                 }
 
-                InputStream responseInputStream = this.getClass().getClassLoader().getResourceAsStream(dataMock.getResponseFile());
+                final InputStream responseInputStream = this.getClass().getClassLoader().getResourceAsStream(dataMock.getResponseFile());
                 if (responseInputStream == null) {
                     throw new AssertionError("Failed to load response mock payload " + dataMock.getResponseFile() + " for request" + requestIdentifier);
                 }
-                String responsePayloadMock = new BufferedReader(new InputStreamReader(responseInputStream)).lines().collect(Collectors.joining("\n"));
+                final String responsePayloadMock = new BufferedReader(new InputStreamReader(responseInputStream)).lines().collect(Collectors.joining("\n"));
 
                 if (responseClassType != null) {
                     if (String.class.equals(responseClassType)) {
@@ -147,7 +147,7 @@ public class TestHttpClient implements CustomHttpClient {
                     throw new IllegalArgumentException("Both responseType and typeReference are null");
                 }
             }
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new AssertionError("Failed to execute mocked request", e);
         }
         return null;

@@ -6,7 +6,7 @@ import io.mailtrap.model.request.accountaccesses.ListAccountAccessQueryParams;
 
 import java.util.List;
 
-public class AccountAccess {
+public class AccountAccessExample {
 
     private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
     private static final long ACCOUNT_ID = 1L;
@@ -19,10 +19,10 @@ public class AccountAccess {
 
         final var client = MailtrapClientFactory.createMailtrapClient(config);
 
-        var queryParams = new ListAccountAccessQueryParams();
+        final var queryParams = new ListAccountAccessQueryParams();
         queryParams.setInboxIds(List.of(INBOX_ID));
 
-        var responses = client.generalApi().accountAccesses().listUserAndInviteAccountAccesses(ACCOUNT_ID, queryParams);
+        final var responses = client.generalApi().accountAccesses().listUserAndInviteAccountAccesses(ACCOUNT_ID, queryParams);
 
         System.out.println(responses);
 

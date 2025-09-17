@@ -24,7 +24,7 @@ class MessagesImplTest extends BaseTest {
 
     @BeforeEach
     public void init() {
-        TestHttpClient httpClient = new TestHttpClient(List.of(
+        final TestHttpClient httpClient = new TestHttpClient(List.of(
                 DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/inboxes/" + inboxId + "/messages/" + messageId,
                         "GET", null, "api/messages/messageResponse.json"),
 
@@ -71,7 +71,7 @@ class MessagesImplTest extends BaseTest {
                         "GET", null, "api/messages/messageHeadersResponse.json")
         ));
 
-        MailtrapConfig testConfig = new MailtrapConfig.Builder()
+        final MailtrapConfig testConfig = new MailtrapConfig.Builder()
                 .httpClient(httpClient)
                 .token("dummy_token")
                 .build();
@@ -81,7 +81,7 @@ class MessagesImplTest extends BaseTest {
 
     @Test
     void test_getMessage() {
-        MessageResponse message = api.getMessage(accountId, inboxId, messageId);
+        final MessageResponse message = api.getMessage(accountId, inboxId, messageId);
 
         assertNotNull(message);
         assertEquals(messageId, message.getId());
@@ -90,7 +90,7 @@ class MessagesImplTest extends BaseTest {
 
     @Test
     void test_updateMessage() {
-        MessageResponse message = api.updateMessage(accountId, inboxId, messageId, new UpdateMessageRequest(new UpdateMessageRequest.MessageUpdateData("true")));
+        final MessageResponse message = api.updateMessage(accountId, inboxId, messageId, new UpdateMessageRequest(new UpdateMessageRequest.MessageUpdateData("true")));
 
         assertNotNull(message);
         assertEquals(messageId, message.getId());
@@ -99,7 +99,7 @@ class MessagesImplTest extends BaseTest {
 
     @Test
     void test_deleteMessage() {
-        MessageResponse message = api.deleteMessage(accountId, inboxId, messageId);
+        final MessageResponse message = api.deleteMessage(accountId, inboxId, messageId);
 
         assertNotNull(message);
         assertEquals(messageId, message.getId());
@@ -107,7 +107,7 @@ class MessagesImplTest extends BaseTest {
 
     @Test
     void test_getMessages() {
-        List<MessageResponse> messages = api.getMessages(accountId, inboxId, ListMessagesQueryParams.empty());
+        final List<MessageResponse> messages = api.getMessages(accountId, inboxId, ListMessagesQueryParams.empty());
 
         assertNotNull(messages);
         assertEquals(1, messages.size());
@@ -116,10 +116,10 @@ class MessagesImplTest extends BaseTest {
 
     @Test
     void test_getMessagesWithSearchQueryParam_emptyResponse() {
-        ListMessagesQueryParams queryParams = new ListMessagesQueryParams();
+        final ListMessagesQueryParams queryParams = new ListMessagesQueryParams();
         queryParams.setSearch("qqqqqqqq");
 
-        List<MessageResponse> messages = api.getMessages(accountId, inboxId, queryParams);
+        final List<MessageResponse> messages = api.getMessages(accountId, inboxId, queryParams);
 
         assertNotNull(messages);
         assertTrue(messages.isEmpty());
@@ -127,10 +127,10 @@ class MessagesImplTest extends BaseTest {
 
     @Test
     void test_getMessagesWithSearchQueryParam_notEmptyResponse() {
-        ListMessagesQueryParams queryParams = new ListMessagesQueryParams();
+        final ListMessagesQueryParams queryParams = new ListMessagesQueryParams();
         queryParams.setSearch("mary");
 
-        List<MessageResponse> messages = api.getMessages(accountId, inboxId, queryParams);
+        final List<MessageResponse> messages = api.getMessages(accountId, inboxId, queryParams);
 
         assertNotNull(messages);
         assertEquals(1, messages.size());
@@ -139,7 +139,7 @@ class MessagesImplTest extends BaseTest {
 
     @Test
     void test_forwardMessage() {
-        ForwardMessageResponse forwardMessageResponse = api.forwardMessage(accountId, inboxId, messageId, new ForwardMessageRequest("jack@mailtrap.io"));
+        final ForwardMessageResponse forwardMessageResponse = api.forwardMessage(accountId, inboxId, messageId, new ForwardMessageRequest("jack@mailtrap.io"));
 
         assertNotNull(forwardMessageResponse);
         assertEquals("Your email message has been successfully forwarded", forwardMessageResponse.getMessage());
@@ -147,7 +147,7 @@ class MessagesImplTest extends BaseTest {
 
     @Test
     void test_getSpamScore() {
-        MessageSpamScoreResponse spamScore = api.getSpamScore(accountId, inboxId, messageId);
+        final MessageSpamScoreResponse spamScore = api.getSpamScore(accountId, inboxId, messageId);
 
         assertNotNull(spamScore);
         assertEquals("Not spam", spamScore.getReport().getResponseMessage());
@@ -155,7 +155,7 @@ class MessagesImplTest extends BaseTest {
 
     @Test
     void test_getMessageHtmlAnalysis() {
-        MessageHtmlAnalysisResponse htmlAnalysis = api.getMessageHtmlAnalysis(accountId, inboxId, messageId);
+        final MessageHtmlAnalysisResponse htmlAnalysis = api.getMessageHtmlAnalysis(accountId, inboxId, messageId);
 
         assertNotNull(htmlAnalysis);
         assertEquals("success", htmlAnalysis.getReport().getStatus());
@@ -164,42 +164,42 @@ class MessagesImplTest extends BaseTest {
 
     @Test
     void test_getTextMessage() {
-        String textMessage = api.getTextMessage(accountId, inboxId, messageId);
+        final String textMessage = api.getTextMessage(accountId, inboxId, messageId);
 
         assertNotNull(textMessage);
     }
 
     @Test
     void test_getRawMessage() {
-        String rawMessage = api.getRawMessage(accountId, inboxId, messageId);
+        final String rawMessage = api.getRawMessage(accountId, inboxId, messageId);
 
         assertNotNull(rawMessage);
     }
 
     @Test
     void test_getMessageSource() {
-        String messageSource = api.getMessageSource(accountId, inboxId, messageId);
+        final String messageSource = api.getMessageSource(accountId, inboxId, messageId);
 
         assertNotNull(messageSource);
     }
 
     @Test
     void test_getHtmlMessage() {
-        String htmlMessage = api.getHtmlMessage(accountId, inboxId, messageId);
+        final String htmlMessage = api.getHtmlMessage(accountId, inboxId, messageId);
 
         assertNotNull(htmlMessage);
     }
 
     @Test
     void test_getMessageAsEml() {
-        String messageAsEml = api.getMessageAsEml(accountId, inboxId, messageId);
+        final String messageAsEml = api.getMessageAsEml(accountId, inboxId, messageId);
 
         assertNotNull(messageAsEml);
     }
 
     @Test
     void test_getMailHeaders() {
-        MessageHeadersResponse mailHeaders = api.getMailHeaders(accountId, inboxId, messageId);
+        final MessageHeadersResponse mailHeaders = api.getMailHeaders(accountId, inboxId, messageId);
 
         assertNotNull(mailHeaders);
         assertEquals(5, mailHeaders.getHeaders().size());

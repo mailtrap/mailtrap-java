@@ -24,7 +24,7 @@ class ProjectsImplTest extends BaseTest {
 
     @BeforeEach
     public void init() {
-        TestHttpClient httpClient = new TestHttpClient(List.of(
+        final TestHttpClient httpClient = new TestHttpClient(List.of(
                 DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/projects",
                         "POST", "api/projects/createProjectsRequest.json", "api/projects/projectResponse.json"),
 
@@ -41,7 +41,7 @@ class ProjectsImplTest extends BaseTest {
                         "GET", null, "api/projects/listProjectsResponse.json")
         ));
 
-        MailtrapConfig testConfig = new MailtrapConfig.Builder()
+        final MailtrapConfig testConfig = new MailtrapConfig.Builder()
                 .httpClient(httpClient)
                 .token("dummy_token")
                 .build();
@@ -51,7 +51,7 @@ class ProjectsImplTest extends BaseTest {
 
     @Test
     void test_createProject() {
-        ProjectsResponse createdProject = api.createProject(accountId, new CreateUpdateProjectRequest(new ProjectData("My New Project")));
+        final ProjectsResponse createdProject = api.createProject(accountId, new CreateUpdateProjectRequest(new ProjectData("My New Project")));
 
         assertNotNull(createdProject);
         assertEquals(projectId, createdProject.getId());
@@ -60,7 +60,7 @@ class ProjectsImplTest extends BaseTest {
 
     @Test
     void test_getProjects() {
-        List<ProjectsResponse> projects = api.getProjects(accountId);
+        final List<ProjectsResponse> projects = api.getProjects(accountId);
 
         assertEquals(1, projects.size());
         assertEquals(projectId, projects.get(0).getId());
@@ -70,7 +70,7 @@ class ProjectsImplTest extends BaseTest {
 
     @Test
     void test_getProject() {
-        ProjectsResponse project = api.getProject(accountId, projectId);
+        final ProjectsResponse project = api.getProject(accountId, projectId);
 
         assertNotNull(project);
         assertEquals(projectId, project.getId());
@@ -80,7 +80,7 @@ class ProjectsImplTest extends BaseTest {
 
     @Test
     void test_updateProject() {
-        ProjectsResponse updatedProject = api.updateProject(accountId, projectId, new CreateUpdateProjectRequest(new ProjectData("Updated Project Name")));
+        final ProjectsResponse updatedProject = api.updateProject(accountId, projectId, new CreateUpdateProjectRequest(new ProjectData("Updated Project Name")));
 
         assertNotNull(updatedProject);
         assertEquals(projectId, updatedProject.getId());
@@ -90,7 +90,7 @@ class ProjectsImplTest extends BaseTest {
 
     @Test
     void test_deleteProject() {
-        DeleteProjectResponse deletedProject = api.deleteProject(accountId, projectId);
+        final DeleteProjectResponse deletedProject = api.deleteProject(accountId, projectId);
 
         assertEquals(deletedProject.getId(), projectId);
     }
