@@ -16,13 +16,13 @@ public class SuppressionsExample {
 
     final var client = MailtrapClientFactory.createMailtrapClient(config);
 
-    var searchResponse = client.sendingApi().suppressions()
+    final var searchResponse = client.sendingApi().suppressions()
         .search(ACCOUNT_ID, EMAIL);
 
     System.out.println(searchResponse);
 
     if (!searchResponse.isEmpty()) {
-      var deletedSuppression = client.sendingApi().suppressions()
+      final var deletedSuppression = client.sendingApi().suppressions()
           .deleteSuppression(ACCOUNT_ID, searchResponse.get(0).getId());
 
       System.out.println(deletedSuppression);

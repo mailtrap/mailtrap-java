@@ -72,12 +72,12 @@ public class EverythingExample {
     }
 
     private static String readAndEncodeAttachment(String filename) {
-        try (InputStream inputStream = Everything.class.getClassLoader().getResourceAsStream(filename)) {
+        try (final InputStream inputStream = Everything.class.getClassLoader().getResourceAsStream(filename)) {
             if (inputStream == null) {
                 return "";
             }
             return Base64.getEncoder().encodeToString(inputStream.readAllBytes());
-        } catch (Exception e) {
+        } catch (final Exception e) {
             return "";
         }
 

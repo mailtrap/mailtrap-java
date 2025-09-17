@@ -22,7 +22,7 @@ public class ContactsImpl extends ApiResource implements Contacts {
     @Override
     public CreateContactResponse createContact(final long accountId, final CreateContactRequest request) {
         return httpClient.post(
-            String.format(apiHost + "/api/accounts/%s/contacts", accountId),
+            String.format(apiHost + "/api/accounts/%d/contacts", accountId),
             request,
             new RequestData(),
             CreateContactResponse.class

@@ -25,10 +25,10 @@ public class PermissionsExample {
 
         final var client = MailtrapClientFactory.createMailtrapClient(config);
 
-        var firstResource = client.generalApi().permissions().getResources(ACCOUNT_ID).get(0);
+        final var firstResource = client.generalApi().permissions().getResources(ACCOUNT_ID).get(0);
         System.out.println(firstResource);
 
-        var request = new ManagePermissionsRequest(List.of(
+        final var request = new ManagePermissionsRequest(List.of(
                 new Permission(
                         FIRST_RESOURCE_ID, ResourceType.ACCOUNT, AccessLevel.VIEWER, false
                 ),

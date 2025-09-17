@@ -16,20 +16,20 @@ public class AttachmentsExample {
 
         final var testingClient = MailtrapClientFactory.createMailtrapClient(config).testingApi();
 
-        var inboxes = testingClient.inboxes().getInboxes(ACCOUNT_ID);
+        final var inboxes = testingClient.inboxes().getInboxes(ACCOUNT_ID);
 
         if (!inboxes.isEmpty()) {
-            var firstInbox = inboxes.get(0);
+            final var firstInbox = inboxes.get(0);
 
-            var messages = testingClient.messages().getMessages(ACCOUNT_ID, firstInbox.getId(), ListMessagesQueryParams.empty());
+            final var messages = testingClient.messages().getMessages(ACCOUNT_ID, firstInbox.getId(), ListMessagesQueryParams.empty());
 
             if (!messages.isEmpty()) {
-                var firstMessage = messages.get(0);
+                final var firstMessage = messages.get(0);
 
-                var attachments = testingClient.attachments().getAttachments(ACCOUNT_ID, firstInbox.getId(), firstMessage.getId(), null);
+                final var attachments = testingClient.attachments().getAttachments(ACCOUNT_ID, firstInbox.getId(), firstMessage.getId(), null);
 
                 if (!attachments.isEmpty()) {
-                    var firstAttachment = attachments.get(0);
+                    final var firstAttachment = attachments.get(0);
 
                     System.out.println(testingClient.attachments().getSingleAttachment(ACCOUNT_ID, firstInbox.getId(), firstMessage.getId(), firstAttachment.getId()));
                 }

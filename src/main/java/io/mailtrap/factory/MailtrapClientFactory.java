@@ -24,7 +24,7 @@ import io.mailtrap.client.api.*;
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.util.SendingContextHolder;
 import jakarta.validation.Validation;
-import jakarta.validation.ValidatorFactory;
+import jakarta.validation.Validator;
 
 /**
  * Factory class for creating instances of {@link MailtrapClient}.
@@ -106,19 +106,23 @@ public final class MailtrapClientFactory {
     private static SendingContextHolder configureSendingContext(final MailtrapConfig config) {
 
         return SendingContextHolder.builder()
-                .sandbox(config.isSandbox())
-                .inboxId(config.getInboxId())
-                .bulk(config.isBulk())
-                .build();
+            .sandbox(config.isSandbox())
+            .inboxId(config.getInboxId())
+            .bulk(config.isBulk())
+            .build();
     }
 
     /**
      * Creates a new instance of {@link CustomValidator} using the default validator factory.
+     * Intentionally not wrapped into try-with-resources to not close, as per Jakarta doc, after
+     * the {@code ValidatorFactory} instance is closed, calling the following methods is not allowed:
+     * <ul>
+     *     <li>methods of this {@code ValidatorFactory} instance</li>
+     *     <li>methods of {@link Validator} instances created by this
+     *     {@code ValidatorFactory}</li>
+     * </ul>
      */
     private static CustomValidator createValidator() {
-        // Wrapped into try-with-resources to ensure that factory's resources are properly closed
-        try (final ValidatorFactory factory = Validation.buildDefaultValidatorFactory()) {
-            return new CustomValidator(factory.getValidator());
-        }
+        return new CustomValidator(Validation.buildDefaultValidatorFactory().getValidator());
     }
 }

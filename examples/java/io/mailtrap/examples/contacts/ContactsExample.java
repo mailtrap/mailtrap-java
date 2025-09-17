@@ -27,19 +27,19 @@ public class ContactsExample {
 
         final var client = MailtrapClientFactory.createMailtrapClient(config);
 
-        var createRequest = new CreateContactRequest(
+        final var createRequest = new CreateContactRequest(
             new CreateContact(EMAIL, Map.of("first_name", "Nick"), List.of(LIST_1_ID, LIST_2_ID)));
 
-        var createResponse = client.contactsApi().contacts()
+        final var createResponse = client.contactsApi().contacts()
             .createContact(ACCOUNT_ID, createRequest);
 
         System.out.println(createResponse);
 
-        var updateRequest = new UpdateContactRequest(
+        final var updateRequest = new UpdateContactRequest(
             new UpdateContact(EMAIL, Map.of("first_name", "Nick"), List.of(LIST_1_ID, LIST_2_ID),
                 Collections.emptyList(), UNSUBSCRIBED));
 
-        var updateResponse = client.contactsApi().contacts()
+        final var updateResponse = client.contactsApi().contacts()
             .updateContact(ACCOUNT_ID, EMAIL, updateRequest);
 
         System.out.println(updateResponse);

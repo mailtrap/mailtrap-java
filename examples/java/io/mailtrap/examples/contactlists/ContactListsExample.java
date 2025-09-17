@@ -15,7 +15,7 @@ public class ContactListsExample {
 
         final var client = MailtrapClientFactory.createMailtrapClient(config);
 
-        var contacts = client.contactsApi().contactLists().findAll(ACCOUNT_ID);
+        final var contacts = client.contactsApi().contactLists().findAll(ACCOUNT_ID);
 
         System.out.println(contacts);
     }

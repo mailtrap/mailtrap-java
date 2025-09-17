@@ -19,10 +19,10 @@ public class AccountAccessExample {
 
         final var client = MailtrapClientFactory.createMailtrapClient(config);
 
-        var queryParams = new ListAccountAccessQueryParams();
+        final var queryParams = new ListAccountAccessQueryParams();
         queryParams.setInboxIds(List.of(INBOX_ID));
 
-        var responses = client.generalApi().accountAccesses().listUserAndInviteAccountAccesses(ACCOUNT_ID, queryParams);
+        final var responses = client.generalApi().accountAccesses().listUserAndInviteAccountAccesses(ACCOUNT_ID, queryParams);
 
         System.out.println(responses);
 
