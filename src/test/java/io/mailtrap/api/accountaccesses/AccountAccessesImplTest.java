@@ -77,7 +77,7 @@ class AccountAccessesImplTest extends BaseTest {
 
     @Test
     void test_removeAccountAccess() {
-        final RemoveAccountAccessResponse removeAccountAccessResponse = api.removeAccountAccess(accountId, accountAccessId);
+        final RemoveAccountAccessResponse removeAccountAccessResponse = api.removeAccountAccess(accountAccessId, accountId);
 
         assertNotNull(removeAccountAccessResponse);
         assertEquals(accountAccessId, removeAccountAccessResponse.getId());
