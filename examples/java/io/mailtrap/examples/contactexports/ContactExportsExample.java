@@ -1,4 +1,4 @@
-package io.mailtrap.examples.contactimports;
+package io.mailtrap.examples.contactexports;
 
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.factory.MailtrapClientFactory;
@@ -23,17 +23,17 @@ public class ContactExportsExample {
 
         final var exportFilter = ContactExportFilter.ids(ContactExportFilterOperator.EQUAL, FILTER_ID);
 
-        final var createRequest = new CreateContactsExportRequest(List.of(exportFilter));
+        final var createExportRequest = new CreateContactsExportRequest(List.of(exportFilter));
 
-        final var createResponse = client.contactsApi().contactExports()
-            .createContactExport(ACCOUNT_ID, createRequest);
+        final var createExportResponse = client.contactsApi().contactExports()
+            .createContactExport(ACCOUNT_ID, createExportRequest);
 
-        System.out.println(createResponse);
+        System.out.println(createExportResponse);
 
-        var contactImportResponse = client.contactsApi().contactExports()
-            .getContactExport(ACCOUNT_ID, createResponse.getId());
+        var contactExportResponse = client.contactsApi().contactExports()
+            .getContactExport(ACCOUNT_ID, createExportResponse.getId());
 
-        System.out.println(contactImportResponse);
+        System.out.println(contactExportResponse);
     }
 
 }

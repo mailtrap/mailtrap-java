@@ -60,6 +60,6 @@ public class ContactExportsImplTest extends BaseTest {
         final ContactExportResponse contactExport = api.getContactExport(accountId, exportId);
 
         assertEquals(exportId, contactExport.getId());
-        assertSame(ContactExportStatus.STARTED, contactExport.getStatus());
+        assertSame(ContactExportStatus.FINISHED, contactExport.getStatus());
     }
 }
