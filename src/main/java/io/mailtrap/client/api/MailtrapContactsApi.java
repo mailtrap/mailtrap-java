@@ -1,5 +1,6 @@
 package io.mailtrap.client.api;
 
+import io.mailtrap.api.contactexports.ContactExports;
 import io.mailtrap.api.contactfields.ContactFields;
 import io.mailtrap.api.contactimports.ContactImports;
 import io.mailtrap.api.contactlists.ContactLists;
@@ -19,4 +20,5 @@ public class MailtrapContactsApi {
     private final Contacts contacts;
     private final ContactImports contactImports;
     private final ContactFields contactFields;
+    private final ContactExports contactExports;
 }

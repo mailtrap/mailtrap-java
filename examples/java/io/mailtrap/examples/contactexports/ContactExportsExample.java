@@ -1,0 +1,39 @@
+package io.mailtrap.examples.contactimports;
+
+import io.mailtrap.config.MailtrapConfig;
+import io.mailtrap.factory.MailtrapClientFactory;
+import io.mailtrap.model.request.contactexports.ContactExportFilter;
+import io.mailtrap.model.request.contactexports.ContactExportFilterOperator;
+import io.mailtrap.model.request.contactexports.CreateContactsExportRequest;
+
+import java.util.List;
+
+public class ContactExportsExample {
+
+    private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
+    private static final long ACCOUNT_ID = 1L;
+    private static final long FILTER_ID = 1L;
+
+    public static void main(String[] args) {
+        final var config = new MailtrapConfig.Builder()
+            .token(TOKEN)
+            .build();
+
+        final var client = MailtrapClientFactory.createMailtrapClient(config);
+
+        final var exportFilter = ContactExportFilter.ids(ContactExportFilterOperator.EQUAL, FILTER_ID);
+
+        final var createRequest = new CreateContactsExportRequest(List.of(exportFilter));
+
+        final var createResponse = client.contactsApi().contactExports()
+            .createContactExport(ACCOUNT_ID, createRequest);
+
+        System.out.println(createResponse);
+
+        var contactImportResponse = client.contactsApi().contactExports()
+            .getContactExport(ACCOUNT_ID, createResponse.getId());
+
+        System.out.println(contactImportResponse);
+    }
+
+}
