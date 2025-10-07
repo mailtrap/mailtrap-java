@@ -30,7 +30,7 @@ public class ContactExportsImplTest extends BaseTest {
             DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/exports",
                 "POST", "api/contactexports/createContactExportRequest.json", "api/contactexports/createContactExportResponse.json"),
 
-            DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/exports/" + exportId,
+            DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/exports/" + contactsExportId,
                 "GET", null, "api/contactexports/getContactExportResponse.json")
         ));
 
@@ -44,22 +44,22 @@ public class ContactExportsImplTest extends BaseTest {
 
     @Test
     void test_createContactExport_ids_filter() {
-        final var idsFilter = ContactExportFilter.ids(ContactExportFilterOperator.EQUAL, filterExportId);
+        final var idsFilter = ContactExportFilter.listIDs(ContactExportFilterOperator.EQUAL, contactsExportFilterListId);
         final var subscriptionStatusFilter = ContactExportFilter.subscriptionStatus(ContactExportFilterOperator.EQUAL, ContactExportFilterSubscriptionStatus.SUBSCRIBED);
 
         final var request = new CreateContactsExportRequest(List.of(idsFilter, subscriptionStatusFilter));
 
         final ContactExportResponse contactExportResponse = api.createContactExport(accountId, request);
 
-        assertEquals(exportId, contactExportResponse.getId());
+        assertEquals(contactsExportId, contactExportResponse.getId());
         assertSame(ContactExportStatus.STARTED, contactExportResponse.getStatus());
     }
 
     @Test
     void test_getContactExport() {
-        final ContactExportResponse contactExport = api.getContactExport(accountId, exportId);
+        final ContactExportResponse contactExport = api.getContactExport(accountId, contactsExportId);
 
-        assertEquals(exportId, contactExport.getId());
+        assertEquals(contactsExportId, contactExport.getId());
         assertSame(ContactExportStatus.FINISHED, contactExport.getStatus());
     }
 }

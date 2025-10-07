@@ -12,7 +12,7 @@ public class ContactExportsExample {
 
     private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
     private static final long ACCOUNT_ID = 1L;
-    private static final long FILTER_ID = 1L;
+    private static final long CONTACT_LIST_ID = 1L;
 
     public static void main(String[] args) {
         final var config = new MailtrapConfig.Builder()
@@ -21,7 +21,7 @@ public class ContactExportsExample {
 
         final var client = MailtrapClientFactory.createMailtrapClient(config);
 
-        final var exportFilter = ContactExportFilter.ids(ContactExportFilterOperator.EQUAL, FILTER_ID);
+        final var exportFilter = ContactExportFilter.ids(ContactExportFilterOperator.EQUAL, CONTACT_LIST_ID);
 
         final var createExportRequest = new CreateContactsExportRequest(List.of(exportFilter));
 
