@@ -21,7 +21,7 @@ public class ContactExportsExample {
 
         final var client = MailtrapClientFactory.createMailtrapClient(config);
 
-        final var exportFilter = ContactExportFilter.listIds(ContactExportFilterOperator.EQUAL, FILTER_ID);
+        final var exportFilter = ContactExportFilter.listIds(ContactExportFilterOperator.EQUAL, CONTACT_LIST_ID);
 
         final var createExportRequest = new CreateContactsExportRequest(List.of(exportFilter));
 
