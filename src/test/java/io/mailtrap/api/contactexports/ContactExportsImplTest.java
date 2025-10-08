@@ -44,7 +44,7 @@ public class ContactExportsImplTest extends BaseTest {
 
     @Test
     void test_createContactExport_ids_filter() {
-        final var idsFilter = ContactExportFilter.listIDs(ContactExportFilterOperator.EQUAL, contactsExportFilterListId);
+        final var idsFilter = ContactExportFilter.listIds(ContactExportFilterOperator.EQUAL, contactsExportFilterListId);
         final var subscriptionStatusFilter = ContactExportFilter.subscriptionStatus(ContactExportFilterOperator.EQUAL, ContactExportFilterSubscriptionStatus.SUBSCRIBED);
 
         final var request = new CreateContactsExportRequest(List.of(idsFilter, subscriptionStatusFilter));

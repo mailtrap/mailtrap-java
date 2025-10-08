@@ -18,8 +18,8 @@ public class ContactExportFilter {
         this.value = value;
     }
 
-    public static ContactExportFilter listIDs(final ContactExportFilterOperator operator, final Long... listIDs) {
-        return new ContactExportFilter(list_id.name(), operator.getValue(), listIDs);
+    public static ContactExportFilter listIds(final ContactExportFilterOperator operator, final Long... listIds) {
+        return new ContactExportFilter(list_id.name(), operator.getValue(), listIds);
     }
 
     public static ContactExportFilter subscriptionStatus(final ContactExportFilterOperator operator, final ContactExportFilterSubscriptionStatus status) {
