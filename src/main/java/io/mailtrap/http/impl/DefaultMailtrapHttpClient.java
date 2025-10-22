@@ -169,7 +169,7 @@ public class DefaultMailtrapHttpClient implements CustomHttpClient {
                 .header("Accept", "application/json")
                 .header("Content-Type", "application/json; charset=UTF-8")
                 .header("Authorization", "Bearer " + token)
-                .header("User-Agent", "mailtrap-java (https://github.com/railsware/mailtrap-java)");
+                .header("User-Agent", "mailtrap-java (https://github.com/mailtrap/mailtrap-java)");
 
         final Map<String, Object> headers = new HashMap<>(requestData.getHeaders());
         for (Map.Entry<String, ?> entry : headers.entrySet()) {

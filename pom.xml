@@ -31,8 +31,8 @@
     </developers>
 
     <scm>
-        <url>https://github.com/railsware/mailtrap-java</url>
-        <connection>scm:git:git://github.com/railsware/mailtrap-java.git</connection>
+        <url>https://github.com/mailtrap/mailtrap-java</url>
+        <connection>scm:git:git://github.com/mailtrap/mailtrap-java.git</connection>
     </scm>
 
     <properties>
