@@ -15,4 +15,4 @@ This client allows you to quickly and easily integrate your Java application wit
 
 ## License
 
-Licensed under the <a href="https://github.com/railsware/mailtrap-java/blob/main/LICENSE.txt" target="_blank">MIT License</a>.
+Licensed under the <a href="https://github.com/mailtrap/mailtrap-java/blob/main/LICENSE.txt" target="_blank">MIT License</a>.

@@ -109,7 +109,7 @@ Refer to the [`examples`](examples) folder for the source code of this and other
 
 ### API Reference
 
-You can find the API reference [here](https://railsware.github.io/mailtrap-java/index.html).
+You can find the API reference [here](https://mailtrap.github.io/mailtrap-java/index.html).
 
 ### General API
 
@@ -144,7 +144,7 @@ You can find the API reference [here](https://railsware.github.io/mailtrap-java/
 
 ## Contributing
 
-Bug reports and pull requests are welcome on [GitHub](https://github.com/railsware/mailtrap-java). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on [GitHub](https://github.com/mailtrap/mailtrap-java). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](CODE_OF_CONDUCT.md).
 
 ## License
 
