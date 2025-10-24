@@ -1,4 +1,4 @@
-![Java](https://badgen.net/badge/icon/Java?icon=java&label=) 
+![Java](https://badgen.net/badge/icon/Java?icon=java&label=)
 
 # Official Mailtrap Java client
 
@@ -145,6 +145,12 @@ You can find the API reference [here](https://mailtrap.github.io/mailtrap-java/i
 ## Contributing
 
 Bug reports and pull requests are welcome on [GitHub](https://github.com/mailtrap/mailtrap-java). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](CODE_OF_CONDUCT.md).
+
+### Build
+- Istall [direnv](https://direnv.net/)
+- Install [asdf](https://asdf-vm.com/)
+- Install Java plugin https://github.com/halcyon/asdf-java
+- Install Maven plugin https://github.com/halcyon/asdf-maven
 
 ## License
 
