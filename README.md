@@ -19,20 +19,20 @@ As Maven dependency:
 <dependency>
     <groupId>io.mailtrap</groupId>
     <artifactId>mailtrap-java</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
 As Gradle Groovy dependency:
 
 ```groovy
-implementation 'io.mailtrap:mailtrap-java:1.0.0'
+implementation 'io.mailtrap:mailtrap-java:1.1.0'
 ```
 
 As Gradle Kotlin DSL dependency:
 
 ```kotlin
-implementation("io.mailtrap:mailtrap-java:1.0.0")
+implementation("io.mailtrap:mailtrap-java:1.1.0")
 ```
 
 ## Usage
@@ -147,10 +147,10 @@ You can find the API reference [here](https://mailtrap.github.io/mailtrap-java/i
 Bug reports and pull requests are welcome on [GitHub](https://github.com/mailtrap/mailtrap-java). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](CODE_OF_CONDUCT.md).
 
 ### Build
-- Istall [direnv](https://direnv.net/)
+- Install [direnv](https://direnv.net/)
 - Install [asdf](https://asdf-vm.com/)
-- Install Java plugin https://github.com/halcyon/asdf-java
-- Install Maven plugin https://github.com/halcyon/asdf-maven
+- Install [asdf-java](https://github.com/halcyon/asdf-java) plugin
+- Install [asdf-maven](https://github.com/halcyon/asdf-maven) plugin
 
 ## License
 
