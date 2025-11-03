@@ -143,8 +143,7 @@ Bulk stream example (optional) differs only by setting `.bulk(true)` instead of 
 ```java
         final MailtrapConfig config = new MailtrapConfig.Builder()
     .token(TOKEN)
-    .sandbox(true)
-    .inboxId(INBOX_ID)
+    .bulk(true)
     .build();
 ```
 
@@ -184,14 +183,12 @@ public class SwitchSendFromClient {
         // Production send
         client.send(mail);
         
-        client.switchToBulkSendingApi();
-        
         // Bulk send
+        client.switchToBulkSendingApi();
         client.send(mail);
         
-        client.switchToEmailTestingApi(INBOX_ID);
-
         // Sandbox send
+        client.switchToEmailTestingApi(INBOX_ID);
         client.send(mail);
     }
 
@@ -311,7 +308,7 @@ public class FullFeaturedExample {
     }
 
     private static String readAndEncodeAttachment(final String filename) {
-        try (final InputStream inputStream = EverythingExample.class.getClassLoader().getResourceAsStream(filename)) {
+        try (final InputStream inputStream = FullFeaturedExample.class.getClassLoader().getResourceAsStream(filename)) {
             if (inputStream == null) {
                 return "";
             }
