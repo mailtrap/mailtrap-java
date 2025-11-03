@@ -324,7 +324,7 @@ Refer to the [`examples`](examples) folder for the source code of this and other
 
 ### API Reference and supported functionality
 
-You can find the API reference [here](https://mailtrap.github.io/mailtrap-java/index.html).
+You can find the [Mailtrap Java API reference](https://mailtrap.github.io/mailtrap-java/index.html) documentation.
 
 ### General API
 
