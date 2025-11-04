@@ -1,18 +1,18 @@
-![Java](https://badgen.net/badge/icon/Java?icon=java&label=)
+# Mailtrap Java client - Official
 
-# Official Mailtrap Java client
+![JDK 11+](https://img.shields.io/badge/JDK-11%2B-green?style=flat)
+[![Maven Central](https://img.shields.io/maven-central/v/io.mailtrap/mailtrap-java.svg?style=flat)](https://central.sonatype.com/artifact/io.mailtrap/mailtrap-java)
 
-This SDK offers integration with the [official API](https://api-docs.mailtrap.io/) for [Mailtrap](https://mailtrap.io).
+## Prerequisites
 
-Quickly add email sending functionality to your Java application with Mailtrap.
+To get the most of this official Mailtrap.io Java SDK:
 
-## Java Version
-
-Requires JDK 11 or higher.
+- [Create a Mailtrap account](https://mailtrap.io/signup)
+- [Verify your domain](https://mailtrap.io/sending/domains)
 
 ## Install package
 
-As Maven dependency:
+As a Maven dependency:
 
 ```xml
 
@@ -23,13 +23,13 @@ As Maven dependency:
 </dependency>
 ```
 
-As Gradle Groovy dependency:
+As a Gradle Groovy dependency:
 
 ```groovy
 implementation 'io.mailtrap:mailtrap-java:1.1.0'
 ```
 
-As Gradle Kotlin DSL dependency:
+As a Gradle Kotlin DSL dependency:
 
 ```kotlin
 implementation("io.mailtrap:mailtrap-java:1.1.0")
@@ -37,7 +37,9 @@ implementation("io.mailtrap:mailtrap-java:1.1.0")
 
 ## Usage
 
-### Minimal
+### Minimal usage (Transactional sending)
+
+The quickest way to send a single transactional email with only the required parameters:
 
 ```java
 import io.mailtrap.client.MailtrapClient;
@@ -53,51 +55,24 @@ public class MailtrapJavaSDKTest {
     private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
     private static final String SENDER_EMAIL = "sender@domain.com";
     private static final String RECIPIENT_EMAIL = "recipient@domain.com";
-    private static final String REPLY_TO_EMAIL = "reply_to@domain.com";
 
     public static void main(String[] args) {
         final MailtrapConfig config = new MailtrapConfig.Builder()
-                .token(TOKEN)
-                .build();
+            .token(TOKEN)
+            .build();
 
         final MailtrapClient client = MailtrapClientFactory.createMailtrapClient(config);
 
         final MailtrapMail mail = MailtrapMail.builder()
-                .from(new Address(SENDER_EMAIL))
-                .to(List.of(new Address(RECIPIENT_EMAIL)))
-                .replyTo(new Address(REPLY_TO_EMAIL, "Vincent Vega"))
-                .subject("Hello from Mailtrap Sending!")
-                .text("Welcome to Mailtrap Sending!")
-                .build();
+            .from(new Address(SENDER_EMAIL))
+            .to(List.of(new Address(RECIPIENT_EMAIL)))
+            .subject("Hello from Mailtrap Sending!")
+            .text("Welcome to Mailtrap Sending!")
+            .build();
 
-        // Send email using Mailtrap Sending API
+        // Send an email using Mailtrap Sending API
         try {
             System.out.println(client.send(mail));
-        } catch (Exception e) {
-            System.out.println("Caught exception : " + e);
-        }
-
-        // Or send email using Mailtrap Testing API
-        try {
-            long inboxId = 1000001L;
-
-            // Either instantiate a new client
-            MailtrapClient sandboxClient = MailtrapClientFactory.createMailtrapClient(
-                    new MailtrapConfig.Builder()
-                            .sandbox(true)
-                            .inboxId(inboxId)
-                            .token(TOKEN)
-                            .build());
-
-            System.out.println(sandboxClient.send(mail));
-
-            // Or reuse already created client
-            client.switchToEmailTestingApi(inboxId);
-
-            System.out.println(client.send(mail));
-
-            // Or use Testing API directly
-            System.out.println(client.testingApi().emails().send(mail, inboxId));
         } catch (Exception e) {
             System.out.println("Caught exception : " + e);
         }
@@ -105,25 +80,268 @@ public class MailtrapJavaSDKTest {
 }
 ```
 
+### Sandbox vs Production (easy switching)
+
+Mailtrap lets you test safely in the Email Sandbox and then switch to Production (Sending) with one flag.
+
+Example config init:
+
+```java
+        final MailtrapConfig config = new MailtrapConfig.Builder()
+    .token("<YOUR MAILTRAP TOKEN>")
+    .sandbox(true)
+    .inboxId(123456)
+    .build();
+```
+
+Bootstrap logic:
+
+```java
+import io.mailtrap.client.MailtrapClient;
+import io.mailtrap.config.MailtrapConfig;
+import io.mailtrap.factory.MailtrapClientFactory;
+import io.mailtrap.model.request.emails.Address;
+import io.mailtrap.model.request.emails.MailtrapMail;
+
+import java.util.List;
+
+public class MailtrapJavaSDKSandboxTest {
+
+    private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
+    private static final String SENDER_EMAIL = "sender@domain.com";
+    private static final String RECIPIENT_EMAIL = "recipient@domain.com";
+    private static final long INBOX_ID = 1L;
+
+    public static void main(String[] args) {
+        final MailtrapConfig config = new MailtrapConfig.Builder()
+            .token(TOKEN)
+            .sandbox(true)
+            .inboxId(INBOX_ID)
+            .build();
+
+        final MailtrapClient client = MailtrapClientFactory.createMailtrapClient(config);
+
+        final MailtrapMail mail = MailtrapMail.builder()
+            .from(new Address(SENDER_EMAIL))
+            .to(List.of(new Address(RECIPIENT_EMAIL)))
+            .subject("Hello from Mailtrap Sandbox Sending!")
+            .text("Welcome to Mailtrap Sandbox Sending!")
+            .build();
+
+        // Send an email using Mailtrap Sending API
+        try {
+            System.out.println(client.send(mail));
+        } catch (Exception e) {
+            System.out.println("Caught exception : " + e);
+        }
+    }
+}
+```
+
+Bulk stream example (optional) differs only by setting `.bulk(true)` instead of `.sandbox(true)`:
+
+```java
+        final MailtrapConfig config = new MailtrapConfig.Builder()
+    .token(TOKEN)
+    .bulk(true)
+    .build();
+```
+
+Alternatively, you can switch between Sandbox, Production and Bulk sending from client directly
+
+```java
+import io.mailtrap.client.MailtrapClient;
+import io.mailtrap.config.MailtrapConfig;
+import io.mailtrap.factory.MailtrapClientFactory;
+import io.mailtrap.model.request.emails.Address;
+import io.mailtrap.model.request.emails.MailtrapMail;
+
+import java.util.List;
+
+public class SwitchSendFromClient {
+
+    private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
+    private static final String SENDER_EMAIL = "sender@domain.com";
+    private static final String RECIPIENT_EMAIL = "recipient@domain.com";
+    private static final long INBOX_ID = 1L;
+
+    public static void main(String[] args) {
+        // Minimal config init, just token
+        final MailtrapConfig config = new MailtrapConfig.Builder()
+            .token(TOKEN)
+            .build();
+
+        final MailtrapClient client = MailtrapClientFactory.createMailtrapClient(config);
+
+        final MailtrapMail mail = MailtrapMail.builder()
+            .from(new Address(SENDER_EMAIL))
+            .to(List.of(new Address(RECIPIENT_EMAIL)))
+            .subject("Hello from Mailtrap Sending!")
+            .text("Welcome to Mailtrap Sending!")
+            .build();
+        
+        // Production send
+        client.send(mail);
+        
+        // Bulk send
+        client.switchToBulkSendingApi();
+        client.send(mail);
+        
+        // Sandbox send
+        client.switchToEmailTestingApi(INBOX_ID);
+        client.send(mail);
+    }
+
+}
+```
+
+### Full-featured usage example
+
+```java
+import io.mailtrap.config.MailtrapConfig;
+import io.mailtrap.factory.MailtrapClientFactory;
+import io.mailtrap.model.request.emails.Address;
+import io.mailtrap.model.request.emails.EmailAttachment;
+import io.mailtrap.model.request.emails.MailtrapMail;
+import io.mailtrap.model.response.emails.SendResponse;
+
+import java.io.InputStream;
+import java.util.Base64;
+import java.util.List;
+import java.util.Map;
+
+public class FullFeaturedExample {
+
+    private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
+    private static final String SENDER_EMAIL = "sender@domain.com";
+    private static final String RECIPIENT_EMAIL = "recipient@domain.com";
+    private static final String REPLY_TO_EMAIL = "reply_to@domain.com";
+
+    public static void main(String[] args) {
+        final var config = new MailtrapConfig.Builder()
+                .token(TOKEN)
+            //by default both `bulk` and `sandbox` are null, `inboxId` is null
+                .build();
+
+        final var client = MailtrapClientFactory.createMailtrapClient(config);
+
+        final String welcomeImage = readAndEncodeAttachment("welcome.png");
+
+        final var mail = MailtrapMail.builder()
+                .category("Test message")
+                .customVariables(Map.of(
+                        "hello", "world",
+                        "year", "2024",
+                        "anticipated", "true"
+                ))
+                .from(new Address(SENDER_EMAIL))
+                .to(List.of(new Address(RECIPIENT_EMAIL)))
+                .replyTo(new Address(REPLY_TO_EMAIL, "Reply To"))
+                .subject("Hello from Mailtrap!")
+                .html("""
+                        <!doctype html>
+                        <html>
+                          <head>
+                            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                          </head>
+                          <body style="font-family: sans-serif;">
+                            <div style="display: block; margin: auto; max-width: 600px;" class="main">
+                              <h1 style="font-size: 18px; font-weight: bold; margin-top: 20px">Congrats for sending test email with Mailtrap!</h1>
+                              <p>Inspect it using the tabs you see above and learn how this email can be improved.</p>
+                              <img alt="Inspect with Tabs" src="cid:welcome.png" style="width: 100%;">
+                              <p>Now send your email using our fake SMTP server and integration of your choice!</p>
+                              <p>Good luck! Hope it works.</p>
+                            </div>
+                            <!-- Example of invalid for email html/css, will be detected by Mailtrap: -->
+                            <style>
+                              .main { background-color: white; }
+                              a:hover { border-left-width: 1em; min-height: 2em; }
+                            </style>
+                          </body>
+                        </html>
+                        """)
+                .attachments(List.of(EmailAttachment.builder()
+                        .filename("welcome.png")
+                        .contentId("welcome.png")
+                        .disposition("inline")
+                        .content(welcomeImage)
+                        .build()))
+                .build();
+
+        // Custom email headers (optional)
+        final Map<String, String> headers = mail.getHeaders();
+        headers.put("X-Message-Source", "domain.com");
+        headers.put("X-Mailer", "Mailtrap Java Client");
+
+
+        try {
+            final SendResponse response = client.sendingApi().emails().send(mail);
+            System.out.println(response);
+        }catch (final Exception e) {
+            System.err.println("Failed to send mail: " + e.getMessage());
+        }
+
+
+        // OR Template email sending
+
+        
+        final var templateMail = MailtrapMail.builder()
+            .from(new Address("John Doe", SENDER_EMAIL))
+            .to(List.of(new Address("Jane Doe", RECIPIENT_EMAIL)))
+            .templateUuid("813e39db-0000-0000-0000-0e6ba8b1fe88")
+            .templateVariables(Map.of(
+                "user_name", "Jack Sparrow",
+                "next_step_link", "https://mailtrap.io/",
+                "get_started_link", "https://mailtrap.io/",
+                "integer", 123,
+                "boolean", false
+            ))
+            .build();
+
+        try {
+            final SendResponse response = client.sendingApi().emails().send(templateMail);
+            System.out.println(response);
+        }catch (final Exception e) {
+            System.err.println("Failed to send mail: " + e.getMessage());
+        }
+
+    }
+
+    private static String readAndEncodeAttachment(final String filename) {
+        try (final InputStream inputStream = FullFeaturedExample.class.getClassLoader().getResourceAsStream(filename)) {
+            if (inputStream == null) {
+                return "";
+            }
+            return Base64.getEncoder().encodeToString(inputStream.readAllBytes());
+        } catch (final Exception e) {
+            return "";
+        }
+    }
+}
+```
+
 Refer to the [`examples`](examples) folder for the source code of this and other advanced examples.
 
-### API Reference
+### API Reference and supported functionality
 
-You can find the API reference [here](https://mailtrap.github.io/mailtrap-java/index.html).
+You can find the [Mailtrap Java API reference](https://mailtrap.github.io/mailtrap-java/index.html) documentation.
 
 ### General API
 
-- [List User & Invite account accesses](examples/java/io/mailtrap/examples/general/AccountAccessExample.java)
-- [Remove account access](examples/java/io/mailtrap/examples/general/AccountsExample.java)
+- [Account Accesses](examples/java/io/mailtrap/examples/general/AccountAccessExample.java)
+- [Accounts](examples/java/io/mailtrap/examples/general/AccountsExample.java)
 - [Permissions](examples/java/io/mailtrap/examples/general/PermissionsExample.java)
-- [Current billing usage cycle](examples/java/io/mailtrap/examples/general/BillingExample.java)
+- [Billing](examples/java/io/mailtrap/examples/general/BillingExample.java)
 
 ### Sending API
 
 - [Advanced](examples/java/io/mailtrap/examples/sending/EverythingExample.java)
 - [Minimal](examples/java/io/mailtrap/examples/sending/MinimalExample.java)
 - [Error handling](examples/java/io/mailtrap/examples/sending/ErrorsExample.java)
-- [Send email using template](examples/java/io/mailtrap/examples/sending/TemplateExample.java)
+- [Send using template](examples/java/io/mailtrap/examples/sending/TemplateExample.java)
+- [Batch](examples/java/io/mailtrap/examples/sending/BatchExample.java)
+- [Sending Domains](examples/java/io/mailtrap/examples/sendingdomains/SendingDomainsExample.java)
+- [Suppressions](examples/java/io/mailtrap/examples/suppressions/SuppressionsExample.java)
 
 ### Email Testing API
 
@@ -131,16 +349,25 @@ You can find the API reference [here](https://mailtrap.github.io/mailtrap-java/i
 - [Inboxes](examples/java/io/mailtrap/examples/testing/InboxesExample.java)
 - [Messages](examples/java/io/mailtrap/examples/testing/MessagesExample.java)
 - [Projects](examples/java/io/mailtrap/examples/testing/ProjectsExample.java)
-- [Send mail using template](examples/java/io/mailtrap/examples/testing/EmailExample.java)
+- [Sandbox send using template](examples/java/io/mailtrap/examples/testing/EmailExample.java)
+- [Batch](examples/java/io/mailtrap/examples/testing/BatchExample.java)
 
 ### Bulk Sending API
 
-- [Send mail](examples/java/io/mailtrap/examples/bulk/BulkSendExample.java)
+- [Bulk send](examples/java/io/mailtrap/examples/bulk/BulkSendExample.java)
+- [Batch](examples/java/io/mailtrap/examples/bulk/BatchExample.java)
 
 ### Contacts API
 
 - [Contacts](examples/java/io/mailtrap/examples/contacts/ContactsExample.java)
-- [Contact lists](examples/java/io/mailtrap/examples/contactlists/ContactListsExample.java)
+- [Contact Lists](examples/java/io/mailtrap/examples/contactlists/ContactListsExample.java)
+- [Contact Exports](examples/java/io/mailtrap/examples/contactexports/ContactExportsExample.java)
+- [Contact Fields](examples/java/io/mailtrap/examples/contactfields/ContactFieldsExample.java)
+- [Contact Imports](examples/java/io/mailtrap/examples/contactimports/ContactImportsExample.java)
+
+### Email Templates API
+
+- [Email Templates](examples/java/io/mailtrap/examples/emailtemplates/EmailTemplatesExample.java)
 
 ## Contributing
 

@@ -108,7 +108,7 @@ public class MailtrapClient {
      *
      * @param inboxId the inbox ID to use for testing
      */
-    public void switchToEmailTestingApi(Long inboxId) {
+    public void switchToEmailTestingApi(final Long inboxId) {
         this.sendingContextHolder.setInboxId(inboxId);
         this.sendingContextHolder.setSandbox(true);
         this.sendingContextHolder.setBulk(false);
