@@ -26,4 +26,7 @@ public class BaseTest {
     protected final String suppressionId = "2fe148b8-b019-431f-ab3f-107663fdf868";
     protected final String suppressionIdEncoded = URLEncoder.encode(suppressionId, StandardCharsets.UTF_8);
     protected final Long emailTemplateId = 2222L;
+    protected final Long contactListId = 1337L;
+    protected final String contactEventId = "b691272b-3e50-4813-997b-c7c9b317dcb2";
+    protected final String contactEventIdEncoded = URLEncoder.encode(contactEventId, StandardCharsets.UTF_8);
 }
