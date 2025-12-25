@@ -6,6 +6,6 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class CreateUpdateContactListRequest extends AbstractModel {
+public class ContactListRequest extends AbstractModel {
     private String name;
 }

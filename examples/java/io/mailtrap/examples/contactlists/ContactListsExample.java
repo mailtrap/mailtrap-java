@@ -2,7 +2,7 @@ package io.mailtrap.examples.contactlists;
 
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.factory.MailtrapClientFactory;
-import io.mailtrap.model.request.contactlists.CreateUpdateContactListRequest;
+import io.mailtrap.model.request.contactlists.ContactListRequest;
 
 public class ContactListsExample {
 
@@ -18,10 +18,10 @@ public class ContactListsExample {
 
         final var client = MailtrapClientFactory.createMailtrapClient(config);
 
-        final var created = client.contactsApi().contactLists().createContactList(ACCOUNT_ID, new CreateUpdateContactListRequest(NAME_FOR_CREATE));
+        final var created = client.contactsApi().contactLists().createContactList(ACCOUNT_ID, new ContactListRequest(NAME_FOR_CREATE));
         System.out.println(created);
 
-        final var updated = client.contactsApi().contactLists().updateContactList(ACCOUNT_ID, created.getId(), new CreateUpdateContactListRequest(NAME_FOR_UPDATE));
+        final var updated = client.contactsApi().contactLists().updateContactList(ACCOUNT_ID, created.getId(), new ContactListRequest(NAME_FOR_UPDATE));
         System.out.println(updated);
 
         final var byId = client.contactsApi().contactLists().getContactList(ACCOUNT_ID, updated.getId());

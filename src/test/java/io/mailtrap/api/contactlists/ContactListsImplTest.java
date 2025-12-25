@@ -3,7 +3,7 @@ package io.mailtrap.api.contactlists;
 import io.mailtrap.Constants;
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.factory.MailtrapClientFactory;
-import io.mailtrap.model.request.contactlists.CreateUpdateContactListRequest;
+import io.mailtrap.model.request.contactlists.ContactListRequest;
 import io.mailtrap.model.response.contactlists.ContactListResponse;
 import io.mailtrap.testutils.BaseTest;
 import io.mailtrap.testutils.DataMock;
@@ -51,7 +51,7 @@ class ContactListsImplTest extends BaseTest {
 
     @Test
     void test_create() {
-        final ContactListResponse contactList = api.createContactList(accountId, new CreateUpdateContactListRequest("Customers"));
+        final ContactListResponse contactList = api.createContactList(accountId, new ContactListRequest("Customers"));
 
         assertNotNull(contactList);
         assertEquals(contactListId, contactList.getId());
@@ -67,7 +67,7 @@ class ContactListsImplTest extends BaseTest {
 
     @Test
     void test_update() {
-        final ContactListResponse contactList = api.updateContactList(accountId, contactListId, new CreateUpdateContactListRequest("Old-Customers"));
+        final ContactListResponse contactList = api.updateContactList(accountId, contactListId, new ContactListRequest("Old-Customers"));
 
         assertNotNull(contactList);
         assertEquals(contactListId, contactList.getId());

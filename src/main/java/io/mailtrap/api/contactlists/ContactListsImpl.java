@@ -4,7 +4,7 @@ import io.mailtrap.Constants;
 import io.mailtrap.api.apiresource.ApiResource;
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.http.RequestData;
-import io.mailtrap.model.request.contactlists.CreateUpdateContactListRequest;
+import io.mailtrap.model.request.contactlists.ContactListRequest;
 import io.mailtrap.model.response.contactlists.ContactListResponse;
 
 import java.util.List;
@@ -26,7 +26,7 @@ public class ContactListsImpl extends ApiResource implements ContactLists {
     }
 
     @Override
-    public ContactListResponse createContactList(final long accountId, final CreateUpdateContactListRequest request) {
+    public ContactListResponse createContactList(final long accountId, final ContactListRequest request) {
         return httpClient.post(
             String.format(apiHost + "/api/accounts/%d/contacts/lists", accountId),
             request,
@@ -45,7 +45,7 @@ public class ContactListsImpl extends ApiResource implements ContactLists {
     }
 
     @Override
-    public ContactListResponse updateContactList(final long accountId, final long contactListId, final CreateUpdateContactListRequest request) {
+    public ContactListResponse updateContactList(final long accountId, final long contactListId, final ContactListRequest request) {
         return httpClient.patch(
             String.format(apiHost + "/api/accounts/%d/contacts/lists/%d", accountId, contactListId),
             request,

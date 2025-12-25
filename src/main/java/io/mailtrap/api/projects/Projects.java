@@ -1,6 +1,6 @@
 package io.mailtrap.api.projects;
 
-import io.mailtrap.model.request.projects.CreateUpdateProjectRequest;
+import io.mailtrap.model.request.projects.ProjectRequest;
 import io.mailtrap.model.response.projects.DeleteProjectResponse;
 import io.mailtrap.model.response.projects.ProjectsResponse;
 
@@ -18,7 +18,7 @@ public interface Projects {
      * @param request   request data
      * @return Returns attributes of the created project. <b>permissions</b> returns the permissions of the token for the project
      */
-    ProjectsResponse createProject(long accountId, CreateUpdateProjectRequest request);
+    ProjectsResponse createProject(long accountId, ProjectRequest request);
 
     /**
      * List projects and their inboxes to which the API token has access.
@@ -45,7 +45,7 @@ public interface Projects {
      * @param updateRequest request data
      * @return project attributes and inboxes of this project with their attributes. <b>permissions</b> returns the permissions of the token for the project
      */
-    ProjectsResponse updateProject(long accountId, long projectId, CreateUpdateProjectRequest updateRequest);
+    ProjectsResponse updateProject(long accountId, long projectId, ProjectRequest updateRequest);
 
     /**
      * Delete project and its inboxes

@@ -1,6 +1,6 @@
 package io.mailtrap.api.contactlists;
 
-import io.mailtrap.model.request.contactlists.CreateUpdateContactListRequest;
+import io.mailtrap.model.request.contactlists.ContactListRequest;
 import io.mailtrap.model.response.contactlists.ContactListResponse;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public interface ContactLists {
      * @param request   body
      * @return created contact list
      */
-    ContactListResponse createContactList(long accountId, CreateUpdateContactListRequest request);
+    ContactListResponse createContactList(long accountId, ContactListRequest request);
 
     /**
      * Get a contact list by ID
@@ -41,7 +41,7 @@ public interface ContactLists {
      * @param request       body
      * @return updated contact list
      */
-    ContactListResponse updateContactList(long accountId, long contactListId, CreateUpdateContactListRequest request);
+    ContactListResponse updateContactList(long accountId, long contactListId, ContactListRequest request);
 
     /**
      * Delete existing Contact List

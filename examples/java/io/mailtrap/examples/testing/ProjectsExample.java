@@ -2,7 +2,7 @@ package io.mailtrap.examples.testing;
 
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.factory.MailtrapClientFactory;
-import io.mailtrap.model.request.projects.CreateUpdateProjectRequest;
+import io.mailtrap.model.request.projects.ProjectRequest;
 
 public class ProjectsExample {
 
@@ -22,7 +22,7 @@ public class ProjectsExample {
             long firstProjectId = projects.get(0).getId();
 
             final var updatedProject =
-                    testingClient.projects().updateProject(ACCOUNT_ID, firstProjectId, new CreateUpdateProjectRequest(new CreateUpdateProjectRequest.ProjectData("mock project")));
+                    testingClient.projects().updateProject(ACCOUNT_ID, firstProjectId, new ProjectRequest(new ProjectRequest.ProjectData("mock project")));
             System.out.println(updatedProject);
 
             final var deletedProject = testingClient.projects().deleteProject(ACCOUNT_ID, firstProjectId);

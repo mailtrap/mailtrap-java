@@ -5,7 +5,7 @@ import io.mailtrap.MailtrapValidator;
 import io.mailtrap.api.apiresource.ApiResourceWithValidation;
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.http.RequestData;
-import io.mailtrap.model.request.projects.CreateUpdateProjectRequest;
+import io.mailtrap.model.request.projects.ProjectRequest;
 import io.mailtrap.model.response.projects.DeleteProjectResponse;
 import io.mailtrap.model.response.projects.ProjectsResponse;
 
@@ -19,7 +19,7 @@ public class ProjectsImpl extends ApiResourceWithValidation implements Projects 
     }
 
     @Override
-    public ProjectsResponse createProject(final long accountId, final CreateUpdateProjectRequest request) {
+    public ProjectsResponse createProject(final long accountId, final ProjectRequest request) {
 
         validateRequestBodyAndThrowException(request);
 
@@ -50,7 +50,7 @@ public class ProjectsImpl extends ApiResourceWithValidation implements Projects 
     }
 
     @Override
-    public ProjectsResponse updateProject(final long accountId, final long projectId, final CreateUpdateProjectRequest updateRequest) {
+    public ProjectsResponse updateProject(final long accountId, final long projectId, final ProjectRequest updateRequest) {
 
         validateRequestBodyAndThrowException(updateRequest);
 
