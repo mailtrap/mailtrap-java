@@ -11,7 +11,7 @@ public class ContactEventsExample {
 
     private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
     private static final long ACCOUNT_ID = 1L;
-    private static final String CONTACT_EVENT_ID = "b691272b-3e50-4813-997b-c7c9b317dcb2";
+    private static final String CONTACT_IDENTIFIER = "b691272b-3e50-4813-997b-c7c9b317dcb2";
 
     public static void main(String[] args) {
         final var config = new MailtrapConfig.Builder()
@@ -26,7 +26,7 @@ public class ContactEventsExample {
             "is_active", true
         ));
 
-        final ContactEventResponse contactEvent = client.contactsApi().contactEvents().createContactEvent(ACCOUNT_ID, CONTACT_EVENT_ID, request);
+        final ContactEventResponse contactEvent = client.contactsApi().contactEvents().createContactEvent(ACCOUNT_ID, CONTACT_IDENTIFIER, request);
         System.out.println(contactEvent);
     }
 }

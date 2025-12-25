@@ -16,7 +16,7 @@ public interface ContactLists {
     List<ContactListResponse> findAll(long accountId);
 
     /**
-     * Create new Contact Lists
+     * Create new Contact List
      *
      * @param accountId unique account ID
      * @param request   body

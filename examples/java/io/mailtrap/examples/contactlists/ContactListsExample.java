@@ -30,6 +30,6 @@ public class ContactListsExample {
         final var contactLists = client.contactsApi().contactLists().findAll(ACCOUNT_ID);
         System.out.println(contactLists);
 
-        contactLists.forEach(contactList -> client.contactsApi().contactLists().deleteContactList(ACCOUNT_ID, contactList.getId()));
+        client.contactsApi().contactLists().deleteContactList(ACCOUNT_ID, byId.getId());
     }
 }
