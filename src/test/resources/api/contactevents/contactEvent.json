@@ -1,0 +1,10 @@
+{
+  "contact_id": "b691272b-3e50-4813-997b-c7c9b317dcb2",
+  "contact_email": "dill@example.com",
+  "name": "UserLogin",
+  "params": {
+    "user_id": 11,
+    "user_name": "Dillan Doe",
+    "is_active": true
+  }
+}

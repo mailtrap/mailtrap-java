@@ -8,7 +8,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class CreateUpdateProjectRequest extends AbstractModel {
+public class ProjectRequest extends AbstractModel {
 
     @JsonProperty("project")
     private ProjectData project;

@@ -3,8 +3,8 @@ package io.mailtrap.api.projects;
 import io.mailtrap.Constants;
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.factory.MailtrapClientFactory;
-import io.mailtrap.model.request.projects.CreateUpdateProjectRequest;
-import io.mailtrap.model.request.projects.CreateUpdateProjectRequest.ProjectData;
+import io.mailtrap.model.request.projects.ProjectRequest;
+import io.mailtrap.model.request.projects.ProjectRequest.ProjectData;
 import io.mailtrap.model.response.projects.DeleteProjectResponse;
 import io.mailtrap.model.response.projects.ProjectsResponse;
 import io.mailtrap.testutils.BaseTest;
@@ -51,7 +51,7 @@ class ProjectsImplTest extends BaseTest {
 
     @Test
     void test_createProject() {
-        final ProjectsResponse createdProject = api.createProject(accountId, new CreateUpdateProjectRequest(new ProjectData("My New Project")));
+        final ProjectsResponse createdProject = api.createProject(accountId, new ProjectRequest(new ProjectData("My New Project")));
 
         assertNotNull(createdProject);
         assertEquals(projectId, createdProject.getId());
@@ -80,7 +80,7 @@ class ProjectsImplTest extends BaseTest {
 
     @Test
     void test_updateProject() {
-        final ProjectsResponse updatedProject = api.updateProject(accountId, projectId, new CreateUpdateProjectRequest(new ProjectData("Updated Project Name")));
+        final ProjectsResponse updatedProject = api.updateProject(accountId, projectId, new ProjectRequest(new ProjectData("Updated Project Name")));
 
         assertNotNull(updatedProject);
         assertEquals(projectId, updatedProject.getId());

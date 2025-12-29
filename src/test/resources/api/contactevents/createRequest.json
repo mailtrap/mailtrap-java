@@ -1,0 +1,8 @@
+{
+  "name": "UserLogin",
+  "params": {
+    "user_id": 11,
+    "user_name": "Dillan Doe",
+    "is_active": true
+  }
+}
