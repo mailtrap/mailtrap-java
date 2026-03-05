@@ -19,6 +19,7 @@ import io.mailtrap.api.permissions.PermissionsImpl;
 import io.mailtrap.api.projects.ProjectsImpl;
 import io.mailtrap.api.sendingdomains.SendingDomainsImpl;
 import io.mailtrap.api.sendingemails.SendingEmailsImpl;
+import io.mailtrap.api.stats.StatsImpl;
 import io.mailtrap.api.suppressions.SuppressionsImpl;
 import io.mailtrap.api.testingemails.TestingEmailsImpl;
 import io.mailtrap.client.MailtrapClient;
@@ -87,8 +88,9 @@ public final class MailtrapClientFactory {
         final var accounts = new AccountsImpl(config);
         final var billing = new BillingImpl(config);
         final var permissions = new PermissionsImpl(config);
+        final var stats = new StatsImpl(config);
 
-        return new MailtrapGeneralApi(accountAccess, accounts, billing, permissions);
+        return new MailtrapGeneralApi(accountAccess, accounts, billing, permissions, stats);
     }
 
     private static MailtrapEmailSendingApi createSendingApi(final MailtrapConfig config) {
