@@ -1,0 +1,49 @@
+src/main/java/io/mailtrap/api/stats/StatsFilter.java
+  bdc49ae53ac55218 1-21
+src/test/resources/api/stats/getStats.json
+  bdc49ae53ac55218 1-12
+src/main/java/io/mailtrap/factory/MailtrapClientFactory.java
+  bdc49ae53ac55218 22,91,93
+examples/java/io/mailtrap/examples/general/StatsExample.java
+  bdc49ae53ac55218 1-39
+src/test/resources/api/stats/byDate.json
+  bdc49ae53ac55218 1-17
+src/main/java/io/mailtrap/model/response/stats/SendingStatGroupResponse.java
+  bdc49ae53ac55218 1-20
+src/test/resources/api/stats/byDomains.json
+  bdc49ae53ac55218 1-32
+src/main/java/io/mailtrap/client/api/MailtrapGeneralApi.java
+  bdc49ae53ac55218 7,23
+src/main/java/io/mailtrap/model/response/stats/SendingStatsResponse.java
+  bdc49ae53ac55218 1-38
+src/test/resources/api/stats/byCategories.json
+  bdc49ae53ac55218 1-17
+src/main/java/io/mailtrap/api/stats/StatsImpl.java
+  bdc49ae53ac55218 1-82
+src/main/java/io/mailtrap/api/stats/Stats.java
+  bdc49ae53ac55218 1-57
+src/test/resources/api/stats/byEmailServiceProviders.json
+  bdc49ae53ac55218 1-17
+src/test/java/io/mailtrap/api/stats/StatsImplTest.java
+  bdc49ae53ac55218 1-145
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "f96cbd7d7983b353d94ec15976f4076b99c6050e",
+  "prompts": {
+    "bdc49ae53ac55218": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "cc57f3f6-5d41-4449-8e10-be2f4c0f5370",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Piotr Bednarz <piotr.bednarz@railsware.com>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 502,
+      "overriden_lines": 0
+    }
+  }
+}
