@@ -1,0 +1,40 @@
+pom.xml
+  0da8c77ac392a07d 9
+docs/getting-started.md
+  0da8c77ac392a07d 20,27,33
+README.md
+  0da8c77ac392a07d 22,29,35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "fa5f2ac2c2c169aca3d6167fcc83882de31820ec",
+  "prompts": {
+    "0da8c77ac392a07d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "eda67287-80c2-47c2-a6dc-ea3ad1e76bec",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Piotr Bednarz <piotr.bednarz@railsware.com>",
+      "messages": [],
+      "total_additions": 7,
+      "total_deletions": 7,
+      "accepted_lines": 7,
+      "overriden_lines": 0
+    },
+    "8cfa9507cdb91931": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "79ff27ff-3bd2-404d-b75c-7675e61f3bac",
+        "model": "default"
+      },
+      "human_author": "Piotr Bednarz <piotr.bednarz@railsware.com>",
+      "messages": [],
+      "total_additions": 66,
+      "total_deletions": 0,
+      "accepted_lines": 66,
+      "overriden_lines": 0
+    }
+  }
+}
