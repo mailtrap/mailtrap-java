@@ -1,0 +1,62 @@
+examples/java/io/mailtrap/examples/general/StatsExample.java
+  ca3b3852ad7d6f7f 28,31,34
+  bdc49ae53ac55218 1-27,29-30,32-33,35-39
+src/main/java/io/mailtrap/api/stats/Stats.java
+  bdc49ae53ac55218 1-28,30-37,39-46,48-57
+  ca3b3852ad7d6f7f 29,38,47
+src/main/java/io/mailtrap/model/response/stats/SendingStatsResponse.java
+  bdc49ae53ac55218 1-38
+src/main/java/io/mailtrap/model/response/stats/SendingStatGroupResponse.java
+  bdc49ae53ac55218 1-20
+src/test/resources/api/stats/byCategory.json
+  ca3b3852ad7d6f7f 3
+src/test/resources/api/stats/getStats.json
+  bdc49ae53ac55218 1-12
+src/test/resources/api/stats/byDate.json
+  bdc49ae53ac55218 1-17
+src/test/java/io/mailtrap/api/stats/StatsImplTest.java
+  bdc49ae53ac55218 1-36,40-73,75-79,81-95,97-101,103-106,108-112,114-118,120-145
+  ca3b3852ad7d6f7f 37-39,74,80,96,102,107,113,119
+src/main/java/io/mailtrap/client/api/MailtrapGeneralApi.java
+  bdc49ae53ac55218 7,23
+src/main/java/io/mailtrap/api/stats/StatsImpl.java
+  ca3b3852ad7d6f7f 33,42,51
+  bdc49ae53ac55218 1-32,34-41,43-50,52-82
+src/main/java/io/mailtrap/api/stats/StatsFilter.java
+  bdc49ae53ac55218 1-21
+src/main/java/io/mailtrap/factory/MailtrapClientFactory.java
+  bdc49ae53ac55218 22,91,93
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.10",
+  "base_commit_sha": "7b2775437daf849f8aab511af548da4ce37f560b",
+  "prompts": {
+    "bdc49ae53ac55218": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "cc57f3f6-5d41-4449-8e10-be2f4c0f5370",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Piotr Bednarz <piotr.bednarz@railsware.com>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 417,
+      "overriden_lines": 0
+    },
+    "ca3b3852ad7d6f7f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a7937c13-d11b-4e4e-a5b5-99ab016c3270",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": null,
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 20,
+      "overriden_lines": 0
+    }
+  }
+}
