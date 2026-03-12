@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum SendingStream {
-  ANY("any"),
   TRANSACTIONAL("transactional"),
   BULK("bulk");
 
