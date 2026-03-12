@@ -1,5 +1,6 @@
 package io.mailtrap.client.api;
 
+import io.mailtrap.api.emaillogs.EmailLogs;
 import io.mailtrap.api.sendingdomains.SendingDomains;
 import io.mailtrap.api.sendingemails.SendingEmails;
 import io.mailtrap.api.suppressions.Suppressions;
@@ -17,4 +18,5 @@ public class MailtrapEmailSendingApi {
     private final SendingEmails emails;
     private final SendingDomains domains;
     private final Suppressions suppressions;
+    private final EmailLogs emailLogs;
 }
