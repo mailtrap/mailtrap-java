@@ -1,0 +1,33 @@
+src/main/java/io/mailtrap/model/request/emaillogs/FilterSubject.java
+  a20413a0143a9340 22-27
+src/main/java/io/mailtrap/model/request/emaillogs/FilterCiString.java
+  a20413a0143a9340 1-31
+src/main/java/io/mailtrap/model/request/emaillogs/EmailLogsListFilters.java
+  a20413a0143a9340 21-22,28-29,31-33
+examples/java/io/mailtrap/examples/emaillogs/EmailLogsExample.java
+  a20413a0143a9340 6-7,12-15,18-19,28-30,32-34,36
+src/main/java/io/mailtrap/model/request/emaillogs/FilterExactString.java
+  a20413a0143a9340 1-31
+src/main/java/io/mailtrap/model/request/emaillogs/FilterString.java
+  a20413a0143a9340 1-31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.10",
+  "base_commit_sha": "428b090b85eef98f37e907c463ce085c29732616",
+  "prompts": {
+    "a20413a0143a9340": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "f72a2e08-c872-4a03-9c71-cf399b0ffbc8",
+        "model": "default"
+      },
+      "human_author": null,
+      "messages": [],
+      "total_additions": 197,
+      "total_deletions": 65,
+      "accepted_lines": 140,
+      "overriden_lines": 0
+    }
+  }
+}
