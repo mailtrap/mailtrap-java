@@ -1,6 +1,7 @@
 package io.mailtrap.model.response.suppressions;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.mailtrap.model.SendingStream;
 import lombok.Data;
 
 import java.time.OffsetDateTime;
