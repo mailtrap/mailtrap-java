@@ -1,4 +1,4 @@
-package io.mailtrap.model.response.suppressions;
+package io.mailtrap.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -16,6 +16,11 @@ public enum SendingStream {
 
   @JsonValue
   public String getValue() {
+    return value;
+  }
+
+  @Override
+  public String toString() {
     return value;
   }
 
