@@ -1,0 +1,28 @@
+{
+  "message_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "status": "delivered",
+  "subject": "Welcome to our service",
+  "from": "sender@example.com",
+  "to": "recipient@example.com",
+  "sent_at": "2025-01-15T10:30:00Z",
+  "client_ip": "203.0.113.42",
+  "category": "Welcome Email",
+  "custom_variables": {},
+  "sending_stream": "transactional",
+  "sending_domain_id": 3938,
+  "template_id": 100,
+  "template_variables": {},
+  "opens_count": 2,
+  "clicks_count": 1,
+  "raw_message_url": "https://storage.example.com/signed/eml/a1b2c3d4-e5f6-7890-abcd-ef1234567890?token=...",
+  "events": [
+    {
+      "event_type": "click",
+      "created_at": "2025-01-15T10:35:00Z",
+      "details": {
+        "click_url": "https://example.com/track/click/abc123",
+        "web_ip_address": "198.51.100.50"
+      }
+    }
+  ]
+}
