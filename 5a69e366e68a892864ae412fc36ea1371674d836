@@ -1,0 +1,37 @@
+src/main/java/io/mailtrap/api/emaillogs/EmailLogsImpl.java
+  a20413a0143a9340 91-96
+src/main/java/io/mailtrap/model/request/emaillogs/FilterOptionalString.java
+  a20413a0143a9340 1-37
+src/test/java/io/mailtrap/api/emaillogs/EmailLogsImplTest.java
+  a20413a0143a9340 7,41-43,52,106-116
+src/main/java/io/mailtrap/model/request/emaillogs/FilterExactString.java
+  a20413a0143a9340 1-31
+src/main/java/io/mailtrap/model/request/emaillogs/FilterCiString.java
+  a20413a0143a9340 1-31
+src/main/java/io/mailtrap/model/request/emaillogs/FilterString.java
+  a20413a0143a9340 1-31
+examples/java/io/mailtrap/examples/emaillogs/EmailLogsExample.java
+  a20413a0143a9340 6-7,9,12-15,18-19,28-30,32-34,36
+src/main/java/io/mailtrap/model/request/emaillogs/EmailLogsListFilters.java
+  a20413a0143a9340 21-23,28-33
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.11",
+  "base_commit_sha": "5a69e366e68a892864ae412fc36ea1371674d836",
+  "prompts": {
+    "a20413a0143a9340": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "f72a2e08-c872-4a03-9c71-cf399b0ffbc8",
+        "model": "default"
+      },
+      "human_author": null,
+      "messages": [],
+      "total_additions": 262,
+      "total_deletions": 73,
+      "accepted_lines": 196,
+      "overriden_lines": 0
+    }
+  }
+}
