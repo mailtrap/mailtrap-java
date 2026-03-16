@@ -3,7 +3,7 @@ package io.mailtrap.api.suppressions;
 import io.mailtrap.Constants;
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.factory.MailtrapClientFactory;
-import io.mailtrap.model.response.suppressions.SendingStream;
+import io.mailtrap.model.SendingStream;
 import io.mailtrap.model.response.suppressions.SuppressionType;
 import io.mailtrap.model.response.suppressions.SuppressionsResponse;
 import io.mailtrap.testutils.BaseTest;

@@ -1,31 +1,20 @@
 package io.mailtrap.model.response.suppressions;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+/**
+ * @deprecated Use {@link io.mailtrap.model.SendingStream} instead.
+ *             This class will be removed in the next major release.
+ */
+@Deprecated
+public class SendingStream {
 
-public enum SendingStream {
-  ANY("any"),
-  TRANSACTIONAL("transactional"),
-  BULK("bulk");
-
-  private final String value;
-
-  SendingStream(String value) {
-    this.value = value;
-  }
-
-  @JsonValue
-  public String getValue() {
-    return value;
-  }
-
-  @JsonCreator
-  public static SendingStream fromValue(String value) {
-    for (SendingStream type : SendingStream.values()) {
-      if (type.value.equalsIgnoreCase(value)) {
-        return type;
-      }
+    private SendingStream() {
     }
-    throw new IllegalArgumentException("Unknown value: " + value);
-  }
+
+    public static io.mailtrap.model.SendingStream ANY = io.mailtrap.model.SendingStream.ANY;
+    public static io.mailtrap.model.SendingStream TRANSACTIONAL = io.mailtrap.model.SendingStream.TRANSACTIONAL;
+    public static io.mailtrap.model.SendingStream BULK = io.mailtrap.model.SendingStream.BULK;
+
+    public static io.mailtrap.model.SendingStream fromValue(String value) {
+        return io.mailtrap.model.SendingStream.fromValue(value);
+    }
 }
