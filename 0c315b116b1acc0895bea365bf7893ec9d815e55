@@ -1,0 +1,87 @@
+src/main/java/io/mailtrap/api/stats/StatsImpl.java
+  bdc49ae53ac55218 1-32,34-41,43-50,52-72,83-92
+  9cf9db24761d9f68 76,79
+  ca3b3852ad7d6f7f 33,42,51,73-75,77-78,80-82
+src/main/java/io/mailtrap/model/response/stats/SendingStatsResponse.java
+  bdc49ae53ac55218 1-38
+src/test/resources/api/stats/getStats.json
+  bdc49ae53ac55218 1-12
+src/main/java/io/mailtrap/model/response/stats/SendingStatGroupResponse.java
+  bdc49ae53ac55218 1-20
+src/test/java/io/mailtrap/api/stats/StatsImplTest.java
+  bdc49ae53ac55218 1-18,20-37,41-48,50-74,76-80,82-96,98-102,104-107,109-113,115-119,121-127,174-189
+  ca3b3852ad7d6f7f 19,38-40,75,81,97,103,108,114,120,131-173
+  34d99c95fc80a57a 49
+src/test/resources/api/stats/byCategory.json
+  ca3b3852ad7d6f7f 3
+src/test/resources/api/stats/byDate.json
+  bdc49ae53ac55218 1-17
+src/main/java/io/mailtrap/api/stats/Stats.java
+  bdc49ae53ac55218 1-28,30-37,39-46,48-57
+  ca3b3852ad7d6f7f 29,38,47
+src/main/java/io/mailtrap/factory/MailtrapClientFactory.java
+  34d99c95fc80a57a 99,101
+  bdc49ae53ac55218 22
+src/main/java/io/mailtrap/api/stats/StatsFilter.java
+  34d99c95fc80a57a 3,19
+  bdc49ae53ac55218 1-2,4-18,20-22
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.12",
+  "base_commit_sha": "0c315b116b1acc0895bea365bf7893ec9d815e55",
+  "prompts": {
+    "34d99c95fc80a57a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "cc4269a8-c4bc-4c46-8949-fa4be5ddef26",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": null,
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 5,
+      "overriden_lines": 0
+    },
+    "9cf9db24761d9f68": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b659e986-ac86-4b07-a4ff-1cacde983df2",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": null,
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 2,
+      "overriden_lines": 0
+    },
+    "bdc49ae53ac55218": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "cc57f3f6-5d41-4449-8e10-be2f4c0f5370",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Piotr Bednarz <piotr.bednarz@railsware.com>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 372,
+      "overriden_lines": 0
+    },
+    "ca3b3852ad7d6f7f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a7937c13-d11b-4e4e-a5b5-99ab016c3270",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": null,
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 69,
+      "overriden_lines": 0
+    }
+  }
+}
