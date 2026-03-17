@@ -7,7 +7,9 @@ import io.mailtrap.exception.http.HttpServerException;
 import io.mailtrap.http.impl.DefaultMailtrapHttpClient;
 import io.mailtrap.model.AbstractModel;
 
+import java.net.URLEncoder;
 import java.net.http.HttpClient;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -121,9 +123,9 @@ public interface CustomHttpClient {
                         return collection.stream()
                                 .filter(Objects::nonNull)
                                 .filter(v -> !v.toString().isBlank())
-                                .map(v -> entry.getKey() + "=" + v);
+                                .map(v -> entry.getKey() + "=" + URLEncoder.encode(v.toString(), StandardCharsets.UTF_8));
                     } else {
-                        return Stream.of(entry.getKey() + "=" + value);
+                        return Stream.of(entry.getKey() + "=" + URLEncoder.encode(value.toString(), StandardCharsets.UTF_8));
                     }
                 })
                 .collect(Collectors.joining("&", "?", ""));

@@ -342,6 +342,7 @@ You can find the [Mailtrap Java API reference](https://mailtrap.github.io/mailtr
 - [Batch](examples/java/io/mailtrap/examples/sending/BatchExample.java)
 - [Sending Domains](examples/java/io/mailtrap/examples/sendingdomains/SendingDomainsExample.java)
 - [Suppressions](examples/java/io/mailtrap/examples/suppressions/SuppressionsExample.java)
+- [Stats](examples/java/io/mailtrap/examples/sending/StatsExample.java)
 
 ### Email Testing API
 
