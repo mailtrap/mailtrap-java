@@ -1,0 +1,46 @@
+src/main/java/io/mailtrap/model/response/emaillogs/EmailLogMessage.java
+  a20413a0143a9340 4,43
+src/test/java/io/mailtrap/api/emaillogs/EmailLogsImplTest.java
+  a20413a0143a9340 14,80
+src/test/java/io/mailtrap/api/suppressions/SuppressionsImplTest.java
+  a20413a0143a9340 6,54,65
+src/main/java/io/mailtrap/model/response/suppressions/SuppressionsResponse.java
+  a20413a0143a9340 4,25
+src/main/java/io/mailtrap/model/response/suppressions/SuppressionSendingStream.java
+  a20413a0143a9340 1-34
+src/main/java/io/mailtrap/model/response/emaillogs/EmailLogMessageSummary.java
+  a20413a0143a9340 4,42
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.15",
+  "base_commit_sha": "ca25ef38fb32acc47d560b44a3b4d5ab01a29bf7",
+  "prompts": {
+    "34d99c95fc80a57a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "cc4269a8-c4bc-4c46-8949-fa4be5ddef26",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": null,
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    },
+    "a20413a0143a9340": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "f72a2e08-c872-4a03-9c71-cf399b0ffbc8",
+        "model": "default"
+      },
+      "human_author": "Marcin Klocek <marcin.klocek@railsware.com>",
+      "messages": [],
+      "total_additions": 93,
+      "total_deletions": 23,
+      "accepted_lines": 49,
+      "overriden_lines": 0
+    }
+  }
+}
