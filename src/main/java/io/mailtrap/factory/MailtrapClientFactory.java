@@ -17,6 +17,7 @@ import io.mailtrap.api.inboxes.InboxesImpl;
 import io.mailtrap.api.messages.MessagesImpl;
 import io.mailtrap.api.permissions.PermissionsImpl;
 import io.mailtrap.api.projects.ProjectsImpl;
+import io.mailtrap.api.emaillogs.EmailLogsImpl;
 import io.mailtrap.api.sendingdomains.SendingDomainsImpl;
 import io.mailtrap.api.sendingemails.SendingEmailsImpl;
 import io.mailtrap.api.stats.StatsImpl;
@@ -35,20 +36,22 @@ import jakarta.validation.Validator;
 public final class MailtrapClientFactory {
 
     /**
-     * Creates a new instance of {@link MailtrapValidator} using the default validator factory.
-     * Intentionally not wrapped into try-with-resources to not close, as per Jakarta doc, after
-     * the {@code ValidatorFactory} instance is closed, calling the following methods is not allowed:
+     * Creates a new instance of {@link MailtrapValidator} using the default
+     * validator factory.
+     * Intentionally not wrapped into try-with-resources to not close, as per
+     * Jakarta doc, after
+     * the {@code ValidatorFactory} instance is closed, calling the following
+     * methods is not allowed:
      * <ul>
-     *     <li>methods of this {@code ValidatorFactory} instance</li>
-     *     <li>methods of {@link Validator} instances created by this
-     *     {@code ValidatorFactory}</li>
+     * <li>methods of this {@code ValidatorFactory} instance</li>
+     * <li>methods of {@link Validator} instances created by this
+     * {@code ValidatorFactory}</li>
      * </ul>
      */
-    private static final jakarta.validation.ValidatorFactory VALIDATOR_FACTORY =
-        Validation.buildDefaultValidatorFactory();
-    
-    private static final MailtrapValidator VALIDATOR =
-        new MailtrapValidator(VALIDATOR_FACTORY.getValidator());
+    private static final jakarta.validation.ValidatorFactory VALIDATOR_FACTORY = Validation
+            .buildDefaultValidatorFactory();
+
+    private static final MailtrapValidator VALIDATOR = new MailtrapValidator(VALIDATOR_FACTORY.getValidator());
 
     private MailtrapClientFactory() {
     }
@@ -69,7 +72,8 @@ public final class MailtrapClientFactory {
 
         final var sendingContextHolder = configureSendingContext(config);
 
-        return new MailtrapClient(sendingApi, testingApi, bulkSendingApi, generalApi, contactsApi, emailTemplatesApi, sendingContextHolder);
+        return new MailtrapClient(sendingApi, testingApi, bulkSendingApi, generalApi, contactsApi, emailTemplatesApi,
+                sendingContextHolder);
     }
 
     private static MailtrapContactsApi createContactsApi(final MailtrapConfig config) {
@@ -80,7 +84,8 @@ public final class MailtrapClientFactory {
         final var contactExports = new ContactExportsImpl(config);
         final var contactEvents = new ContactEventsImpl(config);
 
-        return new MailtrapContactsApi(contactLists, contacts, contactImports, contactFields, contactExports, contactEvents);
+        return new MailtrapContactsApi(contactLists, contacts, contactImports, contactFields, contactExports,
+                contactEvents);
     }
 
     private static MailtrapGeneralApi createGeneralApi(final MailtrapConfig config) {
@@ -97,8 +102,9 @@ public final class MailtrapClientFactory {
         final var domains = new SendingDomainsImpl(config);
         final var suppressions = new SuppressionsImpl(config);
         final var stats = new StatsImpl(config);
+        final var emailLogs = new EmailLogsImpl(config);
 
-        return new MailtrapEmailSendingApi(emails, domains, suppressions, stats);
+        return new MailtrapEmailSendingApi(emails, domains, suppressions, stats, emailLogs);
     }
 
     private static MailtrapEmailTestingApi createTestingApi(final MailtrapConfig config) {
@@ -126,9 +132,9 @@ public final class MailtrapClientFactory {
     private static SendingContextHolder configureSendingContext(final MailtrapConfig config) {
 
         return SendingContextHolder.builder()
-            .sandbox(config.isSandbox())
-            .inboxId(config.getInboxId())
-            .bulk(config.isBulk())
-            .build();
+                .sandbox(config.isSandbox())
+                .inboxId(config.getInboxId())
+                .bulk(config.isBulk())
+                .build();
     }
 }

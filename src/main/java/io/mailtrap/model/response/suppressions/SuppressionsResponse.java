@@ -1,7 +1,7 @@
 package io.mailtrap.model.response.suppressions;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.mailtrap.model.SendingStream;
+import io.mailtrap.model.response.suppressions.SuppressionSendingStream;
 import lombok.Data;
 
 import java.time.OffsetDateTime;
@@ -22,7 +22,7 @@ public class SuppressionsResponse {
   private String email;
 
   @JsonProperty("sending_stream")
-  private SendingStream sendingStream;
+  private SuppressionSendingStream sendingStream;
 
   @JsonProperty("domain_name")
   private String domainName;

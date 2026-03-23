@@ -3,7 +3,7 @@ package io.mailtrap.api.suppressions;
 import io.mailtrap.Constants;
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.factory.MailtrapClientFactory;
-import io.mailtrap.model.SendingStream;
+import io.mailtrap.model.response.suppressions.SuppressionSendingStream;
 import io.mailtrap.model.response.suppressions.SuppressionType;
 import io.mailtrap.model.response.suppressions.SuppressionsResponse;
 import io.mailtrap.testutils.BaseTest;
@@ -51,7 +51,7 @@ class SuppressionsImplTest extends BaseTest {
     assertEquals(1, searchResponse.size());
     assertEquals(suppressionId, searchResponse.get(0).getId());
     assertEquals(email, searchResponse.get(0).getEmail());
-    assertEquals(SendingStream.BULK, searchResponse.get(0).getSendingStream());
+    assertEquals(SuppressionSendingStream.BULK, searchResponse.get(0).getSendingStream());
     assertEquals(SuppressionType.SPAM_COMPLAINT, searchResponse.get(0).getType());
   }
 
@@ -62,7 +62,7 @@ class SuppressionsImplTest extends BaseTest {
     assertNotNull(deleted);
     assertEquals(suppressionId, deleted.getId());
     assertEquals(email, deleted.getEmail());
-    assertEquals(SendingStream.BULK, deleted.getSendingStream());
+    assertEquals(SuppressionSendingStream.BULK, deleted.getSendingStream());
     assertEquals(SuppressionType.SPAM_COMPLAINT, deleted.getType());
   }
 }
