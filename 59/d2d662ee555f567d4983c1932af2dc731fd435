@@ -1,0 +1,51 @@
+src/main/java/io/mailtrap/api/stats/StatsImpl.java
+  bdc49ae53ac55218 1-32,34-41,43-50,52-72,83-92
+  ca3b3852ad7d6f7f 33,42,51,73-75,77-78,80-82
+  9cf9db24761d9f68 76,79
+src/test/resources/api/stats/byDate.json
+  bdc49ae53ac55218 1-17
+src/main/java/io/mailtrap/model/response/stats/SendingStatsResponse.java
+  bdc49ae53ac55218 1-38
+src/main/java/io/mailtrap/client/api/MailtrapGeneralApi.java
+  bdc49ae53ac55218 7,23
+src/main/java/io/mailtrap/api/stats/Stats.java
+  bdc49ae53ac55218 1-28,30-37,39-46,48-57
+  ca3b3852ad7d6f7f 29,38,47
+src/test/java/io/mailtrap/api/stats/StatsImplTest.java
+  ca3b3852ad7d6f7f 19,38-40,75,81,97,103,108,114,120,131-173
+  bdc49ae53ac55218 1-18,20-37,41-74,76-80,82-96,98-102,104-107,109-113,115-119,121-127,174-189
+src/test/resources/api/stats/getStats.json
+  bdc49ae53ac55218 1-12
+src/main/java/io/mailtrap/model/response/stats/SendingStatGroupResponse.java
+  bdc49ae53ac55218 1-20
+src/main/java/io/mailtrap/api/stats/StatsFilter.java
+  bdc49ae53ac55218 1-21
+examples/java/io/mailtrap/examples/general/StatsExample.java
+  9cf9db24761d9f68 12-15,24-25
+  bdc49ae53ac55218 1-11,16-23,26-31,33-34,36-37,39-43
+  ca3b3852ad7d6f7f 32,35,38
+src/main/java/io/mailtrap/factory/MailtrapClientFactory.java
+  bdc49ae53ac55218 22,91,93
+src/test/resources/api/stats/byCategory.json
+  ca3b3852ad7d6f7f 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.17",
+  "base_commit_sha": "59d2d662ee555f567d4983c1932af2dc731fd435",
+  "prompts": {
+    "9cf9db24761d9f68": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b659e986-ac86-4b07-a4ff-1cacde983df2",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": null,
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 8,
+      "overriden_lines": 0
+    }
+  }
+}
