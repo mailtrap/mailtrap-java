@@ -9,7 +9,8 @@ public enum ResourceType {
     PROJECT("project"),
     INBOX("inbox"),
     SENDING_DOMAIN("sending_domain"),
-    EMAIL_CAMPAIGN_PERMISSION_SCOPE("email_campaign_permission_scope");
+    EMAIL_CAMPAIGN_PERMISSION_SCOPE("email_campaign_permission_scope"),
+    EMAIL_TEMPLATE_PERMISSION_SCOPE("email_template_permission_scope");
 
     private final String value;
 

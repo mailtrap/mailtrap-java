@@ -3,6 +3,7 @@ package io.mailtrap.factory;
 import io.mailtrap.MailtrapValidator;
 import io.mailtrap.api.accountaccesses.AccountAccessesImpl;
 import io.mailtrap.api.accounts.AccountsImpl;
+import io.mailtrap.api.apitokens.ApiTokensImpl;
 import io.mailtrap.api.attachments.AttachmentsImpl;
 import io.mailtrap.api.billing.BillingImpl;
 import io.mailtrap.api.bulkemails.BulkEmailsImpl;
@@ -91,10 +92,11 @@ public final class MailtrapClientFactory {
     private static MailtrapGeneralApi createGeneralApi(final MailtrapConfig config) {
         final var accountAccess = new AccountAccessesImpl(config);
         final var accounts = new AccountsImpl(config);
+        final var apiTokens = new ApiTokensImpl(config);
         final var billing = new BillingImpl(config);
         final var permissions = new PermissionsImpl(config);
 
-        return new MailtrapGeneralApi(accountAccess, accounts, billing, permissions);
+        return new MailtrapGeneralApi(accountAccess, accounts, apiTokens, billing, permissions);
     }
 
     private static MailtrapEmailSendingApi createSendingApi(final MailtrapConfig config) {

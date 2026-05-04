@@ -1,0 +1,10 @@
+{
+  "name": "Scratch test token",
+  "resources": [
+    {
+      "resource_type": "account",
+      "resource_id": 1,
+      "access_level": "admin"
+    }
+  ]
+}
