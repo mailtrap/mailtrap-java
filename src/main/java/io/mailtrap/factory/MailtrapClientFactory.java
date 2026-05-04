@@ -22,6 +22,7 @@ import io.mailtrap.api.emaillogs.EmailLogsImpl;
 import io.mailtrap.api.sendingdomains.SendingDomainsImpl;
 import io.mailtrap.api.sendingemails.SendingEmailsImpl;
 import io.mailtrap.api.stats.StatsImpl;
+import io.mailtrap.api.subaccounts.SubAccountsImpl;
 import io.mailtrap.api.suppressions.SuppressionsImpl;
 import io.mailtrap.api.testingemails.TestingEmailsImpl;
 import io.mailtrap.client.MailtrapClient;
@@ -70,11 +71,18 @@ public final class MailtrapClientFactory {
         final var generalApi = createGeneralApi(config);
         final var contactsApi = createContactsApi(config);
         final var emailTemplatesApi = createEmailTemplatesApi(config);
+        final var organizationsApi = createOrganizationsApi(config);
 
         final var sendingContextHolder = configureSendingContext(config);
 
         return new MailtrapClient(sendingApi, testingApi, bulkSendingApi, generalApi, contactsApi, emailTemplatesApi,
-                sendingContextHolder);
+                organizationsApi, sendingContextHolder);
+    }
+
+    private static MailtrapOrganizationsApi createOrganizationsApi(final MailtrapConfig config) {
+        final var subAccounts = new SubAccountsImpl(config);
+
+        return new MailtrapOrganizationsApi(subAccounts);
     }
 
     private static MailtrapContactsApi createContactsApi(final MailtrapConfig config) {
