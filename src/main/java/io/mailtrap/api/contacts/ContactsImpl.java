@@ -7,6 +7,7 @@ import io.mailtrap.http.RequestData;
 import io.mailtrap.model.request.contacts.CreateContactRequest;
 import io.mailtrap.model.request.contacts.UpdateContactRequest;
 import io.mailtrap.model.response.contacts.CreateContactResponse;
+import io.mailtrap.model.response.contacts.GetContactResponse;
 import io.mailtrap.model.response.contacts.UpdateContactResponse;
 
 import java.net.URLEncoder;
@@ -26,6 +27,16 @@ public class ContactsImpl extends ApiResource implements Contacts {
             request,
             new RequestData(),
             CreateContactResponse.class
+        );
+    }
+
+    @Override
+    public GetContactResponse getContact(final long accountId, final String idOrEmail) {
+        return httpClient.get(
+            String.format(apiHost + "/api/accounts/%d/contacts/%s", accountId,
+                URLEncoder.encode(idOrEmail, StandardCharsets.UTF_8)),
+            new RequestData(),
+            GetContactResponse.class
         );
     }
 
