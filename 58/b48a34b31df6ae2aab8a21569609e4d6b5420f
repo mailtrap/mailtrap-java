@@ -1,0 +1,55 @@
+src/test/resources/api/apitokens/createApiTokenResponse.json
+  7a141b6d41275128 1-15
+src/main/java/io/mailtrap/model/ResourceType.java
+  7a141b6d41275128 12-13
+src/test/resources/api/apitokens/createApiTokenRequest.json
+  7a141b6d41275128 1-10
+src/test/resources/api/apitokens/getApiTokenResponse.json
+  7a141b6d41275128 1-14
+src/test/resources/api/apitokens/resetApiTokenResponse.json
+  7a141b6d41275128 1-15
+src/test/java/io/mailtrap/api/apitokens/ApiTokensImplTest.java
+  7a141b6d41275128 1-111
+src/main/java/io/mailtrap/api/apitokens/ApiTokensImpl.java
+  7a141b6d41275128 1-67
+src/main/java/io/mailtrap/model/request/apitokens/CreateApiTokenRequest.java
+  7a141b6d41275128 1-21
+src/test/resources/api/apitokens/listApiTokensResponse.json
+  7a141b6d41275128 1-30
+src/main/java/io/mailtrap/model/response/apitokens/ApiTokenWithToken.java
+  7a141b6d41275128 1-12
+src/main/java/io/mailtrap/model/response/apitokens/ApiTokenResource.java
+  7a141b6d41275128 1-20
+src/main/java/io/mailtrap/model/request/apitokens/ApiTokenResource.java
+  7a141b6d41275128 1-24
+src/main/java/io/mailtrap/client/api/MailtrapGeneralApi.java
+  7a141b6d41275128 5,21
+src/main/java/io/mailtrap/factory/MailtrapClientFactory.java
+  7a141b6d41275128 6,95,99
+src/main/java/io/mailtrap/http/impl/DefaultMailtrapHttpClient.java
+  7a141b6d41275128 143-145
+src/main/java/io/mailtrap/api/apitokens/ApiTokens.java
+  7a141b6d41275128 1-56
+src/main/java/io/mailtrap/model/response/apitokens/ApiToken.java
+  7a141b6d41275128 1-27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "58b48a34b31df6ae2aab8a21569609e4d6b5420f",
+  "prompts": {
+    "7a141b6d41275128": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d8502922-9394-4aa7-b3d8-2551b5208123",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Igor Dobryn",
+      "messages": [],
+      "total_additions": 432,
+      "total_deletions": 2,
+      "accepted_lines": 432,
+      "overriden_lines": 0
+    }
+  }
+}
