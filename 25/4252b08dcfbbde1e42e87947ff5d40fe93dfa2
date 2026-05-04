@@ -1,0 +1,67 @@
+src/test/resources/api/webhooks/getWebhookResponse.json
+  7a141b6d41275128 1-15
+src/test/resources/api/webhooks/deleteWebhookResponse.json
+  7a141b6d41275128 1-9
+src/main/java/io/mailtrap/api/webhooks/Webhooks.java
+  7a141b6d41275128 1-57
+src/main/java/io/mailtrap/model/request/webhooks/WebhookInput.java
+  7a141b6d41275128 1-42
+src/main/java/io/mailtrap/client/api/MailtrapGeneralApi.java
+  7a141b6d41275128 8,25
+src/main/java/io/mailtrap/model/request/webhooks/CreateWebhookRequest.java
+  7a141b6d41275128 1-17
+src/main/java/io/mailtrap/model/response/webhooks/ListWebhooksResponse.java
+  7a141b6d41275128 1-12
+src/main/java/io/mailtrap/model/response/webhooks/Webhook.java
+  7a141b6d41275128 1-36
+src/main/java/io/mailtrap/model/response/webhooks/WebhookResponse.java
+  7a141b6d41275128 1-10
+src/test/resources/api/webhooks/createWebhookResponse.json
+  7a141b6d41275128 1-16
+src/test/java/io/mailtrap/api/webhooks/WebhooksImplTest.java
+  7a141b6d41275128 1-127
+src/main/java/io/mailtrap/api/webhooks/WebhooksImpl.java
+  7a141b6d41275128 1-66
+src/main/java/io/mailtrap/model/WebhookEventType.java
+  7a141b6d41275128 1-42
+src/test/resources/api/webhooks/updateWebhookRequest.json
+  7a141b6d41275128 1-5
+src/test/resources/api/webhooks/updateWebhookResponse.json
+  7a141b6d41275128 1-15
+src/main/java/io/mailtrap/model/WebhookType.java
+  7a141b6d41275128 1-36
+src/main/java/io/mailtrap/model/response/webhooks/WebhookWithSecret.java
+  7a141b6d41275128 1-14
+src/main/java/io/mailtrap/model/WebhookPayloadFormat.java
+  7a141b6d41275128 1-35
+src/main/java/io/mailtrap/model/response/webhooks/CreateWebhookResponse.java
+  7a141b6d41275128 1-10
+src/main/java/io/mailtrap/model/request/webhooks/UpdateWebhookRequest.java
+  7a141b6d41275128 1-17
+src/test/resources/api/webhooks/createWebhookRequest.json
+  7a141b6d41275128 1-13
+src/main/java/io/mailtrap/factory/MailtrapClientFactory.java
+  7a141b6d41275128 28,107,109
+src/test/resources/api/webhooks/listWebhooksResponse.json
+  7a141b6d41275128 1-24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "254252b08dcfbbde1e42e87947ff5d40fe93dfa2",
+  "prompts": {
+    "7a141b6d41275128": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d8502922-9394-4aa7-b3d8-2551b5208123",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Igor Dobryn",
+      "messages": [],
+      "total_additions": 624,
+      "total_deletions": 2,
+      "accepted_lines": 623,
+      "overriden_lines": 0
+    }
+  }
+}
