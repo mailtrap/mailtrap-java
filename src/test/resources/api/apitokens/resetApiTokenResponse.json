@@ -1,0 +1,15 @@
+{
+  "id": 12345,
+  "name": "My API Token",
+  "last_4_digits": "n3w0",
+  "created_by": "user@example.com",
+  "expires_at": null,
+  "resources": [
+    {
+      "resource_type": "account",
+      "resource_id": 1,
+      "access_level": 100
+    }
+  ],
+  "token": "newtoken123"
+}

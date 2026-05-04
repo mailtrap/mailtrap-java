@@ -3,6 +3,7 @@ package io.mailtrap.factory;
 import io.mailtrap.MailtrapValidator;
 import io.mailtrap.api.accountaccesses.AccountAccessesImpl;
 import io.mailtrap.api.accounts.AccountsImpl;
+import io.mailtrap.api.apitokens.ApiTokensImpl;
 import io.mailtrap.api.attachments.AttachmentsImpl;
 import io.mailtrap.api.billing.BillingImpl;
 import io.mailtrap.api.bulkemails.BulkEmailsImpl;
@@ -21,8 +22,10 @@ import io.mailtrap.api.emaillogs.EmailLogsImpl;
 import io.mailtrap.api.sendingdomains.SendingDomainsImpl;
 import io.mailtrap.api.sendingemails.SendingEmailsImpl;
 import io.mailtrap.api.stats.StatsImpl;
+import io.mailtrap.api.subaccounts.SubAccountsImpl;
 import io.mailtrap.api.suppressions.SuppressionsImpl;
 import io.mailtrap.api.testingemails.TestingEmailsImpl;
+import io.mailtrap.api.webhooks.WebhooksImpl;
 import io.mailtrap.client.MailtrapClient;
 import io.mailtrap.client.api.*;
 import io.mailtrap.config.MailtrapConfig;
@@ -69,11 +72,18 @@ public final class MailtrapClientFactory {
         final var generalApi = createGeneralApi(config);
         final var contactsApi = createContactsApi(config);
         final var emailTemplatesApi = createEmailTemplatesApi(config);
+        final var organizationsApi = createOrganizationsApi(config);
 
         final var sendingContextHolder = configureSendingContext(config);
 
         return new MailtrapClient(sendingApi, testingApi, bulkSendingApi, generalApi, contactsApi, emailTemplatesApi,
-                sendingContextHolder);
+                organizationsApi, sendingContextHolder);
+    }
+
+    private static MailtrapOrganizationsApi createOrganizationsApi(final MailtrapConfig config) {
+        final var subAccounts = new SubAccountsImpl(config);
+
+        return new MailtrapOrganizationsApi(subAccounts);
     }
 
     private static MailtrapContactsApi createContactsApi(final MailtrapConfig config) {
@@ -91,10 +101,12 @@ public final class MailtrapClientFactory {
     private static MailtrapGeneralApi createGeneralApi(final MailtrapConfig config) {
         final var accountAccess = new AccountAccessesImpl(config);
         final var accounts = new AccountsImpl(config);
+        final var apiTokens = new ApiTokensImpl(config);
         final var billing = new BillingImpl(config);
         final var permissions = new PermissionsImpl(config);
+        final var webhooks = new WebhooksImpl(config);
 
-        return new MailtrapGeneralApi(accountAccess, accounts, billing, permissions);
+        return new MailtrapGeneralApi(accountAccess, accounts, apiTokens, billing, permissions, webhooks);
     }
 
     private static MailtrapEmailSendingApi createSendingApi(final MailtrapConfig config) {

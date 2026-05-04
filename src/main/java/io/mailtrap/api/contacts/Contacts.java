@@ -3,6 +3,7 @@ package io.mailtrap.api.contacts;
 import io.mailtrap.model.request.contacts.CreateContactRequest;
 import io.mailtrap.model.request.contacts.UpdateContactRequest;
 import io.mailtrap.model.response.contacts.CreateContactResponse;
+import io.mailtrap.model.response.contacts.GetContactResponse;
 import io.mailtrap.model.response.contacts.UpdateContactResponse;
 
 public interface Contacts {
@@ -15,6 +16,15 @@ public interface Contacts {
      * @return created contact
      */
     CreateContactResponse createContact(long accountId, CreateContactRequest request);
+
+    /**
+     * Get contact using id or email (URL encoded)
+     *
+     * @param accountId unique account ID
+     * @param idOrEmail contact ID or Email
+     * @return contact details
+     */
+    GetContactResponse getContact(long accountId, String idOrEmail);
 
     /**
      * Delete contact using id or email (URL encoded)

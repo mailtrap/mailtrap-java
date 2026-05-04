@@ -10,6 +10,7 @@ import io.mailtrap.model.request.contacts.UpdateContactRequest;
 import io.mailtrap.model.response.contacts.ContactAction;
 import io.mailtrap.model.response.contacts.ContactStatus;
 import io.mailtrap.model.response.contacts.CreateContactResponse;
+import io.mailtrap.model.response.contacts.GetContactResponse;
 import io.mailtrap.model.response.contacts.UpdateContactResponse;
 import io.mailtrap.testutils.BaseTest;
 import io.mailtrap.testutils.DataMock;
@@ -31,6 +32,12 @@ class ContactsImplTest extends BaseTest {
         final TestHttpClient httpClient = new TestHttpClient(List.of(
                 DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts",
                         "POST", "api/contacts/createContactRequest.json", "api/contacts/createContactResponse.json"),
+
+                DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/" + emailEncoded,
+                        "GET", null, "api/contacts/getContactResponse.json"),
+
+                DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/" + contactUUIDEncoded,
+                        "GET", null, "api/contacts/getContactResponse.json"),
 
                 DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/" + emailEncoded,
                         "DELETE", null, null),
@@ -61,6 +68,30 @@ class ContactsImplTest extends BaseTest {
 
         assertNotNull(response);
         assertEquals(ContactStatus.SUBSCRIBED, response.getStatus());
+    }
+
+    @Test
+    void test_getContact_byEmail() {
+        final GetContactResponse response = api.getContact(accountId, email);
+
+        assertNotNull(response);
+        assertNotNull(response.getData());
+        assertEquals("018dd5e3-f6d2-7c00-8f9b-e5c3f2d8a132", response.getData().getId());
+        assertEquals("john.smith@example.com", response.getData().getEmail());
+        assertEquals(ContactStatus.SUBSCRIBED, response.getData().getStatus());
+        assertEquals(List.of(1L, 2L, 3L), response.getData().getListIds());
+        assertEquals(1742820600230L, response.getData().getCreatedAt());
+        assertEquals(1742820600230L, response.getData().getUpdatedAt());
+    }
+
+    @Test
+    void test_getContact_byId() {
+        final GetContactResponse response = api.getContact(accountId, contactUUID);
+
+        assertNotNull(response);
+        assertNotNull(response.getData());
+        assertEquals(contactUUID, response.getData().getId());
+        assertEquals(ContactStatus.SUBSCRIBED, response.getData().getStatus());
     }
 
     @Test

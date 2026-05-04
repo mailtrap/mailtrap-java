@@ -3,18 +3,14 @@ package io.mailtrap.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ResourceType {
-    ACCOUNT("account"),
-    BILLING("billing"),
-    PROJECT("project"),
-    INBOX("inbox"),
-    SENDING_DOMAIN("sending_domain"),
-    EMAIL_CAMPAIGN_PERMISSION_SCOPE("email_campaign_permission_scope"),
-    EMAIL_TEMPLATE_PERMISSION_SCOPE("email_template_permission_scope");
+public enum WebhookType {
+    EMAIL_SENDING("email_sending"),
+    AUDIT_LOG("audit_log"),
+    CAMPAIGNS("campaigns");
 
     private final String value;
 
-    ResourceType(String value) {
+    WebhookType(String value) {
         this.value = value;
     }
 
@@ -23,9 +19,14 @@ public enum ResourceType {
         return value;
     }
 
+    @Override
+    public String toString() {
+        return value;
+    }
+
     @JsonCreator
-    public static ResourceType fromValue(String value) {
-        for (ResourceType type : ResourceType.values()) {
+    public static WebhookType fromValue(String value) {
+        for (WebhookType type : WebhookType.values()) {
             if (type.value.equalsIgnoreCase(value)) {
                 return type;
             }
