@@ -25,6 +25,7 @@ import io.mailtrap.api.stats.StatsImpl;
 import io.mailtrap.api.subaccounts.SubAccountsImpl;
 import io.mailtrap.api.suppressions.SuppressionsImpl;
 import io.mailtrap.api.testingemails.TestingEmailsImpl;
+import io.mailtrap.api.webhooks.WebhooksImpl;
 import io.mailtrap.client.MailtrapClient;
 import io.mailtrap.client.api.*;
 import io.mailtrap.config.MailtrapConfig;
@@ -103,8 +104,9 @@ public final class MailtrapClientFactory {
         final var apiTokens = new ApiTokensImpl(config);
         final var billing = new BillingImpl(config);
         final var permissions = new PermissionsImpl(config);
+        final var webhooks = new WebhooksImpl(config);
 
-        return new MailtrapGeneralApi(accountAccess, accounts, apiTokens, billing, permissions);
+        return new MailtrapGeneralApi(accountAccess, accounts, apiTokens, billing, permissions, webhooks);
     }
 
     private static MailtrapEmailSendingApi createSendingApi(final MailtrapConfig config) {
