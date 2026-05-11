@@ -1,0 +1,33 @@
+examples/java/io/mailtrap/examples/contacts/ContactsExample.java
+  s_c5c6f0a7b640e5::t_b80b120aaa0720 38-42
+README.md
+  s_c5c6f0a7b640e5::t_c4dafd8c5a3b2b 335-340
+examples/java/io/mailtrap/examples/general/ApiTokensExample.java
+  s_c5c6f0a7b640e5::t_a025dd1a7d2218 1-25,27-48
+  h_32e79f74e8df76 26
+examples/java/io/mailtrap/examples/organizations/SubAccountsExample.java
+  s_c5c6f0a7b640e5::t_b65ebd2c97e11d 1-30
+examples/java/io/mailtrap/examples/webhooks/WebhooksExample.java
+  s_c5c6f0a7b640e5::t_cd48df38611c53 1-71
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "52b2ac2ff76267c9f50a526395f36058d5f8d6e2",
+  "prompts": {},
+  "humans": {
+    "h_32e79f74e8df76": {
+      "author": "Igor Dobryn <igor.dobryn@railsware.com>"
+    }
+  },
+  "sessions": {
+    "s_c5c6f0a7b640e5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "db978632-36d6-495a-b174-633ce3bc1624",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Igor Dobryn <igor.dobryn@railsware.com>"
+    }
+  }
+}
