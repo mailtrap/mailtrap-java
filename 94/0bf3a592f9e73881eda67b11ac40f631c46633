@@ -1,0 +1,14 @@
+.envrc
+  h_32e79f74e8df76 1-2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "940bf3a592f9e73881eda67b11ac40f631c46633",
+  "prompts": {},
+  "humans": {
+    "h_32e79f74e8df76": {
+      "author": "Igor Dobryn <igor.dobryn@railsware.com>"
+    }
+  }
+}
