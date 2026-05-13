@@ -1,0 +1,13 @@
+{
+  "webhook": {
+    "url": "https://example.com/mailtrap/webhooks",
+    "webhook_type": "email_sending",
+    "payload_format": "json",
+    "sending_stream": "transactional",
+    "event_types": [
+      "delivery",
+      "bounce"
+    ],
+    "domain_id": 435
+  }
+}

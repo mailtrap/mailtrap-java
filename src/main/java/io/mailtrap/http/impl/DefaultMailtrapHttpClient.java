@@ -140,6 +140,9 @@ public class DefaultMailtrapHttpClient implements CustomHttpClient {
 
             final int statusCode = response.statusCode();
             if (statusCode >= 200 && statusCode < 300) {
+                if (response.body().isEmpty()) {
+                    return null;
+                }
                 if (responseClassType != null) {
                     if (String.class.equals(responseClassType)) {
                         return responseClassType.cast(response.body());

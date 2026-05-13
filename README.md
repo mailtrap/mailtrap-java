@@ -332,6 +332,12 @@ You can find the [Mailtrap Java API reference](https://mailtrap.github.io/mailtr
 - [Accounts](examples/java/io/mailtrap/examples/general/AccountsExample.java)
 - [Permissions](examples/java/io/mailtrap/examples/general/PermissionsExample.java)
 - [Billing](examples/java/io/mailtrap/examples/general/BillingExample.java)
+- [API Tokens](examples/java/io/mailtrap/examples/general/ApiTokensExample.java)
+- [Webhooks](examples/java/io/mailtrap/examples/webhooks/WebhooksExample.java)
+
+### Organizations API
+
+- [Sub-Accounts](examples/java/io/mailtrap/examples/organizations/SubAccountsExample.java)
 
 ### Sending API
 

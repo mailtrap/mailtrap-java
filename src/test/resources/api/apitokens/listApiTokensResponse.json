@@ -1,0 +1,30 @@
+[
+  {
+    "id": 12345,
+    "name": "My API Token",
+    "last_4_digits": "x7k9",
+    "created_by": "user@example.com",
+    "expires_at": null,
+    "resources": [
+      {
+        "resource_type": "account",
+        "resource_id": 1,
+        "access_level": 100
+      }
+    ]
+  },
+  {
+    "id": 67890,
+    "name": "Inbox-only token",
+    "last_4_digits": "ab12",
+    "created_by": "ci-bot",
+    "expires_at": "2027-01-01T00:00:00Z",
+    "resources": [
+      {
+        "resource_type": "inbox",
+        "resource_id": 2,
+        "access_level": 10
+      }
+    ]
+  }
+]

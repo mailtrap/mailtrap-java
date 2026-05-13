@@ -35,6 +35,11 @@ public class ContactsExample {
 
         System.out.println(createResponse);
 
+        final var getResponse = client.contactsApi().contacts()
+            .getContact(ACCOUNT_ID, EMAIL);
+
+        System.out.println(getResponse);
+
         final var updateRequest = new UpdateContactRequest(
             new UpdateContact(EMAIL, Map.of("first_name", "Nick"), List.of(LIST_1_ID, LIST_2_ID),
                 Collections.emptyList(), UNSUBSCRIBED));

@@ -2,8 +2,10 @@ package io.mailtrap.client.api;
 
 import io.mailtrap.api.accountaccesses.AccountAccesses;
 import io.mailtrap.api.accounts.Accounts;
+import io.mailtrap.api.apitokens.ApiTokens;
 import io.mailtrap.api.billing.Billing;
 import io.mailtrap.api.permissions.Permissions;
+import io.mailtrap.api.webhooks.Webhooks;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
@@ -17,6 +19,8 @@ import lombok.experimental.Accessors;
 public class MailtrapGeneralApi {
     private final AccountAccesses accountAccesses;
     private final Accounts accounts;
+    private final ApiTokens apiTokens;
     private final Billing billing;
     private final Permissions permissions;
+    private final Webhooks webhooks;
 }

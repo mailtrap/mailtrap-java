@@ -1,0 +1,9 @@
+{
+  "data": {
+    "id": 1,
+    "url": "https://example.com/mailtrap/webhooks",
+    "active": true,
+    "webhook_type": "audit_log",
+    "payload_format": "json"
+  }
+}

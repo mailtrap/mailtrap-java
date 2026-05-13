@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "url": "https://example.com/mailtrap/webhooks",
+      "active": true,
+      "webhook_type": "email_sending",
+      "payload_format": "json",
+      "sending_stream": "transactional",
+      "domain_id": 435,
+      "event_types": [
+        "delivery",
+        "bounce"
+      ]
+    },
+    {
+      "id": 2,
+      "url": "https://example.com/mailtrap/webhooks",
+      "active": true,
+      "webhook_type": "audit_log",
+      "payload_format": "json"
+    }
+  ]
+}
