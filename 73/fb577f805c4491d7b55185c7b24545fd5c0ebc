@@ -1,0 +1,18 @@
+README.md
+  h_32e79f74e8df76 22,29,35
+pom.xml
+  h_32e79f74e8df76 9
+docs/getting-started.md
+  h_32e79f74e8df76 20,27,33
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "73fb577f805c4491d7b55185c7b24545fd5c0ebc",
+  "prompts": {},
+  "humans": {
+    "h_32e79f74e8df76": {
+      "author": "Igor Dobryn <igor.dobryn@railsware.com>"
+    }
+  }
+}
