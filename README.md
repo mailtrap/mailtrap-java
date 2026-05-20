@@ -334,6 +334,30 @@ You can find the [Mailtrap Java API reference](https://mailtrap.github.io/mailtr
 - [Billing](examples/java/io/mailtrap/examples/general/BillingExample.java)
 - [API Tokens](examples/java/io/mailtrap/examples/general/ApiTokensExample.java)
 - [Webhooks](examples/java/io/mailtrap/examples/webhooks/WebhooksExample.java)
+- [Verifying webhook signatures](examples/java/io/mailtrap/examples/webhooks/WebhookSignatureExample.java)
+
+#### Verifying webhook signatures
+
+Mailtrap signs every outbound webhook with HMAC-SHA256 and sends the lowercase hex digest in the `Mailtrap-Signature` header. Verify the signature against the raw request body using the `signing_secret` returned when you created the webhook:
+
+```java
+import io.mailtrap.webhooks.WebhookSignatures;
+
+// `payload` must be the unparsed request body — do NOT re-serialize the
+// parsed JSON, as that may reorder keys and invalidate the signature.
+boolean valid = WebhookSignatures.verify(
+    payload,
+    request.getHeader("Mailtrap-Signature"),
+    System.getenv("MAILTRAP_WEBHOOK_SIGNING_SECRET")
+);
+
+if (!valid) {
+    // reject the request — 401 Unauthorized
+    return;
+}
+```
+
+The helper performs a constant-time comparison and returns `false` (rather than throwing) for empty, missing, or malformed signatures.
 
 ### Organizations API
 
