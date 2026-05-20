@@ -1,0 +1,44 @@
+src/test/java/io/mailtrap/webhooks/WebhookSignaturesTest.java
+  s_0449bc88abf963::t_0323fdaa15e7bc 1-152
+examples/java/io/mailtrap/examples/webhooks/WebhookSignatureExample.java
+  s_90bdbe53f77753::t_01603e7c43aa51 5-6,8,10,12-15,17-20,22,24-31,33,35-38
+  s_0449bc88abf963::t_30f7be40a1a4d4 1-4,7,9,11,16,21,23,32,34,39-40
+README.md
+  s_c5c6f0a7b640e5::t_c4dafd8c5a3b2b 338
+  s_0449bc88abf963::t_acc906379dd26d 339-340,342-345,355-359
+  s_90bdbe53f77753::t_d043f04996ff12 337,341,346-354,360
+src/main/java/io/mailtrap/webhooks/WebhookSignatures.java
+  s_0449bc88abf963::t_3109c05b999836 1-106
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.11",
+  "base_commit_sha": "bfe3bad37a76a1c57064db428be0315f3ff910c1",
+  "prompts": {},
+  "sessions": {
+    "s_0449bc88abf963": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "209ab809-bbe5-4b88-a3d1-6277ee8cddf5",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Maciej Walusiak <maciej.walusiak@railsware.com>"
+    },
+    "s_90bdbe53f77753": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "67c23e88-9814-49c9-a2b6-b42e90252a0e",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": null
+    },
+    "s_c5c6f0a7b640e5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "db978632-36d6-495a-b174-633ce3bc1624",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Igor Dobryn <igor.dobryn@railsware.com>"
+    }
+  }
+}
