@@ -19,22 +19,8 @@ public class WebhookSignatureExample {
         final String signature = HexFormat.of().formatHex(
             mac.doFinal(payload.getBytes(StandardCharsets.UTF_8)));
 
-        assertTrue(WebhookSignatures.verify(payload, signature, signingSecret));
-
-        // Bad input never throws — it returns false:
-        assertFalse(WebhookSignatures.verify(payload, "not-hex", signingSecret));
-        assertFalse(WebhookSignatures.verify(payload, "", signingSecret));
-    }
-
-    private static void assertTrue(final boolean condition) {
-        if (!condition) {
-            throw new AssertionError("expected true");
-        }
-    }
-
-    private static void assertFalse(final boolean condition) {
-        if (condition) {
-            throw new AssertionError("expected false");
+        if (!WebhookSignatures.verify(payload, signature, signingSecret)) {
+            throw new IllegalStateException("Signature verification failed!");
         }
     }
 }
