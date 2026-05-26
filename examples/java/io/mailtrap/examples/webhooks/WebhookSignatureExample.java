@@ -1,26 +1,37 @@
 package io.mailtrap.examples.webhooks;
 
+import com.sun.net.httpserver.HttpServer;
 import io.mailtrap.webhooks.WebhookSignatures;
 
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
-import java.util.HexFormat;
 
 public class WebhookSignatureExample {
 
-    public static void main(final String[] args) throws Exception {
-        // --- Direct verification (e.g. for unit tests or custom routers) ----
-        final String payload = "{\"event\":\"delivery\",\"message_id\":\"abc-123\"}";
-        final String signingSecret = "8d9a3c0e7f5b2d4a6c1e9f8b3a7d5c2e";
+    public static void main(final String[] args) throws IOException {
+        final String signingSecret = System.getenv("MAILTRAP_WEBHOOK_SIGNING_SECRET");
 
-        final Mac mac = Mac.getInstance("HmacSHA256");
-        mac.init(new SecretKeySpec(signingSecret.getBytes(StandardCharsets.UTF_8), "HmacSHA256"));
-        final String signature = HexFormat.of().formatHex(
-            mac.doFinal(payload.getBytes(StandardCharsets.UTF_8)));
+        final HttpServer server = HttpServer.create(new InetSocketAddress(9292), 0);
+        server.createContext("/webhooks/mailtrap", exchange -> {
+            // Use the raw request body — parsing and re-serializing the JSON may
+            // reorder keys or alter whitespace and invalidate the signature.
+            final String payload;
+            try (InputStream body = exchange.getRequestBody()) {
+                payload = new String(body.readAllBytes(), StandardCharsets.UTF_8);
+            }
+            final String signature = exchange.getRequestHeaders().getFirst("Mailtrap-Signature");
 
-        if (!WebhookSignatures.verify(payload, signature, signingSecret)) {
-            throw new IllegalStateException("Signature verification failed!");
-        }
+            if (!WebhookSignatures.verify(payload, signature, signingSecret)) {
+                exchange.sendResponseHeaders(401, -1);
+                exchange.close();
+                return;
+            }
+
+            exchange.sendResponseHeaders(200, -1);
+            exchange.close();
+        });
+        server.start();
     }
 }
