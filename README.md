@@ -334,6 +334,7 @@ You can find the [Mailtrap Java API reference](https://mailtrap.github.io/mailtr
 - [Billing](examples/java/io/mailtrap/examples/general/BillingExample.java)
 - [API Tokens](examples/java/io/mailtrap/examples/general/ApiTokensExample.java)
 - [Webhooks](examples/java/io/mailtrap/examples/webhooks/WebhooksExample.java)
+- [Verifying webhook signatures](examples/java/io/mailtrap/examples/webhooks/WebhookSignatureExample.java)
 
 ### Organizations API
 
