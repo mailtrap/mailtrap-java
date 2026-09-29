@@ -40,5 +40,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-m2-
 
+      - name: Lint
+        run: ./scripts/lint.sh
+
       - name: Install dependencies and run tests
         run: mvn clean install -B -q -Dgpg.skip=true
