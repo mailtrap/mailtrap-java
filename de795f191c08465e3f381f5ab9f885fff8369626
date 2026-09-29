@@ -1,0 +1,30 @@
+examples/java/io/mailtrap/examples/suppressions/SuppressionsExample.java
+  s_a416a2bbf03afd::t_29dad136cd8663 7,40-48
+  s_a416a2bbf03afd::t_36f097249db7fa 49
+src/main/java/io/mailtrap/api/suppressions/Suppressions.java
+  s_a416a2bbf03afd::t_29dad136cd8663 4,20-28
+  s_a416a2bbf03afd::t_cf579e64fd020d 29
+src/main/java/io/mailtrap/model/request/suppressions/SuppressionListFilter.java
+  s_a416a2bbf03afd::t_fd28e5b302d6ea 1-37
+src/test/java/io/mailtrap/api/suppressions/SuppressionsImplTest.java
+  s_a416a2bbf03afd::t_29dad136cd8663 8,36-40,71-83
+  s_a416a2bbf03afd::t_25d11350373b5e 84-85
+src/main/java/io/mailtrap/api/suppressions/SuppressionsImpl.java
+  s_a416a2bbf03afd::t_29dad136cd8663 8,28-38
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "de795f191c08465e3f381f5ab9f885fff8369626",
+  "prompts": {},
+  "sessions": {
+    "s_a416a2bbf03afd": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "73aab1cf-cfd1-42b8-b656-f26905d319ee",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Marcin Klocek <marcin.klocek@railsware.com>"
+    }
+  }
+}

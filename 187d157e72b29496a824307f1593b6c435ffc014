@@ -1,0 +1,76 @@
+README.md
+  s_a416a2bbf03afd::t_63389fe58e748f 353
+src/main/java/io/mailtrap/model/request/trackingoptouts/TrackingOptOutListFilter.java
+  s_a416a2bbf03afd::t_4f29b2b9541dd0 1-37
+src/main/java/io/mailtrap/client/api/MailtrapEmailSendingApi.java
+  s_a416a2bbf03afd::t_a32922d54e6953 9,25
+src/main/java/io/mailtrap/model/request/trackingoptouts/CreateTrackingOptOutRequest.java
+  s_a416a2bbf03afd::t_4f29b2b9541dd0 1-19
+src/main/java/io/mailtrap/factory/MailtrapClientFactory.java
+  s_a416a2bbf03afd::t_83f20694dd3a6a 33,141,145-146
+src/main/java/io/mailtrap/api/suppressions/Suppressions.java
+  s_a416a2bbf03afd::t_ec77104c313d3e 20-27
+  s_a416a2bbf03afd::t_9f1218c57beba1 3
+  s_a416a2bbf03afd::t_557431a3d92049 19
+src/main/java/io/mailtrap/model/request/suppressions/CreateSuppressionRequest.java
+  s_a416a2bbf03afd::t_79807eabd8c0d3 6
+  s_a416a2bbf03afd::t_93d23d78cf6b33 24
+  s_a416a2bbf03afd::t_afbf18926f51ba 1-5,7-23,25-31
+src/main/java/io/mailtrap/api/suppressions/SuppressionsImpl.java
+  s_a416a2bbf03afd::t_5576e183c8b99e 7-8
+  s_a416a2bbf03afd::t_b4a5c456fe7305 38-46
+  s_a416a2bbf03afd::t_0aeb70f56386c4 37
+src/test/resources/api/tracking_opt_outs/createTrackingOptOutRequest.json
+  s_a416a2bbf03afd::t_f269475d27c742 1-4
+src/test/resources/api/suppressions/createSuppressionResponse.json
+  s_a416a2bbf03afd::t_f269475d27c742 1-10
+src/test/resources/api/tracking_opt_outs/createTrackingOptOutResponse.json
+  s_a416a2bbf03afd::t_f269475d27c742 1-8
+src/test/java/io/mailtrap/api/trackingoptouts/TrackingOptOutsImplTest.java
+  s_a416a2bbf03afd::t_e99dc7268339c9 1-116
+examples/java/io/mailtrap/examples/trackingoptouts/TrackingOptOutsExample.java
+  s_a416a2bbf03afd::t_fecd7906d283f6 1-56
+src/main/java/io/mailtrap/model/response/suppressions/SuppressionResponse.java
+  s_a416a2bbf03afd::t_afbf18926f51ba 1-13
+examples/java/io/mailtrap/examples/suppressions/SuppressionsExample.java
+  s_a416a2bbf03afd::t_8c2766dbec307b 5-6,12,21,23-35,40
+src/test/resources/api/tracking_opt_outs/listTrackingOptOuts.json
+  s_a416a2bbf03afd::t_f269475d27c742 1-11
+src/main/java/io/mailtrap/api/trackingoptouts/TrackingOptOuts.java
+  s_a416a2bbf03afd::t_13ea25ef980462 1-37
+src/test/java/io/mailtrap/api/suppressions/SuppressionsImplTest.java
+  s_a416a2bbf03afd::t_c2290259889456 6,72
+  s_a416a2bbf03afd::t_128fe2fb8cc145 7,66-71,73-79
+  s_a416a2bbf03afd::t_180613d9de1db2 36-39
+  s_a416a2bbf03afd::t_547e00bfde6984 65
+  s_a416a2bbf03afd::t_7c60bae33731e7 35
+  s_a416a2bbf03afd::t_9e8afc38eaf3c2 80-81
+src/main/java/io/mailtrap/model/response/trackingoptouts/TrackingOptOutResponse.java
+  s_a416a2bbf03afd::t_4f29b2b9541dd0 1-13
+src/main/java/io/mailtrap/model/response/trackingoptouts/TrackingOptOut.java
+  s_a416a2bbf03afd::t_4f29b2b9541dd0 1-19
+src/test/resources/api/suppressions/createSuppressionRequest.json
+  s_a416a2bbf03afd::t_f269475d27c742 1-5
+src/main/java/io/mailtrap/api/trackingoptouts/TrackingOptOutsImpl.java
+  s_a416a2bbf03afd::t_13ea25ef980462 1-69
+src/test/resources/api/tracking_opt_outs/deleteTrackingOptOut.json
+  s_a416a2bbf03afd::t_f269475d27c742 1-6
+src/main/java/io/mailtrap/model/response/trackingoptouts/TrackingOptOutListResponse.java
+  s_a416a2bbf03afd::t_4f29b2b9541dd0 1-20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "187d157e72b29496a824307f1593b6c435ffc014",
+  "prompts": {},
+  "sessions": {
+    "s_a416a2bbf03afd": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "73aab1cf-cfd1-42b8-b656-f26905d319ee",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Marcin Klocek <marcin.klocek@railsware.com>"
+    }
+  }
+}
