@@ -26,4 +26,17 @@ public interface SubAccounts {
      */
     SubAccount createSubAccount(long organizationId, CreateSubAccountRequest request);
 
+    /**
+     * Delete a sub account from the specified organization.
+     * Requires sub account management permissions for the organization.
+     * <p>
+     * Deletion is permanent and removes all sub account data. Deleting the last sub account
+     * of an organization deletes the organization as well. A repeated call for the same
+     * sub account fails with 404. Rate limit – 10 requests per minute per organization.
+     *
+     * @param organizationId unique organization ID
+     * @param subAccountId   unique sub account ID
+     */
+    void deleteSubAccount(long organizationId, long subAccountId);
+
 }

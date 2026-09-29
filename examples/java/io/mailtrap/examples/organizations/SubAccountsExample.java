@@ -26,5 +26,9 @@ public class SubAccountsExample {
         final var createdSubAccount = client.organizationsApi().subAccounts()
             .createSubAccount(ORGANIZATION_ID, createRequest);
         System.out.println(createdSubAccount);
+
+        // Permanent – removes all sub account data. Deleting the last sub account deletes the organization.
+        client.organizationsApi().subAccounts().deleteSubAccount(ORGANIZATION_ID, createdSubAccount.getId());
+        System.out.println("Sub account " + createdSubAccount.getId() + " deleted");
     }
 }
