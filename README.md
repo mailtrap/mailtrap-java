@@ -369,6 +369,7 @@ You can find the [Mailtrap Java API reference](https://mailtrap.github.io/mailtr
 - [Inboxes](examples/java/io/mailtrap/examples/inbound/InboundInboxesExample.java)
 - [Messages](examples/java/io/mailtrap/examples/inbound/InboundMessagesExample.java)
 - [Threads](examples/java/io/mailtrap/examples/inbound/InboundThreadsExample.java)
+- [Forward Rules](examples/java/io/mailtrap/examples/inbound/InboundForwardRulesExample.java)
 
 ### Bulk Sending API
 

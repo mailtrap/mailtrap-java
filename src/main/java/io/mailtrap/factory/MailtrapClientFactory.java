@@ -16,6 +16,7 @@ import io.mailtrap.api.contacts.ContactsImpl;
 import io.mailtrap.api.emailcampaigns.EmailCampaignsImpl;
 import io.mailtrap.api.emailtemplates.EmailTemplatesImpl;
 import io.mailtrap.api.inbound.InboundFoldersImpl;
+import io.mailtrap.api.inbound.InboundForwardRulesImpl;
 import io.mailtrap.api.inbound.InboundInboxesImpl;
 import io.mailtrap.api.inbound.InboundMessagesImpl;
 import io.mailtrap.api.inbound.InboundThreadsImpl;
@@ -94,8 +95,9 @@ public final class MailtrapClientFactory {
         final var inboxes = new InboundInboxesImpl(config);
         final var messages = new InboundMessagesImpl(config, VALIDATOR);
         final var threads = new InboundThreadsImpl(config);
+        final var forwardRules = new InboundForwardRulesImpl(config);
 
-        return new MailtrapInboundApi(folders, inboxes, messages, threads);
+        return new MailtrapInboundApi(folders, inboxes, messages, threads, forwardRules);
     }
 
     private static MailtrapEmailCampaignsApi createEmailCampaignsApi(final MailtrapConfig config) {
