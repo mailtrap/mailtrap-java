@@ -6,6 +6,10 @@ import io.mailtrap.model.response.emailtemplates.EmailTemplateResponse;
 
 import java.util.List;
 
+/**
+ * @deprecated use {@link io.mailtrap.api.templates.Templates}
+ */
+@Deprecated
 public interface EmailTemplates {
 
     /**

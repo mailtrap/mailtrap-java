@@ -5,6 +5,10 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 
+/**
+ * @deprecated use {@link io.mailtrap.api.templates.Templates}
+ */
+@Deprecated
 @Getter
 @Accessors(fluent = true)
 @RequiredArgsConstructor

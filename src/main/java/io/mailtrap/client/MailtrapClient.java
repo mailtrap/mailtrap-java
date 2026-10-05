@@ -52,9 +52,18 @@ public class MailtrapClient {
 
     /**
      * API for Mailtrap.io Email Templates management functionality
+     *
+     * @deprecated use {@link #templatesApi()}
      */
+    @Deprecated
     @Getter
     private final MailtrapEmailTemplatesApi emailTemplatesApi;
+
+    /**
+     * API for Mailtrap.io Templates management functionality (paginated {@code /api/templates} endpoints)
+     */
+    @Getter
+    private final MailtrapTemplatesApi templatesApi;
 
     /**
      * API for Mailtrap.io Organizations functionality
