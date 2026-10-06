@@ -5,6 +5,10 @@ import io.mailtrap.model.request.templates.UpdateTemplateRequest;
 import io.mailtrap.model.response.templates.TemplateListResponse;
 import io.mailtrap.model.response.templates.TemplateResponse;
 
+/**
+ * Templates API. The {@code /api/templates} endpoints are experimental: their request and
+ * response shapes may change before general availability.
+ */
 public interface Templates {
 
     /**
