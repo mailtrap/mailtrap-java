@@ -7,9 +7,9 @@ import io.mailtrap.model.response.emailtemplates.EmailTemplateResponse;
 import java.util.List;
 
 /**
- * @deprecated use {@link io.mailtrap.api.templates.Templates}
+ * For the paginated {@code /api/templates} endpoints, which are experimental, see
+ * {@link io.mailtrap.api.templates.Templates}.
  */
-@Deprecated
 public interface EmailTemplates {
 
     /**

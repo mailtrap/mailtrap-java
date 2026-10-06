@@ -6,9 +6,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 
 /**
- * @deprecated use {@link io.mailtrap.api.templates.Templates}
+ * For the paginated {@code /api/templates} endpoints, which are experimental, see
+ * {@link io.mailtrap.api.templates.Templates}.
  */
-@Deprecated
 @Getter
 @Accessors(fluent = true)
 @RequiredArgsConstructor

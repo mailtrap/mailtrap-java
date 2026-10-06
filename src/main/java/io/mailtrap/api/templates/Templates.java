@@ -12,7 +12,9 @@ import io.mailtrap.model.response.templates.TemplateResponse;
 public interface Templates {
 
     /**
-     * Get a page of templates existing in your account
+     * Get a page of templates existing in your account. Unlike
+     * {@link io.mailtrap.api.emailtemplates.EmailTemplates#getAllTemplates}, it does not return every
+     * template: pass {@code getPagination().getNextToken()} with the same {@code perPage} to get the next page.
      *
      * @param accountId unique account ID
      * @param filter    pagination parameters, may be {@code null}
