@@ -1,0 +1,13 @@
+{
+  "data": {
+    "id": 2222,
+    "uuid": "2f422f64-6f04-4c7a-883b-746f770eebdb",
+    "name": "My Updated Template",
+    "category": "Promotion",
+    "subject": "Promotion Template subject",
+    "body_text": "Promotion Text body",
+    "body_html": "<div>Promotion body</div>",
+    "created_at": "2025-09-05T01:00:00Z",
+    "updated_at": "2025-09-05T01:00:00Z"
+  }
+}
