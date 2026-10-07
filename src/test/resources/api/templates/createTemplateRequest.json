@@ -1,0 +1,7 @@
+{
+  "name": "My Template",
+  "category": "Promotion",
+  "subject": "Promotion Template subject",
+  "body_text": "Promotion Text body",
+  "body_html": "<div>Promotion body</div>"
+}

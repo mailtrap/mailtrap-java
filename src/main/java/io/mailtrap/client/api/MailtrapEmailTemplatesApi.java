@@ -5,6 +5,10 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 
+/**
+ * For the paginated {@code /api/templates} endpoints, which are experimental, see
+ * {@link io.mailtrap.api.templates.Templates}.
+ */
 @Getter
 @Accessors(fluent = true)
 @RequiredArgsConstructor

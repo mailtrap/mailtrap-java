@@ -385,6 +385,7 @@ You can find the [Mailtrap Java API reference](https://mailtrap.github.io/mailtr
 
 ### Email Templates API
 
+- [Templates (experimental)](examples/java/io/mailtrap/examples/templates/TemplatesExample.java)
 - [Email Templates](examples/java/io/mailtrap/examples/emailtemplates/EmailTemplatesExample.java)
 
 ### Email Marketing API
