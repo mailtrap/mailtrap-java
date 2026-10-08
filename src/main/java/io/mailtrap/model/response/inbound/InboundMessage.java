@@ -59,6 +59,8 @@ public class InboundMessage {
 
     private List<InboundAttachment> attachments;
 
+    private List<InboundForwardOutcome> forwards;
+
     @JsonProperty("raw_message_url")
     private String rawMessageUrl;
 

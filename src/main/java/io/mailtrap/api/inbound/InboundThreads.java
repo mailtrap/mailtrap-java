@@ -19,6 +19,17 @@ public interface InboundThreads {
     InboundThreadsListResponse list(long inboxId, String lastId);
 
     /**
+     * List conversation threads in an inbox matching a search.
+     *
+     * @param inboxId the inbox ID
+     * @param lastId  pagination cursor from a previous response ({@code null} for
+     *                the first page)
+     * @param search  text to search for ({@code null} for no filter)
+     * @return a page of threads
+     */
+    InboundThreadsListResponse list(long inboxId, String lastId, String search);
+
+    /**
      * Get a single thread with its messages embedded (oldest first).
      *
      * @param inboxId  the inbox ID
