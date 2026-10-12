@@ -1,0 +1,6 @@
+{
+  "destinations": [
+    { "email": "finance@example.com" },
+    { "email": "accounting@example.com" }
+  ]
+}

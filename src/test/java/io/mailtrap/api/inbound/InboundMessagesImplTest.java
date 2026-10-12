@@ -7,6 +7,8 @@ import io.mailtrap.factory.MailtrapClientFactory;
 import io.mailtrap.model.request.emails.Address;
 import io.mailtrap.model.request.inbound.InboundForwardRequest;
 import io.mailtrap.model.request.inbound.InboundReplyRequest;
+import io.mailtrap.model.response.inbound.InboundForwardOutcome;
+import io.mailtrap.model.response.inbound.InboundForwardOutcomeStatus;
 import io.mailtrap.model.response.inbound.InboundMessage;
 import io.mailtrap.model.response.inbound.InboundMessagesListResponse;
 import io.mailtrap.model.response.inbound.InboundSendResult;
@@ -22,7 +24,9 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class InboundMessagesImplTest extends BaseTest {
 
@@ -68,6 +72,16 @@ class InboundMessagesImplTest extends BaseTest {
         assertEquals("msg_2", response.getLastId());
         assertEquals("customer@example.com", response.getData().get(0).getFrom());
         assertEquals("thr_1", response.getData().get(0).getThreadId());
+
+        final List<InboundForwardOutcome> forwards = response.getData().get(0).getForwards();
+        assertEquals(1, forwards.size());
+        assertEquals(7L, forwards.get(0).getRuleId());
+        assertEquals("Copy to support team", forwards.get(0).getRuleName());
+        assertEquals("team@example.com", forwards.get(0).getDestination());
+        assertEquals(InboundForwardOutcomeStatus.FORWARDED, forwards.get(0).getStatus());
+        assertNull(forwards.get(0).getReason());
+        assertEquals("f47ac10b-58cc-4372-a567-0e02b2c3d479", forwards.get(0).getMessageId());
+        assertTrue(response.getData().get(1).getForwards().isEmpty());
     }
 
     @Test
@@ -92,6 +106,10 @@ class InboundMessagesImplTest extends BaseTest {
         assertEquals(1, message.getAttachments().size());
         assertEquals("invoice.pdf", message.getAttachments().get(0).getFilename());
         assertEquals("https://example.com/download/att_1", message.getAttachments().get(0).getDownloadUrl());
+        assertEquals(1, message.getForwards().size());
+        assertEquals(InboundForwardOutcomeStatus.REJECTED, message.getForwards().get(0).getStatus());
+        assertEquals("fetch_failed", message.getForwards().get(0).getReason());
+        assertNull(message.getForwards().get(0).getMessageId());
     }
 
     @Test

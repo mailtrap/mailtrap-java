@@ -20,8 +20,14 @@ public class InboundThreadsImpl extends ApiResource implements InboundThreads {
 
     @Override
     public InboundThreadsListResponse list(final long inboxId, final String lastId) {
+        return list(inboxId, lastId, null);
+    }
+
+    @Override
+    public InboundThreadsListResponse list(final long inboxId, final String lastId, final String search) {
         final var queryParams = RequestData.buildQueryParams(
-            entry("last_id", Optional.ofNullable(lastId))
+            entry("last_id", Optional.ofNullable(lastId)),
+            entry("search", Optional.ofNullable(search))
         );
         return httpClient.get(
             String.format(apiHost + "/api/inbound/inboxes/%d/threads", inboxId),

@@ -27,6 +27,16 @@
       "download_url_expires_at": "2026-07-30T12:15:00Z"
     }
   ],
+  "forwards": [
+    {
+      "rule_id": 8,
+      "rule_name": "Archive",
+      "destination": "archive@example.com",
+      "status": "rejected",
+      "reason": "fetch_failed",
+      "message_id": null
+    }
+  ],
   "raw_message_url": "https://example.com/raw/msg_1",
   "raw_message_expires_at": "2026-07-30T12:15:00Z",
   "html_body": "<p>Hello, I need help.</p>",

@@ -22,6 +22,9 @@ public class InboundThreadsExample {
         System.out.println("Total: " + page.getTotalCount());
         page.getData().forEach(thread -> System.out.println("  " + thread.getId() + " " + thread.getSubject()));
 
+        final var matching = threads.list(INBOX_ID, null, "acme");
+        System.out.println("Matching \"acme\": " + matching.getTotalCount());
+
         if (page.getData().isEmpty()) {
             return;
         }
