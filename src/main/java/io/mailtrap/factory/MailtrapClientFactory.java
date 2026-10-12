@@ -31,6 +31,7 @@ import io.mailtrap.api.sendingemails.SendingEmailsImpl;
 import io.mailtrap.api.stats.StatsImpl;
 import io.mailtrap.api.subaccounts.SubAccountsImpl;
 import io.mailtrap.api.suppressions.SuppressionsImpl;
+import io.mailtrap.api.templates.TemplatesImpl;
 import io.mailtrap.api.trackingoptouts.TrackingOptOutsImpl;
 import io.mailtrap.api.testingemails.TestingEmailsImpl;
 import io.mailtrap.api.webhooks.WebhooksImpl;
@@ -80,6 +81,7 @@ public final class MailtrapClientFactory {
         final var generalApi = createGeneralApi(config);
         final var contactsApi = createContactsApi(config);
         final var emailTemplatesApi = createEmailTemplatesApi(config);
+        final var templatesApi = createTemplatesApi(config);
         final var organizationsApi = createOrganizationsApi(config);
         final var inboundApi = createInboundApi(config);
         final var emailCampaignsApi = createEmailCampaignsApi(config);
@@ -87,7 +89,7 @@ public final class MailtrapClientFactory {
         final var sendingContextHolder = configureSendingContext(config);
 
         return new MailtrapClient(sendingApi, testingApi, bulkSendingApi, generalApi, contactsApi, emailTemplatesApi,
-                organizationsApi, inboundApi, emailCampaignsApi, sendingContextHolder);
+                templatesApi, organizationsApi, inboundApi, emailCampaignsApi, sendingContextHolder);
     }
 
     private static MailtrapInboundApi createInboundApi(final MailtrapConfig config) {
@@ -168,6 +170,12 @@ public final class MailtrapClientFactory {
         final var emailTemplates = new EmailTemplatesImpl(config, VALIDATOR);
 
         return new MailtrapEmailTemplatesApi(emailTemplates);
+    }
+
+    private static MailtrapTemplatesApi createTemplatesApi(final MailtrapConfig config) {
+        final var templates = new TemplatesImpl(config, VALIDATOR);
+
+        return new MailtrapTemplatesApi(templates);
     }
 
     private static SendingContextHolder configureSendingContext(final MailtrapConfig config) {

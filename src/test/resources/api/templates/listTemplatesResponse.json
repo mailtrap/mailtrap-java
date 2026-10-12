@@ -1,0 +1,35 @@
+{
+  "data": [
+    {
+      "id": 2222,
+      "uuid": "2f422f64-6f04-4c7a-883b-746f770eebdb",
+      "name": "Promotion Template",
+      "category": "Promotion",
+      "subject": "Promotion Template subject",
+      "body_text": "Promotion Text body",
+      "body_html": "<div>Promotion body</div>",
+      "created_at": "2025-09-05T01:00:00Z",
+      "updated_at": "2025-09-05T01:00:00Z"
+    },
+    {
+      "id": 2223,
+      "uuid": "3a533a75-7a15-4d8b-994c-857a881ffcec",
+      "name": "Welcome Template",
+      "category": "Welcome",
+      "subject": "Welcome aboard",
+      "body_text": "Welcome Text body",
+      "body_html": "<div>Welcome body</div>",
+      "created_at": "2025-09-06T01:00:00Z",
+      "updated_at": "2025-09-06T01:00:00Z"
+    }
+  ],
+  "pagination": {
+    "token": 1,
+    "prev_token": null,
+    "next_token": 2,
+    "first_url": "https://mailtrap.io/api/templates?per_page=50&token=1",
+    "prev_url": null,
+    "current_url": "https://mailtrap.io/api/templates?per_page=50&token=1",
+    "next_url": "https://mailtrap.io/api/templates?per_page=50&token=2"
+  }
+}

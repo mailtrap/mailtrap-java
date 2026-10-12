@@ -19,20 +19,20 @@ As a Maven dependency:
 <dependency>
     <groupId>io.mailtrap</groupId>
     <artifactId>mailtrap-java</artifactId>
-    <version>1.7.0</version>
+    <version>1.8.0</version>
 </dependency>
 ```
 
 As a Gradle Groovy dependency:
 
 ```groovy
-implementation 'io.mailtrap:mailtrap-java:1.7.0'
+implementation 'io.mailtrap:mailtrap-java:1.8.0'
 ```
 
 As a Gradle Kotlin DSL dependency:
 
 ```kotlin
-implementation("io.mailtrap:mailtrap-java:1.7.0")
+implementation("io.mailtrap:mailtrap-java:1.8.0")
 ```
 
 ## Usage
@@ -386,6 +386,7 @@ You can find the [Mailtrap Java API reference](https://mailtrap.github.io/mailtr
 
 ### Email Templates API
 
+- [Templates (experimental)](examples/java/io/mailtrap/examples/templates/TemplatesExample.java)
 - [Email Templates](examples/java/io/mailtrap/examples/emailtemplates/EmailTemplatesExample.java)
 
 ### Email Marketing API

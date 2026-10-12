@@ -1,3 +1,19 @@
+## [1.8.0] - 2026-10-07
+
+## What's Changed
+* bump readme dependency version to 1.7.0 by @oshchyhol in https://github.com/mailtrap/mailtrap-java/pull/74
+* Bump com.fasterxml.jackson.core:jackson-databind from 2.22.1 to 2.22.2 by @dependabot[bot] in https://github.com/mailtrap/mailtrap-java/pull/77
+* run CI on pull requests by @oshchyhol in https://github.com/mailtrap/mailtrap-java/pull/76
+* Bump com.fasterxml.jackson.core:jackson-databind from 2.22.2 to 2.22.3 by @dependabot[bot] in https://github.com/mailtrap/mailtrap-java/pull/80
+* Bump com.fasterxml.jackson.core:jackson-core from 2.22.1 to 2.22.3 by @dependabot[bot] in https://github.com/mailtrap/mailtrap-java/pull/81
+* Add Templates API for the paginated /api/templates endpoints by @izikaj in https://github.com/mailtrap/mailtrap-java/pull/83
+* bump install snippet versions in draft-release workflow by @Rabsztok in https://github.com/mailtrap/mailtrap-java/pull/78
+
+## New Contributors
+* @izikaj made their first contribution in https://github.com/mailtrap/mailtrap-java/pull/83
+
+**Full Changelog**: https://github.com/mailtrap/mailtrap-java/compare/v1.7.0...v1.8.0
+
 ## [1.7.0] - 2026-08-28
 
 ## What's Changed
