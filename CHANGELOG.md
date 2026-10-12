@@ -1,3 +1,11 @@
+## [1.9.0] - 2026-10-12
+
+## What's Changed
+* Add inbound forward rules, forward outcomes, thread delivery and search by @mklocek in https://github.com/mailtrap/mailtrap-java/pull/82
+
+
+**Full Changelog**: https://github.com/mailtrap/mailtrap-java/compare/v1.8.0...v1.9.0
+
 ## [1.8.0] - 2026-10-07
 
 ## What's Changed
