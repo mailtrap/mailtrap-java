@@ -23,7 +23,7 @@ public class MarketingStatsExample {
         // The marketing stats endpoint is token-scoped: the account is resolved from the API token.
         final var marketingStats = client.marketingApi().stats();
 
-        // The last 30 days (YYYY-MM-DD).
+        // From 30 days ago through today, both inclusive (YYYY-MM-DD).
         final var today = LocalDate.now(ZoneOffset.UTC);
         final var startDate = today.minusDays(30).toString();
         final var endDate = today.toString();
