@@ -83,6 +83,12 @@ public class MailtrapClient {
     private final MailtrapEmailCampaignsApi emailCampaignsApi;
 
     /**
+     * API for Mailtrap.io Email Marketing functionality (aggregated campaign and automation stats)
+     */
+    @Getter
+    private final MailtrapMarketingApi marketingApi;
+
+    /**
      * Utility class which holds sending context (which API to use: Email Sending API, Bulk Sending API or
      * Email Testing API, inbox id for Email Testing API) to make it possible to perform send directly from MailtrapClient
      */
