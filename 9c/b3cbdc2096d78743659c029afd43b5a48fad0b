@@ -1,0 +1,60 @@
+src/main/java/io/mailtrap/api/marketingstats/MarketingStatsImpl.java
+  s_2aa3b6f4fc73d1::t_0d6a17353068d9 1-35,37-38,40-51
+  s_2aa3b6f4fc73d1::t_0d89aeac9006f7 36,39
+examples/java/io/mailtrap/examples/marketingstats/MarketingStatsExample.java
+  s_2aa3b6f4fc73d1::t_504322f6f12b5f 1-48
+README.md
+  s_2aa3b6f4fc73d1::t_91b81597248114 395
+src/main/java/io/mailtrap/client/api/MailtrapMarketingApi.java
+  s_2aa3b6f4fc73d1::t_71b13c8653332d 1-19
+src/main/java/io/mailtrap/api/marketingstats/MarketingStats.java
+  s_2aa3b6f4fc73d1::t_54283921e99d23 1-14,17-22
+  s_2aa3b6f4fc73d1::t_96bff3bf92440e 15-16
+src/test/java/io/mailtrap/api/marketingstats/MarketingStatsImplTest.java
+  s_2aa3b6f4fc73d1::t_b5a1d48a1baa36 1-95,97-129
+  s_2aa3b6f4fc73d1::t_36585b8d23c221 96
+src/test/resources/api/marketingstats/getMarketingStatsFilteredResponse.json
+  s_2aa3b6f4fc73d1::t_3615de11749078 1-17
+src/main/java/io/mailtrap/model/response/marketingstats/MarketingStatsResponse.java
+  s_2aa3b6f4fc73d1::t_56b96d3903fdcc 1-13
+src/main/java/io/mailtrap/api/marketingstats/MarketingStatsFilter.java
+  s_2aa3b6f4fc73d1::t_e88a223c9797f7 1-48
+src/test/resources/api/marketingstats/getMarketingStatsResponse.json
+  s_2aa3b6f4fc73d1::t_6d854f11e825aa 1-17
+src/main/java/io/mailtrap/model/MarketingStatsSource.java
+  s_2aa3b6f4fc73d1::t_2339aeb14a0d1c 1-39
+src/main/java/io/mailtrap/client/MailtrapClient.java
+  s_2aa3b6f4fc73d1::t_66627ba3ba8e95 86-90
+  s_10ab7161e22f7f::t_0eda2f46557a8f 85
+src/main/java/io/mailtrap/factory/MailtrapClientFactory.java
+  s_2aa3b6f4fc73d1::t_9346086b72fb36 113-118
+  s_2aa3b6f4fc73d1::t_2abce8e134af80 89,94
+  s_2aa3b6f4fc73d1::t_63a516385e9c3b 24
+src/main/java/io/mailtrap/model/response/marketingstats/MarketingStatsData.java
+  s_2aa3b6f4fc73d1::t_6282841079a257 1-8,11-57
+  s_2aa3b6f4fc73d1::t_46a0b6f4bf4f45 9-10
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "9cb3cbdc2096d78743659c029afd43b5a48fad0b",
+  "prompts": {},
+  "sessions": {
+    "s_10ab7161e22f7f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "215de802-f712-442d-96e7-e777df2fb48b",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Maciej Walusiak <maciej.walusiak@railsware.com>"
+    },
+    "s_2aa3b6f4fc73d1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fbf2aae8-21cc-4769-9b0c-9fe6cb206262",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Maciej Walusiak <maciej.walusiak@railsware.com>"
+    }
+  }
+}
