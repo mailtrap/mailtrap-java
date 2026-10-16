@@ -34,4 +34,13 @@ public class SubAccountsImpl extends ApiResource implements SubAccounts {
             SubAccount.class
         );
     }
+
+    @Override
+    public void deleteSubAccount(final long organizationId, final long subAccountId) {
+        httpClient.delete(
+            String.format(apiHost + "/api/organizations/%d/sub_accounts/%d", organizationId, subAccountId),
+            new RequestData(),
+            Void.class
+        );
+    }
 }

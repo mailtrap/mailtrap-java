@@ -14,12 +14,14 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class SubAccountsImplTest extends BaseTest {
 
     private final long organizationId = 1001L;
+    private final long subAccountId = 12345L;
 
     private SubAccounts api;
 
@@ -30,7 +32,10 @@ class SubAccountsImplTest extends BaseTest {
                         "GET", null, "api/subaccounts/getSubAccountsResponse.json"),
 
                 DataMock.build(Constants.GENERAL_HOST + "/api/organizations/" + organizationId + "/sub_accounts",
-                        "POST", "api/subaccounts/createSubAccountRequest.json", "api/subaccounts/createSubAccountResponse.json")
+                        "POST", "api/subaccounts/createSubAccountRequest.json", "api/subaccounts/createSubAccountResponse.json"),
+
+                DataMock.build(Constants.GENERAL_HOST + "/api/organizations/" + organizationId + "/sub_accounts/" + subAccountId,
+                        "DELETE", null, null)
         ));
 
         final MailtrapConfig testConfig = new MailtrapConfig.Builder()
@@ -60,5 +65,10 @@ class SubAccountsImplTest extends BaseTest {
         assertNotNull(response);
         assertEquals(12347L, response.getId());
         assertEquals("New Team Account", response.getName());
+    }
+
+    @Test
+    void test_deleteSubAccount() {
+        assertDoesNotThrow(() -> api.deleteSubAccount(organizationId, subAccountId));
     }
 }
