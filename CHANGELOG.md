@@ -1,3 +1,11 @@
+## [1.9.1] - 2026-10-28
+
+## What's Changed
+* Remove central-publishing-maven-plugin by @mklocek in https://github.com/mailtrap/mailtrap-java/pull/88
+
+
+**Full Changelog**: https://github.com/mailtrap/mailtrap-java/compare/v1.9.0...v1.9.1
+
 ## [1.9.0] - 2026-10-12
 
 ## What's Changed
