@@ -19,20 +19,20 @@ As a Maven dependency:
 <dependency>
     <groupId>io.mailtrap</groupId>
     <artifactId>mailtrap-java</artifactId>
-    <version>1.9.1</version>
+    <version>1.10.0</version>
 </dependency>
 ```
 
 As a Gradle Groovy dependency:
 
 ```groovy
-implementation 'io.mailtrap:mailtrap-java:1.9.1'
+implementation 'io.mailtrap:mailtrap-java:1.10.0'
 ```
 
 As a Gradle Kotlin DSL dependency:
 
 ```kotlin
-implementation("io.mailtrap:mailtrap-java:1.9.1")
+implementation("io.mailtrap:mailtrap-java:1.10.0")
 ```
 
 ## Usage

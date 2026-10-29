@@ -1,3 +1,11 @@
+## [1.10.0] - 2026-10-29
+
+## What's Changed
+* Add Marketing Stats API for GET /api/marketing/stats by @Rabsztok in https://github.com/mailtrap/mailtrap-java/pull/87
+
+
+**Full Changelog**: https://github.com/mailtrap/mailtrap-java/compare/v1.9.1...v1.10.0
+
 ## [1.9.1] - 2026-10-28
 
 ## What's Changed
