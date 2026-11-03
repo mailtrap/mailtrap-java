@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TestingEmailsImplTest extends BaseSendTest {
 
-    private TestingEmails sandboxApi;
+    private TestingEmails api;
 
     @BeforeEach
     public void init() {
@@ -59,7 +59,7 @@ class TestingEmailsImplTest extends BaseSendTest {
             .sandboxId(SANDBOX_ID)
             .build();
 
-        sandboxApi = MailtrapClientFactory.createMailtrapClient(testConfig).sandboxApi().emails();
+        api = MailtrapClientFactory.createMailtrapClient(testConfig).sandboxApi().emails();
     }
 
     @Test
@@ -68,7 +68,7 @@ class TestingEmailsImplTest extends BaseSendTest {
         final MailtrapMail mail = createInvalidTestMail();
 
         // Assert
-        final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> sandboxApi.send(mail, SANDBOX_ID));
+        final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> api.send(mail, SANDBOX_ID));
         assertEquals(INVALID_REQUEST_EMPTY_BODY_FROM_EMAIL, exception.getMessage());
     }
 
@@ -78,7 +78,7 @@ class TestingEmailsImplTest extends BaseSendTest {
         final MailtrapMail mail = createTestMailWithoutTemplateUuidAndSubjectAndTextAndHtml();
 
         // Assert
-        final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> sandboxApi.send(mail, SANDBOX_ID));
+        final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> api.send(mail, SANDBOX_ID));
         assertEquals(MAIL_MUST_HAVE_SUBJECT_AND_EITHER_TEXT_OR_HTML, exception.getMessage());
     }
 
@@ -88,7 +88,7 @@ class TestingEmailsImplTest extends BaseSendTest {
         final MailtrapMail mail = createTestMailWithTemplateUuidAndText();
 
         // Assert
-        final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> sandboxApi.send(mail, SANDBOX_ID));
+        final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> api.send(mail, SANDBOX_ID));
         assertEquals(TEMPLATE_UUID_IS_USED_SUBJECT_AND_TEXT_AND_HTML_SHOULD_BE_EMPTY, exception.getMessage());
     }
 
@@ -98,7 +98,7 @@ class TestingEmailsImplTest extends BaseSendTest {
         final MailtrapMail mail = createTestMailWithTemplateUuidAndHtml();
 
         // Assert
-        final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> sandboxApi.send(mail, SANDBOX_ID));
+        final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> api.send(mail, SANDBOX_ID));
         assertEquals(TEMPLATE_UUID_IS_USED_SUBJECT_AND_TEXT_AND_HTML_SHOULD_BE_EMPTY, exception.getMessage());
     }
 
@@ -108,7 +108,7 @@ class TestingEmailsImplTest extends BaseSendTest {
         final MailtrapMail mail = createTestMailWithTemplateVariablesAndHtml();
 
         // Assert
-        final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> sandboxApi.send(mail, SANDBOX_ID));
+        final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> api.send(mail, SANDBOX_ID));
         assertEquals(TEMPLATE_VARIABLES_SHOULD_BE_USED_WITH_TEMPLATE_UUID, exception.getMessage());
     }
 
@@ -118,14 +118,14 @@ class TestingEmailsImplTest extends BaseSendTest {
         final MailtrapMail mail = createTestMailWithSubjectAndNoTextAndNoHtml();
 
         // Assert
-        final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> sandboxApi.send(mail, SANDBOX_ID));
+        final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> api.send(mail, SANDBOX_ID));
         assertEquals(MAIL_MUST_HAVE_SUBJECT_AND_EITHER_TEXT_OR_HTML, exception.getMessage());
     }
 
     @Test
     void send_NullableMail_ThrowsInvalidRequestBodyException() {
         // Assert
-        final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> sandboxApi.send(null, SANDBOX_ID));
+        final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> api.send(null, SANDBOX_ID));
         assertEquals(MAIL_MUST_NOT_BE_NULL, exception.getMessage());
     }
 
@@ -135,7 +135,7 @@ class TestingEmailsImplTest extends BaseSendTest {
         final var mail = createValidTestMail();
 
         // Perform call
-        final SendResponse response = sandboxApi.send(mail, SANDBOX_ID);
+        final SendResponse response = api.send(mail, SANDBOX_ID);
 
         // Assert
         assertTrue(response.isSuccess());
@@ -148,7 +148,7 @@ class TestingEmailsImplTest extends BaseSendTest {
         final var mail = createTestMailFromTemplate();
 
         // Perform call
-        final SendResponse response = sandboxApi.send(mail, SANDBOX_ID);
+        final SendResponse response = api.send(mail, SANDBOX_ID);
 
         // Assert
         assertTrue(response.isSuccess());
@@ -161,7 +161,7 @@ class TestingEmailsImplTest extends BaseSendTest {
         final MailtrapBatchMail batchMail = MailtrapBatchMail.builder().requests(List.of(createValidTestMail())).build();
 
         // Perform call
-        final BatchSendResponse response = sandboxApi.batchSend(batchMail, SANDBOX_ID);
+        final BatchSendResponse response = api.batchSend(batchMail, SANDBOX_ID);
 
         // Assert
         assertTrue(response.isSuccess());
@@ -174,7 +174,7 @@ class TestingEmailsImplTest extends BaseSendTest {
         final MailtrapBatchMail batchMail = MailtrapBatchMail.builder().requests(List.of(createTestMailFromTemplate())).build();
 
         // Perform call
-        final BatchSendResponse response = sandboxApi.batchSend(batchMail, SANDBOX_ID);
+        final BatchSendResponse response = api.batchSend(batchMail, SANDBOX_ID);
 
         // Assert
         assertTrue(response.isSuccess());
@@ -189,7 +189,7 @@ class TestingEmailsImplTest extends BaseSendTest {
             .requests(List.of(createValidTestMailForBatchWithNoSubject())).build();
 
         // Perform call
-        final BatchSendResponse response = sandboxApi.batchSend(batchMail, SANDBOX_ID);
+        final BatchSendResponse response = api.batchSend(batchMail, SANDBOX_ID);
 
         // Assert
         assertTrue(response.isSuccess());
@@ -204,7 +204,7 @@ class TestingEmailsImplTest extends BaseSendTest {
             .requests(List.of(createTestMailForBatchWithNoSubjectAndText())).build();
 
         // Perform call
-        final BatchSendResponse response = sandboxApi.batchSend(batchMail, SANDBOX_ID);
+        final BatchSendResponse response = api.batchSend(batchMail, SANDBOX_ID);
 
         // Assert
         assertTrue(response.isSuccess());
@@ -219,14 +219,14 @@ class TestingEmailsImplTest extends BaseSendTest {
             .requests(List.of(createTestMailForBatchWithNoSubjectAndText())).build();
 
         // Assert
-        final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> sandboxApi.batchSend(batchMail, SANDBOX_ID));
+        final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> api.batchSend(batchMail, SANDBOX_ID));
         assertEquals(SUBJECT_MUST_NOT_BE_NULL, exception.getMessage());
     }
 
     @Test
     void batchSend_NullableMail_ThrowsInvalidRequestBodyException() {
         // Assert
-        final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> sandboxApi.batchSend(null, SANDBOX_ID));
+        final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> api.batchSend(null, SANDBOX_ID));
         assertEquals(BATCH_MAIL_MUST_NOT_BE_NULL, exception.getMessage());
     }
 
@@ -237,7 +237,7 @@ class TestingEmailsImplTest extends BaseSendTest {
 
 
         // Assert
-        final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> sandboxApi.batchSend(batchMail, SANDBOX_ID));
+        final InvalidRequestBodyException exception = assertThrows(InvalidRequestBodyException.class, () -> api.batchSend(batchMail, SANDBOX_ID));
         assertEquals(TEMPLATE_UUID_IS_USED_SUBJECT_AND_TEXT_AND_HTML_SHOULD_BE_EMPTY, exception.getMessage());
     }
 

@@ -66,52 +66,52 @@ class InboxesImplTest extends BaseTest {
 
     @Test
     void test_createSandbox() {
-        final InboxResponse createdInbox = api.createSandbox(accountId, projectId, new CreateInboxRequest(new InboxCreateData("Test inbox")));
+        final InboxResponse createdSandbox = api.createSandbox(accountId, projectId, new CreateInboxRequest(new InboxCreateData("Test inbox")));
 
-        assertNotNull(createdInbox);
-        assertEquals(createdInbox.getProjectId(), projectId);
-        assertEquals("Test inbox", createdInbox.getName());
+        assertNotNull(createdSandbox);
+        assertEquals(createdSandbox.getProjectId(), projectId);
+        assertEquals("Test inbox", createdSandbox.getName());
     }
 
     @Test
     void test_getSandboxAttributes() {
-        final InboxResponse inboxAttributes = api.getSandboxAttributes(accountId, sandboxId);
+        final InboxResponse sandboxAttributes = api.getSandboxAttributes(accountId, sandboxId);
 
-        assertNotNull(inboxAttributes);
-        assertTrue(inboxAttributes.getPermission().isCanRead());
-        assertEquals(inboxAttributes.getProjectId(), projectId);
-        assertEquals("Test inbox", inboxAttributes.getName());
+        assertNotNull(sandboxAttributes);
+        assertTrue(sandboxAttributes.getPermission().isCanRead());
+        assertEquals(sandboxAttributes.getProjectId(), projectId);
+        assertEquals("Test inbox", sandboxAttributes.getName());
     }
 
     @Test
     void test_deleteSandbox() {
-        final InboxResponse deletedInbox = api.deleteSandbox(accountId, sandboxId);
+        final InboxResponse deletedSandbox = api.deleteSandbox(accountId, sandboxId);
 
-        assertNotNull(deletedInbox);
-        assertTrue(deletedInbox.getPermission().isCanRead());
-        assertEquals(deletedInbox.getId(), sandboxId);
-        assertEquals("Test inbox", deletedInbox.getName());
+        assertNotNull(deletedSandbox);
+        assertTrue(deletedSandbox.getPermission().isCanRead());
+        assertEquals(deletedSandbox.getId(), sandboxId);
+        assertEquals("Test inbox", deletedSandbox.getName());
     }
 
     @Test
     void test_updateSandbox() {
-        final InboxResponse updatedInbox = api.updateSandbox(accountId, sandboxId, new UpdateInboxRequest(new InboxUpdateData("Updated Inbox Name", "updated-email-username")));
+        final InboxResponse updatedSandbox = api.updateSandbox(accountId, sandboxId, new UpdateInboxRequest(new InboxUpdateData("Updated Inbox Name", "updated-email-username")));
 
-        assertNotNull(updatedInbox);
-        assertTrue(updatedInbox.getPermission().isCanRead());
-        assertEquals(updatedInbox.getId(), sandboxId);
-        assertEquals("Updated Inbox Name", updatedInbox.getName());
-        assertEquals("updated-email-username", updatedInbox.getEmailUsername());
+        assertNotNull(updatedSandbox);
+        assertTrue(updatedSandbox.getPermission().isCanRead());
+        assertEquals(updatedSandbox.getId(), sandboxId);
+        assertEquals("Updated Inbox Name", updatedSandbox.getName());
+        assertEquals("updated-email-username", updatedSandbox.getEmailUsername());
     }
 
     @Test
     void test_cleanSandbox() {
-        final InboxResponse cleanedInbox = api.cleanSandbox(accountId, sandboxId);
+        final InboxResponse cleanedSandbox = api.cleanSandbox(accountId, sandboxId);
 
-        assertNotNull(cleanedInbox);
-        assertTrue(cleanedInbox.getPermission().isCanRead());
-        assertEquals(cleanedInbox.getId(), sandboxId);
-        assertEquals("Test inbox", cleanedInbox.getName());
+        assertNotNull(cleanedSandbox);
+        assertTrue(cleanedSandbox.getPermission().isCanRead());
+        assertEquals(cleanedSandbox.getId(), sandboxId);
+        assertEquals("Test inbox", cleanedSandbox.getName());
     }
 
     @Test
@@ -156,13 +156,13 @@ class InboxesImplTest extends BaseTest {
 
     @Test
     void test_getSandboxes() {
-        final List<InboxResponse> inboxes = api.getSandboxes(accountId);
+        final List<InboxResponse> sandboxes = api.getSandboxes(accountId);
 
-        assertNotNull(inboxes);
-        assertEquals(1, inboxes.size());
-        assertTrue(inboxes.get(0).getPermission().isCanRead());
-        assertEquals(inboxes.get(0).getId(), sandboxId);
-        assertEquals("Test inbox", inboxes.get(0).getName());
+        assertNotNull(sandboxes);
+        assertEquals(1, sandboxes.size());
+        assertTrue(sandboxes.get(0).getPermission().isCanRead());
+        assertEquals(sandboxes.get(0).getId(), sandboxId);
+        assertEquals("Test inbox", sandboxes.get(0).getName());
     }
 
 }
