@@ -33,19 +33,19 @@ class SendingDomainsImplTest extends BaseTest {
                 "GET", null, "api/sending_domains/sendingDomainsResponse.json"
             ),
             DataMock.build(
-                Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/sending_domains/" + sendingDomainId,
+                Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/sending_domains/" + domainId,
                 "GET", null, "api/sending_domains/sendingDomainResponse.json"
             ),
             DataMock.build(
-                Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/sending_domains/" + sendingDomainId,
+                Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/sending_domains/" + domainId,
                 "PATCH", "api/sending_domains/updateSendingDomainRequest.json", "api/sending_domains/sendingDomainResponse.json"
             ),
             DataMock.build(
-                Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/sending_domains/" + sendingDomainId + "/send_setup_instructions",
+                Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/sending_domains/" + domainId + "/send_setup_instructions",
                 "POST", "api/sending_domains/sendSetupInstructionsRequest.json", null
             ),
             DataMock.build(
-                Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/sending_domains/" + sendingDomainId,
+                Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/sending_domains/" + domainId,
                 "DELETE", null, null
             )
         ));
@@ -68,8 +68,8 @@ class SendingDomainsImplTest extends BaseTest {
     }
 
     @Test
-    void test_getSendingDomains() {
-        final List<SendingDomainsResponse> response = domains.getSendingDomains(accountId);
+    void test_getDomains() {
+        final List<SendingDomainsResponse> response = domains.getDomains(accountId);
 
         assertFalse(response.isEmpty());
         assertEquals(1, response.size());
@@ -79,8 +79,8 @@ class SendingDomainsImplTest extends BaseTest {
     }
 
     @Test
-    void test_getSendingDomain() {
-        final SendingDomainsResponse response = domains.getSendingDomain(accountId, sendingDomainId);
+    void test_getDomain() {
+        final SendingDomainsResponse response = domains.getDomain(accountId, domainId);
 
         assertNotNull(response);
         assertEquals("test.io", response.getDomainName());
@@ -93,7 +93,7 @@ class SendingDomainsImplTest extends BaseTest {
     void test_update() {
         final SendingDomainsResponse response = domains.update(
             accountId,
-            sendingDomainId,
+            domainId,
             new UpdateSendingDomainRequest(
                 UpdateSendingDomainRequest.SendingDomainData.builder()
                     .openTrackingEnabled(true)
@@ -111,12 +111,12 @@ class SendingDomainsImplTest extends BaseTest {
     }
 
     @Test
-    void test_sendSendingDomainsSetupInstructions() {
-        domains.sendSendingDomainsSetupInstructions(accountId, sendingDomainId, new SendingDomainsSetupInstructionsRequest("devops@test.io"));
+    void test_sendDomainsSetupInstructions() {
+        domains.sendDomainsSetupInstructions(accountId, domainId, new SendingDomainsSetupInstructionsRequest("devops@test.io"));
     }
 
     @Test
-    void test_deleteSendingDomain() {
-        assertDoesNotThrow(() -> domains.deleteSendingDomain(accountId, sendingDomainId));
+    void test_deleteDomain() {
+        assertDoesNotThrow(() -> domains.deleteDomain(accountId, domainId));
     }
 }

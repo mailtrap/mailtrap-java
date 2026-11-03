@@ -1,4 +1,4 @@
-package io.mailtrap.examples.testing;
+package io.mailtrap.examples.sandbox;
 
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.factory.MailtrapClientFactory;
@@ -15,12 +15,12 @@ public class BatchExample {
     private static final String TOKEN = System.getenv("MAILTRAP_API_KEY");
     private static final String SENDER_EMAIL = "sender@domain.com";
     private static final String RECIPIENT_EMAIL = "recipient@domain.com";
-    private static final long INBOX_ID = Long.parseLong(System.getenv("MAILTRAP_INBOX_ID"));
+    private static final long SANDBOX_ID = Long.parseLong(System.getenv("MAILTRAP_SANDBOX_ID"));
 
     public static void main(String[] args) {
         final var config = new MailtrapConfig.Builder()
             .token(TOKEN)
-            .inboxId(INBOX_ID)
+            .sandboxId(SANDBOX_ID)
             .build();
 
         final var client = MailtrapClientFactory.createMailtrapClient(config);
@@ -42,7 +42,7 @@ public class BatchExample {
             .requests(List.of(mail))
             .build();
 
-        System.out.println(client.testingApi().emails().batchSend(batchMail, config.getInboxId()));
+        System.out.println(client.sandboxApi().emails().batchSend(batchMail, config.getSandboxId()));
     }
 
 }

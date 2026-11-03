@@ -7,7 +7,7 @@ import io.mailtrap.model.response.permissions.Resource;
 import java.util.List;
 
 /**
- * Interface representing the Mailtrap Testing API for interaction with permissions
+ * Interface representing the Mailtrap General API for interaction with permissions
  */
 public interface Permissions {
 

@@ -19,7 +19,7 @@ public class InboxesImpl extends ApiResourceWithValidation implements Inboxes {
     }
 
     @Override
-    public InboxResponse createInbox(final long accountId, final long projectId, final CreateInboxRequest request) {
+    public InboxResponse createSandbox(final long accountId, final long projectId, final CreateInboxRequest request) {
 
         validateRequestBodyAndThrowException(request);
 
@@ -32,30 +32,30 @@ public class InboxesImpl extends ApiResourceWithValidation implements Inboxes {
     }
 
     @Override
-    public InboxResponse getInboxAttributes(final long accountId, final long inboxId) {
+    public InboxResponse getSandboxAttributes(final long accountId, final long sandboxId) {
         return httpClient.get(
-            String.format(apiHost + "/api/accounts/%d/inboxes/%d", accountId, inboxId),
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d", accountId, sandboxId),
             new RequestData(),
             InboxResponse.class
         );
     }
 
     @Override
-    public InboxResponse deleteInbox(final long accountId, final long inboxId) {
+    public InboxResponse deleteSandbox(final long accountId, final long sandboxId) {
         return httpClient.delete(
-            String.format(apiHost + "/api/accounts/%d/inboxes/%d", accountId, inboxId),
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d", accountId, sandboxId),
             new RequestData(),
             InboxResponse.class
         );
     }
 
     @Override
-    public InboxResponse updateInbox(final long accountId, final long inboxId, final UpdateInboxRequest request) {
+    public InboxResponse updateSandbox(final long accountId, final long sandboxId, final UpdateInboxRequest request) {
 
         validateRequestBodyAndThrowException(request);
 
         return httpClient.patch(
-            String.format(apiHost + "/api/accounts/%d/inboxes/%d", accountId, inboxId),
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d", accountId, sandboxId),
             request,
             new RequestData(),
             InboxResponse.class
@@ -63,9 +63,9 @@ public class InboxesImpl extends ApiResourceWithValidation implements Inboxes {
     }
 
     @Override
-    public InboxResponse cleanInbox(final long accountId, final long inboxId) {
+    public InboxResponse cleanSandbox(final long accountId, final long sandboxId) {
         return httpClient.patch(
-            String.format(apiHost + "/api/accounts/%d/inboxes/%d/clean", accountId, inboxId),
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/clean", accountId, sandboxId),
             null,
             new RequestData(),
             InboxResponse.class
@@ -73,9 +73,9 @@ public class InboxesImpl extends ApiResourceWithValidation implements Inboxes {
     }
 
     @Override
-    public InboxResponse markAsRead(final long accountId, final long inboxId) {
+    public InboxResponse markAsRead(final long accountId, final long sandboxId) {
         return httpClient.patch(
-            String.format(apiHost + "/api/accounts/%d/inboxes/%d/all_read", accountId, inboxId),
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/all_read", accountId, sandboxId),
             null,
             new RequestData(),
             InboxResponse.class
@@ -83,9 +83,9 @@ public class InboxesImpl extends ApiResourceWithValidation implements Inboxes {
     }
 
     @Override
-    public InboxResponse resetCredentials(final long accountId, final long inboxId) {
+    public InboxResponse resetCredentials(final long accountId, final long sandboxId) {
         return httpClient.patch(
-            String.format(apiHost + "/api/accounts/%d/inboxes/%d/reset_credentials", accountId, inboxId),
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/reset_credentials", accountId, sandboxId),
             null,
             new RequestData(),
             InboxResponse.class
@@ -93,9 +93,9 @@ public class InboxesImpl extends ApiResourceWithValidation implements Inboxes {
     }
 
     @Override
-    public InboxResponse enableEmailAddress(final long accountId, final long inboxId) {
+    public InboxResponse enableEmailAddress(final long accountId, final long sandboxId) {
         return httpClient.patch(
-            String.format(apiHost + "/api/accounts/%d/inboxes/%d/toggle_email_username", accountId, inboxId),
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/toggle_email_username", accountId, sandboxId),
             null,
             new RequestData(),
             InboxResponse.class
@@ -103,9 +103,9 @@ public class InboxesImpl extends ApiResourceWithValidation implements Inboxes {
     }
 
     @Override
-    public InboxResponse resetEmailAddresses(final long accountId, final long inboxId) {
+    public InboxResponse resetEmailAddresses(final long accountId, final long sandboxId) {
         return httpClient.patch(
-            String.format(apiHost + "/api/accounts/%d/inboxes/%d/reset_email_username", accountId, inboxId),
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/reset_email_username", accountId, sandboxId),
             null,
             new RequestData(),
             InboxResponse.class
@@ -113,7 +113,7 @@ public class InboxesImpl extends ApiResourceWithValidation implements Inboxes {
     }
 
     @Override
-    public List<InboxResponse> getInboxes(final long accountId) {
+    public List<InboxResponse> getSandboxes(final long accountId) {
         return httpClient.getList(
             String.format(apiHost + "/api/accounts/%d/inboxes", accountId),
             new RequestData(),

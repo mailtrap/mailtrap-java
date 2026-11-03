@@ -21,10 +21,10 @@ class AttachmentsImplTest extends BaseTest {
     @BeforeEach
     public void init() {
         final TestHttpClient httpClient = new TestHttpClient(List.of(
-                DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/inboxes/" + inboxId + "/messages/" + messageId + "/attachments",
+                DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/inboxes/" + sandboxId + "/messages/" + messageId + "/attachments",
                         "GET", null, "api/attachments/getAttachmentsResponse.json"),
 
-                DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/inboxes/" + inboxId + "/messages/" + messageId + "/attachments/" + attachmentId,
+                DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/inboxes/" + sandboxId + "/messages/" + messageId + "/attachments/" + attachmentId,
                         "GET", null, "api/attachments/getAttachmentResponse.json")
         ));
 
@@ -33,12 +33,12 @@ class AttachmentsImplTest extends BaseTest {
                 .token("dummy_token")
                 .build();
 
-        api = MailtrapClientFactory.createMailtrapClient(testConfig).testingApi().attachments();
+        api = MailtrapClientFactory.createMailtrapClient(testConfig).sandboxApi().attachments();
     }
 
     @Test
     public void test_getAttachments() {
-        final List<AttachmentResponse> attachments = api.getAttachments(accountId, inboxId, messageId, null);
+        final List<AttachmentResponse> attachments = api.getAttachments(accountId, sandboxId, messageId, null);
 
         assertEquals(1, attachments.size());
 
@@ -48,7 +48,7 @@ class AttachmentsImplTest extends BaseTest {
 
     @Test
     public void test_getAttachment() {
-        final AttachmentResponse attachment = api.getSingleAttachment(accountId, inboxId, messageId, attachmentId);
+        final AttachmentResponse attachment = api.getSingleAttachment(accountId, sandboxId, messageId, attachmentId);
 
         assertNotNull(attachment);
         assertEquals(attachmentId, attachment.getId());

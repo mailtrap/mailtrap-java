@@ -77,7 +77,7 @@ public final class MailtrapClientFactory {
      */
     public static MailtrapClient createMailtrapClient(final MailtrapConfig config) {
         final var sendingApi = createSendingApi(config);
-        final var testingApi = createTestingApi(config);
+        final var sandboxApi = createSandboxApi(config);
         final var bulkSendingApi = createBulkSendingApi(config);
         final var generalApi = createGeneralApi(config);
         final var contactsApi = createContactsApi(config);
@@ -90,7 +90,7 @@ public final class MailtrapClientFactory {
 
         final var sendingContextHolder = configureSendingContext(config);
 
-        return new MailtrapClient(sendingApi, testingApi, bulkSendingApi, generalApi, contactsApi, emailTemplatesApi,
+        return new MailtrapClient(sendingApi, sandboxApi, bulkSendingApi, generalApi, contactsApi, emailTemplatesApi,
                 templatesApi, organizationsApi, inboundApi, emailCampaignsApi, marketingApi, sendingContextHolder);
     }
 
@@ -158,14 +158,14 @@ public final class MailtrapClientFactory {
             emailLogs);
     }
 
-    private static MailtrapEmailTestingApi createTestingApi(final MailtrapConfig config) {
+    private static MailtrapEmailTestingApi createSandboxApi(final MailtrapConfig config) {
         final var emails = new TestingEmailsImpl(config, VALIDATOR);
         final var attachments = new AttachmentsImpl(config);
-        final var inboxes = new InboxesImpl(config, VALIDATOR);
+        final var sandboxes = new InboxesImpl(config, VALIDATOR);
         final var projects = new ProjectsImpl(config, VALIDATOR);
         final var messages = new MessagesImpl(config);
 
-        return new MailtrapEmailTestingApi(emails, attachments, inboxes, projects, messages);
+        return new MailtrapEmailTestingApi(emails, attachments, sandboxes, projects, messages);
     }
 
     private static MailtrapBulkSendingApi createBulkSendingApi(final MailtrapConfig config) {
@@ -190,7 +190,7 @@ public final class MailtrapClientFactory {
 
         return SendingContextHolder.builder()
                 .sandbox(config.isSandbox())
-                .inboxId(config.getInboxId())
+                .sandboxId(config.getSandboxId())
                 .bulk(config.isBulk())
                 .build();
     }

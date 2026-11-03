@@ -3,7 +3,7 @@ package io.mailtrap.api.billing;
 import io.mailtrap.model.response.billing.BillingResponse;
 
 /**
- * Interface representing the Mailtrap Testing API for interaction with billing
+ * Interface representing the Mailtrap General API for interaction with billing
  */
 public interface Billing {
 

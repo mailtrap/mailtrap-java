@@ -39,7 +39,7 @@ class MarketingStatsImplTest extends BaseTest {
                 Map.of(
                     "start_date", startDate,
                     "end_date", endDate,
-                    "sending_domain_ids[]", List.of(sendingDomainId),
+                    "sending_domain_ids[]", List.of(domainId),
                     "sources[]", List.of(MarketingStatsSource.CAMPAIGNS),
                     "email_service_providers[]", List.of("Google", "Yahoo")
                 ))
@@ -82,7 +82,7 @@ class MarketingStatsImplTest extends BaseTest {
         final MarketingStatsResponse response = api.getMarketingStats(MarketingStatsFilter.builder()
             .startDate(startDate)
             .endDate(endDate)
-            .sendingDomainIds(List.of(sendingDomainId))
+            .sendingDomainIds(List.of(domainId))
             .sources(List.of(MarketingStatsSource.CAMPAIGNS))
             .emailServiceProviders(List.of("Google", "Yahoo"))
             .build());

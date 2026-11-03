@@ -6,13 +6,13 @@ import java.nio.charset.StandardCharsets;
 public class BaseTest {
     protected final Long accountId = 1L;
     protected final Long anotherAccountId = 2L;
-    protected final Long inboxId = 2L;
+    protected final Long sandboxId = 2L;
     protected final Long projectId = 2L;
     protected final Long anotherProjectId = 2L;
     protected final Long messageId = 3L;
     protected final Long attachmentId = 4L;
     protected final Long accountAccessId = 5L;
-    protected final Long sendingDomainId = 6L;
+    protected final Long domainId = 6L;
     protected final String email = "email@mailtrap.io";
     protected final String emailEncoded = URLEncoder.encode(email, StandardCharsets.UTF_8);
     protected final String contactUUID = "018dd5e3-f6d2-7c00-8f9b-e5c3f2d8a132";

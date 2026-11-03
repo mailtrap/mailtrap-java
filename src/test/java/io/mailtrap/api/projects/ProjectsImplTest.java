@@ -46,7 +46,7 @@ class ProjectsImplTest extends BaseTest {
                 .token("dummy_token")
                 .build();
 
-        api = MailtrapClientFactory.createMailtrapClient(testConfig).testingApi().projects();
+        api = MailtrapClientFactory.createMailtrapClient(testConfig).sandboxApi().projects();
     }
 
     @Test

@@ -27,8 +27,8 @@ public class UpdateEmailCampaign extends AbstractModel {
     private String name;
 
     /**
-     * ID of the verified sending domain used for the campaign, as returned by the Sending
-     * Domains endpoints.
+     * ID of the verified domain used for the campaign, as returned by the Domains
+     * endpoints.
      */
     @JsonProperty("domain_id")
     private Long domainId;

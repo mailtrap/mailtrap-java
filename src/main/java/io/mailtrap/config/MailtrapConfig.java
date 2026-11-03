@@ -29,7 +29,7 @@ public class MailtrapConfig {
     private final CustomHttpClient httpClient;
 
     /**
-     * Indicates whether to use Email Testing API
+     * Indicates whether to use Email Sandbox API
      */
     private final boolean sandbox;
 
@@ -39,16 +39,16 @@ public class MailtrapConfig {
     private final boolean bulk;
 
     /**
-     * Inbox ID. Should be used alongside with {@link #sandbox}, as Email Testing API requires inbox ID
+     * Sandbox ID. Should be used alongside with {@link #sandbox}, as Email Sandbox API requires sandbox ID
      */
-    private final Long inboxId;
+    private final Long sandboxId;
 
     private MailtrapConfig(final Builder builder) {
         if (builder.sandbox && builder.bulk) {
-            throw new BaseMailtrapException("Bulk mode is not applicable for Testing API");
+            throw new BaseMailtrapException("Bulk mode is not applicable for Sandbox API");
         }
-        if (builder.sandbox && Objects.isNull(builder.inboxId)) {
-            throw new BaseMailtrapException("Testing API requires inbox ID");
+        if (builder.sandbox && Objects.isNull(builder.sandboxId)) {
+            throw new BaseMailtrapException("Sandbox API requires sandbox ID");
         }
 
         this.connectionTimeout = builder.connectionTimeout;
@@ -56,7 +56,22 @@ public class MailtrapConfig {
         this.httpClient = builder.httpClient;
         this.sandbox = builder.sandbox;
         this.bulk = builder.bulk;
-        this.inboxId = builder.inboxId;
+        this.sandboxId = builder.sandboxId;
+    }
+
+    /**
+     * @return the sandbox ID the Email Sandbox API sends to
+     */
+    public Long getSandboxId() {
+        return sandboxId;
+    }
+
+    /**
+     * @deprecated Use {@link #getSandboxId()} instead. Will be removed in a future major release.
+     */
+    @Deprecated(since = "1.11.0")
+    public Long getInboxId() {
+        return getSandboxId();
     }
 
     public static class Builder {
@@ -65,7 +80,7 @@ public class MailtrapConfig {
         private CustomHttpClient httpClient;
         private boolean sandbox;
         private boolean bulk;
-        private Long inboxId;
+        private Long sandboxId;
 
         public Builder connectionTimeout(final Duration connectionTimeout) {
             this.connectionTimeout = connectionTimeout;
@@ -92,9 +107,17 @@ public class MailtrapConfig {
             return this;
         }
 
-        public Builder inboxId(final Long inboxId) {
-            this.inboxId = inboxId;
+        public Builder sandboxId(final Long sandboxId) {
+            this.sandboxId = sandboxId;
             return this;
+        }
+
+        /**
+         * @deprecated Use {@link #sandboxId(Long)} instead. Will be removed in a future major release.
+         */
+        @Deprecated(since = "1.11.0")
+        public Builder inboxId(final Long inboxId) {
+            return sandboxId(inboxId);
         }
 
         public MailtrapConfig build() {
