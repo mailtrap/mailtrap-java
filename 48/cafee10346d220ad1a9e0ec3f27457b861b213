@@ -1,0 +1,14 @@
+examples/java/io/mailtrap/examples/organizations/SubAccountsExample.java
+  h_68ae9308e52348 31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "48cafee10346d220ad1a9e0ec3f27457b861b213",
+  "prompts": {},
+  "humans": {
+    "h_68ae9308e52348": {
+      "author": "Alex Shchyhol <oleksandr.shchyhol@railsware.com>"
+    }
+  }
+}
