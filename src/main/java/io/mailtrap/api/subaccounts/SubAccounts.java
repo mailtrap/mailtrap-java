@@ -28,7 +28,7 @@ public interface SubAccounts {
 
     /**
      * Delete a sub account from the specified organization.
-     * Requires sub account management permissions for the organization.
+     * Requires organization admin permissions.
      * <p>
      * Deletion is permanent and removes all sub account data. Deleting the last sub account
      * of an organization deletes the organization as well. A repeated call for the same
