@@ -28,6 +28,7 @@ public class SubAccountsExample {
         System.out.println(createdSubAccount);
 
         // Permanent – removes all sub account data. Deleting the last sub account deletes the organization.
+        // Requires organization admin permissions for the organization.
         client.organizationsApi().subAccounts().deleteSubAccount(ORGANIZATION_ID, createdSubAccount.getId());
         System.out.println("Sub account " + createdSubAccount.getId() + " deleted");
     }
