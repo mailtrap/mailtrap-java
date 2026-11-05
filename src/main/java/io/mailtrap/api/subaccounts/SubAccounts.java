@@ -29,6 +29,8 @@ public interface SubAccounts {
     /**
      * Delete a sub account from the specified organization.
      * Requires organization admin permissions.
+     * The organization must have the Organization &amp; Sub-accounts feature enabled; otherwise the
+     * call fails with 403. A concurrent deletion of the same sub account fails with 409.
      * <p>
      * Deletion is permanent and removes all sub account data. Deleting the last sub account
      * of an organization deletes the organization as well. A repeated call for the same
