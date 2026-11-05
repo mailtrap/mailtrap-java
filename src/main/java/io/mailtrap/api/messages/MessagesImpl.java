@@ -23,18 +23,18 @@ public class MessagesImpl extends ApiResource implements Messages {
     }
 
     @Override
-    public MessageResponse getMessage(final long accountId, final long inboxId, final long messageId) {
+    public MessageResponse getMessage(final long accountId, final long sandboxId, final long messageId) {
         return httpClient.get(
-            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d", accountId, inboxId, messageId),
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d", accountId, sandboxId, messageId),
             new RequestData(),
             MessageResponse.class
         );
     }
 
     @Override
-    public MessageResponse updateMessage(final long accountId, final long inboxId, final long messageId, final UpdateMessageRequest request) {
+    public MessageResponse updateMessage(final long accountId, final long sandboxId, final long messageId, final UpdateMessageRequest request) {
         return httpClient.patch(
-            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d", accountId, inboxId, messageId),
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d", accountId, sandboxId, messageId),
             request,
             new RequestData(),
             MessageResponse.class
@@ -42,32 +42,32 @@ public class MessagesImpl extends ApiResource implements Messages {
     }
 
     @Override
-    public MessageResponse deleteMessage(final long accountId, final long inboxId, final long messageId) {
+    public MessageResponse deleteMessage(final long accountId, final long sandboxId, final long messageId) {
         return httpClient.delete(
-            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d", accountId, inboxId, messageId),
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d", accountId, sandboxId, messageId),
             new RequestData(),
             MessageResponse.class
         );
     }
 
     @Override
-    public List<MessageResponse> getMessages(final long accountId, final long inboxId, @NonNull final ListMessagesQueryParams listMessagesQueryParams) {
+    public List<MessageResponse> getMessages(final long accountId, final long sandboxId, @NonNull final ListMessagesQueryParams listMessagesQueryParams) {
         final var queryParams = RequestData.buildQueryParams(
             entry("last_id", Optional.ofNullable(listMessagesQueryParams.getLastId())),
             entry("page", Optional.ofNullable(listMessagesQueryParams.getPage())),
             entry("search", Optional.ofNullable(listMessagesQueryParams.getSearch())));
 
         return httpClient.getList(
-            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages", accountId, inboxId),
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages", accountId, sandboxId),
             new RequestData(queryParams),
             MessageResponse.class
         );
     }
 
     @Override
-    public ForwardMessageResponse forwardMessage(final long accountId, final long inboxId, final long messageId, final ForwardMessageRequest request) {
+    public ForwardMessageResponse forwardMessage(final long accountId, final long sandboxId, final long messageId, final ForwardMessageRequest request) {
         return httpClient.post(
-            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/forward", accountId, inboxId, messageId),
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/forward", accountId, sandboxId, messageId),
             request,
             new RequestData(),
             ForwardMessageResponse.class
@@ -75,72 +75,72 @@ public class MessagesImpl extends ApiResource implements Messages {
     }
 
     @Override
-    public MessageSpamScoreResponse getSpamScore(final long accountId, final long inboxId, final long messageId) {
+    public MessageSpamScoreResponse getSpamScore(final long accountId, final long sandboxId, final long messageId) {
         return httpClient.get(
-            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/spam_report", accountId, inboxId, messageId),
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/spam_report", accountId, sandboxId, messageId),
             new RequestData(),
             MessageSpamScoreResponse.class
         );
     }
 
     @Override
-    public MessageHtmlAnalysisResponse getMessageHtmlAnalysis(final long accountId, final long inboxId, final long messageId) {
+    public MessageHtmlAnalysisResponse getMessageHtmlAnalysis(final long accountId, final long sandboxId, final long messageId) {
         return httpClient.get(
-            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/analyze", accountId, inboxId, messageId),
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/analyze", accountId, sandboxId, messageId),
             new RequestData(),
             MessageHtmlAnalysisResponse.class
         );
     }
 
     @Override
-    public String getTextMessage(final long accountId, final long inboxId, final long messageId) {
+    public String getTextMessage(final long accountId, final long sandboxId, final long messageId) {
         return httpClient.get(
-            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/body.txt", accountId, inboxId, messageId),
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/body.txt", accountId, sandboxId, messageId),
             new RequestData(),
             String.class
         );
     }
 
     @Override
-    public String getRawMessage(final long accountId, final long inboxId, final long messageId) {
+    public String getRawMessage(final long accountId, final long sandboxId, final long messageId) {
         return httpClient.get(
-            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/body.raw", accountId, inboxId, messageId),
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/body.raw", accountId, sandboxId, messageId),
             new RequestData(),
             String.class
         );
     }
 
     @Override
-    public String getMessageSource(final long accountId, final long inboxId, final long messageId) {
+    public String getMessageSource(final long accountId, final long sandboxId, final long messageId) {
         return httpClient.get(
-            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/body.htmlsource", accountId, inboxId, messageId),
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/body.htmlsource", accountId, sandboxId, messageId),
             new RequestData(),
             String.class
         );
     }
 
     @Override
-    public String getHtmlMessage(final long accountId, final long inboxId, final long messageId) {
+    public String getHtmlMessage(final long accountId, final long sandboxId, final long messageId) {
         return httpClient.get(
-            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/body.html", accountId, inboxId, messageId),
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/body.html", accountId, sandboxId, messageId),
             new RequestData(),
             String.class
         );
     }
 
     @Override
-    public String getMessageAsEml(final long accountId, final long inboxId, final long messageId) {
+    public String getMessageAsEml(final long accountId, final long sandboxId, final long messageId) {
         return httpClient.get(
-            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/body.eml", accountId, inboxId, messageId),
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/body.eml", accountId, sandboxId, messageId),
             new RequestData(),
             String.class
         );
     }
 
     @Override
-    public MessageHeadersResponse getMailHeaders(final long accountId, final long inboxId, final long messageId) {
+    public MessageHeadersResponse getMailHeaders(final long accountId, final long sandboxId, final long messageId) {
         return httpClient.get(
-            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/mail_headers", accountId, inboxId, messageId),
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/mail_headers", accountId, sandboxId, messageId),
             new RequestData(),
             MessageHeadersResponse.class
         );

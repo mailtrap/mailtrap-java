@@ -23,7 +23,7 @@ public class EmailCampaign {
     private Long id;
 
     /**
-     * ID of the sending domain used for the campaign, as returned by the Sending Domains
+     * ID of the domain used for the campaign, as returned by the Domains
      * endpoints.
      */
     @JsonProperty("domain_id")

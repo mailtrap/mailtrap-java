@@ -19,20 +19,20 @@ public class AttachmentsImpl extends ApiResource implements Attachments {
     }
 
     @Override
-    public AttachmentResponse getSingleAttachment(final long accountId, final long inboxId, final long messageId, final long attachmentId) {
+    public AttachmentResponse getSingleAttachment(final long accountId, final long sandboxId, final long messageId, final long attachmentId) {
         return httpClient.get(
-            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/attachments/%d", accountId, inboxId, messageId, attachmentId),
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/attachments/%d", accountId, sandboxId, messageId, attachmentId),
             new RequestData(),
             AttachmentResponse.class);
     }
 
     @Override
-    public List<AttachmentResponse> getAttachments(final long accountId, final long inboxId, final long messageId, final String attachmentType) {
+    public List<AttachmentResponse> getAttachments(final long accountId, final long sandboxId, final long messageId, final String attachmentType) {
         final var queryParams = RequestData.buildQueryParams(
             entry("attachment_type", Optional.ofNullable(attachmentType)));
 
         return httpClient.getList(
-            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/attachments", accountId, inboxId, messageId),
+            String.format(apiHost + "/api/accounts/%d/inboxes/%d/messages/%d/attachments", accountId, sandboxId, messageId),
             new RequestData(queryParams),
             AttachmentResponse.class);
     }

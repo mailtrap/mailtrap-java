@@ -18,7 +18,7 @@ public interface TrackingOptOuts {
     TrackingOptOutListResponse getTrackingOptOuts(TrackingOptOutListFilter filter);
 
     /**
-     * Add an email address to the tracking opt-out list for a sending domain.
+     * Add an email address to the tracking opt-out list for a domain.
      *
      * @param request - request data
      * @return the created tracking opt-out

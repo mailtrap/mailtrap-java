@@ -10,7 +10,7 @@ public class AccountAccessExample {
 
     private static final String TOKEN = System.getenv("MAILTRAP_API_KEY");
     private static final long ACCOUNT_ID = Long.parseLong(System.getenv("MAILTRAP_ACCOUNT_ID"));
-    private static final String INBOX_ID = System.getenv("MAILTRAP_INBOX_ID");
+    private static final String SANDBOX_ID = System.getenv("MAILTRAP_SANDBOX_ID");
 
     public static void main(String[] args) {
         final var config = new MailtrapConfig.Builder()
@@ -20,7 +20,7 @@ public class AccountAccessExample {
         final var client = MailtrapClientFactory.createMailtrapClient(config);
 
         final var queryParams = new ListAccountAccessQueryParams();
-        queryParams.setInboxIds(List.of(INBOX_ID));
+        queryParams.setInboxIds(List.of(SANDBOX_ID));
 
         final var responses = client.generalApi().accountAccesses().listUserAndInviteAccountAccesses(ACCOUNT_ID, queryParams);
 

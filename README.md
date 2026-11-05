@@ -90,7 +90,7 @@ Example config init:
         final MailtrapConfig config = new MailtrapConfig.Builder()
     .token("<YOUR MAILTRAP TOKEN>")
     .sandbox(true)
-    .inboxId(123456)
+    .sandboxId(123456)
     .build();
 ```
 
@@ -110,13 +110,13 @@ public class MailtrapJavaSDKSandboxTest {
     private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
     private static final String SENDER_EMAIL = "sender@domain.com";
     private static final String RECIPIENT_EMAIL = "recipient@domain.com";
-    private static final long INBOX_ID = 1L;
+    private static final long SANDBOX_ID = 1L;
 
     public static void main(String[] args) {
         final MailtrapConfig config = new MailtrapConfig.Builder()
             .token(TOKEN)
             .sandbox(true)
-            .inboxId(INBOX_ID)
+            .sandboxId(SANDBOX_ID)
             .build();
 
         final MailtrapClient client = MailtrapClientFactory.createMailtrapClient(config);
@@ -163,7 +163,7 @@ public class SwitchSendFromClient {
     private static final String TOKEN = "<YOUR MAILTRAP TOKEN>";
     private static final String SENDER_EMAIL = "sender@domain.com";
     private static final String RECIPIENT_EMAIL = "recipient@domain.com";
-    private static final long INBOX_ID = 1L;
+    private static final long SANDBOX_ID = 1L;
 
     public static void main(String[] args) {
         // Minimal config init, just token
@@ -188,7 +188,7 @@ public class SwitchSendFromClient {
         client.send(mail);
         
         // Sandbox send
-        client.switchToEmailTestingApi(INBOX_ID);
+        client.switchToEmailSandboxApi(SANDBOX_ID);
         client.send(mail);
     }
 
@@ -220,7 +220,7 @@ public class FullFeaturedExample {
     public static void main(String[] args) {
         final var config = new MailtrapConfig.Builder()
                 .token(TOKEN)
-            //by default both `bulk` and `sandbox` are null, `inboxId` is null
+            //by default both `bulk` and `sandbox` are null, `sandboxId` is null
                 .build();
 
         final var client = MailtrapClientFactory.createMailtrapClient(config);
@@ -347,21 +347,21 @@ You can find the [Mailtrap Java API reference](https://mailtrap.github.io/mailtr
 - [Error handling](examples/java/io/mailtrap/examples/sending/ErrorsExample.java)
 - [Send using template](examples/java/io/mailtrap/examples/sending/TemplateExample.java)
 - [Batch](examples/java/io/mailtrap/examples/sending/BatchExample.java)
-- [Sending Domains](examples/java/io/mailtrap/examples/sendingdomains/SendingDomainsExample.java)
+- [Domains](examples/java/io/mailtrap/examples/domains/DomainsExample.java)
 - [Company Info](examples/java/io/mailtrap/examples/companyinfo/CompanyInfoExample.java)
 - [Suppressions](examples/java/io/mailtrap/examples/suppressions/SuppressionsExample.java)
 - [Tracking Opt-outs](examples/java/io/mailtrap/examples/trackingoptouts/TrackingOptOutsExample.java)
 - [Stats](examples/java/io/mailtrap/examples/sending/StatsExample.java)
 - [Email Logs](examples/java/io/mailtrap/examples/emaillogs/EmailLogsExample.java)
 
-### Email Testing API
+### Email Sandbox API
 
-- [Attachments](examples/java/io/mailtrap/examples/testing/AttachmentsExample.java)
-- [Inboxes](examples/java/io/mailtrap/examples/testing/InboxesExample.java)
-- [Messages](examples/java/io/mailtrap/examples/testing/MessagesExample.java)
-- [Projects](examples/java/io/mailtrap/examples/testing/ProjectsExample.java)
-- [Sandbox send using template](examples/java/io/mailtrap/examples/testing/EmailExample.java)
-- [Batch](examples/java/io/mailtrap/examples/testing/BatchExample.java)
+- [Attachments](examples/java/io/mailtrap/examples/sandbox/AttachmentsExample.java)
+- [Sandboxes](examples/java/io/mailtrap/examples/sandbox/SandboxesExample.java)
+- [Messages](examples/java/io/mailtrap/examples/sandbox/MessagesExample.java)
+- [Projects](examples/java/io/mailtrap/examples/sandbox/ProjectsExample.java)
+- [Sandbox send using template](examples/java/io/mailtrap/examples/sandbox/EmailExample.java)
+- [Batch](examples/java/io/mailtrap/examples/sandbox/BatchExample.java)
 
 ### Inbound Email API
 
@@ -393,6 +393,32 @@ You can find the [Mailtrap Java API reference](https://mailtrap.github.io/mailtr
 
 - [Email Campaigns](examples/java/io/mailtrap/examples/emailcampaigns/EmailCampaignsExample.java)
 - [Marketing Stats](examples/java/io/mailtrap/examples/marketingstats/MarketingStatsExample.java)
+
+### Renamed APIs
+
+The SDK now uses the product's names: Email Testing inboxes are **sandboxes** and sending domains are **domains**. The old
+entry points still work and call the same endpoints, but they are marked `@Deprecated(since = "1.11.0")` and will be
+removed in a future major release. Types such as `MailtrapEmailTestingApi`, `Inboxes`, `InboxResponse`, `SendingDomains`
+and `SendingDomainsResponse` keep their names until that release.
+
+| Old | New |
+|-----|-----|
+| `client.testingApi()` | `client.sandboxApi()` |
+| `client.switchToEmailTestingApi(inboxId)` | `client.switchToEmailSandboxApi(sandboxId)` |
+| `new MailtrapConfig.Builder().inboxId(id)` | `new MailtrapConfig.Builder().sandboxId(id)` |
+| `config.getInboxId()` | `config.getSandboxId()` |
+| `Constants.EMAIL_TESTING_SEND_HOST` | `Constants.EMAIL_SANDBOX_SEND_HOST` |
+| `sandboxApi().inboxes()` | `sandboxApi().sandboxes()` |
+| `createInbox(accountId, projectId, request)` | `createSandbox(accountId, projectId, request)` |
+| `getInboxAttributes(accountId, inboxId)` | `getSandboxAttributes(accountId, sandboxId)` |
+| `updateInbox(accountId, inboxId, request)` | `updateSandbox(accountId, sandboxId, request)` |
+| `deleteInbox(accountId, inboxId)` | `deleteSandbox(accountId, sandboxId)` |
+| `cleanInbox(accountId, inboxId)` | `cleanSandbox(accountId, sandboxId)` |
+| `getInboxes(accountId)` | `getSandboxes(accountId)` |
+| `sendingApi().domains().getSendingDomains(accountId)` | `sendingApi().domains().getDomains(accountId)` |
+| `getSendingDomain(accountId, sendingDomainId)` | `getDomain(accountId, domainId)` |
+| `sendSendingDomainsSetupInstructions(accountId, sendingDomainId, request)` | `sendDomainSetupInstructions(accountId, domainId, request)` |
+| `deleteSendingDomain(accountId, sendingDomainId)` | `deleteDomain(accountId, domainId)` |
 
 ## Contributing
 

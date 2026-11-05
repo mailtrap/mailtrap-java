@@ -1,4 +1,4 @@
-package io.mailtrap.examples.sendingdomains;
+package io.mailtrap.examples.domains;
 
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.factory.MailtrapClientFactory;
@@ -8,7 +8,7 @@ import io.mailtrap.model.request.sendingdomains.UpdateSendingDomainRequest;
 
 import static io.mailtrap.model.request.sendingdomains.CreateSendingDomainRequest.SendingDomainData;
 
-public class SendingDomainsExample {
+public class DomainsExample {
 
     private static final String TOKEN = System.getenv("MAILTRAP_API_KEY");
     private static final long ACCOUNT_ID = Long.parseLong(System.getenv("MAILTRAP_ACCOUNT_ID"));
@@ -27,10 +27,10 @@ public class SendingDomainsExample {
         final var createdDomain = client.sendingApi().domains().create(ACCOUNT_ID, createRequest);
         System.out.println(createdDomain);
 
-        final var domainById = client.sendingApi().domains().getSendingDomain(ACCOUNT_ID, createdDomain.getId());
+        final var domainById = client.sendingApi().domains().getDomain(ACCOUNT_ID, createdDomain.getId());
         System.out.println(domainById);
 
-        final var allDomains = client.sendingApi().domains().getSendingDomains(ACCOUNT_ID);
+        final var allDomains = client.sendingApi().domains().getDomains(ACCOUNT_ID);
         System.out.println(allDomains);
 
         final var updateRequest = new UpdateSendingDomainRequest(
@@ -46,8 +46,8 @@ public class SendingDomainsExample {
         System.out.println(updatedDomain);
 
         final var sendInstructionsRequest = new SendingDomainsSetupInstructionsRequest(DEVOPS_EMAIL);
-        client.sendingApi().domains().sendSendingDomainsSetupInstructions(ACCOUNT_ID, createdDomain.getId(), sendInstructionsRequest);
+        client.sendingApi().domains().sendDomainSetupInstructions(ACCOUNT_ID, createdDomain.getId(), sendInstructionsRequest);
 
-        client.sendingApi().domains().deleteSendingDomain(ACCOUNT_ID, createdDomain.getId());
+        client.sendingApi().domains().deleteDomain(ACCOUNT_ID, createdDomain.getId());
     }
 }

@@ -19,11 +19,11 @@ public class TestingEmailsImpl extends SendApiResource implements TestingEmails 
 
     public TestingEmailsImpl(final MailtrapConfig config, final MailtrapValidator mailtrapValidator) {
         super(config, mailtrapValidator);
-        this.apiHost = Constants.EMAIL_TESTING_SEND_HOST;
+        this.apiHost = Constants.EMAIL_SANDBOX_SEND_HOST;
     }
 
     @Override
-    public SendResponse send(final MailtrapMail mail, final long inboxId) {
+    public SendResponse send(final MailtrapMail mail, final long sandboxId) {
         validateMailPayload(mail);
         RequestData requestData = new RequestData();
         if (mail.getHeaders() != null) {
@@ -32,7 +32,7 @@ public class TestingEmailsImpl extends SendApiResource implements TestingEmails 
 
         return
             httpClient.post(
-                String.format(apiHost + "/api/send/%d", inboxId),
+                String.format(apiHost + "/api/send/%d", sandboxId),
                 mail,
                 requestData,
                 SendResponse.class
@@ -40,12 +40,12 @@ public class TestingEmailsImpl extends SendApiResource implements TestingEmails 
     }
 
     @Override
-    public BatchSendResponse batchSend(final MailtrapBatchMail mail, final long inboxId) throws HttpException, InvalidRequestBodyException {
+    public BatchSendResponse batchSend(final MailtrapBatchMail mail, final long sandboxId) throws HttpException, InvalidRequestBodyException {
         validateBatchPayload(mail);
 
         return
             httpClient.post(
-                String.format(apiHost + "/api/batch/%d", inboxId),
+                String.format(apiHost + "/api/batch/%d", sandboxId),
                 mail, new RequestData(),
                 BatchSendResponse.class
             );

@@ -7,58 +7,94 @@ import io.mailtrap.model.response.sendingdomains.SendingDomainsResponse;
 
 import java.util.List;
 
+/**
+ * Interface representing the Mailtrap Sending API for interaction with domains
+ */
 public interface SendingDomains {
 
     /**
-     * Create a sending domain
+     * Create a domain
      *
      * @param accountId unique account ID
      * @param request   request data
-     * @return Attributes of created sending domain
+     * @return Attributes of created domain
      */
     SendingDomainsResponse create(long accountId, CreateSendingDomainRequest request);
 
     /**
-     * Get sending domains and their statuses
+     * Get domains and their statuses
      *
      * @param accountId unique account ID
      * @return domains with their attributes, DNS records, statuses
      */
-    List<SendingDomainsResponse> getSendingDomains(long accountId);
+    List<SendingDomainsResponse> getDomains(long accountId);
 
     /**
      * Get domain data and it's status
      *
-     * @param accountId       unique account ID
-     * @param sendingDomainId unique domain ID
+     * @param accountId unique account ID
+     * @param domainId  unique domain ID
      * @return domain attributes, DNS records, status
      */
-    SendingDomainsResponse getSendingDomain(long accountId, long sendingDomainId);
+    SendingDomainsResponse getDomain(long accountId, long domainId);
 
     /**
-     * Update configuration settings for a sending domain
+     * Update configuration settings for a domain
      *
-     * @param accountId       unique account ID
-     * @param sendingDomainId unique domain ID
-     * @param request         request data, only the fields set are sent
+     * @param accountId unique account ID
+     * @param domainId  unique domain ID
+     * @param request   request data, only the fields set are sent
      * @return updated domain attributes, DNS records, status
      */
-    SendingDomainsResponse update(long accountId, long sendingDomainId, UpdateSendingDomainRequest request);
+    SendingDomainsResponse update(long accountId, long domainId, UpdateSendingDomainRequest request);
 
     /**
-     * Send sending domain setup instructions
+     * Send domain setup instructions
      *
-     * @param accountId       unique account ID
-     * @param sendingDomainId unique domain ID
-     * @param request         request data
+     * @param accountId unique account ID
+     * @param domainId  unique domain ID
+     * @param request   request data
      */
-    void sendSendingDomainsSetupInstructions(long accountId, long sendingDomainId, SendingDomainsSetupInstructionsRequest request);
+    void sendDomainSetupInstructions(long accountId, long domainId, SendingDomainsSetupInstructionsRequest request);
 
     /**
-     * Delete a sending domain
+     * Delete a domain
      *
-     * @param accountId       unique account ID
-     * @param sendingDomainId unique domain ID
+     * @param accountId unique account ID
+     * @param domainId  unique domain ID
      */
-    void deleteSendingDomain(long accountId, long sendingDomainId);
+    void deleteDomain(long accountId, long domainId);
+
+    /**
+     * @deprecated Use {@link #getDomains(long)} instead. Will be removed in a future major release.
+     */
+    @Deprecated(since = "1.11.0")
+    default List<SendingDomainsResponse> getSendingDomains(final long accountId) {
+        return getDomains(accountId);
+    }
+
+    /**
+     * @deprecated Use {@link #getDomain(long, long)} instead. Will be removed in a future major release.
+     */
+    @Deprecated(since = "1.11.0")
+    default SendingDomainsResponse getSendingDomain(final long accountId, final long sendingDomainId) {
+        return getDomain(accountId, sendingDomainId);
+    }
+
+    /**
+     * @deprecated Use {@link #sendDomainSetupInstructions(long, long, SendingDomainsSetupInstructionsRequest)} instead.
+     * Will be removed in a future major release.
+     */
+    @Deprecated(since = "1.11.0")
+    default void sendSendingDomainsSetupInstructions(final long accountId, final long sendingDomainId, final SendingDomainsSetupInstructionsRequest request) {
+        sendDomainSetupInstructions(accountId, sendingDomainId, request);
+    }
+
+    /**
+     * @deprecated Use {@link #deleteDomain(long, long)} instead. Will be removed in a future major release.
+     */
+    @Deprecated(since = "1.11.0")
+    default void deleteSendingDomain(final long accountId, final long sendingDomainId) {
+        deleteDomain(accountId, sendingDomainId);
+    }
 }

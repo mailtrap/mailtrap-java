@@ -29,8 +29,8 @@ public class MarketingStatsFilter {
     private String endDate;
 
     /**
-     * IDs of the sending domains to include, as returned by the Sending Domains API. If omitted,
-     * every sending domain of the account is included.
+     * IDs of the domains to include, as returned by the Domains API. If omitted,
+     * every domain of the account is included.
      */
     private List<Long> sendingDomainIds;
 

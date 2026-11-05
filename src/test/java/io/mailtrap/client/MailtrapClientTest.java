@@ -26,7 +26,7 @@ class MailtrapClientTest extends BaseSendTest {
     @BeforeEach
     void setUp() {
         final TestHttpClient httpClient = new TestHttpClient(List.of(
-            DataMock.build(Constants.EMAIL_TESTING_SEND_HOST + "/api/send/" + INBOX_ID, "POST",
+            DataMock.build(Constants.EMAIL_SANDBOX_SEND_HOST + "/api/send/" + SANDBOX_ID, "POST",
                 "api/emails/sendRequest.json", "api/emails/sendResponse.json"),
 
             DataMock.build(Constants.BULK_SENDING_HOST + "/api/send", "POST",
@@ -35,7 +35,7 @@ class MailtrapClientTest extends BaseSendTest {
             DataMock.build(Constants.EMAIL_SENDING_SEND_HOST + "/api/send", "POST",
                 "api/emails/sendRequest.json", "api/emails/sendResponse.json"),
 
-            DataMock.build(Constants.EMAIL_TESTING_SEND_HOST + "/api/batch/" + INBOX_ID, "POST",
+            DataMock.build(Constants.EMAIL_SANDBOX_SEND_HOST + "/api/batch/" + SANDBOX_ID, "POST",
                 "api/emails/batchSendRequest.json", "api/emails/batchSendResponse.json"),
 
             DataMock.build(Constants.BULK_SENDING_HOST + "/api/batch", "POST",
@@ -72,7 +72,7 @@ class MailtrapClientTest extends BaseSendTest {
         // Set up test data
         final MailtrapMail mailtrapMail = createValidTestMail();
 
-        mailtrapClient.switchToEmailTestingApi(INBOX_ID);
+        mailtrapClient.switchToEmailSandboxApi(SANDBOX_ID);
 
         // Call
         final SendResponse response = mailtrapClient.send(mailtrapMail);
@@ -113,7 +113,7 @@ class MailtrapClientTest extends BaseSendTest {
         // Set up test data
         final MailtrapBatchMail batchMail = MailtrapBatchMail.builder().requests(List.of(createValidTestMail())).build();
 
-        mailtrapClient.switchToEmailTestingApi(INBOX_ID);
+        mailtrapClient.switchToEmailSandboxApi(SANDBOX_ID);
 
         // Call
         final BatchSendResponse response = mailtrapClient.batchSend(batchMail);
@@ -149,15 +149,15 @@ class MailtrapClientTest extends BaseSendTest {
     }
 
     @Test
-    void test_sandboxTrueAndInboxIdIsNull_ThrowsBaseMailtrapException() {
+    void test_sandboxTrueAndSandboxIdIsNull_ThrowsBaseMailtrapException() {
         // Set up test data and call
         final BaseMailtrapException exception = assertThrows(BaseMailtrapException.class, () -> new MailtrapConfig.Builder()
             .sandbox(true)
-            .inboxId(null)
+            .sandboxId(null)
             .build());
 
         // Assert
-        assertEquals(INBOX_ID_REQUIRED, exception.getMessage());
+        assertEquals(SANDBOX_ID_REQUIRED, exception.getMessage());
     }
 
 }

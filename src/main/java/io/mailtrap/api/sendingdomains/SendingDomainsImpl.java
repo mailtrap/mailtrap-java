@@ -29,7 +29,7 @@ public class SendingDomainsImpl extends ApiResource implements SendingDomains {
     }
 
     @Override
-    public List<SendingDomainsResponse> getSendingDomains(final long accountId) {
+    public List<SendingDomainsResponse> getDomains(final long accountId) {
         return httpClient.getList(
             String.format(apiHost + "/api/accounts/%d/sending_domains", accountId),
             new RequestData(),
@@ -38,18 +38,18 @@ public class SendingDomainsImpl extends ApiResource implements SendingDomains {
     }
 
     @Override
-    public SendingDomainsResponse getSendingDomain(final long accountId, final long sendingDomainId) {
+    public SendingDomainsResponse getDomain(final long accountId, final long domainId) {
         return httpClient.get(
-            String.format(apiHost + "/api/accounts/%d/sending_domains/%d", accountId, sendingDomainId),
+            String.format(apiHost + "/api/accounts/%d/sending_domains/%d", accountId, domainId),
             new RequestData(),
             SendingDomainsResponse.class
         );
     }
 
     @Override
-    public SendingDomainsResponse update(final long accountId, final long sendingDomainId, final UpdateSendingDomainRequest request) {
+    public SendingDomainsResponse update(final long accountId, final long domainId, final UpdateSendingDomainRequest request) {
         return httpClient.patch(
-            String.format(apiHost + "/api/accounts/%d/sending_domains/%d", accountId, sendingDomainId),
+            String.format(apiHost + "/api/accounts/%d/sending_domains/%d", accountId, domainId),
             request,
             new RequestData(),
             SendingDomainsResponse.class
@@ -57,9 +57,9 @@ public class SendingDomainsImpl extends ApiResource implements SendingDomains {
     }
 
     @Override
-    public void sendSendingDomainsSetupInstructions(final long accountId, final long sendingDomainId, final SendingDomainsSetupInstructionsRequest request) {
+    public void sendDomainSetupInstructions(final long accountId, final long domainId, final SendingDomainsSetupInstructionsRequest request) {
         httpClient.post(
-            String.format(apiHost + "/api/accounts/%d/sending_domains/%d/send_setup_instructions", accountId, sendingDomainId),
+            String.format(apiHost + "/api/accounts/%d/sending_domains/%d/send_setup_instructions", accountId, domainId),
             request,
             new RequestData(),
             Void.class
@@ -67,10 +67,10 @@ public class SendingDomainsImpl extends ApiResource implements SendingDomains {
     }
 
     @Override
-    public void deleteSendingDomain(final long accountId, final long sendingDomainId) {
+    public void deleteDomain(final long accountId, final long domainId) {
         httpClient
             .delete(
-                String.format(apiHost + "/api/accounts/%d/sending_domains/%d", accountId, sendingDomainId),
+                String.format(apiHost + "/api/accounts/%d/sending_domains/%d", accountId, domainId),
                 new RequestData(),
                 Void.class
             );
