@@ -135,7 +135,7 @@ class DeprecatedNamesTest extends BaseTest {
         assertSame(response, domains.getSendingDomain(accountId, domainId));
 
         domains.sendSendingDomainsSetupInstructions(accountId, domainId, instructionsRequest);
-        verify(domains).sendDomainsSetupInstructions(accountId, domainId, instructionsRequest);
+        verify(domains).sendDomainSetupInstructions(accountId, domainId, instructionsRequest);
 
         domains.deleteSendingDomain(accountId, domainId);
         verify(domains).deleteDomain(accountId, domainId);

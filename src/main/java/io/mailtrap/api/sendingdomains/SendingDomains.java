@@ -55,7 +55,7 @@ public interface SendingDomains {
      * @param domainId  unique domain ID
      * @param request   request data
      */
-    void sendDomainsSetupInstructions(long accountId, long domainId, SendingDomainsSetupInstructionsRequest request);
+    void sendDomainSetupInstructions(long accountId, long domainId, SendingDomainsSetupInstructionsRequest request);
 
     /**
      * Delete a domain
@@ -82,12 +82,12 @@ public interface SendingDomains {
     }
 
     /**
-     * @deprecated Use {@link #sendDomainsSetupInstructions(long, long, SendingDomainsSetupInstructionsRequest)} instead.
+     * @deprecated Use {@link #sendDomainSetupInstructions(long, long, SendingDomainsSetupInstructionsRequest)} instead.
      * Will be removed in a future major release.
      */
     @Deprecated(since = "1.11.0")
     default void sendSendingDomainsSetupInstructions(final long accountId, final long sendingDomainId, final SendingDomainsSetupInstructionsRequest request) {
-        sendDomainsSetupInstructions(accountId, sendingDomainId, request);
+        sendDomainSetupInstructions(accountId, sendingDomainId, request);
     }
 
     /**

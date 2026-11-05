@@ -57,7 +57,7 @@ public class SendingDomainsImpl extends ApiResource implements SendingDomains {
     }
 
     @Override
-    public void sendDomainsSetupInstructions(final long accountId, final long domainId, final SendingDomainsSetupInstructionsRequest request) {
+    public void sendDomainSetupInstructions(final long accountId, final long domainId, final SendingDomainsSetupInstructionsRequest request) {
         httpClient.post(
             String.format(apiHost + "/api/accounts/%d/sending_domains/%d/send_setup_instructions", accountId, domainId),
             request,

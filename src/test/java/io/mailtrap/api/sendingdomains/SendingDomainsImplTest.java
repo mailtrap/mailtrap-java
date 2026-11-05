@@ -111,8 +111,8 @@ class SendingDomainsImplTest extends BaseTest {
     }
 
     @Test
-    void test_sendDomainsSetupInstructions() {
-        domains.sendDomainsSetupInstructions(accountId, domainId, new SendingDomainsSetupInstructionsRequest("devops@test.io"));
+    void test_sendDomainSetupInstructions() {
+        domains.sendDomainSetupInstructions(accountId, domainId, new SendingDomainsSetupInstructionsRequest("devops@test.io"));
     }
 
     @Test

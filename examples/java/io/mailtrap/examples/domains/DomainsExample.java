@@ -46,7 +46,7 @@ public class DomainsExample {
         System.out.println(updatedDomain);
 
         final var sendInstructionsRequest = new SendingDomainsSetupInstructionsRequest(DEVOPS_EMAIL);
-        client.sendingApi().domains().sendDomainsSetupInstructions(ACCOUNT_ID, createdDomain.getId(), sendInstructionsRequest);
+        client.sendingApi().domains().sendDomainSetupInstructions(ACCOUNT_ID, createdDomain.getId(), sendInstructionsRequest);
 
         client.sendingApi().domains().deleteDomain(ACCOUNT_ID, createdDomain.getId());
     }

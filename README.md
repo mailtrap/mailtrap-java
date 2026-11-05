@@ -417,7 +417,7 @@ and `SendingDomainsResponse` keep their names until that release.
 | `getInboxes(accountId)` | `getSandboxes(accountId)` |
 | `sendingApi().domains().getSendingDomains(accountId)` | `sendingApi().domains().getDomains(accountId)` |
 | `getSendingDomain(accountId, sendingDomainId)` | `getDomain(accountId, domainId)` |
-| `sendSendingDomainsSetupInstructions(accountId, sendingDomainId, request)` | `sendDomainsSetupInstructions(accountId, domainId, request)` |
+| `sendSendingDomainsSetupInstructions(accountId, sendingDomainId, request)` | `sendDomainSetupInstructions(accountId, domainId, request)` |
 | `deleteSendingDomain(accountId, sendingDomainId)` | `deleteDomain(accountId, domainId)` |
 
 ## Contributing
