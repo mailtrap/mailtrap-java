@@ -5,7 +5,7 @@ import io.mailtrap.model.response.accounts.AccountsResponse;
 import java.util.List;
 
 /**
- * Interface representing the Mailtrap Testing API for interaction with accounts
+ * Interface representing the Mailtrap General API for interaction with accounts
  */
 public interface Accounts {
 

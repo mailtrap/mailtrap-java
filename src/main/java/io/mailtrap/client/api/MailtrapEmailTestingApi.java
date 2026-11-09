@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 
 /**
- * Represents an API for Mailtrap Testing functionality
+ * Represents an API for Mailtrap Email Sandbox functionality
  */
 @Getter
 @Accessors(fluent = true)
@@ -18,7 +18,22 @@ import lombok.experimental.Accessors;
 public class MailtrapEmailTestingApi {
     private final TestingEmails emails;
     private final Attachments attachments;
-    private final Inboxes inboxes;
+    private final Inboxes sandboxes;
     private final Projects projects;
     private final Messages messages;
+
+    /**
+     * @return API for managing sandboxes
+     */
+    public Inboxes sandboxes() {
+        return sandboxes;
+    }
+
+    /**
+     * @deprecated Use {@link #sandboxes()} instead. Will be removed in a future major release.
+     */
+    @Deprecated(since = "1.11.0")
+    public Inboxes inboxes() {
+        return sandboxes();
+    }
 }

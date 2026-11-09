@@ -19,7 +19,7 @@ public class ListAccountAccessQueryParams {
     private List<String> domainUuids;
 
     /**
-     * The identifiers of the inboxes for which to include the results
+     * The identifiers of the sandboxes for which to include the results
      */
     private List<String> inboxIds;
 

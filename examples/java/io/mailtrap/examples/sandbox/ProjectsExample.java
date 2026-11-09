@@ -1,4 +1,4 @@
-package io.mailtrap.examples.testing;
+package io.mailtrap.examples.sandbox;
 
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.factory.MailtrapClientFactory;
@@ -14,18 +14,18 @@ public class ProjectsExample {
                 .token(TOKEN)
                 .build();
 
-        final var testingClient = MailtrapClientFactory.createMailtrapClient(config).testingApi();
+        final var sandboxClient = MailtrapClientFactory.createMailtrapClient(config).sandboxApi();
 
-        final var projects = testingClient.projects().getProjects(ACCOUNT_ID);
+        final var projects = sandboxClient.projects().getProjects(ACCOUNT_ID);
 
         if (!projects.isEmpty()) {
             long firstProjectId = projects.get(0).getId();
 
             final var updatedProject =
-                    testingClient.projects().updateProject(ACCOUNT_ID, firstProjectId, new ProjectRequest(new ProjectRequest.ProjectData("mock project")));
+                    sandboxClient.projects().updateProject(ACCOUNT_ID, firstProjectId, new ProjectRequest(new ProjectRequest.ProjectData("mock project")));
             System.out.println(updatedProject);
 
-            final var deletedProject = testingClient.projects().deleteProject(ACCOUNT_ID, firstProjectId);
+            final var deletedProject = sandboxClient.projects().deleteProject(ACCOUNT_ID, firstProjectId);
             System.out.println(deletedProject);
         }
     }

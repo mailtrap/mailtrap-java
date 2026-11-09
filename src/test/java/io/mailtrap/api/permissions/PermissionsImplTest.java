@@ -45,7 +45,7 @@ class PermissionsImplTest extends BaseTest {
     void managePermissions() {
         final ManagePermissionsRequest request = new ManagePermissionsRequest(List.of(
                 new Permission(String.valueOf(accountId), ResourceType.ACCOUNT, AccessLevel.VIEWER, false),
-                new Permission(String.valueOf(inboxId), ResourceType.INBOX, AccessLevel.ADMIN, true)
+                new Permission(String.valueOf(sandboxId), ResourceType.INBOX, AccessLevel.ADMIN, true)
         ));
 
         final ManagePermissionsResponse response = api.managePermissions(accountAccessId, accountId, request);

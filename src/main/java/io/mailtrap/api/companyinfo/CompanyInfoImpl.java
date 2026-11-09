@@ -16,18 +16,18 @@ public class CompanyInfoImpl extends ApiResource implements CompanyInfo {
     }
 
     @Override
-    public CompanyInfoResponse getCompanyInfo(final long sendingDomainId) {
+    public CompanyInfoResponse getCompanyInfo(final long domainId) {
         return httpClient.get(
-            companyInfoPath(sendingDomainId),
+            companyInfoPath(domainId),
             new RequestData(),
             CompanyInfoResponse.class
         );
     }
 
     @Override
-    public CompanyInfoResponse createCompanyInfo(final long sendingDomainId, final CreateCompanyInfoRequest request) {
+    public CompanyInfoResponse createCompanyInfo(final long domainId, final CreateCompanyInfoRequest request) {
         return httpClient.post(
-            companyInfoPath(sendingDomainId),
+            companyInfoPath(domainId),
             request,
             new RequestData(),
             CompanyInfoResponse.class
@@ -35,16 +35,16 @@ public class CompanyInfoImpl extends ApiResource implements CompanyInfo {
     }
 
     @Override
-    public CompanyInfoResponse updateCompanyInfo(final long sendingDomainId, final UpdateCompanyInfoRequest request) {
+    public CompanyInfoResponse updateCompanyInfo(final long domainId, final UpdateCompanyInfoRequest request) {
         return httpClient.patch(
-            companyInfoPath(sendingDomainId),
+            companyInfoPath(domainId),
             request,
             new RequestData(),
             CompanyInfoResponse.class
         );
     }
 
-    private String companyInfoPath(final long sendingDomainId) {
-        return String.format(apiHost + "/api/domains/%d/company_info", sendingDomainId);
+    private String companyInfoPath(final long domainId) {
+        return String.format(apiHost + "/api/domains/%d/company_info", domainId);
     }
 }

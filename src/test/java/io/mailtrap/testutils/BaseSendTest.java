@@ -10,9 +10,9 @@ import java.util.UUID;
 
 public class BaseSendTest {
 
-    protected final long INBOX_ID = 4308;
-    protected final String BULK_AND_SANDBOX_TRUE_IN_SENDING_CONFIG = "Bulk mode is not applicable for Testing API";
-    protected final String INBOX_ID_REQUIRED = "Testing API requires inbox ID";
+    protected final long SANDBOX_ID = 4308;
+    protected final String BULK_AND_SANDBOX_TRUE_IN_SENDING_CONFIG = "Bulk mode is not applicable for Sandbox API";
+    protected final String SANDBOX_ID_REQUIRED = "Sandbox API requires sandbox ID";
     protected final String INVALID_REQUEST_EMPTY_BODY_FROM_EMAIL = "Invalid request body. Violations: from.email=must not be empty";
     protected final String TEMPLATE_UUID_IS_USED_SUBJECT_AND_TEXT_AND_HTML_SHOULD_BE_EMPTY = "When templateUuid is used, subject, text, and html must not be used";
     protected final String TEMPLATE_VARIABLES_SHOULD_BE_USED_WITH_TEMPLATE_UUID = "Mail templateVariables must only be used with templateUuid";

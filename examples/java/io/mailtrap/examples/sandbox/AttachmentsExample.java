@@ -1,4 +1,4 @@
-package io.mailtrap.examples.testing;
+package io.mailtrap.examples.sandbox;
 
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.factory.MailtrapClientFactory;
@@ -14,24 +14,24 @@ public class AttachmentsExample {
                 .token(TOKEN)
                 .build();
 
-        final var testingClient = MailtrapClientFactory.createMailtrapClient(config).testingApi();
+        final var sandboxClient = MailtrapClientFactory.createMailtrapClient(config).sandboxApi();
 
-        final var inboxes = testingClient.inboxes().getInboxes(ACCOUNT_ID);
+        final var sandboxes = sandboxClient.sandboxes().getSandboxes(ACCOUNT_ID);
 
-        if (!inboxes.isEmpty()) {
-            final var firstInbox = inboxes.get(0);
+        if (!sandboxes.isEmpty()) {
+            final var firstSandbox = sandboxes.get(0);
 
-            final var messages = testingClient.messages().getMessages(ACCOUNT_ID, firstInbox.getId(), ListMessagesQueryParams.empty());
+            final var messages = sandboxClient.messages().getMessages(ACCOUNT_ID, firstSandbox.getId(), ListMessagesQueryParams.empty());
 
             if (!messages.isEmpty()) {
                 final var firstMessage = messages.get(0);
 
-                final var attachments = testingClient.attachments().getAttachments(ACCOUNT_ID, firstInbox.getId(), firstMessage.getId(), null);
+                final var attachments = sandboxClient.attachments().getAttachments(ACCOUNT_ID, firstSandbox.getId(), firstMessage.getId(), null);
 
                 if (!attachments.isEmpty()) {
                     final var firstAttachment = attachments.get(0);
 
-                    System.out.println(testingClient.attachments().getSingleAttachment(ACCOUNT_ID, firstInbox.getId(), firstMessage.getId(), firstAttachment.getId()));
+                    System.out.println(sandboxClient.attachments().getSingleAttachment(ACCOUNT_ID, firstSandbox.getId(), firstMessage.getId(), firstAttachment.getId()));
                 }
             }
         }

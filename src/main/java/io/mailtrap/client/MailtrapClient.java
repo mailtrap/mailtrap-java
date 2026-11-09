@@ -27,10 +27,9 @@ public class MailtrapClient {
     private final MailtrapEmailSendingApi sendingApi;
 
     /**
-     * API for Mailtrap.io Testing functionality
+     * API for Mailtrap.io Email Sandbox functionality
      */
-    @Getter
-    private final MailtrapEmailTestingApi testingApi;
+    private final MailtrapEmailTestingApi sandboxApi;
 
     /**
      * API for Mailtrap.io Bulk Sending functionality
@@ -90,9 +89,24 @@ public class MailtrapClient {
 
     /**
      * Utility class which holds sending context (which API to use: Email Sending API, Bulk Sending API or
-     * Email Testing API, inbox id for Email Testing API) to make it possible to perform send directly from MailtrapClient
+     * Email Sandbox API, sandbox ID for Email Sandbox API) to make it possible to perform send directly from MailtrapClient
      */
     private final SendingContextHolder sendingContextHolder;
+
+    /**
+     * @return API for Mailtrap.io Email Sandbox functionality
+     */
+    public MailtrapEmailTestingApi sandboxApi() {
+        return sandboxApi;
+    }
+
+    /**
+     * @deprecated Use {@link #sandboxApi()} instead. Will be removed in a future major release.
+     */
+    @Deprecated(since = "1.11.0")
+    public MailtrapEmailTestingApi testingApi() {
+        return sandboxApi();
+    }
 
     /**
      * Sends an email based on the specified sending configuration.
@@ -104,7 +118,7 @@ public class MailtrapClient {
         if (sendingContextHolder.isBulk()) {
             return bulkSendingApi.emails().send(mailtrapMail);
         } else if (sendingContextHolder.isSandbox()) {
-            return testingApi.emails().send(mailtrapMail, sendingContextHolder.getInboxId());
+            return sandboxApi.emails().send(mailtrapMail, sendingContextHolder.getSandboxId());
         } else {
             return sendingApi.emails().send(mailtrapMail);
         }
@@ -120,7 +134,7 @@ public class MailtrapClient {
         if (sendingContextHolder.isBulk()) {
             return bulkSendingApi.emails().batchSend(mailtrapBatchMail);
         } else if (sendingContextHolder.isSandbox()) {
-            return testingApi.emails().batchSend(mailtrapBatchMail, sendingContextHolder.getInboxId());
+            return sandboxApi.emails().batchSend(mailtrapBatchMail, sendingContextHolder.getSandboxId());
         } else {
             return sendingApi.emails().batchSend(mailtrapBatchMail);
         }
@@ -131,26 +145,34 @@ public class MailtrapClient {
      */
     public void switchToBulkSendingApi() {
         this.sendingContextHolder.setBulk(true);
-        this.sendingContextHolder.setInboxId(null);
+        this.sendingContextHolder.setSandboxId(null);
         this.sendingContextHolder.setSandbox(false);
     }
 
     /**
-     * Configures `send` method to use Email Testing API
+     * Configures `send` method to use Email Sandbox API
      *
-     * @param inboxId the inbox ID to use for testing
+     * @param sandboxId the sandbox ID to send emails to
      */
-    public void switchToEmailTestingApi(final Long inboxId) {
-        this.sendingContextHolder.setInboxId(inboxId);
+    public void switchToEmailSandboxApi(final Long sandboxId) {
+        this.sendingContextHolder.setSandboxId(sandboxId);
         this.sendingContextHolder.setSandbox(true);
         this.sendingContextHolder.setBulk(false);
+    }
+
+    /**
+     * @deprecated Use {@link #switchToEmailSandboxApi(Long)} instead. Will be removed in a future major release.
+     */
+    @Deprecated(since = "1.11.0")
+    public void switchToEmailTestingApi(final Long inboxId) {
+        switchToEmailSandboxApi(inboxId);
     }
 
     /**
      * Configures `send` method to use Email Sending API.
      */
     public void switchToEmailSendingApi() {
-        this.sendingContextHolder.setInboxId(null);
+        this.sendingContextHolder.setSandboxId(null);
         this.sendingContextHolder.setSandbox(false);
         this.sendingContextHolder.setBulk(false);
     }
