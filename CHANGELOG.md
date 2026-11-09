@@ -1,3 +1,12 @@
+## [1.11.0] - 2026-11-09
+
+## What's Changed
+* add sub account deletion by @oshchyhol in https://github.com/mailtrap/mailtrap-java/pull/75
+* Add Sandbox and Domain names; deprecate the Testing, Inbox and SendingDomain names by @Rabsztok in https://github.com/mailtrap/mailtrap-java/pull/91
+
+
+**Full Changelog**: https://github.com/mailtrap/mailtrap-java/compare/v1.10.0...v1.11.0
+
 ## [1.10.0] - 2026-10-29
 
 ## What's Changed
