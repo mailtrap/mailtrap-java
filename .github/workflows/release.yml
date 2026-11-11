@@ -167,6 +167,15 @@ jobs:
           gpgconf --kill gpg-agent || true
           rm -rf "$GNUPGHOME"
 
+      # Attached while still a draft (invisible to users) and before the registry publish, so the
+      # un-draft is the only step after it; --clobber lets a re-run overwrite assets.
+      - name: Attach jars to GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ needs.detect.outputs.tag }}
+          VERSION: ${{ needs.detect.outputs.version }}
+        run: gh release upload "$TAG" "$STAGING_DIR"/io/mailtrap/mailtrap-java/"$VERSION"/*.jar --clobber --repo "$GITHUB_REPOSITORY"
+
       # Artifact-level repository metadata belongs to the staging repository, not the bundle;
       # Central rejects any bundle directory without a .pom.
       - name: Build Central bundle
@@ -224,13 +233,6 @@ jobs:
             echo "Deployment $id is $state, waiting"
             sleep 10
           done
-
-      - name: Attach jars to GitHub Release
-        env:
-          GH_TOKEN: ${{ github.token }}
-          TAG: ${{ needs.detect.outputs.tag }}
-          VERSION: ${{ needs.detect.outputs.version }}
-        run: gh release upload "$TAG" "$STAGING_DIR"/io/mailtrap/mailtrap-java/"$VERSION"/*.jar --repo "$GITHUB_REPOSITORY"
 
       - name: Publish GitHub release
         uses: railsware/github-actions/publish-github-release@master
