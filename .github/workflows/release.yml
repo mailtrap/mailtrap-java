@@ -1,0 +1,238 @@
+# Publishes the release drafted by draft-release.yml. Runs when the release PR lands on main
+# (or manually, as a fallback / dry run): detects the pending draft from CHANGELOG.md, tests and
+# stages the Maven repository layout unsigned and without any secrets, then, from the `release`
+# environment, signs the staged files, uploads the bundle to the Maven Central Portal, attaches
+# the jars and un-drafts the GitHub Release, which creates the tag.
+name: Release
+on:
+  push:
+    branches: [main]
+    paths: [CHANGELOG.md]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run: detect the release, test and stage, but do not sign or publish"
+        required: false
+        type: boolean
+        default: false
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  detect:
+    name: Detect pending release
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.pending.outputs.version }}
+      tag: ${{ steps.pending.outputs.tag }}
+      go: ${{ steps.decide.outputs.go }}
+    steps:
+      - name: Refuse to release from a non-default branch
+        env:
+          REF: ${{ github.ref_name }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          if [ "$REF" != "$DEFAULT_BRANCH" ]; then
+            echo "::error::Releases must run from $DEFAULT_BRANCH, got $REF"
+            exit 1
+          fi
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Resolve pending release
+        id: pending
+        uses: railsware/github-actions/resolve-pending-release@master
+
+      # push: skip quietly when nothing is pending (an ordinary CHANGELOG edit).
+      # dispatch: a real run needs a pending draft; a dry run doesn't.
+      - name: Decide
+        id: decide
+        env:
+          EVENT: ${{ github.event_name }}
+          PENDING: ${{ steps.pending.outputs.pending }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          if [ "$PENDING" = "true" ] || [ "$DRY_RUN" = "true" ]; then
+            echo "go=true" >> "$GITHUB_OUTPUT"
+          elif [ "$EVENT" = "workflow_dispatch" ]; then
+            echo "::error::No draft release for the top CHANGELOG.md version; run Draft Java Release first"
+            exit 1
+          else
+            echo "Nothing to release"
+            echo "go=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  build:
+    name: Test and stage
+    needs: detect
+    if: needs.detect.outputs.go == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Check version matches CHANGELOG.md
+        env:
+          EXPECTED: ${{ needs.detect.outputs.version }}
+        run: |
+          actual=$(mvn --batch-mode help:evaluate -Dexpression=project.version -q -DforceStdout)
+          if [ "$actual" != "$EXPECTED" ]; then
+            echo "::error::pom.xml is $actual but CHANGELOG.md is $EXPECTED"
+            exit 1
+          fi
+
+      # Builds and tests the jar, sources and javadoc, and deploys them into a local file repository.
+      # Signing is skipped here; the publish job signs the staged files with the release key.
+      - name: Test and stage
+        env:
+          STAGING_DIR: ${{ runner.temp }}/central-staging
+        run: |
+          mvn --batch-mode verify \
+            org.apache.maven.plugins:maven-deploy-plugin:3.1.4:deploy \
+            -Dgpg.skip \
+            -DaltDeploymentRepository="staging::file://$STAGING_DIR"
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: central-staging
+          path: ${{ runner.temp }}/central-staging/
+          if-no-files-found: error
+
+  release:
+    name: Publish
+    needs: [detect, build]
+    if: ${{ !inputs.dry_run }}
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      contents: write # upload assets to and un-draft the release
+    env:
+      STAGING_DIR: ${{ github.workspace }}/central-staging
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: central-staging
+          path: central-staging/
+
+      - name: Check Maven Central release
+        env:
+          VERSION: ${{ needs.detect.outputs.version }}
+        run: |
+          url="https://repo1.maven.org/maven2/io/mailtrap/mailtrap-java/$VERSION/mailtrap-java-$VERSION.pom"
+          status=$(curl -sS -o /dev/null -w '%{http_code}' -I "$url")
+          case "$status" in
+            404) echo "mailtrap-java $VERSION is not published to Maven Central yet" ;;
+            200) echo "::error::mailtrap-java $VERSION is already published to Maven Central"; exit 1 ;;
+            *) echo "::error::Failed to query Maven Central for mailtrap-java $VERSION (HTTP $status)"; exit 1 ;;
+          esac
+
+      - name: Check GitHub release
+        uses: railsware/github-actions/check-sdk-github-release@master
+        with:
+          tag: ${{ needs.detect.outputs.tag }}
+
+      # Central needs a detached .asc signature next to every file; checksums don't need one.
+      - name: Sign staged files
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          GNUPGHOME: ${{ runner.temp }}/gnupg
+        run: |
+          mkdir -m 700 "$GNUPGHOME"
+          gpg --batch --import <<< "$GPG_PRIVATE_KEY"
+          find "$STAGING_DIR" -type f ! -name 'maven-metadata.xml*' ! -name '*.md5' ! -name '*.sha1' ! -name '*.asc' -print0 |
+            while IFS= read -r -d '' file; do
+              gpg --batch --yes --pinentry-mode loopback --passphrase-fd 0 --armor --detach-sign "$file" <<< "$GPG_PASSPHRASE"
+            done
+
+      - name: Remove signing key
+        if: always()
+        env:
+          GNUPGHOME: ${{ runner.temp }}/gnupg
+        run: |
+          gpgconf --kill gpg-agent || true
+          rm -rf "$GNUPGHOME"
+
+      # Artifact-level repository metadata belongs to the staging repository, not the bundle;
+      # Central rejects any bundle directory without a .pom.
+      - name: Build Central bundle
+        env:
+          BUNDLE: ${{ runner.temp }}/central-bundle.zip
+        run: |
+          cd "$STAGING_DIR"
+          find . -name 'maven-metadata.xml*' -delete
+          for dir in $(find . -type f | sed 's|/[^/]*$||' | sort -u); do
+            if ! ls "$dir"/*.pom > /dev/null 2>&1; then
+              echo "::error::Bundle directory $dir has no .pom"
+              exit 1
+            fi
+          done
+          find . -type f | sort
+          zip -qr "$BUNDLE" .
+
+      # AUTOMATIC publishes once Central validates the bundle; wait until it is publishing.
+      - name: Publish to Maven Central
+        env:
+          BUNDLE: ${{ runner.temp }}/central-bundle.zip
+          DEPLOYMENT_NAME: mailtrap-java-${{ needs.detect.outputs.version }}
+          CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+        run: |
+          api=https://central.sonatype.com/api/v1/publisher
+          token=$(printf '%s:%s' "$CENTRAL_USERNAME" "$CENTRAL_PASSWORD" | base64 | tr -d '\n')
+          echo "::add-mask::$token"
+
+          id=$(curl --fail-with-body -sS -X POST \
+            -H "Authorization: Bearer $token" \
+            -F "bundle=@$BUNDLE" \
+            "$api/upload?publishingType=AUTOMATIC&name=$DEPLOYMENT_NAME")
+          echo "Uploaded bundle, deployment id: $id"
+
+          deadline=$((SECONDS + 1800))
+          while :; do
+            status=$(curl --fail-with-body -sS -X POST -H "Authorization: Bearer $token" "$api/status?id=$id")
+            state=$(jq -r .deploymentState <<< "$status")
+            case "$state" in
+              PUBLISHING|PUBLISHED)
+                echo "Deployment $id is $state"
+                break
+                ;;
+              FAILED)
+                echo "::error::Deployment $id failed"
+                jq . <<< "$status"
+                exit 1
+                ;;
+            esac
+            if [ "$SECONDS" -ge "$deadline" ]; then
+              echo "::error::Timed out waiting for deployment $id (last state: $state)"
+              exit 1
+            fi
+            echo "Deployment $id is $state, waiting"
+            sleep 10
+          done
+
+      - name: Attach jars to GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ needs.detect.outputs.tag }}
+          VERSION: ${{ needs.detect.outputs.version }}
+        run: gh release upload "$TAG" "$STAGING_DIR"/io/mailtrap/mailtrap-java/"$VERSION"/*.jar --repo "$GITHUB_REPOSITORY"
+
+      - name: Publish GitHub release
+        uses: railsware/github-actions/publish-github-release@master
+        with:
+          tag: ${{ needs.detect.outputs.tag }}
+          target: ${{ github.sha }}
