@@ -1,0 +1,75 @@
+src/main/java/io/mailtrap/client/api/MailtrapEmailSendingApi.java
+  s_a416a2bbf03afd::t_d9862a66cc1ac5 3
+  s_a416a2bbf03afd::t_c60523e2285b29 22
+src/test/resources/api/sending_domains/sendingDomainsResponse.json
+  s_a416a2bbf03afd::t_d37adee11f598d 60
+src/main/java/io/mailtrap/api/sendingdomains/SendingDomainsImpl.java
+  s_a416a2bbf03afd::t_8f276bf39507b6 9
+  s_a416a2bbf03afd::t_f71d9390870a94 50-58
+  s_a416a2bbf03afd::t_9cb1bedcc626f1 49
+src/main/java/io/mailtrap/model/request/companyinfo/UpdateCompanyInfoRequest.java
+  s_a416a2bbf03afd::t_ad05a0c233a11a 1-50
+src/main/java/io/mailtrap/model/response/companyinfo/CompanyInfo.java
+  s_a416a2bbf03afd::t_d9f1d75e6bdc53 1-34
+src/main/java/io/mailtrap/model/request/companyinfo/CreateCompanyInfoRequest.java
+  s_a416a2bbf03afd::t_95af1e22a11c95 1-50
+src/main/java/io/mailtrap/model/response/sendingdomains/SendingDomainsResponse.java
+  s_a416a2bbf03afd::t_bd9fe7158cf9b3 33-35
+src/main/java/io/mailtrap/factory/MailtrapClientFactory.java
+  s_a416a2bbf03afd::t_6a8d5e81b88f24 138
+  s_a416a2bbf03afd::t_255c1391ea86eb 143
+  s_a416a2bbf03afd::t_3668f49f442a79 27
+src/test/resources/api/sending_domains/sendingDomainResponse.json
+  s_a416a2bbf03afd::t_b9cd197373dfd0 59
+src/test/resources/api/company_info/companyInfoResponse.json
+  s_a416a2bbf03afd::t_b966bace53ae1b 1-14
+src/test/resources/api/company_info/createCompanyInfoRequest.json
+  s_a416a2bbf03afd::t_b966bace53ae1b 1-11
+src/test/resources/api/sending_domains/updateSendingDomainRequest.json
+  s_a416a2bbf03afd::t_b966bace53ae1b 1-9
+src/test/java/io/mailtrap/api/sendingdomains/SendingDomainsImplTest.java
+  s_a416a2bbf03afd::t_55e383633dd04e 8
+  s_a416a2bbf03afd::t_04a67b7c3e0052 93-112
+  s_a416a2bbf03afd::t_75ecec93b31be8 40-42
+  s_a416a2bbf03afd::t_a4c9c1f113e59d 39
+  s_a416a2bbf03afd::t_1b28f5e781e7e4 92
+src/main/java/io/mailtrap/api/companyinfo/CompanyInfo.java
+  s_a416a2bbf03afd::t_41f0bdba677e6f 1-35
+src/test/java/io/mailtrap/api/companyinfo/CompanyInfoImplTest.java
+  s_a416a2bbf03afd::t_3275d490577059 1-101
+examples/java/io/mailtrap/examples/companyinfo/CompanyInfoExample.java
+  s_a416a2bbf03afd::t_b1408cdaf6d8ec 1-51
+README.md
+  s_a416a2bbf03afd::t_c13eb7075b8810 351
+src/main/java/io/mailtrap/api/sendingdomains/SendingDomains.java
+  s_a416a2bbf03afd::t_e18b46c767f6f8 5
+  s_a416a2bbf03afd::t_4f7cc39d90bef1 39-47
+  s_a416a2bbf03afd::t_81a38849004e3c 38
+src/main/java/io/mailtrap/model/request/sendingdomains/UpdateSendingDomainRequest.java
+  s_a416a2bbf03afd::t_26bfc9b60604ad 1-40
+src/main/java/io/mailtrap/model/response/companyinfo/CompanyInfoResponse.java
+  s_a416a2bbf03afd::t_8ded54e4b7270f 1-10
+examples/java/io/mailtrap/examples/sendingdomains/SendingDomainsExample.java
+  s_a416a2bbf03afd::t_9b68bd3bfd435e 36-47
+  s_a416a2bbf03afd::t_8a51e8224e5425 7
+src/main/java/io/mailtrap/api/companyinfo/CompanyInfoImpl.java
+  s_a416a2bbf03afd::t_eac9bc80624f33 1-50
+src/test/resources/api/company_info/updateCompanyInfoRequest.json
+  s_a416a2bbf03afd::t_b966bace53ae1b 1-6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "62455f056acbeaf0b0e9efe7460affce5fba8ffc",
+  "prompts": {},
+  "sessions": {
+    "s_a416a2bbf03afd": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "73aab1cf-cfd1-42b8-b656-f26905d319ee",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Marcin Klocek <marcin.klocek@railsware.com>"
+    }
+  }
+}

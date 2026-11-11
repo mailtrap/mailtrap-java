@@ -1,0 +1,41 @@
+src/main/java/io/mailtrap/api/inbound/InboundInboxes.java
+  s_576b7c7847dbe9::t_69f844f791c61e 1-58
+src/main/java/io/mailtrap/api/inbound/InboundThreads.java
+  s_576b7c7847dbe9::t_587d3396d2bf6d 1-37
+src/main/java/io/mailtrap/api/inbound/InboundMessagesImpl.java
+  s_576b7c7847dbe9::t_76d46ba38f2f35 1-85
+src/main/java/io/mailtrap/api/inbound/InboundFolders.java
+  s_576b7c7847dbe9::t_1992746c55bdbd 1-52
+src/main/java/io/mailtrap/api/inbound/InboundMessages.java
+  s_576b7c7847dbe9::t_c3d799f999c209 1-71
+src/main/java/io/mailtrap/client/api/MailtrapInboundApi.java
+  s_576b7c7847dbe9::t_46e9107e4d50a0 1-27
+src/main/java/io/mailtrap/factory/MailtrapClientFactory.java
+  s_576b7c7847dbe9::t_7fba8192c5a139 80,85-94
+  s_576b7c7847dbe9::t_fd7748962c3de1 17-20
+src/main/java/io/mailtrap/api/inbound/InboundThreadsImpl.java
+  s_576b7c7847dbe9::t_3412ee9788eed2 1-50
+src/main/java/io/mailtrap/client/MailtrapClient.java
+  s_576b7c7847dbe9::t_0000b008bb2378 66-70
+  s_576b7c7847dbe9::t_bbdfdfb4de7f6c 65
+src/main/java/io/mailtrap/api/inbound/InboundFoldersImpl.java
+  s_576b7c7847dbe9::t_3e2447a8272c5a 1-66
+src/main/java/io/mailtrap/api/inbound/InboundInboxesImpl.java
+  s_576b7c7847dbe9::t_4d509a0462bbbf 1-66
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.19",
+  "base_commit_sha": "3a671d06401582c7c249bd9e87f58283f7083635",
+  "prompts": {},
+  "sessions": {
+    "s_576b7c7847dbe9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "48d8b14b-0d1c-434e-b1b9-68d02404448f",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Marcin Klocek <marcin.klocek@railsware.com>"
+    }
+  }
+}

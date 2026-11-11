@@ -1,0 +1,36 @@
+examples/java/io/mailtrap/examples/inbound/InboundFoldersExample.java
+  h_36a957dc058c42 10-11,16,19,23,26,28,32,35,37
+  s_576b7c7847dbe9::t_0677717b40c8a7 1-9,12-15,17-18,20-22,24-25,27,29-31,33-34,36,38-41
+examples/java/io/mailtrap/examples/inbound/InboundMessagesExample.java
+  h_36a957dc058c42 13-14,61
+  s_576b7c7847dbe9::t_ca6e439730494b 1-12,15-60,62-63
+examples/java/io/mailtrap/examples/inbound/InboundThreadsExample.java
+  h_36a957dc058c42 8-9,35
+  s_576b7c7847dbe9::t_604c70ab1e7aeb 1-7,10-34,36-37
+README.md
+  s_576b7c7847dbe9::t_98e3ce3d41e857 364-370
+examples/java/io/mailtrap/examples/inbound/InboundInboxesExample.java
+  s_576b7c7847dbe9::t_b0b48d15fa9353 1-9,12-27,29-36,38-43
+  h_36a957dc058c42 10-11,28,37
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.19",
+  "base_commit_sha": "c42b979d9ded52f6fef1a46b997c60230cad1079",
+  "prompts": {},
+  "humans": {
+    "h_36a957dc058c42": {
+      "author": "Marcin Klocek <marcin.klocek@railsware.com>"
+    }
+  },
+  "sessions": {
+    "s_576b7c7847dbe9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "48d8b14b-0d1c-434e-b1b9-68d02404448f",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Marcin Klocek <marcin.klocek@railsware.com>"
+    }
+  }
+}

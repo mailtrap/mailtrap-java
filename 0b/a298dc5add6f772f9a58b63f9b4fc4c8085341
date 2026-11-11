@@ -1,0 +1,51 @@
+src/test/resources/api/emaillogs/getEmailLogMessageResponse.json
+  s_576b7c7847dbe9::t_5f92f9acad7bab 5-8
+src/main/java/io/mailtrap/model/response/webhooks/Webhook.java
+  s_576b7c7847dbe9::t_661bc22d4f95c5 33-35
+src/main/java/io/mailtrap/model/response/emaillogs/EmailLogMessageSummary.java
+  s_576b7c7847dbe9::t_8c0e0ddd095474 24-35
+  s_576b7c7847dbe9::t_524061efddbdf9 9
+src/main/java/io/mailtrap/model/response/sendingdomains/SendingDomainsResponse.java
+  s_576b7c7847dbe9::t_af9efaa7c1d9a2 48-53
+src/test/resources/api/webhooks/createInboundWebhookRequest.json
+  s_576b7c7847dbe9::t_60349e5dd4eee7 1,7
+  s_576b7c7847dbe9::t_4114ab9cfeff44 2-6
+src/test/java/io/mailtrap/api/webhooks/WebhooksImplTest.java
+  s_576b7c7847dbe9::t_24c2094eb2f75c 42-44
+  s_576b7c7847dbe9::t_d85ec121a667c8 91-107
+  s_576b7c7847dbe9::t_d8874e612dbe32 41
+  s_576b7c7847dbe9::t_f969b179c2340b 90
+src/test/resources/api/webhooks/createInboundWebhookResponse.json
+  s_576b7c7847dbe9::t_ba7b023ad61261 1-11
+src/test/java/io/mailtrap/api/emaillogs/EmailLogsImplTest.java
+  s_576b7c7847dbe9::t_c064058cb89c96 127-130
+  s_576b7c7847dbe9::t_106a3493bfb0ff 84-85
+src/test/resources/api/sending_domains/sendingDomainResponse.json
+  s_576b7c7847dbe9::t_5580569e7411a1 64-65
+src/test/java/io/mailtrap/api/sendingdomains/SendingDomainsImplTest.java
+  s_576b7c7847dbe9::t_8227035eae2675 83-84
+src/main/java/io/mailtrap/model/request/webhooks/WebhookInput.java
+  s_576b7c7847dbe9::t_5d74b482bd0194 42-44
+src/test/resources/api/emaillogs/listEmailLogsResponse.json
+  s_576b7c7847dbe9::t_8b5ef1f32affa8 7-10
+src/main/java/io/mailtrap/model/WebhookType.java
+  s_576b7c7847dbe9::t_03d9b0890e61fa 9-10
+src/main/java/io/mailtrap/model/response/emaillogs/EmailLogMessage.java
+  s_576b7c7847dbe9::t_f94334655bc3f4 24-35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.19",
+  "base_commit_sha": "0ba298dc5add6f772f9a58b63f9b4fc4c8085341",
+  "prompts": {},
+  "sessions": {
+    "s_576b7c7847dbe9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "48d8b14b-0d1c-434e-b1b9-68d02404448f",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Marcin Klocek <marcin.klocek@railsware.com>"
+    }
+  }
+}

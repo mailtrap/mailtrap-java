@@ -1,0 +1,95 @@
+README.md
+  s_1d139e47a09853::t_1b770673859f55 381-384
+src/main/java/io/mailtrap/model/request/emailcampaigns/ScheduleEmailCampaignRequest.java
+  s_1d139e47a09853::t_b6550e1dcfc1d3 1-30
+src/test/resources/api/emailcampaigns/scheduleEmailCampaignRequest.json
+  s_1d139e47a09853::t_8252101b9b50d9 1-3
+src/main/java/io/mailtrap/model/response/emailcampaigns/EmailCampaignListResponse.java
+  s_1d139e47a09853::t_8bef873c666766 1-18
+src/main/java/io/mailtrap/model/CampaignState.java
+  s_1d139e47a09853::t_3a903ba6cbc144 1-46
+src/main/java/io/mailtrap/model/request/emailcampaigns/UpdateEmailCampaign.java
+  s_1d139e47a09853::t_81afdd1da6a896 1-69
+src/main/java/io/mailtrap/api/emailcampaigns/EmailCampaigns.java
+  s_1d139e47a09853::t_80baa0274173fd 1-130
+src/main/java/io/mailtrap/factory/MailtrapClientFactory.java
+  s_1d139e47a09853::t_8baa34b1b3c4c5 77,82-88
+  s_1d139e47a09853::t_857749f95f0d00 16
+src/test/resources/api/emailcampaigns/cancelEmailCampaignResponse.json
+  s_1d139e47a09853::t_68c1a770692952 1-30
+src/test/resources/api/emailcampaigns/terminateEmailCampaignResponse.json
+  s_1d139e47a09853::t_2916e7ffe51492 1-31
+src/main/java/io/mailtrap/model/response/emailcampaigns/Template.java
+  s_1d139e47a09853::t_3d9e41f839299d 1-29
+src/test/resources/api/emailcampaigns/resetEmailCampaignResponse.json
+  s_1d139e47a09853::t_8530d289408d4a 1-30
+src/main/java/io/mailtrap/model/request/emailcampaigns/CreateEmailCampaign.java
+  s_1d139e47a09853::t_ad3132fb80bcd6 1-71
+src/test/resources/api/emailcampaigns/createEmailCampaignResponse.json
+  s_1d139e47a09853::t_1e0ef4f0d28076 1-35
+src/main/java/io/mailtrap/model/DeliveryMode.java
+  s_1d139e47a09853::t_b58bd67f10d86f 1-39
+src/main/java/io/mailtrap/api/emailcampaigns/EmailCampaignsImpl.java
+  s_1d139e47a09853::t_64ce381985116e 1-138
+src/test/resources/api/emailcampaigns/createEmailCampaignRequest.json
+  s_1d139e47a09853::t_87ad377690772e 1-19
+src/test/resources/api/emailcampaigns/startEmailCampaignResponse.json
+  s_1d139e47a09853::t_1190ff41b6bf33 1-31
+src/test/java/io/mailtrap/api/emailcampaigns/EmailCampaignsImplTest.java
+  s_1d139e47a09853::t_b004cbfc7ab9f9 1-283
+examples/java/io/mailtrap/examples/emailcampaigns/EmailCampaignsExample.java
+  s_1d139e47a09853::t_32079ea15a4ef6 1-100
+src/main/java/io/mailtrap/model/response/emailcampaigns/EmailCampaignStatsResponse.java
+  s_1d139e47a09853::t_0eec65f721853a 1-13
+src/test/resources/api/emailcampaigns/listEmailCampaignsResponse.json
+  s_1d139e47a09853::t_7231fa298d47f8 1-79
+src/main/java/io/mailtrap/model/response/emailcampaigns/EmailCampaign.java
+  s_1d139e47a09853::t_86a70384793402 1-99
+src/main/java/io/mailtrap/model/response/emailcampaigns/CurrentStateMetadata.java
+  s_1d139e47a09853::t_053e49163cf555 1-34
+src/main/java/io/mailtrap/client/MailtrapClient.java
+  s_1d139e47a09853::t_d2195ec010821d 66-70
+  s_1d139e47a09853::t_0bd57f76a2fb74 65
+src/test/resources/api/emailcampaigns/getEmailCampaignStatsResponse.json
+  s_1d139e47a09853::t_617f20f469c2cc 1-19
+src/test/resources/api/emailcampaigns/updateEmailCampaignRequest.json
+  s_1d139e47a09853::t_fad569495fa77d 1-14
+src/test/resources/api/emailcampaigns/updateEmailCampaignResponse.json
+  s_1d139e47a09853::t_c46da66052fdac 1-35
+src/test/resources/api/emailcampaigns/getEmailCampaignResponse.json
+  s_1d139e47a09853::t_60a4a4a0de8732 1-35
+src/main/java/io/mailtrap/model/request/emailcampaigns/TemplateAttributes.java
+  s_1d139e47a09853::t_16db3c1a1e6e95 1-52
+src/main/java/io/mailtrap/model/response/emailcampaigns/CampaignRecipientError.java
+  s_1d139e47a09853::t_12c2f3e291acce 1-17
+src/main/java/io/mailtrap/model/response/emailcampaigns/EmailCampaignResponse.java
+  s_1d139e47a09853::t_0c94208ffec09f 1-14
+src/main/java/io/mailtrap/model/response/emailcampaigns/EmailCampaignStats.java
+  s_1d139e47a09853::t_61f9929eab38db 1-58
+src/test/resources/api/emailcampaigns/scheduleEmailCampaignResponse.json
+  s_1d139e47a09853::t_f0ac93ec42c1f3 1-32
+src/main/java/io/mailtrap/client/api/MailtrapEmailCampaignsApi.java
+  s_1d139e47a09853::t_c773c8fd734bc4 1-20
+src/main/java/io/mailtrap/model/response/emailcampaigns/DeliveryOptions.java
+  s_1d139e47a09853::t_2065cfa89f7e90 1-24
+src/main/java/io/mailtrap/model/response/emailcampaigns/Pagination.java
+  s_1d139e47a09853::t_1fe4182a197f4d 1-41
+src/main/java/io/mailtrap/model/response/emailcampaigns/ReplyTo.java
+  s_1d139e47a09853::t_09df79a96260cd 1-29
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.18",
+  "base_commit_sha": "a88f4c3dbe73f09332b445b2db0e67afccd2cdc8",
+  "prompts": {},
+  "sessions": {
+    "s_1d139e47a09853": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3943c4ee-a6f3-493c-aa4d-bc291df8727e",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Maciej Walusiak <maciej.walusiak@railsware.com>"
+    }
+  }
+}

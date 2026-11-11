@@ -1,0 +1,31 @@
+src/test/resources/api/apitokens/createApiTokenNeverExpiresRequest.json
+  s_35e942bf87a8d1::t_46dd05cf6fc6fa 1-11
+src/test/resources/api/apitokens/createApiTokenNeverExpiresResponse.json
+  s_35e942bf87a8d1::t_2dc0115d87ff03 1-15
+src/test/resources/api/apitokens/createApiTokenWithExpirationRequest.json
+  s_35e942bf87a8d1::t_68beb325facdb9 1-11
+src/test/resources/api/apitokens/createApiTokenWithExpirationResponse.json
+  s_35e942bf87a8d1::t_95f2d25f7ca93c 1-15
+src/test/resources/api/apitokens/resetApiTokenNeverExpiresRequest.json
+  s_35e942bf87a8d1::t_5cdbade89f85b2 1-3
+src/test/resources/api/apitokens/resetApiTokenNeverExpiresResponse.json
+  s_35e942bf87a8d1::t_e5d816bf22347b 1-15
+src/test/resources/api/apitokens/resetApiTokenWithExpirationResponse.json
+  s_35e942bf87a8d1::t_77c1cd0e86ba6f 1-15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "d0fa81dbf48e7de99f9a465d223d8d5f00203e13",
+  "prompts": {},
+  "sessions": {
+    "s_35e942bf87a8d1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fe0c4ad9-a5e3-40ee-b534-5305c3091a31",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Alex Shchyhol <oleksandr.shchyhol@railsware.com>"
+    }
+  }
+}

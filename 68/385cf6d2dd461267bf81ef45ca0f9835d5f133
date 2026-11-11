@@ -1,0 +1,70 @@
+src/test/resources/api/inbound/listInboundThreadsResponse.json
+  s_576b7c7847dbe9::t_56ecb71f08029d 1-28
+src/test/resources/api/inbound/createInboundFolderRequest.json
+  s_576b7c7847dbe9::t_6e4a71ed100197 1-3
+src/test/java/io/mailtrap/api/inbound/InboundMessagesImplTest.java
+  s_576b7c7847dbe9::t_02e8cad86ac24d 1-152
+src/test/resources/api/inbound/createInboundFolderResponse.json
+  s_576b7c7847dbe9::t_81c4a0d1a748dd 1-4
+src/test/resources/api/inbound/listInboundFoldersResponse.json
+  s_576b7c7847dbe9::t_d4b30da0d7b126 1-10
+src/test/java/io/mailtrap/api/inbound/InboundFoldersImplTest.java
+  s_576b7c7847dbe9::t_fb58211cb80cc0 1-94
+src/test/resources/api/inbound/replyInboundMessageRequest.json
+  s_576b7c7847dbe9::t_97edbd9bd43d31 1-9
+src/test/resources/api/inbound/listInboundInboxesResponse.json
+  s_576b7c7847dbe9::t_0ac932fa175a7e 1-14
+src/test/java/io/mailtrap/api/inbound/InboundInboxesImplTest.java
+  s_576b7c7847dbe9::t_fbf4b4020382ba 1-97
+src/test/java/io/mailtrap/api/inbound/InboundThreadsImplTest.java
+  s_576b7c7847dbe9::t_a6928424be3490 80-81
+  s_576b7c7847dbe9::t_d973f4893e1b2b 6
+  s_576b7c7847dbe9::t_a1c78ea1cf3597 7
+  s_576b7c7847dbe9::t_a39f08e8b61271 82
+  s_576b7c7847dbe9::t_ae6e5bfe79ef57 1-5,8-79,83-89
+src/test/resources/api/inbound/getInboundMessageResponse.json
+  s_576b7c7847dbe9::t_50feb01548423d 1-34
+src/test/resources/api/inbound/updateInboundFolderResponse.json
+  s_576b7c7847dbe9::t_7599c95099a6be 1-4
+src/test/resources/api/inbound/getInboundThreadResponse.json
+  s_576b7c7847dbe9::t_37556e5ec7ba5d 15,26
+  s_576b7c7847dbe9::t_1e0355f5039656 1-14,16-25,27-39
+src/test/resources/api/inbound/createInboundInboxRequest.json
+  s_576b7c7847dbe9::t_e5c2285b0031f7 1-4
+src/test/resources/api/inbound/createInboundInboxResponse.json
+  s_576b7c7847dbe9::t_a1995576cafecd 1-6
+src/test/resources/api/inbound/getInboundInboxResponse.json
+  s_576b7c7847dbe9::t_535bf5e9f1b809 1-6
+src/test/resources/api/inbound/listInboundMessagesResponse.json
+  s_576b7c7847dbe9::t_4581f7a0e1cced 1-26
+src/test/resources/api/inbound/getInboundFolderResponse.json
+  s_576b7c7847dbe9::t_d92016323d93f8 1-4
+src/test/resources/api/inbound/updateInboundInboxResponse.json
+  s_576b7c7847dbe9::t_f0e4021cf3d0d2 1-6
+src/test/resources/api/inbound/sendInboundMessageResponse.json
+  s_576b7c7847dbe9::t_7f3641865693cb 1-3
+src/test/resources/api/inbound/updateInboundInboxRequest.json
+  s_576b7c7847dbe9::t_3d04a825b968e3 1-3
+src/test/resources/api/inbound/replyAllInboundMessageRequest.json
+  s_576b7c7847dbe9::t_790377aecaf2f5 1-14
+src/test/resources/api/inbound/forwardInboundMessageRequest.json
+  s_576b7c7847dbe9::t_88b7ea1c0adb64 1-8
+src/test/resources/api/inbound/updateInboundFolderRequest.json
+  s_576b7c7847dbe9::t_777905049d15e5 1-3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.19",
+  "base_commit_sha": "68385cf6d2dd461267bf81ef45ca0f9835d5f133",
+  "prompts": {},
+  "sessions": {
+    "s_576b7c7847dbe9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "48d8b14b-0d1c-434e-b1b9-68d02404448f",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": null
+    }
+  }
+}

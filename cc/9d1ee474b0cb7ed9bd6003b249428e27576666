@@ -1,0 +1,54 @@
+src/main/java/io/mailtrap/model/request/inbound/CreateInboundFolderRequest.java
+  s_576b7c7847dbe9::t_037fed160a46cb 1-16
+src/main/java/io/mailtrap/model/response/inbound/InboundThreadMessage.java
+  s_576b7c7847dbe9::t_37dc915083b404 1-3,5-17,19,21-62,64-70
+  s_576b7c7847dbe9::t_03a30410222265 4
+  s_576b7c7847dbe9::t_0b14a44dd793af 18,20
+  s_576b7c7847dbe9::t_e4d0820356671d 63
+src/main/java/io/mailtrap/model/request/inbound/UpdateInboundFolderRequest.java
+  s_576b7c7847dbe9::t_a0442dfd8b3e9d 1-16
+src/main/java/io/mailtrap/model/request/inbound/CreateInboundInboxRequest.java
+  s_576b7c7847dbe9::t_03ebe11432fee8 1-24
+src/main/java/io/mailtrap/model/request/inbound/UpdateInboundInboxRequest.java
+  s_576b7c7847dbe9::t_e00f859d3b7d60 1-16
+src/main/java/io/mailtrap/model/response/inbound/InboundMessageVisibilityStatus.java
+  s_576b7c7847dbe9::t_f86b94e2075991 1-34
+src/main/java/io/mailtrap/model/response/inbound/InboundSendResult.java
+  s_576b7c7847dbe9::t_0124d38c912781 1-16
+src/main/java/io/mailtrap/model/request/inbound/InboundReplyRequest.java
+  s_576b7c7847dbe9::t_89f26621f1c5ed 1-57
+src/main/java/io/mailtrap/model/response/inbound/InboundMessage.java
+  s_576b7c7847dbe9::t_80f85842f9a8a1 1-73
+src/main/java/io/mailtrap/model/response/inbound/InboundMessagesListResponse.java
+  s_576b7c7847dbe9::t_ab44286b52d834 1-19
+src/main/java/io/mailtrap/model/response/inbound/InboundMessageDirection.java
+  s_576b7c7847dbe9::t_81a54a1ec26a03 1-34
+src/main/java/io/mailtrap/model/response/inbound/InboundAttachment.java
+  s_576b7c7847dbe9::t_a1332fabf57074 1-36
+src/main/java/io/mailtrap/model/response/inbound/InboundFolder.java
+  s_576b7c7847dbe9::t_8d518a19b5ce40 1-11
+src/main/java/io/mailtrap/model/response/inbound/InboundThreadsListResponse.java
+  s_576b7c7847dbe9::t_692c1f13b76988 1-19
+src/main/java/io/mailtrap/model/request/inbound/InboundForwardRequest.java
+  s_576b7c7847dbe9::t_d78c2af825c3a4 1-60
+src/main/java/io/mailtrap/model/response/inbound/InboundThread.java
+  s_576b7c7847dbe9::t_b021a8e23694b8 1-47
+src/main/java/io/mailtrap/model/response/inbound/InboundInbox.java
+  s_576b7c7847dbe9::t_b7f7ea59001954 1-17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.19",
+  "base_commit_sha": "cc9d1ee474b0cb7ed9bd6003b249428e27576666",
+  "prompts": {},
+  "sessions": {
+    "s_576b7c7847dbe9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "48d8b14b-0d1c-434e-b1b9-68d02404448f",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": null
+    }
+  }
+}

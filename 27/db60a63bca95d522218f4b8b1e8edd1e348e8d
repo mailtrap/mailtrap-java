@@ -1,0 +1,19 @@
+README.md
+  s_5dc2fb7025f654::t_6c3d37b2254fba 22,29,35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "27db60a63bca95d522218f4b8b1e8edd1e348e8d",
+  "prompts": {},
+  "sessions": {
+    "s_5dc2fb7025f654": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2a7220e2-6e26-448f-9d49-7ca2345a351b",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Alex Shchyhol <oleksandr.shchyhol@railsware.com>"
+    }
+  }
+}

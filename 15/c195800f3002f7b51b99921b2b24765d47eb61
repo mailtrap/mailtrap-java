@@ -1,0 +1,14 @@
+examples/java/io/mailtrap/examples/general/ApiTokensExample.java
+  h_68ae9308e52348 9-10,12,28-31,34,50-54
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "15c195800f3002f7b51b99921b2b24765d47eb61",
+  "prompts": {},
+  "humans": {
+    "h_68ae9308e52348": {
+      "author": "Alex Shchyhol <oleksandr.shchyhol@railsware.com>"
+    }
+  }
+}
