@@ -17,20 +17,20 @@ Maven dependency:
 <dependency>
     <groupId>io.mailtrap</groupId>
     <artifactId>mailtrap-java</artifactId>
-    <version>1.11.0</version>
+    <version>1.11.1</version>
 </dependency>
 ```
 
 Gradle Groovy dependency:
 
 ```groovy
-implementation 'io.mailtrap:mailtrap-java:1.11.0'
+implementation 'io.mailtrap:mailtrap-java:1.11.1'
 ```
 
 Gradle Kotlin DSL dependency:
 
 ```kotlin
-implementation("io.mailtrap:mailtrap-java:1.11.0")
+implementation("io.mailtrap:mailtrap-java:1.11.1")
 ```
 
 ### 2. Authentication
