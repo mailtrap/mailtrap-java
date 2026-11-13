@@ -1,3 +1,11 @@
+## [1.11.1] - 2026-11-12
+
+## What's Changed
+* Add release workflow by @IgorDobryn in https://github.com/mailtrap/mailtrap-java/pull/93
+
+
+**Full Changelog**: https://github.com/mailtrap/mailtrap-java/compare/v1.11.0...v1.11.1
+
 ## [1.11.0] - 2026-11-09
 
 ## What's Changed
