@@ -1,0 +1,90 @@
+examples/java/io/mailtrap/examples/inbound/InboundInboxesExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 10-11
+examples/java/io/mailtrap/examples/sending/MinimalExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 12
+examples/java/io/mailtrap/examples/bulk/BulkSendExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 12
+examples/java/io/mailtrap/examples/suppressions/SuppressionsExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 8-9
+examples/java/io/mailtrap/examples/general/AccountAccessExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 11-12
+  s_576b7c7847dbe9::t_f3ed2ab3e374ec 13
+examples/java/io/mailtrap/examples/sendingdomains/SendingDomainsExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 12-13
+examples/java/io/mailtrap/examples/contactimports/ContactImportsExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 13-14
+examples/java/io/mailtrap/examples/contacts/ContactsExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 16-17
+examples/java/io/mailtrap/examples/general/AccountsExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 8
+examples/java/io/mailtrap/examples/sending/TemplateExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 13
+examples/java/io/mailtrap/examples/contactexports/ContactExportsExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 13-14
+  s_576b7c7847dbe9::t_5a5dcdc80d6ec4 15
+examples/java/io/mailtrap/examples/sending/EverythingExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 16
+examples/java/io/mailtrap/examples/testing/InboxesExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 10-11
+examples/java/io/mailtrap/examples/organizations/SubAccountsExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 10-11
+examples/java/io/mailtrap/examples/inbound/InboundThreadsExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 8-9
+examples/java/io/mailtrap/examples/inbound/InboundFoldersExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 10
+examples/java/io/mailtrap/examples/emaillogs/EmailLogsExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 18-19
+examples/java/io/mailtrap/examples/general/ApiTokensExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 14-15
+examples/java/io/mailtrap/examples/emailtemplates/EmailTemplatesExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 14-15
+examples/java/io/mailtrap/examples/inbound/InboundMessagesExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 13-14
+examples/java/io/mailtrap/examples/webhooks/WebhooksExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 17-18
+examples/java/io/mailtrap/examples/testing/EmailExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 13,16
+examples/java/io/mailtrap/examples/testing/MessagesExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 11,13
+examples/java/io/mailtrap/examples/general/PermissionsExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 14-15
+  s_576b7c7847dbe9::t_5dc330f1005dd5 16,18-19
+examples/java/io/mailtrap/examples/sending/BatchExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 15
+examples/java/io/mailtrap/examples/general/BillingExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 8-9
+examples/java/io/mailtrap/examples/contactevents/ContactEventsExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 12-13
+examples/java/io/mailtrap/examples/contactlists/ContactListsExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 10-11
+examples/java/io/mailtrap/examples/sending/ErrorsExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 15
+examples/java/io/mailtrap/examples/testing/AttachmentsExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 9-10
+examples/java/io/mailtrap/examples/sending/StatsExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 9-10
+examples/java/io/mailtrap/examples/contactfields/ContactFieldsExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 15-16
+examples/java/io/mailtrap/examples/testing/BatchExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 15,18
+examples/java/io/mailtrap/examples/testing/ProjectsExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 9-10
+examples/java/io/mailtrap/examples/bulk/BatchExample.java
+  s_576b7c7847dbe9::t_2eec2713f837e0 15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "54fd25294e27623e0a802d61a93f65830a569c30",
+  "prompts": {},
+  "sessions": {
+    "s_576b7c7847dbe9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "48d8b14b-0d1c-434e-b1b9-68d02404448f",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Marcin Klocek <marcin.klocek@railsware.com>"
+    }
+  }
+}

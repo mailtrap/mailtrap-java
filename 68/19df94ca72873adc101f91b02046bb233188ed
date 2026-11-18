@@ -1,0 +1,22 @@
+docs/getting-started.md
+  s_1d49e3fe0288ce::t_0d3fbbdeb476dd 20,27,33
+.github/workflows/draft-release.yml
+  s_1d49e3fe0288ce::t_0d3fbbdeb476dd 1-3,68-76
+  s_1d49e3fe0288ce::t_d5d12f976ed31a 77
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "6819df94ca72873adc101f91b02046bb233188ed",
+  "prompts": {},
+  "sessions": {
+    "s_1d49e3fe0288ce": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "630e3a6b-9218-4024-b50b-916b55ccb4a3",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Maciej Walusiak <maciej.walusiak@railsware.com>"
+    }
+  }
+}

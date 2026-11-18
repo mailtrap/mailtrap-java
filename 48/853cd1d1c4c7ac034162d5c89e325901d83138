@@ -1,0 +1,59 @@
+src/main/java/io/mailtrap/model/request/emailcampaigns/CreateEmailCampaign.java
+  s_8b9eb1b74fa672::t_cb102dd0a0f793 32-33,35-36
+  s_8b9eb1b74fa672::t_dbaee1b6aaab6c 17
+src/main/java/io/mailtrap/model/request/emailcampaigns/UpdateEmailCampaign.java
+  s_8b9eb1b74fa672::t_33ec35a1c976cc 30-31,33-34
+src/main/java/io/mailtrap/api/emailcampaigns/EmailCampaigns.java
+  s_8b9eb1b74fa672::t_e5f034c4624758 33
+examples/java/io/mailtrap/examples/emailcampaigns/EmailCampaignsExample.java
+  s_8b9eb1b74fa672::t_678e587f7d8064 43
+  s_8b9eb1b74fa672::t_220647f87fd00a 21-22
+src/main/java/io/mailtrap/model/response/emailcampaigns/EmailCampaign.java
+  s_8b9eb1b74fa672::t_cd52652941dec1 26-27,29-30,32-33
+src/test/java/io/mailtrap/api/emailcampaigns/EmailCampaignsImplTest.java
+  s_cd21394de8f9dd::t_571b1f3c9ce9d5 40,105,137,161,177
+src/test/resources/api/emailcampaigns/cancelEmailCampaignResponse.json
+  s_cd21394de8f9dd::t_cbdd775ea22d9f 4-5
+src/test/resources/api/emailcampaigns/createEmailCampaignRequest.json
+  s_cd21394de8f9dd::t_c83ba819dfd646 3
+src/test/resources/api/emailcampaigns/createEmailCampaignResponse.json
+  s_cd21394de8f9dd::t_491142cacbe8c3 4-5
+src/test/resources/api/emailcampaigns/getEmailCampaignResponse.json
+  s_cd21394de8f9dd::t_11074ae694fed7 4-5
+src/test/resources/api/emailcampaigns/listEmailCampaignsResponse.json
+  s_cd21394de8f9dd::t_3d32fb17c80bbc 5-6,35-36
+src/test/resources/api/emailcampaigns/resetEmailCampaignResponse.json
+  s_cd21394de8f9dd::t_11924519e5d18a 4-5
+src/test/resources/api/emailcampaigns/scheduleEmailCampaignResponse.json
+  s_cd21394de8f9dd::t_e62233868f987b 4-5
+src/test/resources/api/emailcampaigns/startEmailCampaignResponse.json
+  s_cd21394de8f9dd::t_7bad52b94743ca 4-5
+src/test/resources/api/emailcampaigns/terminateEmailCampaignResponse.json
+  s_cd21394de8f9dd::t_0605f7c9c5db27 4-5
+src/test/resources/api/emailcampaigns/updateEmailCampaignResponse.json
+  s_cd21394de8f9dd::t_d7f944bc5b80f4 4-5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "48853cd1d1c4c7ac034162d5c89e325901d83138",
+  "prompts": {},
+  "sessions": {
+    "s_8b9eb1b74fa672": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "95754cb3-701a-4fef-bc0a-347aa8fd1362",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Maciej Walusiak <maciej.walusiak@railsware.com>"
+    },
+    "s_cd21394de8f9dd": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "33132aeb-2216-4902-a984-cd73c2233d0a",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Maciej Walusiak <maciej.walusiak@railsware.com>"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+src/main/java/io/mailtrap/model/request/apitokens/CreateApiTokenRequest.java
+  s_35e942bf87a8d1::t_cd654297b0d6fe 3-4,21-29,32-35
+src/main/java/io/mailtrap/model/request/apitokens/TokenExpiration.java
+  s_35e942bf87a8d1::t_94c74d18e9862d 1-45
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "6508e05c1e910c680a48634bd4852fdd212ee8f4",
+  "prompts": {},
+  "sessions": {
+    "s_35e942bf87a8d1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fe0c4ad9-a5e3-40ee-b534-5305c3091a31",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Alex Shchyhol <oleksandr.shchyhol@railsware.com>"
+    }
+  }
+}

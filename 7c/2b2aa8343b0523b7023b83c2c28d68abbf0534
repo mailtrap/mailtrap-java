@@ -1,0 +1,20 @@
+src/test/resources/api/inbound/getInboundThreadResponse.json
+  s_ea02f2a89792e1::t_e47ec44adc607c 58
+  s_ea02f2a89792e1::t_0b44e00b94e6b1 55-57
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7c2b2aa8343b0523b7023b83c2c28d68abbf0534",
+  "prompts": {},
+  "sessions": {
+    "s_ea02f2a89792e1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "87ceb478-60a1-47fe-84f9-1458c02d71bf",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": null
+    }
+  }
+}
