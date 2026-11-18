@@ -18,4 +18,7 @@ public class InboundThreadMessageDelivery {
 
     @JsonProperty("bounced_at")
     private OffsetDateTime bouncedAt;
+
+    @JsonProperty("rejected_at")
+    private OffsetDateTime rejectedAt;
 }
