@@ -1,0 +1,19 @@
+src/main/java/io/mailtrap/api/subaccounts/SubAccounts.java
+  s_a4a9f34feaa8ee::t_50f691c0e4519c 32-33
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2bff76eab4a2e096170b5c237efe6d8eabd67f1d",
+  "prompts": {},
+  "sessions": {
+    "s_a4a9f34feaa8ee": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "73a1213a-b1ad-4d32-8b59-a764945bfe88",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Alex Shchyhol <oleksandr.shchyhol@railsware.com>"
+    }
+  }
+}
