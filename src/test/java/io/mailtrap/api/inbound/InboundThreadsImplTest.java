@@ -110,7 +110,7 @@ class InboundThreadsImplTest extends BaseTest {
         assertEquals("thr_1", thread.getId());
         assertEquals("Support request", thread.getSubject());
         assertNotNull(thread.getMessages());
-        assertEquals(2, thread.getMessages().size());
+        assertEquals(3, thread.getMessages().size());
         assertEquals(InboundMessageDirection.INBOUND, thread.getMessages().get(0).getDirection());
         assertEquals(InboundMessageDirection.OUTBOUND, thread.getMessages().get(1).getDirection());
     }
@@ -148,6 +148,18 @@ class InboundThreadsImplTest extends BaseTest {
         assertEquals(MessageStatus.DELIVERED, delivery.getStatus());
         assertEquals(OffsetDateTime.parse("2026-07-30T13:00:05Z"), delivery.getDeliveredAt());
         assertNull(delivery.getBouncedAt());
+        assertNull(delivery.getRejectedAt());
+    }
+
+    @Test
+    void get_deserializesRejectedAtOnRejectedMessages() {
+        final InboundThreadMessageDelivery delivery = api.get(INBOX_ID, THREAD_ID).getMessages().get(2).getDelivery();
+
+        assertNotNull(delivery);
+        assertEquals(MessageStatus.NOT_DELIVERED, delivery.getStatus());
+        assertNull(delivery.getDeliveredAt());
+        assertNull(delivery.getBouncedAt());
+        assertEquals(OffsetDateTime.parse("2026-07-30T13:05:00Z"), delivery.getRejectedAt());
     }
 
     @Test
