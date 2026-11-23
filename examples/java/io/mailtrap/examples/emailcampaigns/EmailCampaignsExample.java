@@ -2,6 +2,7 @@ package io.mailtrap.examples.emailcampaigns;
 
 import io.mailtrap.api.emailcampaigns.EmailCampaignListFilter;
 import io.mailtrap.api.emailcampaigns.EmailCampaignStatsFilter;
+import io.mailtrap.api.subscriptiontopics.SubscriptionTopicListFilter;
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.exception.http.HttpClientException;
 import io.mailtrap.factory.MailtrapClientFactory;
@@ -46,15 +47,21 @@ public class EmailCampaignsExample {
         System.out.println(page);
 
         // With subscription topics, a campaign is sent for a topic that covers its domain: here the first such
-        // topic. Accounts without topics answer 403, and a campaign there has none.
+        // topic, looked up page by page. Accounts without topics answer 403, and a campaign there has none.
         Long subscriptionTopicId = null;
         try {
-            subscriptionTopicId = client.marketingApi().subscriptionTopics().getSubscriptionTopics(null).getData()
-                .stream()
-                .filter(topic -> topic.getDomainId() == null || topic.getDomainId() == DOMAIN_ID)
-                .findFirst()
-                .map(SubscriptionTopic::getId)
-                .orElse(null);
+            final var subscriptionTopics = client.marketingApi().subscriptionTopics();
+            Integer topicsToken = null;
+            do {
+                final var topicsPage = subscriptionTopics.getSubscriptionTopics(
+                    SubscriptionTopicListFilter.builder().perPage(100).token(topicsToken).build());
+                subscriptionTopicId = topicsPage.getData().stream()
+                    .filter(topic -> topic.getDomainId() == null || topic.getDomainId() == DOMAIN_ID)
+                    .findFirst()
+                    .map(SubscriptionTopic::getId)
+                    .orElse(null);
+                topicsToken = topicsPage.getPagination().getNextToken();
+            } while (subscriptionTopicId == null && topicsToken != null);
         } catch (final HttpClientException e) {
             System.out.println("Subscription topics aren't available for this account: " + e.getMessage());
         }
