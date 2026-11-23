@@ -111,6 +111,14 @@ class SuppressionsImplTest extends BaseTest {
   }
 
   @Test
+  void test_filterConstructorOfPreviousVersions_leavesTopicUnsubscriptionsOut() {
+    final List<SuppressionsResponse> searchResponse = api.search(
+        accountId, new SuppressionListFilter(email, "2025-01-01T00:00:00Z", null, suppressionId));
+
+    assertEquals(1, searchResponse.size());
+  }
+
+  @Test
   void test_includeTopicUnsubscriptions_isSentAsTheLiteralTrue() {
     final String url = Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/suppressions";
 

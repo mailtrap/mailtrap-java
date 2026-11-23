@@ -78,4 +78,14 @@ public class CreateEmailCampaign extends AbstractModel {
     @JsonProperty("subscription_topic_id")
     private Long subscriptionTopicId;
 
+    /**
+     * The constructor of previous versions, without {@code subscriptionTopicId}.
+     */
+    public CreateEmailCampaign(final String name, final Long domainId, final String fromDisplayName, final String fromLocalPart,
+            final ReplyTo replyTo, final TemplateAttributes templateAttributes, final DeliveryMode deliveryMode,
+            final DeliveryOptions deliveryOptions, final List<Long> contactListIds, final List<Long> contactSegmentIds) {
+        this(name, domainId, fromDisplayName, fromLocalPart, replyTo, templateAttributes, deliveryMode, deliveryOptions,
+            contactListIds, contactSegmentIds, null);
+    }
+
 }

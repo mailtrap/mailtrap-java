@@ -177,9 +177,12 @@ public class DefaultMailtrapHttpClient implements CustomHttpClient {
             return null;
         }
         try {
-            final List<String> errors = Mapper.get().readValue(body, ErrorResponse.class).getErrors();
+            // null for a body of the JSON null
+            final ErrorResponse errorResponse = Mapper.get().readValue(body, ErrorResponse.class);
 
-            return errors.isEmpty() ? null : String.join(", ", errors);
+            return errorResponse == null || errorResponse.getErrors().isEmpty()
+                    ? null
+                    : String.join(", ", errorResponse.getErrors());
         } catch (final JsonProcessingException e) {
             return null;
         }

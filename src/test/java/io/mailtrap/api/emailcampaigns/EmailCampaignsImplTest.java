@@ -219,6 +219,11 @@ class EmailCampaignsImplTest extends BaseTest {
     void test_campaignRequests_leaveOutAnUnsetSubscriptionTopic() {
         assertFalse(CreateEmailCampaign.builder().name("Spring Sale").build().toJson().contains("subscription_topic_id"));
         assertFalse(UpdateEmailCampaign.builder().name("Spring Sale").build().toJson().contains("subscription_topic_id"));
+        // the constructors of previous versions leave it unset
+        assertNull(new CreateEmailCampaign("Spring Sale", domainId, null, "news", null, null, null, null, null, null)
+                .getSubscriptionTopicId());
+        assertNull(new UpdateEmailCampaign("Spring Sale", null, null, null, null, null, null, null, null, null)
+                .getSubscriptionTopicId());
     }
 
     @Test

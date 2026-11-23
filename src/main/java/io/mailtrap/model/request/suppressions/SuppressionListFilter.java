@@ -41,4 +41,11 @@ public class SuppressionListFilter {
      * out by default. Only a token that can read contacts gets them.
      */
     private Boolean includeTopicUnsubscriptions;
+
+    /**
+     * The constructor of previous versions, without {@code includeTopicUnsubscriptions}.
+     */
+    public SuppressionListFilter(final String email, final String startTime, final String endTime, final String lastId) {
+        this(email, startTime, endTime, lastId, null);
+    }
 }
