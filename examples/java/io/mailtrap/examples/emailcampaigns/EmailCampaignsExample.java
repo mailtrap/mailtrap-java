@@ -3,6 +3,7 @@ package io.mailtrap.examples.emailcampaigns;
 import io.mailtrap.api.emailcampaigns.EmailCampaignListFilter;
 import io.mailtrap.api.emailcampaigns.EmailCampaignStatsFilter;
 import io.mailtrap.config.MailtrapConfig;
+import io.mailtrap.exception.http.HttpClientException;
 import io.mailtrap.factory.MailtrapClientFactory;
 import io.mailtrap.model.DeliveryMode;
 import io.mailtrap.model.request.emailcampaigns.CreateEmailCampaign;
@@ -11,6 +12,7 @@ import io.mailtrap.model.request.emailcampaigns.TemplateAttributes;
 import io.mailtrap.model.request.emailcampaigns.UpdateEmailCampaign;
 import io.mailtrap.model.response.emailcampaigns.DeliveryOptions;
 import io.mailtrap.model.response.emailcampaigns.ReplyTo;
+import io.mailtrap.model.response.subscriptiontopics.SubscriptionTopic;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
@@ -43,6 +45,20 @@ public class EmailCampaignsExample {
                 .build());
         System.out.println(page);
 
+        // With subscription topics, a campaign is sent for a topic that covers its domain: here the first such
+        // topic. Accounts without topics answer 403, and a campaign there has none.
+        Long subscriptionTopicId = null;
+        try {
+            subscriptionTopicId = client.marketingApi().subscriptionTopics().getSubscriptionTopics(null).getData()
+                .stream()
+                .filter(topic -> topic.getDomainId() == null || topic.getDomainId() == DOMAIN_ID)
+                .findFirst()
+                .map(SubscriptionTopic::getId)
+                .orElse(null);
+        } catch (final HttpClientException e) {
+            System.out.println("Subscription topics aren't available for this account: " + e.getMessage());
+        }
+
         // Create a campaign — it starts in the `draft` state. The request body is flat.
         final var created = campaigns.createEmailCampaign(
             CreateEmailCampaign.builder()
@@ -59,6 +75,8 @@ public class EmailCampaignsExample {
                     .subject("Spring is here — 30% off")
                     .build())
                 .contactListIds(List.of(CONTACT_LIST_ID))
+                // left out when null; an update can change the topic but not drop it
+                .subscriptionTopicId(subscriptionTopicId)
                 .build());
         System.out.println(created.getData());
 

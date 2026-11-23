@@ -6,9 +6,11 @@ import io.mailtrap.exception.InvalidRequestBodyException;
 import io.mailtrap.factory.MailtrapClientFactory;
 import io.mailtrap.model.request.contactimports.Contact;
 import io.mailtrap.model.request.contactimports.ImportContactsRequest;
+import io.mailtrap.model.request.contacts.ContactSubscriptionTopic;
 import io.mailtrap.model.response.contactimports.ContactImportStatus;
 import io.mailtrap.model.response.contactimports.ContactsImportResponse;
 import io.mailtrap.model.response.contactimports.CreateContactsImportResponse;
+import io.mailtrap.model.response.contacts.ContactStatus;
 import io.mailtrap.testutils.BaseTest;
 import io.mailtrap.testutils.DataMock;
 import io.mailtrap.testutils.TestHttpClient;
@@ -30,6 +32,9 @@ public class ContactImportsImplTest extends BaseTest {
         final TestHttpClient httpClient = new TestHttpClient(List.of(
             DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/imports",
                 "POST", "api/contactimports/createContactsImportRequest.json", "api/contactimports/createContactsImportResponse.json"),
+
+            DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/imports",
+                "POST", "api/contactimports/createContactsImportWithTopicsRequest.json", "api/contactimports/createContactsImportResponse.json"),
 
             DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/imports/" + importId,
                 "GET", null, "api/contactimports/getContactsImportResponse.json")
@@ -53,6 +58,27 @@ public class ContactImportsImplTest extends BaseTest {
 
         assertEquals(importId, contactImportResponse.getId());
         assertSame(ContactImportStatus.STARTED, contactImportResponse.getStatus());
+    }
+
+    @Test
+    void test_importContacts_withSubscriptionTopics() {
+        final var topicPreference = ContactSubscriptionTopic.builder()
+            .subscriptionTopicId(77L)
+            .domainId(4321L)
+            .status(ContactStatus.UNSUBSCRIBED)
+            .build();
+        final var firstContact = Contact.builder()
+            .email("customer1@example.com")
+            .fields(Map.of("full_name", "Jane Doe"))
+            .subscriptionTopics(List.of(topicPreference))
+            .build();
+        // a contact without preferences sends no subscription_topics
+        final var secondContact = Contact.builder().email("customer2@example.com").build();
+
+        final CreateContactsImportResponse contactImportResponse =
+            api.importContacts(accountId, new ImportContactsRequest(List.of(firstContact, secondContact)));
+
+        assertEquals(importId, contactImportResponse.getId());
     }
 
     @Test

@@ -8,6 +8,10 @@ import io.mailtrap.model.request.emaillogs.FilterExactString;
 import io.mailtrap.model.request.emaillogs.FilterStatus;
 import io.mailtrap.model.response.emaillogs.EmailLogEventType;
 import io.mailtrap.model.response.emaillogs.EmailLogMessage;
+import io.mailtrap.model.response.emaillogs.EmailLogMessageEvent;
+import io.mailtrap.model.response.emaillogs.EmailLogMessageEventTopicResubscribe;
+import io.mailtrap.model.response.emaillogs.EmailLogMessageEventTopicUnsubscribe;
+import io.mailtrap.model.response.emaillogs.EmailLogMessageEventUnknown;
 import io.mailtrap.model.response.emaillogs.EmailLogMessageSummary;
 import io.mailtrap.model.response.emaillogs.EmailLogsListResponse;
 import io.mailtrap.model.response.emaillogs.MessageStatus;
@@ -18,10 +22,14 @@ import io.mailtrap.testutils.TestHttpClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -29,6 +37,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class EmailLogsImplTest extends BaseTest {
 
     private static final String SENDING_MESSAGE_ID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890";
+    private static final String TOPIC_EVENTS_MESSAGE_ID = "b2c3d4e5-f6a7-8901-bcde-f12345678901";
 
     private EmailLogs api;
 
@@ -50,7 +59,9 @@ class EmailLogsImplTest extends BaseTest {
                         Collections.emptyMap()),
                 DataMock.build(listWithStatusFilterUrl, "GET", null, "api/emaillogs/listEmailLogsResponse.json"),
                 DataMock.build(listWithMultipleValuesFilterUrl, "GET", null, "api/emaillogs/listEmailLogsResponse.json"),
-                DataMock.build(getMessageUrl, "GET", null, "api/emaillogs/getEmailLogMessageResponse.json"));
+                DataMock.build(getMessageUrl, "GET", null, "api/emaillogs/getEmailLogMessageResponse.json"),
+                DataMock.build(listUrl + "/" + TOPIC_EVENTS_MESSAGE_ID, "GET", null,
+                        "api/emaillogs/getEmailLogMessageWithTopicEventsResponse.json"));
 
         final TestHttpClient httpClient = new TestHttpClient(mocks);
         final MailtrapConfig testConfig = new MailtrapConfig.Builder()
@@ -131,6 +142,33 @@ class EmailLogsImplTest extends BaseTest {
         assertNotNull(message.getEvents());
         assertEquals(1, message.getEvents().size());
         assertEquals(EmailLogEventType.CLICK, message.getEvents().get(0).getEventType());
+    }
+
+    @Test
+    void get_withTopicEvents_readsThemAndAnUnknownEvent() {
+        final EmailLogMessage message = api.get(accountId, TOPIC_EVENTS_MESSAGE_ID);
+
+        assertNotNull(message);
+        final List<EmailLogMessageEvent> events = message.getEvents();
+        assertEquals(4, events.size());
+        assertEquals(EmailLogEventType.DELIVERY, events.get(0).getEventType());
+
+        final EmailLogMessageEventTopicUnsubscribe unsubscribe = assertInstanceOf(EmailLogMessageEventTopicUnsubscribe.class, events.get(1));
+        assertEquals(EmailLogEventType.TOPIC_UNSUBSCRIBE, unsubscribe.getEventType());
+        assertEquals(OffsetDateTime.of(2026, 11, 15, 11, 0, 0, 0, ZoneOffset.UTC), unsubscribe.getCreatedAt());
+        assertEquals("198.51.100.50", unsubscribe.getDetails().getWebIpAddress());
+        assertEquals(77L, unsubscribe.getDetails().getSubscriptionTopicId());
+
+        final EmailLogMessageEventTopicResubscribe resubscribe = assertInstanceOf(EmailLogMessageEventTopicResubscribe.class, events.get(2));
+        assertEquals(EmailLogEventType.TOPIC_RESUBSCRIBE, resubscribe.getEventType());
+        assertNull(resubscribe.getDetails().getWebIpAddress());
+        assertEquals(77L, resubscribe.getDetails().getSubscriptionTopicId());
+
+        final EmailLogMessageEventUnknown unknown = assertInstanceOf(EmailLogMessageEventUnknown.class, events.get(3));
+        assertNull(unknown.getEventType());
+        assertEquals("future_event", unknown.getRawEventType());
+        assertEquals(OffsetDateTime.of(2026, 11, 17, 9, 0, 0, 0, ZoneOffset.UTC), unknown.getCreatedAt());
+        assertEquals(Map.of("reason", "something new", "count", 2), unknown.getDetails());
     }
 
     @Test

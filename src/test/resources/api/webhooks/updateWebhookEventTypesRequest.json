@@ -1,0 +1,8 @@
+{
+  "webhook": {
+    "event_types": [
+      "delivery",
+      "subscription_preferences_update"
+    ]
+  }
+}

@@ -7,7 +7,13 @@ public enum SuppressionType {
   HARD_BOUNCE("hard bounce"),
   SPAM_COMPLAINT("spam complaint"),
   UNSUBSCRIPTION("unsubscription"),
-  MANUAL_IMPORT("manual import");
+  MANUAL_IMPORT("manual import"),
+  /**
+   * A contact unsubscribed from one subscription topic. Listed only with
+   * {@code includeTopicUnsubscriptions}; it can't be created or deleted through the Suppressions
+   * API.
+   */
+  TOPIC_UNSUBSCRIPTION("topic unsubscription");
 
   private final String value;
 

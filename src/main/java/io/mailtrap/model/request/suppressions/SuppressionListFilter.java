@@ -34,4 +34,11 @@ public class SuppressionListFilter {
      * Cursor: returns suppressions after this UUID.
      */
     private String lastId;
+
+    /**
+     * {@code true} to also list the contacts' subscription topic unsubscriptions, with type
+     * {@link io.mailtrap.model.response.suppressions.SuppressionType#TOPIC_UNSUBSCRIPTION}. Left
+     * out by default. Only a token that can read contacts gets them.
+     */
+    private Boolean includeTopicUnsubscriptions;
 }

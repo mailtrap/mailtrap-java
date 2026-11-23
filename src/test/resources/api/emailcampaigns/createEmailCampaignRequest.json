@@ -15,5 +15,6 @@
   },
   "delivery_mode": "rapid",
   "contact_list_ids": [55, 56],
-  "contact_segment_ids": [12]
+  "contact_segment_ids": [12],
+  "subscription_topic_id": 77
 }

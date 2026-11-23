@@ -24,7 +24,8 @@ public class CreateSuppressionRequest extends AbstractModel {
     private SendingStream sendingStream;
 
     /**
-     * Reason for the suppression. The API defaults to {@code manual import} when omitted.
+     * Reason for the suppression. The API defaults to {@code manual import} when omitted, and
+     * rejects {@link SuppressionType#TOPIC_UNSUBSCRIPTION}.
      */
     private SuppressionType type;
 

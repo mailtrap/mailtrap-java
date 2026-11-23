@@ -31,6 +31,7 @@ import io.mailtrap.api.sendingdomains.SendingDomainsImpl;
 import io.mailtrap.api.sendingemails.SendingEmailsImpl;
 import io.mailtrap.api.stats.StatsImpl;
 import io.mailtrap.api.subaccounts.SubAccountsImpl;
+import io.mailtrap.api.subscriptiontopics.SubscriptionTopicsImpl;
 import io.mailtrap.api.suppressions.SuppressionsImpl;
 import io.mailtrap.api.templates.TemplatesImpl;
 import io.mailtrap.api.trackingoptouts.TrackingOptOutsImpl;
@@ -112,8 +113,9 @@ public final class MailtrapClientFactory {
 
     private static MailtrapMarketingApi createMarketingApi(final MailtrapConfig config) {
         final var stats = new MarketingStatsImpl(config);
+        final var subscriptionTopics = new SubscriptionTopicsImpl(config);
 
-        return new MailtrapMarketingApi(stats);
+        return new MailtrapMarketingApi(stats, subscriptionTopics);
     }
 
     private static MailtrapOrganizationsApi createOrganizationsApi(final MailtrapConfig config) {

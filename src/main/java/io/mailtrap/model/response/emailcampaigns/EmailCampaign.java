@@ -83,6 +83,13 @@ public class EmailCampaign {
     @JsonProperty("contact_segment_ids")
     private List<Long> contactSegmentIds;
 
+    /**
+     * ID of the subscription topic the campaign is sent for, as returned by the Subscription
+     * Topics API, or {@code null} when it has none.
+     */
+    @JsonProperty("subscription_topic_id")
+    private Long subscriptionTopicId;
+
     @JsonProperty("delivery_mode")
     private DeliveryMode deliveryMode;
 

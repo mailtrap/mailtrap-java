@@ -1,0 +1,20 @@
+{
+  "contacts": [
+    {
+      "email": "customer1@example.com",
+      "fields": {
+        "full_name": "Jane Doe"
+      },
+      "subscription_topics": [
+        {
+          "subscription_topic_id": 77,
+          "domain_id": 4321,
+          "status": "unsubscribed"
+        }
+      ]
+    },
+    {
+      "email": "customer2@example.com"
+    }
+  ]
+}

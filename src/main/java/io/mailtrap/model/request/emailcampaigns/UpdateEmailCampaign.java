@@ -67,4 +67,13 @@ public class UpdateEmailCampaign extends AbstractModel {
     @JsonProperty("contact_segment_ids")
     private List<Long> contactSegmentIds;
 
+    /**
+     * ID of the subscription topic the campaign is sent for, as returned by the Subscription
+     * Topics API. The topic must cover the campaign's domain. Left out when {@code null}: the
+     * API rejects a {@code null} topic, so a campaign can change its topic but not drop it.
+     * Ignored for an account without subscription topics.
+     */
+    @JsonProperty("subscription_topic_id")
+    private Long subscriptionTopicId;
+
 }

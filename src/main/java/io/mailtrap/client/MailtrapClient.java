@@ -82,7 +82,8 @@ public class MailtrapClient {
     private final MailtrapEmailCampaignsApi emailCampaignsApi;
 
     /**
-     * API for Mailtrap.io Email Marketing functionality (aggregated campaign and automation stats)
+     * API for Mailtrap.io Email Marketing functionality (aggregated campaign and automation stats, and subscription
+     * topics)
      */
     @Getter
     private final MailtrapMarketingApi marketingApi;

@@ -1,0 +1,19 @@
+{
+  "contact": {
+    "email": "email@mailtrap.io",
+    "fields": {
+      "first_name": "Nick"
+    },
+    "list_ids": [
+      1,
+      2
+    ],
+    "subscription_topics": [
+      {
+        "subscription_topic_id": 77,
+        "domain_id": 4321,
+        "status": "unsubscribed"
+      }
+    ]
+  }
+}

@@ -3,6 +3,7 @@ package io.mailtrap.api.suppressions;
 import io.mailtrap.Constants;
 import io.mailtrap.config.MailtrapConfig;
 import io.mailtrap.factory.MailtrapClientFactory;
+import io.mailtrap.http.RequestData;
 import io.mailtrap.model.SendingStream;
 import io.mailtrap.model.request.suppressions.CreateSuppressionRequest;
 import io.mailtrap.model.request.suppressions.SuppressionListFilter;
@@ -17,17 +18,21 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
+import static io.mailtrap.http.RequestData.entry;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class SuppressionsImplTest extends BaseTest {
 
+  private TestHttpClient httpClient;
   private Suppressions api;
 
   @BeforeEach
   public void init() {
-    final TestHttpClient httpClient = new TestHttpClient(List.of(
+    httpClient = new TestHttpClient(List.of(
         DataMock.build(
             Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/suppressions",
             "GET", null, "api/suppressions/searchSuppressions.json",
@@ -37,6 +42,11 @@ class SuppressionsImplTest extends BaseTest {
             Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/suppressions",
             "GET", null, "api/suppressions/searchSuppressions.json",
             Map.of("email", email, "start_time", "2025-01-01T00:00:00Z", "last_id", suppressionId)
+        ),
+        DataMock.build(
+            Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/suppressions",
+            "GET", null, "api/suppressions/searchSuppressionsWithTopicUnsubscriptions.json",
+            Map.of("email", email, "include_topic_unsubscriptions", true)
         ),
         DataMock.build(
             Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/suppressions",
@@ -81,6 +91,31 @@ class SuppressionsImplTest extends BaseTest {
 
     assertEquals(1, searchResponse.size());
     assertEquals(email, searchResponse.get(0).getEmail());
+  }
+
+  @Test
+  void test_searchWithTopicUnsubscriptions() {
+    final List<SuppressionsResponse> searchResponse = api.search(
+        accountId,
+        SuppressionListFilter.builder().email(email).includeTopicUnsubscriptions(true).build()
+    );
+
+    assertEquals(2, searchResponse.size());
+    assertEquals(SuppressionType.SPAM_COMPLAINT, searchResponse.get(0).getType());
+    assertNull(searchResponse.get(0).getSubscriptionTopicId());
+
+    final SuppressionsResponse topicUnsubscription = searchResponse.get(1);
+    assertEquals(SuppressionType.TOPIC_UNSUBSCRIPTION, topicUnsubscription.getType());
+    assertEquals(77L, topicUnsubscription.getSubscriptionTopicId());
+    assertEquals("sender.com", topicUnsubscription.getDomainName());
+  }
+
+  @Test
+  void test_includeTopicUnsubscriptions_isSentAsTheLiteralTrue() {
+    final String url = Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/suppressions";
+
+    assertEquals(url + "?include_topic_unsubscriptions=true", httpClient.appendUrlParams(url,
+        RequestData.buildQueryParams(entry("include_topic_unsubscriptions", Optional.of(true)))));
   }
 
   @Test

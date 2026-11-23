@@ -1,5 +1,6 @@
 package io.mailtrap.http.impl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import io.mailtrap.Mapper;
@@ -154,15 +155,38 @@ public class DefaultMailtrapHttpClient implements CustomHttpClient {
                     throw new IllegalArgumentException("Both responseType and typeReference are null");
                 }
             } else if (statusCode >= 400 && statusCode < 500) {
-                final ErrorResponse errorResponse = Mapper.get().readValue(response.body(), ErrorResponse.class);
-                throw new HttpClientException(String.join(", ", errorResponse.getErrors()), statusCode);
+                final String errors = readErrors(response.body());
+                throw new HttpClientException(errors != null ? errors : noErrorInfoMessage(statusCode), statusCode);
             } else if (statusCode >= 500) {
-                throw new HttpServerException(String.format("Internal Server Error. HTTP response code (%d) received from the API server. Retry later or contact support.", statusCode), statusCode);
+                final String message = String.format("Internal Server Error. HTTP response code (%d) received from the API server. Retry later or contact support.", statusCode);
+                final String errors = readErrors(response.body());
+                throw new HttpServerException(errors != null ? message + " " + errors : message, statusCode);
             }
-            throw new HttpException(String.format("HTTP response code (%d) received from the API server (no error info)", statusCode), statusCode);
+            throw new HttpException(noErrorInfoMessage(statusCode), statusCode);
         } catch (final IOException e) {
             throw new JsonException("An error has occurred while converting JSON", e);
         }
+    }
+
+    /**
+     * @return the error messages of an error response body, joined; {@code null} when the body is empty, isn't
+     * JSON or has none, as a {@code 403} without a body
+     */
+    private static String readErrors(final String body) {
+        if (body.isBlank()) {
+            return null;
+        }
+        try {
+            final List<String> errors = Mapper.get().readValue(body, ErrorResponse.class).getErrors();
+
+            return errors.isEmpty() ? null : String.join(", ", errors);
+        } catch (final JsonProcessingException e) {
+            return null;
+        }
+    }
+
+    private static String noErrorInfoMessage(final int statusCode) {
+        return String.format("HTTP response code (%d) received from the API server (no error info)", statusCode);
     }
 
     private HttpRequest.Builder prepareRequest(final String url, final RequestData requestData) {
