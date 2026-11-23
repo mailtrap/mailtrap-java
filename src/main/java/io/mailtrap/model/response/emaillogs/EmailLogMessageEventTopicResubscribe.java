@@ -18,9 +18,4 @@ public class EmailLogMessageEventTopicResubscribe extends EmailLogMessageEvent {
     public EmailLogEventType getEventType() {
         return EmailLogEventType.TOPIC_RESUBSCRIBE;
     }
-
-    @Override
-    public EventDetailsTopicSubscription getDetails() {
-        return details;
-    }
 }

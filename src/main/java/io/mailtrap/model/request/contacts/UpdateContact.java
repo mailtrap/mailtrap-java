@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,7 +15,8 @@ import lombok.Getter;
  */
 @Getter
 @Builder
-@AllArgsConstructor
+// Private: new fields go through the builder, so the public constructors keep their signatures
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class UpdateContact {
 
     private String email;
@@ -43,12 +45,11 @@ public class UpdateContact {
     private List<ContactSubscriptionTopic> subscriptionTopics;
 
     /**
-     * Sends {@code unsubscribed} as given, {@code false} included, which resubscribes the
-     * contact. Use {@code builder()} to leave it out.
+     * Sends {@code unsubscribed} as given: {@code false} resubscribes the contact.
      */
     public UpdateContact(final String email, final Map<String, Object> fields, final List<Long> listIdsIncluded,
                          final List<Long> listIdsExcluded, final boolean unsubscribed) {
-        this(email, fields, listIdsIncluded, listIdsExcluded, Boolean.valueOf(unsubscribed), null);
+        this(email, fields, listIdsIncluded, listIdsExcluded, unsubscribed, null);
     }
 
     /**

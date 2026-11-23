@@ -4,13 +4,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.mailtrap.model.request.contacts.ContactSubscriptionTopic;
 import java.util.List;
 import java.util.Map;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
 @Getter
 @Builder
-@AllArgsConstructor
+// Private: new fields go through the builder, so the public constructors keep their signatures
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Contact {
 
   private String email;

@@ -70,8 +70,7 @@ class DefaultMailtrapHttpClientTest {
             () -> client.get(url, new RequestData(), Map.class));
 
         assertEquals(503, exception.getStatusCode());
-        assertEquals("Internal Server Error. HTTP response code (503) received from the API server. "
-            + "Retry later or contact support. " + error, exception.getMessage());
+        assertEquals(serverErrorMessage(503) + " " + error, exception.getMessage());
     }
 
     @Test
@@ -82,8 +81,7 @@ class DefaultMailtrapHttpClientTest {
             () -> client.get(url, new RequestData(), Map.class));
 
         assertEquals(502, exception.getStatusCode());
-        assertEquals("Internal Server Error. HTTP response code (502) received from the API server. "
-            + "Retry later or contact support.", exception.getMessage());
+        assertEquals(serverErrorMessage(502), exception.getMessage());
     }
 
     @Test
@@ -94,8 +92,12 @@ class DefaultMailtrapHttpClientTest {
             () -> client.get(url, new RequestData(), Map.class));
 
         assertEquals(503, exception.getStatusCode());
-        assertEquals("Internal Server Error. HTTP response code (503) received from the API server. "
-            + "Retry later or contact support.", exception.getMessage());
+        assertEquals(serverErrorMessage(503), exception.getMessage());
+    }
+
+    private static String serverErrorMessage(final int statusCode) {
+        return "Internal Server Error. HTTP response code (" + statusCode + ") received from the API server. "
+            + "Retry later or contact support.";
     }
 
     private String respond(final String path, final int statusCode, final String body) {

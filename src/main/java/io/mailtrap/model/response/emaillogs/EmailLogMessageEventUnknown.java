@@ -31,9 +31,4 @@ public class EmailLogMessageEventUnknown extends EmailLogMessageEvent {
     public EmailLogEventType getEventType() {
         return null;
     }
-
-    @Override
-    public Map<String, Object> getDetails() {
-        return details;
-    }
 }

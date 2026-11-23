@@ -6,6 +6,7 @@ import io.mailtrap.model.AbstractModel;
 import io.mailtrap.model.DeliveryMode;
 import io.mailtrap.model.response.emailcampaigns.DeliveryOptions;
 import io.mailtrap.model.response.emailcampaigns.ReplyTo;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,7 +23,8 @@ import java.util.List;
 @Data
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor
+// Private: new fields go through the builder, so the public constructors keep their signatures
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CreateEmailCampaign extends AbstractModel {
 

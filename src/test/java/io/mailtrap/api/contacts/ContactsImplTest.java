@@ -32,7 +32,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ContactsImplTest extends BaseTest {
     private final String topicsEmail = "topics@example.com";
+    private final String topicsEmailEncoded = URLEncoder.encode(topicsEmail, StandardCharsets.UTF_8);
     private final String unreadableTopicsEmail = "unreadable-topics@example.com";
+    private final String unreadableTopicsEmailEncoded = URLEncoder.encode(unreadableTopicsEmail, StandardCharsets.UTF_8);
 
     private Contacts api;
 
@@ -45,16 +47,16 @@ class ContactsImplTest extends BaseTest {
                 DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts",
                         "POST", "api/contacts/createContactWithTopicsRequest.json", "api/contacts/createContactResponse.json"),
 
-                DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/" + URLEncoder.encode(topicsEmail, StandardCharsets.UTF_8),
+                DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/" + topicsEmailEncoded,
                         "GET", null, "api/contacts/getContactWithTopicsResponse.json"),
 
-                DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/" + URLEncoder.encode(unreadableTopicsEmail, StandardCharsets.UTF_8),
+                DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/" + unreadableTopicsEmailEncoded,
                         "GET", null, "api/contacts/getContactUnreadableTopicsResponse.json"),
 
-                DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/" + URLEncoder.encode(topicsEmail, StandardCharsets.UTF_8),
+                DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/" + topicsEmailEncoded,
                         "PATCH", "api/contacts/updateContactTopicsOnlyRequest.json", "api/contacts/updateContactTopicsOnlyResponse.json"),
 
-                DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/" + URLEncoder.encode(unreadableTopicsEmail, StandardCharsets.UTF_8),
+                DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/" + unreadableTopicsEmailEncoded,
                         "PATCH", "api/contacts/updateContactUnsubscribedFalseRequest.json", "api/contacts/updateContactTopicsOnlyResponse.json"),
 
                 DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/contacts/" + emailEncoded,
@@ -149,7 +151,7 @@ class ContactsImplTest extends BaseTest {
         final GetContactResponse response = api.getContact(accountId, unreadableTopicsEmail);
 
         assertNotNull(response);
-        assertEquals("unreadable-topics@example.com", response.getData().getEmail());
+        assertEquals(unreadableTopicsEmail, response.getData().getEmail());
         assertNull(response.getData().getSubscriptionTopics());
     }
 
