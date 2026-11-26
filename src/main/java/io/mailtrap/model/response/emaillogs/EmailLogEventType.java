@@ -15,7 +15,17 @@ public enum EmailLogEventType {
     SPAM("spam"),
     UNSUBSCRIBE("unsubscribe"),
     SUSPENSION("suspension"),
-    REJECT("reject");
+    REJECT("reject"),
+    /**
+     * The recipient unsubscribed from one subscription topic. Returned in a message's events;
+     * the events filter doesn't accept it.
+     */
+    TOPIC_UNSUBSCRIBE("topic_unsubscribe"),
+    /**
+     * The recipient resubscribed to one subscription topic. Returned in a message's events; the
+     * events filter doesn't accept it.
+     */
+    TOPIC_RESUBSCRIBE("topic_resubscribe");
 
     private final String value;
 

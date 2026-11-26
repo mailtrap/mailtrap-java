@@ -20,6 +20,7 @@
       "recipient_total_count": null,
       "contact_list_ids": [55, 56],
       "contact_segment_ids": [12],
+      "subscription_topic_id": 77,
       "delivery_mode": "rapid",
       "delivery_options": {
         "emails_per_hour": null
@@ -54,6 +55,7 @@
       "recipient_total_count": 2000,
       "contact_list_ids": [],
       "contact_segment_ids": [],
+      "subscription_topic_id": null,
       "delivery_mode": "gradual",
       "delivery_options": {
         "emails_per_hour": 1000

@@ -6,6 +6,8 @@ import io.mailtrap.Mapper;
 import io.mailtrap.model.response.ErrorResponse;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ErrorResponseDeserializerTest {
@@ -46,6 +48,30 @@ class ErrorResponseDeserializerTest {
             final ErrorResponse deserialize = deserializer.deserialize(parser, null);
 
             assertEquals(1, deserialize.getErrors().size());
+        }
+    }
+
+    @Test
+    void deserialize_ErrorsIsAnArrayOfObjects_ShouldReturnTheirNestedMessages() throws Exception {
+        final var errorJson = """
+                {"errors": [{"base": ["subscription topics are not available for this account"]}]}""";
+        try (final JsonParser parser = new JsonFactory().createParser(errorJson)) {
+            parser.setCodec(Mapper.get());
+            final ErrorResponse deserialize = deserializer.deserialize(parser, null);
+
+            assertEquals(List.of("subscription topics are not available for this account"), deserialize.getErrors());
+        }
+    }
+
+    @Test
+    void deserialize_PerContactImportErrors_ShouldReturnTheEmailAndItsMessages() throws Exception {
+        final var errorJson = """
+                {"errors": [{"email": "john.smith@example.com", "errors": {"email": ["is invalid"], "base": ["contacts limit reached"]}}]}""";
+        try (final JsonParser parser = new JsonFactory().createParser(errorJson)) {
+            parser.setCodec(Mapper.get());
+            final ErrorResponse deserialize = deserializer.deserialize(parser, null);
+
+            assertEquals(List.of("john.smith@example.com", "is invalid", "contacts limit reached"), deserialize.getErrors());
         }
     }
 }

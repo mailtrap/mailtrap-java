@@ -12,7 +12,12 @@ public enum WebhookEventType {
     OPEN("open"),
     SPAM_COMPLAINT("spam_complaint"),
     CLICK("click"),
-    REJECT("reject");
+    REJECT("reject"),
+    /**
+     * A contact changed their subscription preferences. Only Bulk email-sending and Campaigns
+     * webhooks accept it.
+     */
+    SUBSCRIPTION_PREFERENCES_UPDATE("subscription_preferences_update");
 
     private final String value;
 

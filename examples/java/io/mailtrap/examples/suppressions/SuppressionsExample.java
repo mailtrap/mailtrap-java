@@ -47,6 +47,17 @@ public class SuppressionsExample {
             .build()
     ));
 
+    // Also list the contacts' subscription topic unsubscriptions, with type TOPIC_UNSUBSCRIPTION and their
+    // subscriptionTopicId. Those rows can't be deleted here: a contact update resubscribes to a topic.
+    System.out.println(suppressions.search(
+        ACCOUNT_ID,
+        SuppressionListFilter.builder()
+            .email(EMAIL)
+            .includeTopicUnsubscriptions(true)
+            .build()
+    ));
+
+    // The default list has no topic unsubscriptions, so its first row can be deleted.
     if (!searchResponse.isEmpty()) {
       final var deletedSuppression = suppressions
           .deleteSuppression(ACCOUNT_ID, searchResponse.get(0).getId());

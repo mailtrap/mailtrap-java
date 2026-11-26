@@ -34,7 +34,9 @@ public class SuppressionsImpl extends ApiResource implements Suppressions {
             entry("email", Optional.ofNullable(filter).map(SuppressionListFilter::getEmail)),
             entry("start_time", Optional.ofNullable(filter).map(SuppressionListFilter::getStartTime)),
             entry("end_time", Optional.ofNullable(filter).map(SuppressionListFilter::getEndTime)),
-            entry("last_id", Optional.ofNullable(filter).map(SuppressionListFilter::getLastId))
+            entry("last_id", Optional.ofNullable(filter).map(SuppressionListFilter::getLastId)),
+            entry("include_topic_unsubscriptions",
+                Optional.ofNullable(filter).map(SuppressionListFilter::getIncludeTopicUnsubscriptions))
         );
 
         return

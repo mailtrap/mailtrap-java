@@ -7,6 +7,9 @@ import io.mailtrap.model.request.emaillogs.FilterCiString;
 import io.mailtrap.model.request.emaillogs.FilterExactString;
 import io.mailtrap.model.request.emaillogs.FilterStatus;
 import io.mailtrap.model.request.emaillogs.FilterOptionalString;
+import io.mailtrap.model.response.emaillogs.EmailLogMessageEventTopicResubscribe;
+import io.mailtrap.model.response.emaillogs.EmailLogMessageEventTopicUnsubscribe;
+import io.mailtrap.model.response.emaillogs.EmailLogMessageEventUnknown;
 import io.mailtrap.model.response.emaillogs.MessageStatus;
 
 import java.time.Instant;
@@ -51,6 +54,20 @@ public class EmailLogsExample {
             final var message = client.sendingApi().emailLogs().get(ACCOUNT_ID, messageId);
             System.out.println(
                     "Message: " + message.getSubject() + " events: " + message.getEvents().size());
+
+            // Topic events carry the subscription topic's id. An event type this SDK version doesn't know reads as
+            // EmailLogMessageEventUnknown, with its raw type and details.
+            for (final var event : message.getEvents()) {
+                if (event instanceof EmailLogMessageEventTopicUnsubscribe unsubscribe) {
+                    System.out.println("  unsubscribed from topic " + unsubscribe.getDetails().getSubscriptionTopicId());
+                } else if (event instanceof EmailLogMessageEventTopicResubscribe resubscribe) {
+                    System.out.println("  resubscribed to topic " + resubscribe.getDetails().getSubscriptionTopicId());
+                } else if (event instanceof EmailLogMessageEventUnknown unknown) {
+                    System.out.println("  " + unknown.getRawEventType() + ": " + unknown.getDetails());
+                } else {
+                    System.out.println("  " + event.getEventType());
+                }
+            }
         }
     }
 }

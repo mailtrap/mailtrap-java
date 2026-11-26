@@ -67,5 +67,18 @@ public class WebhooksExample {
 
         final var deleteResponse = client.generalApi().webhooks().deleteWebhook(ACCOUNT_ID, webhookId);
         System.out.println(deleteResponse);
+
+        // Subscription preference updates go to Bulk email-sending and Campaigns webhooks only; the API rejects
+        // them on a transactional webhook.
+        final var campaignsWebhook = client.generalApi().webhooks().createWebhook(ACCOUNT_ID, new CreateWebhookRequest(
+            WebhookInput.builder()
+                .url(WEBHOOK_URL)
+                .webhookType(WebhookType.CAMPAIGNS)
+                .payloadFormat(WebhookPayloadFormat.JSON)
+                .eventTypes(List.of(WebhookEventType.DELIVERY, WebhookEventType.SUBSCRIPTION_PREFERENCES_UPDATE))
+                .build()));
+        System.out.println(campaignsWebhook);
+
+        client.generalApi().webhooks().deleteWebhook(ACCOUNT_ID, campaignsWebhook.getData().getId());
     }
 }

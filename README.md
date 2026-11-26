@@ -393,6 +393,7 @@ You can find the [Mailtrap Java API reference](https://mailtrap.github.io/mailtr
 
 - [Email Campaigns](examples/java/io/mailtrap/examples/emailcampaigns/EmailCampaignsExample.java)
 - [Marketing Stats](examples/java/io/mailtrap/examples/marketingstats/MarketingStatsExample.java)
+- [Subscription Topics](examples/java/io/mailtrap/examples/subscriptiontopics/SubscriptionTopicsExample.java)
 
 ### Renamed APIs
 

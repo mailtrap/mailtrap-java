@@ -1,0 +1,14 @@
+{
+  "data": {
+    "id": 3,
+    "url": "https://example.com/mailtrap/webhooks",
+    "active": true,
+    "webhook_type": "campaigns",
+    "payload_format": "json",
+    "event_types": [
+      "delivery",
+      "subscription_preferences_update",
+      "an_event_type_added_later"
+    ]
+  }
+}

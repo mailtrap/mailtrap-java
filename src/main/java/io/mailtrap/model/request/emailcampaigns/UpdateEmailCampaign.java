@@ -6,6 +6,7 @@ import io.mailtrap.model.AbstractModel;
 import io.mailtrap.model.DeliveryMode;
 import io.mailtrap.model.response.emailcampaigns.DeliveryOptions;
 import io.mailtrap.model.response.emailcampaigns.ReplyTo;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,7 +21,8 @@ import java.util.List;
 @Data
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor
+// Private: new fields go through the builder, so the public constructors keep their signatures
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UpdateEmailCampaign extends AbstractModel {
 
@@ -66,5 +68,24 @@ public class UpdateEmailCampaign extends AbstractModel {
      */
     @JsonProperty("contact_segment_ids")
     private List<Long> contactSegmentIds;
+
+    /**
+     * ID of the subscription topic the campaign is sent for, as returned by the Subscription
+     * Topics API. The topic must cover the campaign's domain. Left out when {@code null}: the
+     * API rejects a {@code null} topic, so a campaign can change its topic but not drop it.
+     * Ignored for an account without subscription topics.
+     */
+    @JsonProperty("subscription_topic_id")
+    private Long subscriptionTopicId;
+
+    /**
+     * The constructor of previous versions, without {@code subscriptionTopicId}.
+     */
+    public UpdateEmailCampaign(final String name, final Long domainId, final String fromDisplayName, final String fromLocalPart,
+            final ReplyTo replyTo, final TemplateAttributes templateAttributes, final DeliveryMode deliveryMode,
+            final DeliveryOptions deliveryOptions, final List<Long> contactListIds, final List<Long> contactSegmentIds) {
+        this(name, domainId, fromDisplayName, fromLocalPart, replyTo, templateAttributes, deliveryMode, deliveryOptions,
+            contactListIds, contactSegmentIds, null);
+    }
 
 }

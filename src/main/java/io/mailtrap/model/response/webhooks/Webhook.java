@@ -1,6 +1,8 @@
 package io.mailtrap.model.response.webhooks;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import io.mailtrap.model.SendingStream;
 import io.mailtrap.model.WebhookEventType;
 import io.mailtrap.model.WebhookPayloadFormat;
@@ -33,7 +35,12 @@ public class Webhook {
     @JsonProperty("inbound_inbox_id")
     private Long inboundInboxId;
 
+    /**
+     * Event types the webhook is subscribed to. A type this SDK version doesn't know is left
+     * out.
+     */
     @JsonProperty("event_types")
+    @JsonSetter(contentNulls = Nulls.SKIP)
     private List<WebhookEventType> eventTypes;
 
 }

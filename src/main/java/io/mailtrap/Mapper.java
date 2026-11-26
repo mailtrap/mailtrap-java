@@ -17,6 +17,9 @@ public class Mapper {
     private static final ObjectMapper mapper = JsonMapper.builder()
             .disable(MapperFeature.CAN_OVERRIDE_ACCESS_MODIFIERS)
             .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+            // An enum value a newer API sends reads as null instead of failing the response: every fromValue throws
+            // IllegalArgumentException for an unknown value, which this turns into null
+            .enable(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL)
             .serializationInclusion(JsonInclude.Include.NON_EMPTY)
             .addModule(new SimpleModule().addDeserializer(ErrorResponse.class, new ErrorResponseDeserializer()))
             .addModule(new JavaTimeModule())

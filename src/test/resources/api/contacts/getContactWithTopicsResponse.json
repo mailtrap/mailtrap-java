@@ -1,0 +1,23 @@
+{
+  "data": {
+    "id": "018dd5e3-f6d2-7c00-8f9b-e5c3f2d8a133",
+    "status": "subscribed",
+    "email": "topics@example.com",
+    "fields": {},
+    "list_ids": [],
+    "created_at": 1742820600230,
+    "updated_at": 1742820600230,
+    "subscription_topics": [
+      {
+        "subscription_topic_id": 77,
+        "domain_id": 4321,
+        "status": "unsubscribed"
+      },
+      {
+        "subscription_topic_id": 78,
+        "domain_id": 4321,
+        "status": "subscribed"
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "contact": {
+    "subscription_topics": [
+      {
+        "subscription_topic_id": 78,
+        "domain_id": 4321,
+        "status": "unsubscribed"
+      }
+    ]
+  }
+}

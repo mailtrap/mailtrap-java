@@ -19,6 +19,7 @@
     "recipient_total_count": 1500,
     "contact_list_ids": [55, 56],
     "contact_segment_ids": [12],
+    "subscription_topic_id": 78,
     "delivery_mode": "gradual",
     "delivery_options": {
       "emails_per_hour": 1000

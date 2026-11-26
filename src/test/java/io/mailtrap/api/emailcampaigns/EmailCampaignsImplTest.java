@@ -28,6 +28,7 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -107,12 +108,14 @@ class EmailCampaignsImplTest extends BaseTest {
         assertEquals(DeliveryMode.RAPID, first.getDeliveryMode());
         assertEquals(List.of(55L, 56L), first.getContactListIds());
         assertEquals(List.of(12L), first.getContactSegmentIds());
+        assertEquals(77L, first.getSubscriptionTopicId());
         // template bodies are omitted from list responses
         assertNull(first.getTemplate().getBodyHtml());
         assertEquals(List.of("first_name"), first.getTemplate().getMergeTags());
 
         final EmailCampaign second = response.getData().get(1);
         assertEquals(CampaignState.FAILED, second.getCurrentState());
+        assertNull(second.getSubscriptionTopicId());
         assertEquals("Invalid recipient address", second.getCurrentStateMetadata().getErrors().get(0).getMessage());
         assertEquals(0, second.getCurrentStateMetadata().getErrors().get(0).getRcptIndex());
 
@@ -150,6 +153,7 @@ class EmailCampaignsImplTest extends BaseTest {
                 .deliveryMode(DeliveryMode.RAPID)
                 .contactListIds(List.of(55L, 56L))
                 .contactSegmentIds(List.of(12L))
+                .subscriptionTopicId(77L)
                 .build();
 
         final EmailCampaignResponse response = api.createEmailCampaign(request);
@@ -163,6 +167,7 @@ class EmailCampaignsImplTest extends BaseTest {
         assertEquals(DeliveryMode.RAPID, campaign.getDeliveryMode());
         assertEquals(789L, campaign.getTemplate().getId());
         assertEquals(BODY_HTML, campaign.getTemplate().getBodyHtml());
+        assertEquals(77L, campaign.getSubscriptionTopicId());
         // audience is resolved asynchronously
         assertNull(campaign.getRecipientTotalCount());
     }
@@ -195,6 +200,7 @@ class EmailCampaignsImplTest extends BaseTest {
                 .deliveryOptions(DeliveryOptions.builder().emailsPerHour(1000).build())
                 .contactListIds(List.of(55L, 56L))
                 .contactSegmentIds(List.of(12L))
+                .subscriptionTopicId(78L)
                 .build();
 
         final EmailCampaignResponse response = api.updateEmailCampaign(emailCampaignId, request);
@@ -206,6 +212,18 @@ class EmailCampaignsImplTest extends BaseTest {
         assertEquals(CampaignState.DRAFT, campaign.getCurrentState());
         assertEquals(DeliveryMode.GRADUAL, campaign.getDeliveryMode());
         assertEquals("New subject", campaign.getTemplate().getSubject());
+        assertEquals(78L, campaign.getSubscriptionTopicId());
+    }
+
+    @Test
+    void test_campaignRequests_leaveOutAnUnsetSubscriptionTopic() {
+        assertFalse(CreateEmailCampaign.builder().name("Spring Sale").build().toJson().contains("subscription_topic_id"));
+        assertFalse(UpdateEmailCampaign.builder().name("Spring Sale").build().toJson().contains("subscription_topic_id"));
+        // the constructors of previous versions leave it unset
+        assertNull(new CreateEmailCampaign("Spring Sale", domainId, null, "news", null, null, null, null, null, null)
+                .getSubscriptionTopicId());
+        assertNull(new UpdateEmailCampaign("Spring Sale", null, null, null, null, null, null, null, null, null)
+                .getSubscriptionTopicId());
     }
 
     @Test

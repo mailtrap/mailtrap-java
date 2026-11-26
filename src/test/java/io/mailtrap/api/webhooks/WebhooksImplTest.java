@@ -52,6 +52,9 @@ class WebhooksImplTest extends BaseTest {
                         "PATCH", "api/webhooks/updateWebhookRequest.json", "api/webhooks/updateWebhookResponse.json"),
 
                 DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/webhooks/" + webhookId,
+                        "PATCH", "api/webhooks/updateWebhookEventTypesRequest.json", "api/webhooks/updateWebhookEventTypesResponse.json"),
+
+                DataMock.build(Constants.GENERAL_HOST + "/api/accounts/" + accountId + "/webhooks/" + webhookId,
                         "DELETE", null, "api/webhooks/deleteWebhookResponse.json")
         ));
 
@@ -136,6 +139,23 @@ class WebhooksImplTest extends BaseTest {
         assertNotNull(response);
         assertEquals(webhookId, response.getData().getId());
         assertFalse(response.getData().isActive());
+    }
+
+    @Test
+    void test_updateWebhook_subscriptionPreferencesUpdate() {
+        final UpdateWebhookRequest request = new UpdateWebhookRequest(
+                WebhookInput.builder()
+                        .eventTypes(List.of(WebhookEventType.DELIVERY, WebhookEventType.SUBSCRIPTION_PREFERENCES_UPDATE))
+                        .build()
+        );
+
+        final WebhookResponse response = api.updateWebhook(accountId, webhookId, request);
+
+        assertNotNull(response);
+        assertEquals(WebhookType.CAMPAIGNS, response.getData().getWebhookType());
+        // an event type this SDK version doesn't know is left out instead of failing the response
+        assertEquals(List.of(WebhookEventType.DELIVERY, WebhookEventType.SUBSCRIPTION_PREFERENCES_UPDATE),
+                response.getData().getEventTypes());
     }
 
     @Test

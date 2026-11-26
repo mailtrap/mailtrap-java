@@ -50,4 +50,11 @@ public class SuppressionsResponse {
 
   @JsonProperty("message_subject")
   private String messageSubject;
+
+  /**
+   * ID of the subscription topic of a {@link SuppressionType#TOPIC_UNSUBSCRIPTION} row, as
+   * returned by the Subscription Topics API; {@code null} on every other row.
+   */
+  @JsonProperty("subscription_topic_id")
+  private Long subscriptionTopicId;
 }

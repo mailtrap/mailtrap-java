@@ -8,23 +8,12 @@ import io.mailtrap.model.response.ErrorResponse;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 /**
- * Custom deserializer for {@link ErrorResponse} that handles the deserialization
- * of error messages from a variety of possible JSON structures.
- *
- * <p>This deserializer can handle different formats of error representations in JSON:
- * <ul>
- *   <li>An array of error messages under the "errors" field.</li>
- *   <li>A single textual error message under the "errors" or "error" field.</li>
- *   <li>An object containing nested fields with error messages under the "errors" field.</li>
- * </ul>
- *
- * <p>The deserializer collects all error messages into a list and constructs
- * an {@link ErrorResponse} object that encapsulates these messages.
+ * Custom deserializer for {@link ErrorResponse} that collects the error messages of an error body: every
+ * string at any depth under its "errors" field (a string, a list, an object of fields, or a list of such
+ * objects, as contact imports return) or, without one, under its "error" field.
  */
 public class ErrorResponseDeserializer extends JsonDeserializer<ErrorResponse> {
 
@@ -34,35 +23,16 @@ public class ErrorResponseDeserializer extends JsonDeserializer<ErrorResponse> {
         final JsonNode node = p.getCodec().readTree(p);
 
         final List<String> errors = new ArrayList<>();
-
-        if (node.has("errors")) {
-            final JsonNode errorsNode = node.get("errors");
-            if (errorsNode.isArray()) {
-                final Iterator<JsonNode> elements = errorsNode.elements();
-                while (elements.hasNext()) {
-                    errors.add(elements.next().asText());
-                }
-            } else if (errorsNode.isTextual()) {
-                errors.add(errorsNode.asText());
-            } else if (errorsNode.isObject()) {
-                final Iterator<Map.Entry<String, JsonNode>> fields = errorsNode.fields();
-                while (fields.hasNext()) {
-                    final Map.Entry<String, JsonNode> field = fields.next();
-                    final JsonNode fieldValue = field.getValue();
-                    if (fieldValue.isArray()) {
-                        final Iterator<JsonNode> fieldElements = fieldValue.elements();
-                        while (fieldElements.hasNext()) {
-                            errors.add(fieldElements.next().asText());
-                        }
-                    } else if (fieldValue.isTextual()) {
-                        errors.add(fieldValue.asText());
-                    }
-                }
-            }
-        } else if (node.has("error") && node.get("error").isTextual()) {
-            errors.add(node.get("error").asText());
-        }
+        collectMessages(node.has("errors") ? node.get("errors") : node.path("error"), errors);
 
         return new ErrorResponse(errors);
+    }
+
+    private static void collectMessages(final JsonNode node, final List<String> errors) {
+        if (node.isTextual()) {
+            errors.add(node.asText());
+        } else if (node.isContainerNode()) {
+            node.elements().forEachRemaining(element -> collectMessages(element, errors));
+        }
     }
 }
