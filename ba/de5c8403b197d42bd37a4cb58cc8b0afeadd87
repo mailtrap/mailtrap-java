@@ -1,0 +1,34 @@
+src/main/java/io/mailtrap/model/request/emailcampaigns/UpdateEmailCampaign.java
+  s_af36b4533bde2f::t_0a25670a40edd3 9,24-25
+src/test/java/io/mailtrap/api/contacts/ContactsImplTest.java
+  s_af36b4533bde2f::t_fd298fc2818fc4 35,37,50,53,56,59,154
+src/main/java/io/mailtrap/model/request/suppressions/SuppressionListFilter.java
+  s_af36b4533bde2f::t_0a25670a40edd3 3,15-16
+src/main/java/io/mailtrap/model/request/contacts/UpdateContact.java
+  s_af36b4533bde2f::t_0a25670a40edd3 7,18-19
+  s_af36b4533bde2f::t_fd298fc2818fc4 48,52
+src/main/java/io/mailtrap/model/request/contactimports/Contact.java
+  s_af36b4533bde2f::t_0a25670a40edd3 7,14-15
+src/main/java/io/mailtrap/model/request/contacts/CreateContact.java
+  s_af36b4533bde2f::t_0a25670a40edd3 4,14-15
+src/main/java/io/mailtrap/model/request/emailcampaigns/CreateEmailCampaign.java
+  s_af36b4533bde2f::t_0a25670a40edd3 9,26-27
+src/test/java/io/mailtrap/http/impl/DefaultMailtrapHttpClientTest.java
+  s_af36b4533bde2f::t_fd298fc2818fc4 73,84,95-100
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "bade5c8403b197d42bd37a4cb58cc8b0afeadd87",
+  "prompts": {},
+  "sessions": {
+    "s_af36b4533bde2f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5193ca3f-2d0f-4918-adf1-abe52ccd9a95",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Maciej Walusiak <maciej.walusiak@railsware.com>"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+examples/java/io/mailtrap/examples/emailcampaigns/EmailCampaignsExample.java
+  s_306b3ce6c78f70::t_0dfa3174ff4a3a 50,53-64
+  s_306b3ce6c78f70::t_d98f18a05491fd 5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b50a8e5fe0d0686e23166b72e4b9fd0a16abb6c6",
+  "prompts": {},
+  "sessions": {
+    "s_306b3ce6c78f70": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b09437a9-f1ae-4e2b-bef5-2c982a974eec",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Maciej Walusiak <maciej.walusiak@railsware.com>"
+    }
+  }
+}

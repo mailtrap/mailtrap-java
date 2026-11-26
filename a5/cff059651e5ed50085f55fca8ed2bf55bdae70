@@ -1,0 +1,29 @@
+src/main/java/io/mailtrap/api/sendingdomains/SendingDomains.java
+  s_45058238fb3038::t_1f0970d6b6ed5c 58,85,90
+examples/java/io/mailtrap/examples/domains/DomainsExample.java
+  s_45058238fb3038::t_1f0970d6b6ed5c 49
+src/main/java/io/mailtrap/api/sendingdomains/SendingDomainsImpl.java
+  s_45058238fb3038::t_1f0970d6b6ed5c 60
+src/test/java/io/mailtrap/api/sendingdomains/SendingDomainsImplTest.java
+  s_45058238fb3038::t_1f0970d6b6ed5c 114-115
+README.md
+  s_45058238fb3038::t_1f0970d6b6ed5c 420
+src/test/java/io/mailtrap/DeprecatedNamesTest.java
+  s_45058238fb3038::t_1f0970d6b6ed5c 138
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a5cff059651e5ed50085f55fca8ed2bf55bdae70",
+  "prompts": {},
+  "sessions": {
+    "s_45058238fb3038": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "aa7257dc-07d7-4d1f-84f2-55bb1b247c3d",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Maciej Walusiak <maciej.walusiak@railsware.com>"
+    }
+  }
+}

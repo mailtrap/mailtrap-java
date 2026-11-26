@@ -1,0 +1,124 @@
+src/test/java/io/mailtrap/DeprecatedNamesTest.java
+  s_0c0d4e5ad7c773::t_74671b0af83003 1-12,15-29,31-67,69-106,109-111,134,137-139,158-194
+  s_0c0d4e5ad7c773::t_43a22c5a36c4ad 13-14,30,68,107-108,112-116,118-120,122-124,126-128,130-132,135-136,140-150,152-157
+  s_0c0d4e5ad7c773::t_edac772d88a7b5 117,121,125,129,133,151
+src/main/java/io/mailtrap/api/marketingstats/MarketingStatsFilter.java
+  s_0c0d4e5ad7c773::t_151568af105b64 32-33
+src/main/java/io/mailtrap/model/request/accountaccesses/ListAccountAccessQueryParams.java
+  s_0c0d4e5ad7c773::t_151568af105b64 22
+src/test/java/io/mailtrap/api/testingemails/TestingEmailsImplTest.java
+  s_0c0d4e5ad7c773::t_ce9f01155a1b92 24,30,34,38,42,46,50,59,62,71,81,91,101,111,121,128,138,151,164,177,192,207,222,229,240
+src/test/java/io/mailtrap/client/MailtrapClientTest.java
+  s_0c0d4e5ad7c773::t_ce9f01155a1b92 29,38,75,116,152,156,160
+examples/java/io/mailtrap/examples/sandbox/AttachmentsExample.java
+  s_0c0d4e5ad7c773::t_67167227b8af0f 1-39
+src/main/java/io/mailtrap/api/accountaccesses/AccountAccesses.java
+  s_0c0d4e5ad7c773::t_dd0870305a7c8f 10
+src/main/java/io/mailtrap/api/messages/MessagesImpl.java
+  s_0c0d4e5ad7c773::t_c1b2297e92322f 26,28,35,37,45,47,54,61,68,70,78,80,87,89,96,98,105,107,114,116,123,125,132,134,141,143
+examples/java/io/mailtrap/examples/sandbox/EmailExample.java
+  s_0c0d4e5ad7c773::t_67167227b8af0f 1-39
+examples/java/io/mailtrap/examples/sandbox/MessagesExample.java
+  s_0c0d4e5ad7c773::t_67167227b8af0f 1-67
+examples/java/io/mailtrap/examples/sandbox/SandboxesExample.java
+  s_0c0d4e5ad7c773::t_67167227b8af0f 1-56
+examples/java/io/mailtrap/examples/domains/DomainsExample.java
+  s_0c0d4e5ad7c773::t_67167227b8af0f 1-53
+examples/java/io/mailtrap/examples/sandbox/ProjectsExample.java
+  s_0c0d4e5ad7c773::t_67167227b8af0f 1-32
+src/test/java/io/mailtrap/testutils/BaseTest.java
+  s_0c0d4e5ad7c773::t_ce9f01155a1b92 9,15
+src/main/java/io/mailtrap/model/request/emailcampaigns/UpdateEmailCampaign.java
+  s_0c0d4e5ad7c773::t_151568af105b64 30-31
+src/main/java/io/mailtrap/client/MailtrapClient.java
+  s_0c0d4e5ad7c773::t_a93507a4a27b4c 30,32,92,96-110,121,137,148,153,155,157-158,163-170,175
+src/main/java/io/mailtrap/api/attachments/AttachmentsImpl.java
+  s_0c0d4e5ad7c773::t_c1b2297e92322f 22,24,30,35
+src/main/java/io/mailtrap/factory/MailtrapClientFactory.java
+  s_0c0d4e5ad7c773::t_a93507a4a27b4c 80,93,161,164,168,193
+src/test/java/io/mailtrap/api/marketingstats/MarketingStatsImplTest.java
+  s_0c0d4e5ad7c773::t_ce9f01155a1b92 42,85
+src/test/java/io/mailtrap/api/permissions/PermissionsImplTest.java
+  s_0c0d4e5ad7c773::t_ce9f01155a1b92 48
+examples/java/io/mailtrap/examples/sandbox/BatchExample.java
+  s_0c0d4e5ad7c773::t_67167227b8af0f 1-48
+README.md
+  s_0c0d4e5ad7c773::t_8af1babb5229e4 93,113,119,166,191,223,350,357,359-364,397-421
+  s_0c0d4e5ad7c773::t_a1b1bdae8d0325 422
+src/main/java/io/mailtrap/api/trackingoptouts/TrackingOptOuts.java
+  s_0c0d4e5ad7c773::t_1a63b2433aa384 21
+src/main/java/io/mailtrap/api/projects/Projects.java
+  s_0c0d4e5ad7c773::t_f0dd74cf590a57 10
+  s_0c0d4e5ad7c773::t_151568af105b64 24,27,32,36,46,51
+src/main/java/io/mailtrap/config/MailtrapConfig.java
+  s_0c0d4e5ad7c773::t_b143bd50e256e4 32,42,44,48,50-51,59-74,83,110-111,115-120
+  s_0c0d4e5ad7c773::t_5cf8185b7f1353 121-122
+src/main/java/io/mailtrap/api/companyinfo/CompanyInfoImpl.java
+  s_0c0d4e5ad7c773::t_c1b2297e92322f 19,21,28,30,38,40,47-48
+src/test/java/io/mailtrap/testutils/BaseSendTest.java
+  s_0c0d4e5ad7c773::t_ce9f01155a1b92 13-15
+src/main/java/io/mailtrap/Constants.java
+  s_0c0d4e5ad7c773::t_5c6d5d105f6f1c 10-17
+src/main/java/io/mailtrap/api/messages/Messages.java
+  s_0c0d4e5ad7c773::t_dd0870305a7c8f 11,19,23,29,34,37,40,44,48,52,58,63,69,73,79,83,89,93,99,103,109,113,119,123,129,133,139,143
+src/main/java/io/mailtrap/api/permissions/Permissions.java
+  s_0c0d4e5ad7c773::t_dd0870305a7c8f 10
+src/main/java/io/mailtrap/util/SendingContextHolder.java
+  s_0c0d4e5ad7c773::t_2140a9cd58a91e 10,17,19-20,22-24,26-32,34-45
+  s_0c0d4e5ad7c773::t_cd20ed7399eb29 21
+  s_0c0d4e5ad7c773::t_f02e137e8a43c5 25,33
+src/main/java/io/mailtrap/api/testingemails/TestingEmails.java
+  s_0c0d4e5ad7c773::t_dd0870305a7c8f 11,18-19,25,27
+src/main/java/io/mailtrap/model/response/emailcampaigns/EmailCampaign.java
+  s_0c0d4e5ad7c773::t_151568af105b64 26
+src/main/java/io/mailtrap/api/inboxes/Inboxes.java
+  s_0c0d4e5ad7c773::t_296501766fc642 10,15,19-20,22,25,28-29,31,34,37-38,40,43,46,48,50,53,56-57,59,62,65-66,68,71,74-75,77,80,83-84,86,89,92-93,95,98,101,103-151
+src/test/java/io/mailtrap/api/attachments/AttachmentsImplTest.java
+  s_0c0d4e5ad7c773::t_ce9f01155a1b92 24,27,36,41,51
+src/main/java/io/mailtrap/api/inboxes/InboxesImpl.java
+  s_0c0d4e5ad7c773::t_c1b2297e92322f 22,35,37,44,46,53,58,66,68,76,78,86,88,96,98,106,108,116
+src/main/java/io/mailtrap/model/request/emailcampaigns/CreateEmailCampaign.java
+  s_0c0d4e5ad7c773::t_151568af105b64 32-33
+src/test/java/io/mailtrap/api/projects/ProjectsImplTest.java
+  s_0c0d4e5ad7c773::t_ce9f01155a1b92 49
+src/test/java/io/mailtrap/api/inboxes/InboxesImplTest.java
+  s_0c0d4e5ad7c773::t_ce9f01155a1b92 31,34,37,40,43,46,49,52,64,68-69,77-78,87-88,92,97-98,102,108-109,113,119,123,129,133,139,143,149,153,158-159,164
+src/main/java/io/mailtrap/client/api/MailtrapEmailTestingApi.java
+  s_0c0d4e5ad7c773::t_1662009b10475c 13,21,24-38
+src/main/java/io/mailtrap/api/testingemails/TestingEmailsImpl.java
+  s_0c0d4e5ad7c773::t_c1b2297e92322f 22,26,35,43,48
+src/main/java/io/mailtrap/api/sendingdomains/SendingDomains.java
+  s_0c0d4e5ad7c773::t_3a1ac9625b3984 10-12,16,20,25,30,35-36,39,42,44-46,49,52,54-56,58,61,63-94,96-99
+src/main/java/io/mailtrap/api/attachments/Attachments.java
+  s_0c0d4e5ad7c773::t_dd0870305a7c8f 9,17,22,25,28,33
+src/main/java/io/mailtrap/api/billing/Billing.java
+  s_0c0d4e5ad7c773::t_dd0870305a7c8f 6
+src/main/java/io/mailtrap/api/companyinfo/CompanyInfo.java
+  s_0c0d4e5ad7c773::t_dd0870305a7c8f 10,12-13,15,18,21-22,25,28,30-31,34
+src/main/java/io/mailtrap/api/accounts/Accounts.java
+  s_0c0d4e5ad7c773::t_dd0870305a7c8f 8
+src/test/java/io/mailtrap/api/messages/MessagesImplTest.java
+  s_0c0d4e5ad7c773::t_ce9f01155a1b92 28,31,34,37,40,43,46,49,52,55,58,61,64,67,70,79,84,93,102,110,122,133,142,150,158,167,174,181,188,195,202
+examples/java/io/mailtrap/examples/general/AccountAccessExample.java
+  s_0c0d4e5ad7c773::t_67167227b8af0f 13,23
+src/main/java/io/mailtrap/api/sendingdomains/SendingDomainsImpl.java
+  s_0c0d4e5ad7c773::t_c1b2297e92322f 32,41,43,50,52,60,62,70,73
+src/test/java/io/mailtrap/api/sendingdomains/SendingDomainsImplTest.java
+  s_0c0d4e5ad7c773::t_ce9f01155a1b92 36,40,44,48,71-72,82-83,96,114-115,119-120
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d107e79fc09a512528110a8c17ff84430fc7fbd8",
+  "prompts": {},
+  "sessions": {
+    "s_0c0d4e5ad7c773": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a6a08e17-b286-4419-a264-261618511242",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Maciej Walusiak <maciej.walusiak@railsware.com>"
+    }
+  }
+}
