@@ -1,0 +1,19 @@
+lombok.config
+  s_3a5c86af1b0df1::t_9907b9bcc44aab 1-5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1087bb6281af7aa141c1454ea43f3080028b3a6c",
+  "prompts": {},
+  "sessions": {
+    "s_3a5c86af1b0df1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6d050283-358e-4e99-b450-ffa69a99ac25",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Marcin Klocek <marcin.klocek@railsware.com>"
+    }
+  }
+}
